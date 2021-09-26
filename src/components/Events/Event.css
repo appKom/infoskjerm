@@ -1,0 +1,34 @@
+.event {
+  width: 100%;
+  background: white;
+
+  display: flex;
+  justify-content: flex-start;
+  color: black;
+}
+
+.thumb {
+  height: 120px;
+  width: 35%;
+}
+
+.info {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.title {
+  margin: 0;
+}
+
+.ingress {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.seats {
+  font-size: 1rem;
+}
