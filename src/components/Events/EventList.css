@@ -1,0 +1,7 @@
+.event-list {
+  margin: 0 auto;
+}
+
+.event-list > * {
+  margin-bottom: 10px;
+}
