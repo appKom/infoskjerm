@@ -4,6 +4,7 @@
   "private": true,
   "author": "appkom",
   "scripts": {
+    "prestart": "npm run lint:fix",
     "start": "react-scripts start",
     "lint": "eslint src/ --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "npm run lint -- --fix",
