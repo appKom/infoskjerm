@@ -6,7 +6,7 @@ const WeatherContainer = ({weather}) => {
       <h3>Været på A4</h3>
       <div className="weatherContainer">
         {weather.map((wet, index) => (
-          <Weather key={index} time={wet.time} temp={wet.temp}/>
+          <Weather key={index} time={wet.time} temp={wet.temp} img={wet.img}/>
         ))}
       </div>
     </div>

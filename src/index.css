@@ -18,12 +18,14 @@ body {
 .weather{
 padding: 10px;
 text-align: center;
-border: 1px solid blue;
+border: 1px solid rgb(114, 114, 114);
+box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4)
 }
 
 .weatherContainer{
   display: flex;
   justify-content: space-evenly;
+  background-color: rgb(255, 255, 255);
 }
 
 .weatherContainer div {

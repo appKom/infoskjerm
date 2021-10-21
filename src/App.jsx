@@ -4,32 +4,13 @@ import {useState, useEffect} from 'react';
 
 
 function App() {
-  const [ weather,setWeather ] = useState([
-    {id:1,
-      time:8,
-      temp:4
-    },
-    {
-      id:2,
-      time:12,
-      temp:8
-    },
-    {
-      id:3,
-      time:16,
-      temp:15
-    },
-    {
-      id:4,
-      time:18,
-      temp:13
-    }
-  ]);
+  const [ weather,setWeather ] = useState([]);
 
   useEffect(() => {
     const getWeather=async() => {
       const weatherFromAPI=await fetchWeather();
       console.log(weatherFromAPI);
+      setWeather(weatherFromAPI);
     };
 
     getWeather();
@@ -37,9 +18,13 @@ function App() {
 
 
   const fetchWeather = async() => {
-    const res = await fetch('https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=54&lon=54');
+    const res = await fetch('https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=63.415528347442574&lon=10.404464071457326');
     const data = await res.json();
-    return data;
+    const returnData=[];
+    for(let i=0;i<4;i++){
+      returnData.push({time: data.properties.timeseries[i*2+3].time.substring(11,16), temp: data.properties.timeseries[i*2+3].data.instant.details.air_temperature, img: data.properties.timeseries[i*2+3].data.next_1_hours.summary.symbol_code});
+    }
+    return returnData;
   };
 
 
