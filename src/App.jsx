@@ -1,26 +1,19 @@
-import EventList from './components/Events/EventList';
+
+//import Bus from './components/Bus/Bus';
+import BusContainer from './components/Bus/BusContainer';
 import './App.css';
 
 function App() {
+
+  const [bus, setBus] = useState(initialState)
+
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-        <EventList />
-      </header>
+      <BusContainer></BusContainer>
     </div>
   );
 }
+
+
 
 export default App;
