@@ -5,8 +5,8 @@ const WeatherContainer = ({weather}) => {
     <div id="weatherDiv">
       <h3>Været på A4</h3>
       <div className="weatherContainer">
-        {weather.map((wet) => (
-          <Weather time={wet.time} temp={wet.temp}/>
+        {weather.map((wet, index) => (
+          <Weather key={index} time={wet.time} temp={wet.temp}/>
         ))}
       </div>
     </div>
