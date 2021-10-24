@@ -1,13 +1,44 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.weatherimg{
+  width:60px;
+  height:50px;
+}
+
+.weather{
+padding: 10px;
+text-align: center;
+border: 1px solid rgb(114, 114, 114);
+box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
+border-radius: 10%;
+}
+
+.weatherContainer{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgb(255, 255, 255);
+}
+
+.weatherContainer div {
+  margin: 5px;
+}
+
+#weatherDiv{
+  padding: 20px;
+  text-align: center;
+  width: min-content;
+}
+
+#weatherDiv h3{
+  margin: 20px;
 }
