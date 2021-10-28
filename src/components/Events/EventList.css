@@ -1,7 +1,13 @@
 .event-list {
   margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.event-list > * {
-  margin-bottom: 10px;
-}
+/* .event-list > * {
+  margin-bottom: 5px;
+} */

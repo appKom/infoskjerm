@@ -24,6 +24,7 @@
 #weatherDiv{
   text-align: center;
   width: min-content;
+  width: 100%;
 }
 
 #weatherDiv h3{
