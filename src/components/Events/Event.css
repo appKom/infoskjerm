@@ -1,15 +1,13 @@
 .event {
   width: 100%;
   background: white;
-
   display: grid;
-  grid-template-columns: 35% 1fr;
+  grid-template-columns: max-content 1fr;
   color: black;
 }
 
 .thumb {
-  height: 120px;
-  width: 100%;
+  aspect-ratio: 16 / 9;
 }
 
 .data {
