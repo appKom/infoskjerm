@@ -1,0 +1,2486 @@
+<weatherdata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.api.met.no/schemas/weatherapi-0.4.xsd" created="2021-09-30T08:47:06Z">
+    <meta>
+        <model name="met_public_forecast" termin="2021-09-30T08:00:00Z" runended="2021-09-30T08:26:45Z" nextrun="2021-09-30T14:26:45Z" from="2021-09-30T08:00:00Z" to="2021-10-09T18:00:00Z"></model>
+    </meta>
+    <product class="pointData">
+        <time datatype="forecast" from="2021-09-30T08:00:00Z" to="2021-09-30T08:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.4"></temperature>
+                <windDirection id="dd" deg="345.0" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.8" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="37.2"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.8"></pressure>
+                <cloudiness id="NN" percent="69.5"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="12.5"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="38.3"></mediumClouds>
+                <highClouds id="HIGH" percent="51.6"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-5.2"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T07:00:00Z" to="2021-09-30T08:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T02:00:00Z" to="2021-09-30T08:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="-0.2"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.4"></maxTemperature>
+                <symbol id="LightCloud" number="2" code="fair_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T09:00:00Z" to="2021-09-30T09:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.9"></temperature>
+                <windDirection id="dd" deg="340.9" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.7" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="35.9"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.5"></pressure>
+                <cloudiness id="NN" percent="34.4"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="10.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="2.3"></mediumClouds>
+                <highClouds id="HIGH" percent="23.4"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-5.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T08:00:00Z" to="2021-09-30T09:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="LightCloud" number="2" code="fair_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T03:00:00Z" to="2021-09-30T09:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="2.2"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.9"></maxTemperature>
+                <symbol id="LightCloud" number="2" code="fair_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T10:00:00Z" to="2021-09-30T10:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.2"></temperature>
+                <windDirection id="dd" deg="331.2" name="NW"></windDirection>
+                <windSpeed id="ff" mps="2.8" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="34.7"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.2"></pressure>
+                <cloudiness id="NN" percent="77.3"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="0.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="71.9"></mediumClouds>
+                <highClouds id="HIGH" percent="20.3"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-5.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T09:00:00Z" to="2021-09-30T10:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T04:00:00Z" to="2021-09-30T10:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.2"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T11:00:00Z" to="2021-09-30T11:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.9"></temperature>
+                <windDirection id="dd" deg="324.9" name="NW"></windDirection>
+                <windSpeed id="ff" mps="3.7" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="37.9"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.2"></pressure>
+                <cloudiness id="NN" percent="95.3"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="36.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="93.7"></mediumClouds>
+                <highClouds id="HIGH" percent="21.9"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-4.6"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T10:00:00Z" to="2021-09-30T11:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T05:00:00Z" to="2021-09-30T11:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.2"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T12:00:00Z" to="2021-09-30T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.2"></temperature>
+                <windDirection id="dd" deg="321.8" name="NW"></windDirection>
+                <windSpeed id="ff" mps="3.7" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="42.7"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.1"></pressure>
+                <cloudiness id="NN" percent="93.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="65.6"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="80.5"></mediumClouds>
+                <highClouds id="HIGH" percent="66.4"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-3.7"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T11:00:00Z" to="2021-09-30T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T06:00:00Z" to="2021-09-30T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.2"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T13:00:00Z" to="2021-09-30T13:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.8"></temperature>
+                <windDirection id="dd" deg="312.7" name="NW"></windDirection>
+                <windSpeed id="ff" mps="2.7" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="43.8"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.0"></pressure>
+                <cloudiness id="NN" percent="92.2"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="78.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="85.9"></mediumClouds>
+                <highClouds id="HIGH" percent="43.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-3.7"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T12:00:00Z" to="2021-09-30T13:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T07:00:00Z" to="2021-09-30T13:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.2"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T14:00:00Z" to="2021-09-30T14:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.6"></temperature>
+                <windDirection id="dd" deg="297.8" name="NW"></windDirection>
+                <windSpeed id="ff" mps="1.9" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="50.5"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.0"></pressure>
+                <cloudiness id="NN" percent="76.6"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="54.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="73.4"></mediumClouds>
+                <highClouds id="HIGH" percent="4.7"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-3.0"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T13:00:00Z" to="2021-09-30T14:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T08:00:00Z" to="2021-09-30T14:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.6"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.2"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T15:00:00Z" to="2021-09-30T15:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.3"></temperature>
+                <windDirection id="dd" deg="305.6" name="NW"></windDirection>
+                <windSpeed id="ff" mps="2.7" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="54.5"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.3"></pressure>
+                <cloudiness id="NN" percent="76.6"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="74.2"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="61.7"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-2.2"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T14:00:00Z" to="2021-09-30T15:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T09:00:00Z" to="2021-09-30T15:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.2"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T16:00:00Z" to="2021-09-30T16:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="5.8"></temperature>
+                <windDirection id="dd" deg="315.0" name="NW"></windDirection>
+                <windSpeed id="ff" mps="2.5" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="60.3"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.5"></pressure>
+                <cloudiness id="NN" percent="82.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="79.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="74.2"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-1.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T15:00:00Z" to="2021-09-30T16:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T10:00:00Z" to="2021-09-30T16:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="5.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.9"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T17:00:00Z" to="2021-09-30T17:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="5.4"></temperature>
+                <windDirection id="dd" deg="316.9" name="NW"></windDirection>
+                <windSpeed id="ff" mps="2.0" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="65.2"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.7"></pressure>
+                <cloudiness id="NN" percent="57.8"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="54.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="46.9"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-0.6"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T16:00:00Z" to="2021-09-30T17:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T11:00:00Z" to="2021-09-30T17:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="5.4"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.2"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T18:00:00Z" to="2021-09-30T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.5"></temperature>
+                <windDirection id="dd" deg="311.3" name="NW"></windDirection>
+                <windSpeed id="ff" mps="1.6" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="71.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.9"></pressure>
+                <cloudiness id="NN" percent="88.3"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="87.5"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="45.3"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-0.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T17:00:00Z" to="2021-09-30T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T12:00:00Z" to="2021-09-30T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.5"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.8"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T19:00:00Z" to="2021-09-30T19:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.3"></temperature>
+                <windDirection id="dd" deg="309.7" name="NW"></windDirection>
+                <windSpeed id="ff" mps="1.4" beaufort="1" name="Flau vind"></windSpeed>
+                <humidity unit="percent" value="72.8"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.9"></pressure>
+                <cloudiness id="NN" percent="98.4"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="97.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="88.3"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="0.0"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T18:00:00Z" to="2021-09-30T19:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T13:00:00Z" to="2021-09-30T19:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="6.6"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T20:00:00Z" to="2021-09-30T20:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.7"></temperature>
+                <windDirection id="dd" deg="298.6" name="NW"></windDirection>
+                <windSpeed id="ff" mps="1.4" beaufort="1" name="Flau vind"></windSpeed>
+                <humidity unit="percent" value="72.2"></humidity>
+                <pressure id="pr" unit="hPa" value="1027.9"></pressure>
+                <cloudiness id="NN" percent="99.2"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="94.5"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="98.4"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="0.1"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T19:00:00Z" to="2021-09-30T20:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T14:00:00Z" to="2021-09-30T20:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="6.3"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T21:00:00Z" to="2021-09-30T21:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.6"></temperature>
+                <windDirection id="dd" deg="274.9" name="W"></windDirection>
+                <windSpeed id="ff" mps="1.6" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="73.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.0"></pressure>
+                <cloudiness id="NN" percent="96.1"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="95.3"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="90.6"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="0.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T20:00:00Z" to="2021-09-30T21:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T15:00:00Z" to="2021-09-30T21:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="5.8"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T22:00:00Z" to="2021-09-30T22:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.6"></temperature>
+                <windDirection id="dd" deg="275.2" name="W"></windDirection>
+                <windSpeed id="ff" mps="2.0" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="75.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.1"></pressure>
+                <cloudiness id="NN" percent="98.4"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="98.4"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="89.8"></mediumClouds>
+                <highClouds id="HIGH" percent="1.6"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="0.6"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T21:00:00Z" to="2021-09-30T22:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T16:00:00Z" to="2021-09-30T22:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="5.4"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T23:00:00Z" to="2021-09-30T23:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.6"></temperature>
+                <windDirection id="dd" deg="279.0" name="W"></windDirection>
+                <windSpeed id="ff" mps="2.4" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="78.3"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.3"></pressure>
+                <cloudiness id="NN" percent="98.4"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="97.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="92.2"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="1.1"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T22:00:00Z" to="2021-09-30T23:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T17:00:00Z" to="2021-09-30T23:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="4.7"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T00:00:00Z" to="2021-10-01T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.3"></temperature>
+                <windDirection id="dd" deg="281.6" name="W"></windDirection>
+                <windSpeed id="ff" mps="2.5" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="84.3"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.5"></pressure>
+                <cloudiness id="NN" percent="95.3"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="89.1"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="90.6"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="1.8"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T23:00:00Z" to="2021-10-01T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T18:00:00Z" to="2021-10-01T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="4.7"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T01:00:00Z" to="2021-10-01T01:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.3"></temperature>
+                <windDirection id="dd" deg="279.9" name="W"></windDirection>
+                <windSpeed id="ff" mps="2.5" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="88.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.7"></pressure>
+                <cloudiness id="NN" percent="96.1"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="85.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="93.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="2.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T00:00:00Z" to="2021-10-01T01:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T19:00:00Z" to="2021-10-01T01:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="4.7"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T02:00:00Z" to="2021-10-01T02:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.2"></temperature>
+                <windDirection id="dd" deg="276.1" name="W"></windDirection>
+                <windSpeed id="ff" mps="2.5" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="90.4"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.8"></pressure>
+                <cloudiness id="NN" percent="90.6"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="85.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="74.2"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="2.7"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T01:00:00Z" to="2021-10-01T02:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T20:00:00Z" to="2021-10-01T02:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.2"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="4.6"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T03:00:00Z" to="2021-10-01T03:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.1"></temperature>
+                <windDirection id="dd" deg="278.2" name="W"></windDirection>
+                <windSpeed id="ff" mps="2.6" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="92.7"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.2"></pressure>
+                <cloudiness id="NN" percent="95.3"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="94.5"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="77.3"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="3.0"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T02:00:00Z" to="2021-10-01T03:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T21:00:00Z" to="2021-10-01T03:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="4.6"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T04:00:00Z" to="2021-10-01T04:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.9"></temperature>
+                <windDirection id="dd" deg="282.0" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.1" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="90.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.2"></pressure>
+                <cloudiness id="NN" percent="88.3"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="69.5"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="84.4"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="3.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T03:00:00Z" to="2021-10-01T04:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T22:00:00Z" to="2021-10-01T04:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="4.9"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T05:00:00Z" to="2021-10-01T05:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="5.9"></temperature>
+                <windDirection id="dd" deg="288.2" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.2" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="84.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.2"></pressure>
+                <cloudiness id="NN" percent="94.5"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="92.2"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="60.9"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="3.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T04:00:00Z" to="2021-10-01T05:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-09-30T23:00:00Z" to="2021-10-01T05:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="5.9"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T06:00:00Z" to="2021-10-01T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.2"></temperature>
+                <windDirection id="dd" deg="296.6" name="NW"></windDirection>
+                <windSpeed id="ff" mps="3.4" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="77.9"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.1"></pressure>
+                <cloudiness id="NN" percent="99.2"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="97.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="83.6"></mediumClouds>
+                <highClouds id="HIGH" percent="9.4"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="3.7"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T05:00:00Z" to="2021-10-01T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T00:00:00Z" to="2021-10-01T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.2"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T07:00:00Z" to="2021-10-01T07:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.8"></temperature>
+                <windDirection id="dd" deg="301.5" name="NW"></windDirection>
+                <windSpeed id="ff" mps="3.6" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="74.3"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.0"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="99.2"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="93.0"></mediumClouds>
+                <highClouds id="HIGH" percent="6.2"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="3.6"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T06:00:00Z" to="2021-10-01T07:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T01:00:00Z" to="2021-10-01T07:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.8"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T08:00:00Z" to="2021-10-01T08:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.6"></temperature>
+                <windDirection id="dd" deg="300.9" name="NW"></windDirection>
+                <windSpeed id="ff" mps="3.5" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="72.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.0"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="63.3"></mediumClouds>
+                <highClouds id="HIGH" percent="0.8"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="3.9"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T07:00:00Z" to="2021-10-01T08:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T02:00:00Z" to="2021-10-01T08:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.6"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T09:00:00Z" to="2021-10-01T09:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.9"></temperature>
+                <windDirection id="dd" deg="302.2" name="NW"></windDirection>
+                <windSpeed id="ff" mps="3.8" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="73.4"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.1"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="20.3"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T08:00:00Z" to="2021-10-01T09:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T03:00:00Z" to="2021-10-01T09:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.9"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T10:00:00Z" to="2021-10-01T10:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.9"></temperature>
+                <windDirection id="dd" deg="293.4" name="NW"></windDirection>
+                <windSpeed id="ff" mps="3.7" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="74.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.2"></pressure>
+                <cloudiness id="NN" percent="96.1"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="93.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="48.4"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.7"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T09:00:00Z" to="2021-10-01T10:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T04:00:00Z" to="2021-10-01T10:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="5.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.9"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T11:00:00Z" to="2021-10-01T11:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.5"></temperature>
+                <windDirection id="dd" deg="292.5" name="NW"></windDirection>
+                <windSpeed id="ff" mps="4.2" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="71.7"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.1"></pressure>
+                <cloudiness id="NN" percent="97.7"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="85.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="91.4"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.6"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T10:00:00Z" to="2021-10-01T11:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T05:00:00Z" to="2021-10-01T11:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.2"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.5"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T12:00:00Z" to="2021-10-01T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.5"></temperature>
+                <windDirection id="dd" deg="297.7" name="NW"></windDirection>
+                <windSpeed id="ff" mps="4.1" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="72.8"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.1"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="79.7"></mediumClouds>
+                <highClouds id="HIGH" percent="0.8"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.9"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T11:00:00Z" to="2021-10-01T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T06:00:00Z" to="2021-10-01T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.5"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T13:00:00Z" to="2021-10-01T13:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.3"></temperature>
+                <windDirection id="dd" deg="293.5" name="NW"></windDirection>
+                <windSpeed id="ff" mps="3.6" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="73.4"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.1"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="83.6"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.8"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T12:00:00Z" to="2021-10-01T13:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T07:00:00Z" to="2021-10-01T13:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="8.6"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.5"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T14:00:00Z" to="2021-10-01T14:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.9"></temperature>
+                <windDirection id="dd" deg="290.2" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.2" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="74.2"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.0"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="90.6"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.6"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T13:00:00Z" to="2021-10-01T14:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T08:00:00Z" to="2021-10-01T14:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.2"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="8.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.5"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T15:00:00Z" to="2021-10-01T15:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.5"></temperature>
+                <windDirection id="dd" deg="292.4" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.1" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="75.3"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.3"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="99.2"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="95.3"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T14:00:00Z" to="2021-10-01T15:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T09:00:00Z" to="2021-10-01T15:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.2"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="8.5"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.5"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T16:00:00Z" to="2021-10-01T16:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.2"></temperature>
+                <windDirection id="dd" deg="286.9" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.0" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="77.9"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.4"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="100.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.7"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T15:00:00Z" to="2021-10-01T16:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T10:00:00Z" to="2021-10-01T16:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.2"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="8.2"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.5"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T17:00:00Z" to="2021-10-01T17:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.9"></temperature>
+                <windDirection id="dd" deg="282.9" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.0" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="80.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.5"></pressure>
+                <cloudiness id="NN" percent="99.2"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="98.4"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="88.3"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.8"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T16:00:00Z" to="2021-10-01T17:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T11:00:00Z" to="2021-10-01T17:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.5"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T18:00:00Z" to="2021-10-01T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.6"></temperature>
+                <windDirection id="dd" deg="283.5" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.0" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="81.8"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.4"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="97.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="100.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.9"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T17:00:00Z" to="2021-10-01T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T12:00:00Z" to="2021-10-01T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.6"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.3"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T19:00:00Z" to="2021-10-01T19:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.4"></temperature>
+                <windDirection id="dd" deg="280.9" name="W"></windDirection>
+                <windSpeed id="ff" mps="2.9" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="84.9"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.4"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="98.4"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="100.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.2"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T18:00:00Z" to="2021-10-01T19:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.2"></precipitation>
+                <symbol id="Drizzle" number="46" code="lightrain"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T13:00:00Z" to="2021-10-01T19:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.3"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.4"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.9"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T20:00:00Z" to="2021-10-01T20:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.1"></temperature>
+                <windDirection id="dd" deg="277.0" name="W"></windDirection>
+                <windSpeed id="ff" mps="2.9" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="88.9"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.5"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="100.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T19:00:00Z" to="2021-10-01T20:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.2"></precipitation>
+                <symbol id="Drizzle" number="46" code="lightrain"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T14:00:00Z" to="2021-10-01T20:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.5"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.5"></maxTemperature>
+                <symbol id="Drizzle" number="46" code="lightrain"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T21:00:00Z" to="2021-10-01T21:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.9"></temperature>
+                <windDirection id="dd" deg="269.4" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.0" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="91.4"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.4"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="99.2"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="97.7"></mediumClouds>
+                <highClouds id="HIGH" percent="16.4"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.7"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T20:00:00Z" to="2021-10-01T21:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T15:00:00Z" to="2021-10-01T21:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.6"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.2"></maxTemperature>
+                <symbol id="Drizzle" number="46" code="lightrain"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T22:00:00Z" to="2021-10-01T22:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.8"></temperature>
+                <windDirection id="dd" deg="264.7" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.2" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="93.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.4"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="85.2"></mediumClouds>
+                <highClouds id="HIGH" percent="3.1"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.9"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T21:00:00Z" to="2021-10-01T22:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T16:00:00Z" to="2021-10-01T22:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.6"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.9"></maxTemperature>
+                <symbol id="Drizzle" number="46" code="lightrain"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T23:00:00Z" to="2021-10-01T23:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.8"></temperature>
+                <windDirection id="dd" deg="265.5" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.4" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="94.4"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.1"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="50.8"></mediumClouds>
+                <highClouds id="HIGH" percent="57.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="6.0"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T22:00:00Z" to="2021-10-01T23:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T17:00:00Z" to="2021-10-01T23:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.6"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.6"></maxTemperature>
+                <symbol id="Drizzle" number="46" code="lightrain"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T00:00:00Z" to="2021-10-02T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.8"></temperature>
+                <windDirection id="dd" deg="267.3" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.4" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="95.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.1"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="68.0"></mediumClouds>
+                <highClouds id="HIGH" percent="85.9"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="6.2"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T23:00:00Z" to="2021-10-02T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T18:00:00Z" to="2021-10-02T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.6"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.4"></maxTemperature>
+                <symbol id="Drizzle" number="46" code="lightrain"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T01:00:00Z" to="2021-10-02T01:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.8"></temperature>
+                <windDirection id="dd" deg="268.6" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.5" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="96.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.1"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="80.5"></mediumClouds>
+                <highClouds id="HIGH" percent="73.4"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="6.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T00:00:00Z" to="2021-10-02T01:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T19:00:00Z" to="2021-10-02T01:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.4"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.1"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T02:00:00Z" to="2021-10-02T02:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.9"></temperature>
+                <windDirection id="dd" deg="272.5" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.7" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="96.2"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.9"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="70.3"></mediumClouds>
+                <highClouds id="HIGH" percent="60.9"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="6.4"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T01:00:00Z" to="2021-10-02T02:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T20:00:00Z" to="2021-10-02T02:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.2"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="6.9"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T03:00:00Z" to="2021-10-02T03:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.9"></temperature>
+                <windDirection id="dd" deg="278.5" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.8" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="96.5"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.9"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="74.2"></mediumClouds>
+                <highClouds id="HIGH" percent="82.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="6.4"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T02:00:00Z" to="2021-10-02T03:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T21:00:00Z" to="2021-10-02T03:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="6.9"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T04:00:00Z" to="2021-10-02T04:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.1"></temperature>
+                <windDirection id="dd" deg="277.6" name="W"></windDirection>
+                <windSpeed id="ff" mps="3.6" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="95.9"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.0"></pressure>
+                <cloudiness id="NN" percent="99.2"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="78.1"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="94.5"></mediumClouds>
+                <highClouds id="HIGH" percent="95.3"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="6.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T03:00:00Z" to="2021-10-02T04:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T22:00:00Z" to="2021-10-02T04:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.1"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T05:00:00Z" to="2021-10-02T05:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.6"></temperature>
+                <windDirection id="dd" deg="285.8" name="W"></windDirection>
+                <windSpeed id="ff" mps="4.8" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="90.9"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.0"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="95.3"></mediumClouds>
+                <highClouds id="HIGH" percent="96.1"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="6.2"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T04:00:00Z" to="2021-10-02T05:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-01T23:00:00Z" to="2021-10-02T05:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.2"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.6"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T06:00:00Z" to="2021-10-02T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.7"></temperature>
+                <windDirection id="dd" deg="277.2" name="W"></windDirection>
+                <windSpeed id="ff" mps="4.3" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="88.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.9"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="100.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="95.3"></mediumClouds>
+                <highClouds id="HIGH" percent="92.2"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="6.0"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T05:00:00Z" to="2021-10-02T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T00:00:00Z" to="2021-10-02T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.2"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.7"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T07:00:00Z" to="2021-10-02T07:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.8"></temperature>
+                <windDirection id="dd" deg="292.7" name="NW"></windDirection>
+                <windSpeed id="ff" mps="5.4" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="89.3"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.9"></pressure>
+                <cloudiness id="NN" percent="99.2"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="82.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="94.5"></mediumClouds>
+                <highClouds id="HIGH" percent="93.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="6.1"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T06:00:00Z" to="2021-10-02T07:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <symbol id="Drizzle" number="46" code="lightrain"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T01:00:00Z" to="2021-10-02T07:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.3"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.8"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T08:00:00Z" to="2021-10-02T08:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.5"></temperature>
+                <windDirection id="dd" deg="307.2" name="NW"></windDirection>
+                <windSpeed id="ff" mps="5.4" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="80.9"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.9"></pressure>
+                <cloudiness id="NN" percent="99.2"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="82.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="93.7"></mediumClouds>
+                <highClouds id="HIGH" percent="92.2"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T07:00:00Z" to="2021-10-02T08:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <symbol id="Drizzle" number="46" code="lightrain"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T02:00:00Z" to="2021-10-02T08:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.4"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.5"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T09:00:00Z" to="2021-10-02T09:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.0"></temperature>
+                <windDirection id="dd" deg="322.9" name="NW"></windDirection>
+                <windSpeed id="ff" mps="4.7" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="74.8"></humidity>
+                <pressure id="pr" unit="hPa" value="1028.9"></pressure>
+                <cloudiness id="NN" percent="100.0"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="99.2"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="86.7"></mediumClouds>
+                <highClouds id="HIGH" percent="92.2"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.8"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T08:00:00Z" to="2021-10-02T09:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T03:00:00Z" to="2021-10-02T09:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.4"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.0"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T10:00:00Z" to="2021-10-02T10:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.0"></temperature>
+                <windDirection id="dd" deg="319.9" name="NW"></windDirection>
+                <windSpeed id="ff" mps="4.5" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="73.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.0"></pressure>
+                <cloudiness id="NN" percent="99.2"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="97.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="71.1"></mediumClouds>
+                <highClouds id="HIGH" percent="66.4"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T09:00:00Z" to="2021-10-02T10:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T04:00:00Z" to="2021-10-02T10:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.4"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.6"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.0"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T11:00:00Z" to="2021-10-02T11:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.3"></temperature>
+                <windDirection id="dd" deg="321.8" name="NW"></windDirection>
+                <windSpeed id="ff" mps="4.8" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="71.7"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.0"></pressure>
+                <cloudiness id="NN" percent="96.9"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="81.2"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="46.1"></mediumClouds>
+                <highClouds id="HIGH" percent="83.6"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T10:00:00Z" to="2021-10-02T11:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <symbol id="Drizzle" number="46" code="lightrain"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T05:00:00Z" to="2021-10-02T11:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.5"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.7"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.3"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T12:00:00Z" to="2021-10-02T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.3"></temperature>
+                <windDirection id="dd" deg="324.5" name="NW"></windDirection>
+                <windSpeed id="ff" mps="4.0" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="71.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.0"></pressure>
+                <cloudiness id="NN" percent="88.3"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="76.6"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="52.3"></mediumClouds>
+                <highClouds id="HIGH" percent="29.7"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T11:00:00Z" to="2021-10-02T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T06:00:00Z" to="2021-10-02T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.4"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.3"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T13:00:00Z" to="2021-10-02T13:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.7"></temperature>
+                <windDirection id="dd" deg="324.5" name="NW"></windDirection>
+                <windSpeed id="ff" mps="3.3" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="74.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.1"></pressure>
+                <cloudiness id="NN" percent="89.8"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="89.1"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="14.8"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.4"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T12:00:00Z" to="2021-10-02T13:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T07:00:00Z" to="2021-10-02T13:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.3"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="8.5"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.3"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T14:00:00Z" to="2021-10-02T14:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.9"></temperature>
+                <windDirection id="dd" deg="326.4" name="NW"></windDirection>
+                <windSpeed id="ff" mps="2.7" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="77.8"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.2"></pressure>
+                <cloudiness id="NN" percent="98.4"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="98.4"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="13.3"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.4"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T13:00:00Z" to="2021-10-02T14:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T08:00:00Z" to="2021-10-02T14:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.2"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.3"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T15:00:00Z" to="2021-10-02T15:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.7"></temperature>
+                <windDirection id="dd" deg="337.0" name="NW"></windDirection>
+                <windSpeed id="ff" mps="2.5" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="80.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.4"></pressure>
+                <cloudiness id="NN" percent="95.3"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="94.5"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="19.5"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T14:00:00Z" to="2021-10-02T15:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T09:00:00Z" to="2021-10-02T15:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.7"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.3"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T16:00:00Z" to="2021-10-02T16:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.4"></temperature>
+                <windDirection id="dd" deg="341.8" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.4" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="82.9"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.7"></pressure>
+                <cloudiness id="NN" percent="95.3"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="95.3"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="46.1"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="4.9"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T15:00:00Z" to="2021-10-02T16:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T10:00:00Z" to="2021-10-02T16:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.4"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.3"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T17:00:00Z" to="2021-10-02T17:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.1"></temperature>
+                <windDirection id="dd" deg="341.8" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.4" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="85.2"></humidity>
+                <pressure id="pr" unit="hPa" value="1029.9"></pressure>
+                <cloudiness id="NN" percent="93.7"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="93.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="52.3"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.0"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T16:00:00Z" to="2021-10-02T17:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T11:00:00Z" to="2021-10-02T17:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.3"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T18:00:00Z" to="2021-10-02T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.1"></temperature>
+                <windDirection id="dd" deg="350.1" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.6" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="85.8"></humidity>
+                <pressure id="pr" unit="hPa" value="1030.0"></pressure>
+                <cloudiness id="NN" percent="79.7"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="78.1"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="53.9"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.0"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T17:00:00Z" to="2021-10-02T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T12:00:00Z" to="2021-10-02T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.7"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T19:00:00Z" to="2021-10-02T19:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.8"></temperature>
+                <windDirection id="dd" deg="353.7" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.7" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="88.4"></humidity>
+                <pressure id="pr" unit="hPa" value="1030.1"></pressure>
+                <cloudiness id="NN" percent="89.8"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="89.1"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="68.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.1"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T18:00:00Z" to="2021-10-02T19:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T13:00:00Z" to="2021-10-02T19:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.9"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T20:00:00Z" to="2021-10-02T20:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.6"></temperature>
+                <windDirection id="dd" deg="351.0" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.5" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="90.5"></humidity>
+                <pressure id="pr" unit="hPa" value="1030.2"></pressure>
+                <cloudiness id="NN" percent="95.3"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="94.5"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="80.5"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T19:00:00Z" to="2021-10-02T20:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T14:00:00Z" to="2021-10-02T20:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.6"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.7"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T21:00:00Z" to="2021-10-02T21:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.7"></temperature>
+                <windDirection id="dd" deg="4.6" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.9" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="90.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1030.3"></pressure>
+                <cloudiness id="NN" percent="98.4"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="97.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="92.2"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T20:00:00Z" to="2021-10-02T21:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T15:00:00Z" to="2021-10-02T21:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.6"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.4"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T22:00:00Z" to="2021-10-02T22:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.6"></temperature>
+                <windDirection id="dd" deg="15.7" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.8" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="90.3"></humidity>
+                <pressure id="pr" unit="hPa" value="1030.6"></pressure>
+                <cloudiness id="NN" percent="98.4"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="98.4"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="83.6"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T21:00:00Z" to="2021-10-02T22:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T16:00:00Z" to="2021-10-02T22:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.6"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.1"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T23:00:00Z" to="2021-10-02T23:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.3"></temperature>
+                <windDirection id="dd" deg="12.2" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.5" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="92.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1030.7"></pressure>
+                <cloudiness id="NN" percent="83.6"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="82.8"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="25.8"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T22:00:00Z" to="2021-10-02T23:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T17:00:00Z" to="2021-10-02T23:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.1"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-03T00:00:00Z" to="2021-10-03T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="5.9"></temperature>
+                <windDirection id="dd" deg="7.7" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.6" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="96.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1031.0"></pressure>
+                <cloudiness id="NN" percent="96.9"></cloudiness>
+                <fog id="FOG" percent="0.0"></fog>
+                <lowClouds id="LOW" percent="96.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="8.6"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="5.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T23:00:00Z" to="2021-10-03T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <symbol id="LightCloud" number="2" code="fair_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-02T18:00:00Z" to="2021-10-03T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.1"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="5.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="6.8"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-03T06:00:00Z" to="2021-10-03T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.8"></temperature>
+                <windDirection id="dd" deg="9.2" name="N"></windDirection>
+                <windSpeed id="ff" mps="4.1" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="62.7"></humidity>
+                <pressure id="pr" unit="hPa" value="1032.9"></pressure>
+                <cloudiness id="NN" percent="3.9"></cloudiness>
+                <lowClouds id="LOW" percent="3.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="0.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-03T00:00:00Z" to="2021-10-03T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="3.4"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="6.7"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-03T12:00:00Z" to="2021-10-03T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.7"></temperature>
+                <windDirection id="dd" deg="4.5" name="N"></windDirection>
+                <windSpeed id="ff" mps="4.1" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="47.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1033.2"></pressure>
+                <cloudiness id="NN" percent="0.8"></cloudiness>
+                <lowClouds id="LOW" percent="0.8"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-2.9"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-03T06:00:00Z" to="2021-10-03T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="6.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.4"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-03T18:00:00Z" to="2021-10-03T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="0.9"></temperature>
+                <windDirection id="dd" deg="34.7" name="NE"></windDirection>
+                <windSpeed id="ff" mps="2.3" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="72.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1035.6"></pressure>
+                <cloudiness id="NN" percent="0.8"></cloudiness>
+                <lowClouds id="LOW" percent="0.8"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-3.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-03T12:00:00Z" to="2021-10-03T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="1.0"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.7"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-04T00:00:00Z" to="2021-10-04T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="-1.0"></temperature>
+                <windDirection id="dd" deg="35.9" name="NE"></windDirection>
+                <windSpeed id="ff" mps="2.4" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="86.3"></humidity>
+                <pressure id="pr" unit="hPa" value="1036.7"></pressure>
+                <cloudiness id="NN" percent="7.8"></cloudiness>
+                <lowClouds id="LOW" percent="7.8"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-3.1"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-03T18:00:00Z" to="2021-10-04T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="-1.0"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="0.9"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-04T06:00:00Z" to="2021-10-04T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.8"></temperature>
+                <windDirection id="dd" deg="57.1" name="NE"></windDirection>
+                <windSpeed id="ff" mps="2.9" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="54.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1038.1"></pressure>
+                <cloudiness id="NN" percent="10.2"></cloudiness>
+                <lowClouds id="LOW" percent="10.2"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-3.9"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-04T00:00:00Z" to="2021-10-04T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="-1.4"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="4.6"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-04T12:00:00Z" to="2021-10-04T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="6.7"></temperature>
+                <windDirection id="dd" deg="42.3" name="NE"></windDirection>
+                <windSpeed id="ff" mps="2.7" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="47.7"></humidity>
+                <pressure id="pr" unit="hPa" value="1038.0"></pressure>
+                <cloudiness id="NN" percent="28.9"></cloudiness>
+                <lowClouds id="LOW" percent="28.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-3.6"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-04T06:00:00Z" to="2021-10-04T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.7"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.1"></maxTemperature>
+                <symbol id="LightCloud" number="2" code="fair_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-04T18:00:00Z" to="2021-10-04T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="-0.2"></temperature>
+                <windDirection id="dd" deg="66.5" name="NE"></windDirection>
+                <windSpeed id="ff" mps="2.0" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="79.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1039.9"></pressure>
+                <cloudiness id="NN" percent="0.0"></cloudiness>
+                <lowClouds id="LOW" percent="0.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-3.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-04T12:00:00Z" to="2021-10-04T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="-0.2"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="6.7"></maxTemperature>
+                <symbol id="LightCloud" number="2" code="fair_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-05T00:00:00Z" to="2021-10-05T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="-2.3"></temperature>
+                <windDirection id="dd" deg="89.5" name="E"></windDirection>
+                <windSpeed id="ff" mps="1.3" beaufort="1" name="Flau vind"></windSpeed>
+                <humidity unit="percent" value="84.4"></humidity>
+                <pressure id="pr" unit="hPa" value="1040.6"></pressure>
+                <cloudiness id="NN" percent="15.6"></cloudiness>
+                <lowClouds id="LOW" percent="15.6"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-4.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-04T18:00:00Z" to="2021-10-05T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="-2.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="-0.2"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-05T06:00:00Z" to="2021-10-05T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="5.4"></temperature>
+                <windDirection id="dd" deg="301.0" name="NW"></windDirection>
+                <windSpeed id="ff" mps="1.2" beaufort="1" name="Flau vind"></windSpeed>
+                <humidity unit="percent" value="54.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1041.8"></pressure>
+                <cloudiness id="NN" percent="80.5"></cloudiness>
+                <lowClouds id="LOW" percent="80.5"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-3.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-05T00:00:00Z" to="2021-10-05T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="-2.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="5.2"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-05T12:00:00Z" to="2021-10-05T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.0"></temperature>
+                <windDirection id="dd" deg="0.9" name="N"></windDirection>
+                <windSpeed id="ff" mps="2.4" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="54.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1040.2"></pressure>
+                <cloudiness id="NN" percent="98.4"></cloudiness>
+                <lowClouds id="LOW" percent="98.4"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-1.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-05T06:00:00Z" to="2021-10-05T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="5.4"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.0"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-05T18:00:00Z" to="2021-10-05T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.8"></temperature>
+                <windDirection id="dd" deg="351.4" name="N"></windDirection>
+                <windSpeed id="ff" mps="1.8" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="67.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1039.7"></pressure>
+                <cloudiness id="NN" percent="74.2"></cloudiness>
+                <lowClouds id="LOW" percent="71.1"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="11.7"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-0.8"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-05T12:00:00Z" to="2021-10-05T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.3"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="7.0"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-06T00:00:00Z" to="2021-10-06T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.8"></temperature>
+                <windDirection id="dd" deg="353.4" name="N"></windDirection>
+                <windSpeed id="ff" mps="3.2" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="76.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1039.6"></pressure>
+                <cloudiness id="NN" percent="95.3"></cloudiness>
+                <lowClouds id="LOW" percent="85.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="82.8"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="0.9"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-05T18:00:00Z" to="2021-10-06T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.1"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="4.9"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-06T06:00:00Z" to="2021-10-06T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="7.0"></temperature>
+                <windDirection id="dd" deg="26.1" name="NE"></windDirection>
+                <windSpeed id="ff" mps="3.8" beaufort="3" name="Lett bris"></windSpeed>
+                <humidity unit="percent" value="69.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1040.2"></pressure>
+                <cloudiness id="NN" percent="94.5"></cloudiness>
+                <lowClouds id="LOW" percent="94.5"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="8.6"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="1.7"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-06T00:00:00Z" to="2021-10-06T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.5"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="6.9"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-06T12:00:00Z" to="2021-10-06T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.2"></temperature>
+                <windDirection id="dd" deg="22.8" name="NE"></windDirection>
+                <windSpeed id="ff" mps="2.7" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="55.4"></humidity>
+                <pressure id="pr" unit="hPa" value="1039.6"></pressure>
+                <cloudiness id="NN" percent="96.9"></cloudiness>
+                <lowClouds id="LOW" percent="96.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="0.7"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-06T06:00:00Z" to="2021-10-06T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="7.0"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.4"></maxTemperature>
+                <symbol id="Cloud" number="4" code="cloudy"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-06T18:00:00Z" to="2021-10-06T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="5.2"></temperature>
+                <windDirection id="dd" deg="23.3" name="NE"></windDirection>
+                <windSpeed id="ff" mps="2.0" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="75.5"></humidity>
+                <pressure id="pr" unit="hPa" value="1040.4"></pressure>
+                <cloudiness id="NN" percent="71.9"></cloudiness>
+                <lowClouds id="LOW" percent="71.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="1.1"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-06T12:00:00Z" to="2021-10-06T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="5.2"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.2"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-07T00:00:00Z" to="2021-10-07T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="3.5"></temperature>
+                <windDirection id="dd" deg="60.0" name="NE"></windDirection>
+                <windSpeed id="ff" mps="1.5" beaufort="1" name="Flau vind"></windSpeed>
+                <humidity unit="percent" value="85.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1041.3"></pressure>
+                <cloudiness id="NN" percent="72.7"></cloudiness>
+                <lowClouds id="LOW" percent="72.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="1.2"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-06T18:00:00Z" to="2021-10-07T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="3.5"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="5.2"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-07T06:00:00Z" to="2021-10-07T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="8.7"></temperature>
+                <windDirection id="dd" deg="85.5" name="E"></windDirection>
+                <windSpeed id="ff" mps="1.8" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="57.3"></humidity>
+                <pressure id="pr" unit="hPa" value="1042.3"></pressure>
+                <cloudiness id="NN" percent="63.3"></cloudiness>
+                <lowClouds id="LOW" percent="63.3"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="0.7"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-07T00:00:00Z" to="2021-10-07T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="2.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.5"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-07T12:00:00Z" to="2021-10-07T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="10.1"></temperature>
+                <windDirection id="dd" deg="76.1" name="E"></windDirection>
+                <windSpeed id="ff" mps="1.2" beaufort="1" name="Flau vind"></windSpeed>
+                <humidity unit="percent" value="55.4"></humidity>
+                <pressure id="pr" unit="hPa" value="1041.3"></pressure>
+                <cloudiness id="NN" percent="97.7"></cloudiness>
+                <lowClouds id="LOW" percent="97.7"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="1.4"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-07T06:00:00Z" to="2021-10-07T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="8.7"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="10.3"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-07T18:00:00Z" to="2021-10-07T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="3.5"></temperature>
+                <windDirection id="dd" deg="87.9" name="E"></windDirection>
+                <windSpeed id="ff" mps="1.9" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="87.2"></humidity>
+                <pressure id="pr" unit="hPa" value="1041.4"></pressure>
+                <cloudiness id="NN" percent="1.6"></cloudiness>
+                <lowClouds id="LOW" percent="1.6"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="1.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-07T12:00:00Z" to="2021-10-07T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="3.5"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="10.1"></maxTemperature>
+                <symbol id="PartlyCloud" number="3" code="partlycloudy_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-08T00:00:00Z" to="2021-10-08T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="1.4"></temperature>
+                <windDirection id="dd" deg="91.2" name="E"></windDirection>
+                <windSpeed id="ff" mps="1.9" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="88.7"></humidity>
+                <pressure id="pr" unit="hPa" value="1042.0"></pressure>
+                <cloudiness id="NN" percent="3.9"></cloudiness>
+                <lowClouds id="LOW" percent="3.9"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="-0.1"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-07T18:00:00Z" to="2021-10-08T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="1.5"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="3.5"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-08T06:00:00Z" to="2021-10-08T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.2"></temperature>
+                <windDirection id="dd" deg="87.2" name="E"></windDirection>
+                <windSpeed id="ff" mps="2.5" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="61.3"></humidity>
+                <pressure id="pr" unit="hPa" value="1042.1"></pressure>
+                <cloudiness id="NN" percent="1.6"></cloudiness>
+                <lowClouds id="LOW" percent="1.6"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="2.0"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-08T00:00:00Z" to="2021-10-08T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="0.9"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="9.0"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-08T12:00:00Z" to="2021-10-08T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="11.5"></temperature>
+                <windDirection id="dd" deg="82.1" name="E"></windDirection>
+                <windSpeed id="ff" mps="2.3" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="54.1"></humidity>
+                <pressure id="pr" unit="hPa" value="1039.8"></pressure>
+                <cloudiness id="NN" percent="0.0"></cloudiness>
+                <lowClouds id="LOW" percent="0.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="2.5"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-08T06:00:00Z" to="2021-10-08T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="9.2"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="11.9"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-08T18:00:00Z" to="2021-10-08T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="4.7"></temperature>
+                <windDirection id="dd" deg="79.7" name="E"></windDirection>
+                <windSpeed id="ff" mps="2.9" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="88.5"></humidity>
+                <pressure id="pr" unit="hPa" value="1039.1"></pressure>
+                <cloudiness id="NN" percent="0.0"></cloudiness>
+                <lowClouds id="LOW" percent="0.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="2.8"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-08T12:00:00Z" to="2021-10-08T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="4.8"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="11.5"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-09T00:00:00Z" to="2021-10-09T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="2.9"></temperature>
+                <windDirection id="dd" deg="78.9" name="E"></windDirection>
+                <windSpeed id="ff" mps="2.6" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="90.7"></humidity>
+                <pressure id="pr" unit="hPa" value="1038.7"></pressure>
+                <cloudiness id="NN" percent="0.0"></cloudiness>
+                <lowClouds id="LOW" percent="0.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="0.0"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="1.6"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-08T18:00:00Z" to="2021-10-09T00:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="3.0"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="4.7"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_night"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-09T06:00:00Z" to="2021-10-09T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="9.0"></temperature>
+                <windDirection id="dd" deg="98.4" name="E"></windDirection>
+                <windSpeed id="ff" mps="2.5" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="68.0"></humidity>
+                <pressure id="pr" unit="hPa" value="1038.6"></pressure>
+                <cloudiness id="NN" percent="4.7"></cloudiness>
+                <lowClouds id="LOW" percent="0.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="4.7"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="3.3"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-09T00:00:00Z" to="2021-10-09T06:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="2.6"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="8.7"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-09T12:00:00Z" to="2021-10-09T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="12.0"></temperature>
+                <windDirection id="dd" deg="110.4" name="E"></windDirection>
+                <windSpeed id="ff" mps="2.6" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="55.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1036.4"></pressure>
+                <cloudiness id="NN" percent="6.2"></cloudiness>
+                <lowClouds id="LOW" percent="0.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="6.2"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="3.4"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-09T06:00:00Z" to="2021-10-09T12:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="9.0"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="12.6"></maxTemperature>
+                <symbol id="Sun" number="1" code="clearsky_day"></symbol>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-09T18:00:00Z" to="2021-10-09T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <temperature id="TTT" unit="celsius" value="5.1"></temperature>
+                <windDirection id="dd" deg="93.8" name="E"></windDirection>
+                <windSpeed id="ff" mps="2.7" beaufort="2" name="Svak vind"></windSpeed>
+                <humidity unit="percent" value="89.6"></humidity>
+                <pressure id="pr" unit="hPa" value="1035.7"></pressure>
+                <cloudiness id="NN" percent="32.8"></cloudiness>
+                <lowClouds id="LOW" percent="0.0"></lowClouds>
+                <mediumClouds id="MEDIUM" percent="0.0"></mediumClouds>
+                <highClouds id="HIGH" percent="32.8"></highClouds>
+                <dewpointTemperature id="TD" unit="celsius" value="3.4"></dewpointTemperature>
+            </location>
+        </time>
+        <time datatype="forecast" from="2021-10-09T12:00:00Z" to="2021-10-09T18:00:00Z">
+            <location altitude="238" latitude="54" longitude="54">
+                <precipitation unit="mm" value="0.0"></precipitation>
+                <minTemperature id="TTT" unit="celsius" value="5.2"></minTemperature>
+                <maxTemperature id="TTT" unit="celsius" value="12.0"></maxTemperature>
+                <symbol id="LightCloud" number="2" code="fair_night"></symbol>
+            </location>
+        </time>
+    </product>
+</weatherdata>

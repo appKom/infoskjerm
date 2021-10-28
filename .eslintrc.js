@@ -34,6 +34,6 @@ module.exports = {
     'arrow-spacing': 'error',
     'prefer-spread': 'error',
     'rest-spread-spacing': [ 'error', 'never' ],
-    'no-unused-vars': [ 'error', { 'ignoreRestSiblings': true }]
+    //'no-unused-vars': [ 'error', { 'ignoreRestSiblings': true }]
   }
 };
