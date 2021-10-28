@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1em;
 }
 
 .App-logo {
