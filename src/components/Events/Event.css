@@ -4,6 +4,9 @@
   display: grid;
   grid-template-columns: max-content 1fr;
   color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  object-fit: cover;
 }
 
 .thumb {

@@ -5,7 +5,7 @@ import { fetchEventsByStartDate } from '../../api/EventApi';
 import Event from './Event';
 import './EventList.css';
 
-function EventList() {
+function EventList({ eventSize = 5 }) {
   const [ events, setEvents ] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function EventList() {
 
   return (
     <div className="event-list">
-      {events.map((event) => {
+      {events.slice(0, eventSize).map((event) => {
         return <Event key={event.id} event={event} />;
       })}
     </div>

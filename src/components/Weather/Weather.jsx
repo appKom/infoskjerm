@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import './Weather.css';
+
 function importAll(r) {
   let images = {};
   r.keys().forEach((item) => { images[item.replace('./', '')] = r(item); });

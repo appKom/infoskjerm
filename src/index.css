@@ -9,36 +9,3 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
-
-.weatherimg{
-  width:60px;
-  height:50px;
-}
-
-.weather{
-padding: 10px;
-text-align: center;
-border: 1px solid rgb(114, 114, 114);
-box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
-border-radius: 10%;
-}
-
-.weatherContainer{
-  display: flex;
-  justify-content: space-evenly;
-  background-color: rgb(255, 255, 255);
-}
-
-.weatherContainer div {
-  margin: 5px;
-}
-
-#weatherDiv{
-  padding: 20px;
-  text-align: center;
-  width: min-content;
-}
-
-#weatherDiv h3{
-  margin: 20px;
-}
