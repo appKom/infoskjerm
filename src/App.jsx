@@ -18,13 +18,19 @@ function App() {
       const glos=await fetchBusDepartures();
       setBus(glos);
     };
-
     getGloshaugen();
+
   }, []);
 
   //https://stoppested.entur.org/    NSR:StopPlace:44085 id til gløshaugen
   const fetchBusDepartures = async() => {
-    return enturClient.getDeparturesFromStopPlace('NSR:StopPlace:44085');
+    const data= await enturClient.getDeparturesFromStopPlace('NSR:StopPlace:44085');
+
+    let returndata=[];
+    for(let i=0;i<5;i++){
+      returndata.push(data[i]);
+    }
+    return returndata;
   };
 
   console.log(bus);
