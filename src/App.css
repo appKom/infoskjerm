@@ -1,3 +1,4 @@
+/*
 .App {
   text-align: center;
   background-image: url('./assets/online_logo.svg');
@@ -47,4 +48,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+*/
+
+#bilde-av-bus{
+  height: 80px;
+  width: 80px;
+}
+
+#buss3{
+  align-self: center;
+  transform: translate(0,-20%);
+}
+
+.bus{
+  display: flex;
 }
