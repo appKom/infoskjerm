@@ -1,18 +1,21 @@
 .event {
   width: 100%;
   background: white;
-
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: max-content 1fr;
   color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  object-fit: cover;
 }
 
 .thumb {
-  height: 120px;
-  width: 35%;
+  aspect-ratio: 16 / 9;
 }
 
-.info {
+.data {
+  position: relative;
+  width: calc(100% - 1rem);
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -29,6 +32,19 @@
   font-size: 1rem;
 }
 
-.seats {
+.info {
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.info-line {
   font-size: 1rem;
+  margin-left: 10px;
+}
+
+.info-line > :first-child {
+  margin-right: 5px;
 }

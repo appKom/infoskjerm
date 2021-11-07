@@ -16,7 +16,7 @@ module.exports = {
   },
   'rules': {
     'indent': [ 'error', 2 ],
-    //'linebreak-style': [ 'error', 'unix' ],
+    // 'linebreak-style': [ 'error', 'unix' ],
     'quotes': [ 'error', 'single' ],
     'semi': [ 'error', 'always' ],
     'space-before-function-paren': [ 'error', 'never' ],
@@ -34,6 +34,6 @@ module.exports = {
     'arrow-spacing': 'error',
     'prefer-spread': 'error',
     'rest-spread-spacing': [ 'error', 'never' ],
-    'no-unused-vars': [ 'error', { 'ignoreRestSiblings': true }]
+    // 'no-unused-vars': [ 'error', { 'ignoreRestSiblings': true }]
   }
 };
