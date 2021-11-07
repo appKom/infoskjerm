@@ -13,13 +13,10 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@entur/sdk": "^4.2.2",
-=======
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
->>>>>>> cfcaa44efadbf0a339f231760d2205e7fc949742
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
