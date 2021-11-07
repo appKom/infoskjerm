@@ -9,14 +9,13 @@ import eventTypes from '../../eventTypes';
 
 import './Event.css';
 
-const TEXT_LENGTH = 48;
-
 function Event({event}) {
-  const formattedDate = moment(event.start_date).format('DD.MM');
+  const eventStart = moment(event.start_date).format('DD.MM');
 
-  const imageSrc = event.images[0]?.thumb ? `https://online.ntnu.no${event.images[0].thumb}` : false;
+  const regStart = moment(event.attendance_event.registration_start).format('DD.MM HH:MM');
+  const regEnd = moment(event.attendance_event.registration_end).format('DD.MM');
 
-  const ingress = event.ingress_short.length > TEXT_LENGTH ? event.ingress_short.substring(0, TEXT_LENGTH) + '...' : event.ingress_short;
+  const imageSrc = event.image?.thumb ? `https://online.ntnu.no${event.image.thumb}` : false;
 
   return (
     <div className="event">
@@ -26,13 +25,18 @@ function Event({event}) {
       }
       <div className="data">
         <h3 className="title">{event.title}</h3>
-        {event.ingress_short.length > 0 && <div className="ingress">{ingress}</div>}
+        <div>
+          Påmelding: {regStart}
+        </div>
+        {/* <div>
+          {regEnd}
+        </div> */}
         <div className="info">
           <span className="info-line">
-            <FontAwesomeIcon icon={faCalendarAlt} /><span>{formattedDate}</span>
+            <FontAwesomeIcon icon={faCalendarAlt} /><span>{eventStart}</span>
           </span>
           <span className="info-line">
-            <FontAwesomeIcon icon={faUser} /><span>{event.max_capacity ? `${event.number_of_seats_taken}/${event.max_capacity}` : '\u221E'}</span>
+            <FontAwesomeIcon icon={faUser} /><span>{event.attendance_event.max_capacity ? `${event.attendance_event.number_of_seats_taken}/${event.attendance_event.max_capacity}` : '\u221E'}</span>
           </span>
         </div>
       </div>

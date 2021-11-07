@@ -8,7 +8,7 @@ const today = () => moment().format('YYYY-MM-DD');
 // Make general fetcher
 // Make general Online api
 async function fetchEventsByStartDate(startDate = today()) {
-  const apiUrl = ONLINE_API_URL + `event/events?event_start__gte=${startDate}`;
+  const apiUrl = ONLINE_API_URL + `events?event_start__gte=${startDate}`;
   const response = await fetch(apiUrl);
   if (response.ok) {
     return await response.json();
