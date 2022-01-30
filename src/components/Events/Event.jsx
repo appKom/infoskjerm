@@ -11,16 +11,14 @@ import './Event.css';
 
 function Event({event}) {
   const eventStart = moment(event.start_date).format('DD.MM');
-
   const regStart = moment(event.attendance_event.registration_start).format('DD.MM HH:MM');
-  const regEnd = moment(event.attendance_event.registration_end).format('DD.MM');
 
-  const imageSrc = event.image?.thumb ? `https://online.ntnu.no${event.image.thumb}` : false;
+  const imgSrc = event.image?.thumb;
 
   return (
     <div className="event">
-      {imageSrc ?
-        <img className="thumb" src={imageSrc} alt="Event" /> :
+      {imgSrc ?
+        <img className="thumb" src={imgSrc} alt="Event" /> :
         <OnlineLogo className="thumb" fillColor={eventTypes[event.event_type]?.color} />
       }
       <div className="data">
@@ -28,9 +26,6 @@ function Event({event}) {
         <div>
           Påmelding: {regStart}
         </div>
-        {/* <div>
-          {regEnd}
-        </div> */}
         <div className="info">
           <span className="info-line">
             <FontAwesomeIcon icon={faCalendarAlt} /><span>{eventStart}</span>
