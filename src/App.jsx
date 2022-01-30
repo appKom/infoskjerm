@@ -15,8 +15,8 @@ function App() {
         <Card rowStart={1} rowSpan={2} colStart={1}>
           <WeatherContainer />
         </Card>
-        <Card rowStart={1} colStart={4} rowSpan={5} colSpan={3}>
-          <EventList eventSize={1} />
+        <Card rowStart={3} colStart={1} rowSpan={3} colSpan={5}>
+          <EventList eventSize={4} />
         </Card>
       </div>
     </QueryClientProvider>
