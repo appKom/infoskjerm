@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-const ONLINE_API_URL = 'https://online.ntnu.no/api/v1/';
+const ONLINE_API_URL = 'https://old.online.ntnu.no/api/v1/';
 
 const today = () => moment().format('YYYY-MM-DD');
 
