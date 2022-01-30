@@ -10,18 +10,13 @@ function EventList({ eventSize = 3 }) {
 
   if (isLoading || isError) return null;
 
-  const events = data?.results.reduce((events, event) => {
-    if (event && event.attendance_event && moment(event.attendance_event.registration_end).isAfter(moment())) {
-      events.push(event);
-    }
-    return events;
-  }, []);
+  const events = data.results.filter((event) => event?.attendance_event && moment(event.attendance_event.registration_end).isAfter(moment())).slice(0, eventSize);
 
   return (
     <div className="event-list">
-      {events.slice(0, eventSize).map((event) => {
-        return <Event key={event.id} event={event} />;
-      })}
+      {events.map((event) => (
+        <Event key={event.id} event={event} />
+      ))}
     </div>
   );
 }
