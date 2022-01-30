@@ -1,0 +1,18 @@
+
+  
+.buss3{
+    align-self: center;
+    transform: translate(0,-20%);
+}
+
+.bus{
+    display: flex;
+}
+
+table, td,th{
+    border: 1px solid black;
+}
+
+th{
+    text-align: left;
+}

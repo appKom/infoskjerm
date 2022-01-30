@@ -1,4 +1,4 @@
-/*
+
 .App {
   text-align: center;
   background-image: url('./assets/online_logo.svg');
@@ -10,9 +10,10 @@
   width: 100%;
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   gap: 1em;
+  font-size: 50px;
 }
 
 .App-logo {
@@ -48,19 +49,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-*/
-
-#bilde-av-bus{
-  height: 80px;
-  width: 80px;
-}
-
-#buss3{
-  align-self: center;
-  transform: translate(0,-20%);
-}
-
-.bus{
-  display: flex;
 }
