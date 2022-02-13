@@ -17,7 +17,7 @@ const BusContainer = () => {
     };
 
     getGloshaugen();
-  }, []);
+  });
 
   //https://stoppested.entur.org/    NSR:StopPlace:44085 id til gløshaugen
   const fetchBusDepartures = async() => {
