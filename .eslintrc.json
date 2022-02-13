@@ -47,6 +47,19 @@
     "no-negated-condition": "error",
     "prefer-spread": "error",
     "no-unused-vars": [ "error", { "ignoreRestSiblings": true }],
-    "rest-spread-spacing": [ "error", "never" ]
-  }
+    "rest-spread-spacing": [ "error", "never" ],
+
+    "react/prop-types": 0
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.test.js",
+        "**/*.test.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }

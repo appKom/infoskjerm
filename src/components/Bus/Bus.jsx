@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Bus = ({bussnr, retning, tid}) => {
   return (
     <div className="bus">
