@@ -32,7 +32,15 @@ th{
 }
 
 h3{
-    text-align: center;
-    margin-bottom: 5%;
     color: white;
+    padding: 1.7rem 1rem;
 }
+.header{
+    position: relative;
+    display: flex;
+}
+
+.header img{
+    filter: invert(1);
+}
+
