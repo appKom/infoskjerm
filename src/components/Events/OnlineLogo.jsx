@@ -1,8 +1,6 @@
-import React from 'react';
-
-const OnlineLogo = ({ fillColor, width = '200px', height = '112px' }) => {
+const OnlineLogo = ({ className, fillColor }) => {
   return (
-    <div style={{ width, height, display: 'grid', placeItems: 'center' }}>
+    <div className={className} style={{ display: 'grid', placeItems: 'center' }}>
       <svg viewBox="0 0 167 167" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"
         strokeLinejoin="round" strokeMiterlimit="2" width="40%">
         <path
