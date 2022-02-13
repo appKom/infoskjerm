@@ -3,6 +3,7 @@
 .buss3{
     align-self: center;
     transform: translate(0,-20%);
+    color: white;
 }
 
 .bus{
@@ -10,9 +11,28 @@
 }
 
 table, td,th{
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    width: 100%;
 }
 
 th{
     text-align: left;
+}
+
+.tabellDiv{
+    width: 100%;
+}
+
+.bussNr{
+    width: 15%;
+}
+
+.tid{
+    width: 15%;
+}
+
+h3{
+    text-align: center;
+    margin-bottom: 5%;
+    color: white;
 }

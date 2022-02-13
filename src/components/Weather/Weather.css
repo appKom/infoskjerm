@@ -1,15 +1,15 @@
 .weatherimg{
-  width:60px;
-  height:50px;
+  width:130px;
 }
 
 .weather{
-  padding: 10px;
+  padding: 40px 55px;
   text-align: center;
   border: 1px solid rgb(114, 114, 114);
   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
+
 }
 
 .weatherContainer{
@@ -27,6 +27,3 @@
   width: 100%;
 }
 
-#weatherDiv h3{
-  margin: 10px;
-}

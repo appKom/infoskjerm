@@ -42,7 +42,7 @@ const BusContainer = ({stoppID, busstopp}) => {
 
   //bus.map(busitem-><Bus bussnr=busitem.servisejourney.id retning="" tid=""></Bus>)
   return (
-    <div>
+    <div className="tabellDiv">
       <h3>{busstopp}</h3>
       <table className="tabell">
         {bus.map((busitem, index) => (
