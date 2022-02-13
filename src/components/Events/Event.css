@@ -1,50 +1,62 @@
 .event {
-  width: 100%;
+  width: 25%;
+  height: 100%;
   background: white;
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  color: black;
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
   border-radius: 5px;
-  object-fit: cover;
 }
 
 .thumb {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   aspect-ratio: 16 / 9;
 }
 
 .data {
-  position: relative;
-  width: calc(100% - 1rem);
+  width: 100%;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-between;
   text-align: left;
+  flex-grow: 1;
 }
 
 .title {
-  margin: 0;
+  font-size: 5.5rem;
+  text-align: center;
 }
 
-.ingress {
-  margin: 0;
-  font-size: 1rem;
+.registration {
+  margin: auto auto 0;
+  font-size: 4rem;
+  display: flex;
+  text-align: center;
+
+}
+
+.reg-el {
+  display: flex;
+  flex-direction: column;
+}
+
+.reg-date-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .info {
-  position: absolute;
-  bottom: .5rem;
-  right: .5rem;
+  margin-left: auto;
   display: flex;
-  justify-content: flex-end;
-}
-
-.info-line {
-  font-size: 1rem;
-  margin-left: 10px;
+  gap: 2rem;
+  font-size: 4rem;
+  margin-top: 4rem;
 }
 
 .info-line > :first-child {
-  margin-right: 5px;
+  margin-right: 1rem;
 }
