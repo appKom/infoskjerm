@@ -1,25 +1,12 @@
 
 import Bus from './Bus';
 import createEnturClient from '@entur/sdk';
-import {useState, useEffect} from 'react';
+import { useQuery } from 'react-query';
 import './Bus.css';
 
 const BusContainer = ({stoppID, busstopp}) => {
-  console.log(stoppID);
-
   const enturClient = createEnturClient({
     clientName: 'appkom-infoskjerm',
-  });
-
-  const [ bus,setBus ] = useState([]);
-
-  useEffect(() => {
-    const getGloshaugen=async() => {
-      const glos=await fetchBusDepartures();
-      setBus(glos);
-    };
-
-    getGloshaugen();
   });
 
   //https://stoppested.entur.org/    NSR:StopPlace:44085 id til gløshaugen
@@ -39,10 +26,10 @@ const BusContainer = ({stoppID, busstopp}) => {
     return output;
   };
 
-  console.log(bus);
-  console.log(busstopp);
+  const { isLoading, isError, data: bus } = useQuery('bus', fetchBusDepartures);
 
-  //bus.map(busitem-><Bus bussnr=busitem.servisejourney.id retning="" tid=""></Bus>)
+  if (isLoading || isError) return null;
+
   return (
     <div className="tabellDiv">
       <div className="header">
@@ -50,9 +37,11 @@ const BusContainer = ({stoppID, busstopp}) => {
         <h3 className="inline">{busstopp}</h3>
       </div>
       <table className="tabell">
-        {bus.map((busitem, index) => (
-          <Bus key={index} tid={busitem.tid} bussnr={busitem.busnr} retning={busitem.retning}/>
-        ))}
+        <tbody>
+          {bus.map((busitem, index) => (
+            <Bus key={index} tid={busitem.tid} bussnr={busitem.busnr} retning={busitem.retning}/>
+          ))}
+        </tbody>
       </table>
     </div>
   );

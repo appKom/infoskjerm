@@ -19,6 +19,10 @@ function Event({event}) {
 
   const imgSrc = event.image?.thumb;
 
+  const splitTitle = event.title.split(' ');
+
+  const title = splitTitle.slice(0, 3).join(' ') + (splitTitle.length > 3 ? '...' : '');
+
   return (
     <div className="event">
       {imgSrc ?
@@ -26,7 +30,7 @@ function Event({event}) {
         <OnlineLogo className="thumb" fillColor={eventTypes[event.event_type]?.color} />
       }
       <div className="data">
-        <h2 className="title">{event.title}</h2>
+        <h2 className="title">{title}</h2>
         <span className='registration'>
           {regStarted ?
             <div className='reg-el'>
