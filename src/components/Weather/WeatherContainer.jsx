@@ -9,7 +9,6 @@ const WeatherContainer = () => {
   useEffect(() => {
     const getWeather=async() => {
       const weatherFromAPI=await fetchWeather();
-      console.log(weatherFromAPI);
       setWeather(weatherFromAPI);
     };
 
