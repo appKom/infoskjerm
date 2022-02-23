@@ -31,7 +31,7 @@ function App() {
           <EventList eventSize={4} />
         </Card>
         <Card rowStart={1} rowSpan={2} colStart={3}><BusContainer stoppID={'NSR:StopPlace:44085'} busstopp={'Gløshaugen'} /></Card>
-    //  <Card rowStart={1} rowSpan={2} colStart={5}><BusContainer stoppID={'NSR:StopPlace:41620'} busstopp={'Hesthagen'}/></Card>
+        {/* <Card rowStart={1} rowSpan={2} colStart={5}><BusContainer stoppID={'NSR:StopPlace:41620'} busstopp={'Hesthagen'}/></Card> */}
       </div>
     </QueryClientProvider>
   );

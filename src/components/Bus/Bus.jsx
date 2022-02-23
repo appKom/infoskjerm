@@ -1,4 +1,3 @@
-import React from 'react';
 import './Bus.css';
 
 const Bus = ({bussnr, retning, tid}) => {

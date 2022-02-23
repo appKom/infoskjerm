@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './Card.css';
 
 const Card = ({ children, rowStart, rowSpan = 1, colStart, colSpan = 2 }) => {
