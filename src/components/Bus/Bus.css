@@ -1,0 +1,46 @@
+
+  
+.buss3{
+    align-self: center;
+    transform: translate(0,-20%);
+    color: white;
+}
+
+.bus{
+    display: flex;
+}
+
+table, td,th{
+    /* border: 1px solid black; */
+    width: 100%;
+}
+
+th{
+    text-align: left;
+}
+
+.tabellDiv{
+    width: 100%;
+}
+
+.bussNr{
+    width: 15%;
+}
+
+.tid{
+    width: 15%;
+}
+
+h3{
+    color: white;
+    padding: 1.7rem 1rem;
+}
+.header{
+    position: relative;
+    display: flex;
+}
+
+.header img{
+    filter: invert(1);
+}
+

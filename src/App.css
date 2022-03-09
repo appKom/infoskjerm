@@ -7,9 +7,10 @@
   display: grid;
   place-items: center;
   /* grid-auto-flow: row; */
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 1em;
+  font-size: 50px;
 }
 
 #bilde-av-bus{

@@ -2,18 +2,11 @@ import PropTypes from 'prop-types';
 
 import './Weather.css';
 
-function importAll(r) {
-  let images = {};
-  r.keys().forEach((item) => { images[item.replace('./', '')] = r(item); });
-  return images;
-}
-const images = importAll(require.context('./weathersvg', false, /\.(png|jpe?g|svg)$/));
-
 const Weather = ({img, time, temp}) => {
   return (
     <div className="weather">
       <p>{time}</p>
-      <img src={images[`${img}.svg`].default} alt="weather forecast" className="weatherimg"/>
+      <img src={`./weathersvg/${img}.svg`} alt="weather forecast" className="weatherimg"/>
       <p>{temp}&#176;C</p>
     </div>
   );

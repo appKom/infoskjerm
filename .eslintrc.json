@@ -46,10 +46,11 @@
     "no-nested-ternary": "error",
     "no-negated-condition": "error",
     "prefer-spread": "error",
-    "no-unused-vars": [ "error", { "ignoreRestSiblings": true }],
+    "no-unused-vars": [ "warn", { "ignoreRestSiblings": true }],
     "rest-spread-spacing": [ "error", "never" ],
 
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "no-console": "warn"
   },
   "overrides": [
     {
