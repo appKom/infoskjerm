@@ -15,7 +15,7 @@ function App() {
   const [ time, setTime ] = useState(moment().format('HH:mm'));
 
   useEffect(() => {
-    const timeInterval = setInterval(() => setTime(moment().format('HH:mm')), 30000);
+    const timeInterval = setInterval(() => setTime(`${new Date().getHours()}:${new Date().getMinutes()}`), 1000);
 
     return () => {
       clearInterval(timeInterval);
