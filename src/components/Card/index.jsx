@@ -1,8 +1,8 @@
 import './Card.css';
 
-const Card = ({ children, colStart, colSpan = 2 }) => {
+const Card = ({ children, className, colStart, colSpan = 2 }) => {
   return (
-    <div className="card" style={{ gridColumn: `${colStart} / span ${colSpan}` }}>
+    <div className={`card ${className}`} style={{ gridColumn: `${colStart} / span ${colSpan}` }}>
       {children}
     </div>
   );

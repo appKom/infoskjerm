@@ -15,7 +15,7 @@ function App() {
   const [ time, setTime ] = useState(moment().format('HH:mm'));
 
   useEffect(() => {
-    const timeInterval = setInterval(() => setTime(`${new Date().getHours()}:${new Date().getMinutes()}`), 1000);
+    const timeInterval = setInterval(() => setTime(moment().format('HH:mm')), 1000);
 
     return () => {
       clearInterval(timeInterval);
@@ -25,7 +25,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
-        <Card rowStart={1} colStart={1} colSpan={6}>
+        <Card rowStart={1} colStart={1} colSpan={12}>
           <span className="top-bar">
             <span className="top-bar-logo">
               <OnlineLogo />
@@ -33,24 +33,19 @@ function App() {
             {time}
           </span>
         </Card>
-        <Card colStart={1}>
+        <Card colStart={1} colSpan={4}>
           <WeatherContainer />
         </Card>
-        <Card colStart={3}>
+        <Card colStart={5} colSpan={4}>
           <BusContainer stoppID={'NSR:StopPlace:44085'} busstopp={'Gløshaugen'} />
         </Card>
-        <Card colStart={5}>
+        <Card colStart={9} colSpan={4}>
           <BusContainer stoppID={'NSR:StopPlace:41620'} busstopp={'Hesthagen'}/>
         </Card>
-        <Card colStart={1} colSpan={6}>
-          <EventList eventSize={4} />
-        </Card>
+        <EventList eventSize={4} />
       </div>
     </QueryClientProvider>
   );
 }
 
 export default App;
-
-//ES7
-//rafce
