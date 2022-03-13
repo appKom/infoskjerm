@@ -6,7 +6,7 @@ import { useQuery } from 'react-query';
 import './EventList.css';
 
 function EventList({ eventSize = 3 }) {
-  const { isLoading, isError, data } = useQuery('events', () => fetchEventsByStartDate());
+  const { isLoading, isError, data } = useQuery('events', () => fetchEventsByStartDate(), { refetchInterval: 1000 * 60 * 60 * 3 });
 
   if (isLoading || isError) return null;
 
