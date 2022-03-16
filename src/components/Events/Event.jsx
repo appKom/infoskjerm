@@ -2,7 +2,7 @@ import moment from 'moment';
 import { faCalendarAlt, faUser, faClock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import OnlineLogo from './OnlineLogo';
+import OnlineLogo from '../Logo/OnlineLogo';
 
 import eventTypes from '../../eventTypes';
 
@@ -27,14 +27,16 @@ function Event({event}) {
     <div className="event">
       {imgSrc ?
         <img className="thumb" src={imgSrc} alt="Event" /> :
-        <OnlineLogo className="thumb" fillColor={eventTypes[event.event_type]?.color} />
+        <div className="thumb">
+          <OnlineLogo  fillColor={eventTypes[event.event_type]?.color} />
+        </div>
       }
       <div className="data">
         <h2 className="title">{title}</h2>
-        <span className='registration'>
+        <div className="registration">
           {regStarted ?
             <div className='reg-el'>
-              <b>Påmelding Slutter:</b>
+              <h3 className="reg-title">Påmelding Stenger:</h3>
               <span className='reg-date-time'>
                 <span>
                   <FontAwesomeIcon icon={faCalendarAlt} style={{ marginRight: '1rem' }} />
@@ -48,7 +50,7 @@ function Event({event}) {
             </div>
             :
             <div className='reg-el'>
-              <b>Påmelding Starter:</b>
+              <h3 className="reg-title">Påmelding Åpner:</h3>
               <span className='reg-date-time'>
                 <span>
                   <FontAwesomeIcon icon={faCalendarAlt} style={{ marginRight: '1rem' }} />
@@ -61,7 +63,7 @@ function Event({event}) {
               </span>
             </div>
           }
-        </span>
+        </div>
         <div className="info">
           <span className="info-line">
             <FontAwesomeIcon icon={faCalendarAlt} />

@@ -1,32 +1,12 @@
 
 import Bus from './Bus';
-import createEnturClient from '@entur/sdk';
+import fetchBusDepartures from '../../api/bus/fetchBusDepartures';
 import { useQuery } from 'react-query';
+
 import './Bus.css';
 
 const BusContainer = ({stoppID, busstopp}) => {
-  const enturClient = createEnturClient({
-    clientName: 'appkom-infoskjerm',
-  });
-
-  //https://stoppested.entur.org/    NSR:StopPlace:44085 id til gløshaugen
-  const fetchBusDepartures = async() => {
-    const gloshaugen = await enturClient.getDeparturesFromStopPlace(stoppID);
-    let output=[];
-    for(let i=0;i<5; i++){
-
-      if(gloshaugen[i].serviceJourney.id.substring(19,gloshaugen[i].serviceJourney.id.indexOf('_')).length<=2){
-        output.push({
-          busnr: gloshaugen[i].serviceJourney.id.substring(19,gloshaugen[i].serviceJourney.id.indexOf('_')),
-          retning: gloshaugen[i].destinationDisplay.frontText,
-          tid: gloshaugen[i].aimedDepartureTime.substring(gloshaugen[i].aimedDepartureTime.indexOf('T')+1,gloshaugen[i].aimedDepartureTime.indexOf('+')-3)
-        });
-      }
-    }
-    return output;
-  };
-
-  const { isLoading, isError, data: bus } = useQuery('bus', fetchBusDepartures);
+  const { isLoading, isError, data: bus } = useQuery(`bus-${stoppID}`, () => fetchBusDepartures(stoppID), {refetchInterval: 1000 * 30});
 
   if (isLoading || isError) return null;
 
