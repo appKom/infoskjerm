@@ -36,12 +36,16 @@
   font-size: 4rem;
   display: flex;
   text-align: center;
-
 }
 
 .reg-el {
   display: flex;
   flex-direction: column;
+}
+
+.reg-title {
+  font-weight: 500;
+  padding: 0;
 }
 
 .reg-date-time {

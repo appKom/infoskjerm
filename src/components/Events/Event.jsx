@@ -36,7 +36,7 @@ function Event({event}) {
         <div className="registration">
           {regStarted ?
             <div className='reg-el'>
-              <b>Påmelding Stenger:</b>
+              <h3 className="reg-title">Påmelding Stenger:</h3>
               <span className='reg-date-time'>
                 <span>
                   <FontAwesomeIcon icon={faCalendarAlt} style={{ marginRight: '1rem' }} />
@@ -50,7 +50,7 @@ function Event({event}) {
             </div>
             :
             <div className='reg-el'>
-              <b>Påmelding Starter:</b>
+              <h3 className="reg-title">Påmelding Åpner:</h3>
               <span className='reg-date-time'>
                 <span>
                   <FontAwesomeIcon icon={faCalendarAlt} style={{ marginRight: '1rem' }} />
