@@ -2,7 +2,7 @@ import moment from 'moment';
 import { faCalendarAlt, faUser, faClock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import OnlineLogo from './OnlineLogo';
+import OnlineLogo from '../Logo/OnlineLogo';
 
 import eventTypes from '../../eventTypes';
 

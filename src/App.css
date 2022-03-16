@@ -14,12 +14,12 @@
 
 .top-bar {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   color: white;
-  font-size: 3.2em;
+  font-size: 4em;
+  line-height: 100%;
   font-weight: 800;
-  letter-spacing: .3em;
-  line-height: .5em;
+  letter-spacing: .2em;
   gap: 1em;
   padding: 0;
   text-align: center;
@@ -28,12 +28,10 @@
 
 .top-bar-logo {
   height: 10vh;
-  aspect-ratio: 1
 }
 
 .top-bar-logo > * {
   display: grid;
   place-items: center;
   width: 100%;
-  filter: drop-shadow(0 0 3px white)
 }

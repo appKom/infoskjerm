@@ -4,7 +4,7 @@ import Card from './components/Card';
 import WeatherContainer from './components/Weather/WeatherContainer';
 import EventList from './components/Events/EventList';
 import BusContainer from './components/Bus/BusContainer';
-import OnlineLogo from './components/Events/OnlineLogo';
+import OnlineLogo from './components/Logo/OnlineLogo';
 import moment from 'moment';
 
 import './App.css';
@@ -28,7 +28,7 @@ function App() {
         <Card rowStart={1} colStart={1} colSpan={12}>
           <span className="top-bar">
             <span className="top-bar-logo">
-              <OnlineLogo />
+              <OnlineLogo size="large" />
             </span>
             {time}
           </span>
