@@ -16,22 +16,22 @@
   display: flex;
   align-items: flex-end;
   color: white;
-  font-size: 4em;
-  line-height: 100%;
+  font-size: 10vh;
+  line-height: 1em;
   font-weight: 800;
   letter-spacing: .2em;
   gap: 1em;
   padding: 0;
-  text-align: center;
+  width: 100%;
 }
 
 
 .top-bar-logo {
   height: 10vh;
+
 }
 
-.top-bar-logo > * {
-  display: grid;
-  place-items: center;
-  width: 100%;
+.bekk-logo {
+  margin-left: auto;
+  height: 10vh;
 }

@@ -5,6 +5,7 @@ import WeatherContainer from './components/Weather/WeatherContainer';
 import EventList from './components/Events/EventList';
 import BusContainer from './components/Bus/BusContainer';
 import OnlineLogo from './components/Logo/OnlineLogo';
+import BekkLogo from './components/Logo/BekkLogo';
 import moment from 'moment';
 
 import './App.css';
@@ -31,6 +32,9 @@ function App() {
               <OnlineLogo size="large" />
             </span>
             {time}
+            <span className="bekk-logo">
+              <BekkLogo />
+            </span>
           </span>
         </Card>
         <Card colStart={1} colSpan={4}>
