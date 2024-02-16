@@ -6,6 +6,7 @@ import EventList from './components/Events/EventList';
 import BusContainer from './components/Bus/BusContainer';
 import OnlineLogo from './components/Logo/OnlineLogo';
 import BekkLogo from './components/Logo/BekkLogo';
+import PromoVideo from './components/PromoVideo';
 import moment from 'moment';
 
 import './App.css';
@@ -47,6 +48,7 @@ function App() {
           <BusContainer stoppID={'NSR:StopPlace:41620'} busstopp={'Hesthagen'}/>
         </Card>
         <EventList eventSize={4} />
+        <PromoVideo />
       </div>
     </QueryClientProvider>
   );
