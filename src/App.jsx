@@ -13,10 +13,10 @@ import './App.css';
 const queryClient = new QueryClient();
 
 function App() {
-  const [ time, setTime ] = useState(moment().format('HH:mm'));
+  const [ time, setTime ] = useState(moment().format('HH:mm:ss'));
 
   useEffect(() => {
-    const timeInterval = setInterval(() => setTime(moment().format('HH:mm')), 1000);
+    const timeInterval = setInterval(() => setTime(moment().format('HH:mm:ss')), 1000);
 
     return () => {
       clearInterval(timeInterval);
