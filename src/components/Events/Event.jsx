@@ -17,7 +17,7 @@ function Event({event}) {
 
   // 3840 x 2160
 
-  const imgSrc = event.image?.thumb;
+  const imgSrc = event.image?.xs;
 
   const splitTitle = event.title.split(' ');
 
