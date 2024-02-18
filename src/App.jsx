@@ -21,9 +21,10 @@ function App() {
       setTime(moment().format('HH:mm'));
 
       const lastRefreshTime = localStorage.getItem('lastRefreshTime');
+      const currentTime = moment().format('YYYY-MM-DD HH:mm');
 
-      if (moment().format('HH:mm') === REFRESH_TIME && moment().format('HH:mm') !== lastRefreshTime) {
-        localStorage.setItem('lastRefreshTime', moment().format('HH:mm'));
+      if (moment().format('HH:mm') === REFRESH_TIME && currentTime !== lastRefreshTime) {
+        localStorage.setItem('lastRefreshTime', currentTime);
         window.location.reload();
       }
     }, 1000);
