@@ -4,6 +4,8 @@ import Card from './components/Card';
 import WeatherContainer from './components/Weather/WeatherContainer';
 import EventList from './components/Events/EventList';
 import BusContainer from './components/Bus/BusContainer';
+import OnlineLogo from './components/Logo/OnlineLogo';
+import BekkLogo from './components/Logo/BekkLogo';
 import moment from 'moment';
 
 import './App.css';
