@@ -4,19 +4,27 @@ import Card from './components/Card';
 import WeatherContainer from './components/Weather/WeatherContainer';
 import EventList from './components/Events/EventList';
 import BusContainer from './components/Bus/BusContainer';
-import OnlineLogo from './components/Logo/OnlineLogo';
-import BekkLogo from './components/Logo/BekkLogo';
 import moment from 'moment';
 
 import './App.css';
 
 const queryClient = new QueryClient();
+const REFRESH_TIME = '04:00';
 
 function App() {
   const [ time, setTime ] = useState(moment().format('HH:mm'));
 
   useEffect(() => {
-    const timeInterval = setInterval(() => setTime(moment().format('HH:mm')), 1000);
+    const timeInterval = setInterval(() => {
+      setTime(moment().format('HH:mm'));
+
+      const lastRefreshTime = localStorage.getItem('lastRefreshTime');
+
+      if (moment().format('HH:mm') === REFRESH_TIME && moment().format('HH:mm') !== lastRefreshTime) {
+        localStorage.setItem('lastRefreshTime', moment().format('HH:mm'));
+        window.location.reload();
+      }
+    }, 1000);
 
     return () => {
       clearInterval(timeInterval);
