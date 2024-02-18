@@ -14,11 +14,11 @@ const queryClient = new QueryClient();
 const REFRESH_TIME = '04:00';
 
 function App() {
-  const [ time, setTime ] = useState(moment().format('HH:mm'));
+  const [ time, setTime ] = useState(moment().format('HH:mm:ss'));
 
   useEffect(() => {
     const timeInterval = setInterval(() => {
-      setTime(moment().format('HH:mm'));
+      setTime(moment().format('HH:mm:ss'));
 
       const lastRefreshTime = localStorage.getItem('lastRefreshTime');
       const currentTime = moment().format('YYYY-MM-DD HH:mm');
