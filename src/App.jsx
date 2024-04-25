@@ -8,9 +8,7 @@ function App() {
     <div className='h-full overflow-hidden'>
       <Header />
       <div className='flex flex-col justify-between h-full'>
-        <EventCarousel title="Sosialt" />
-        <hr />
-        <EventCarousel title="Bedriftspresentasjoner" />
+        <EventCarousel />
       </div>
     </div>
   );
