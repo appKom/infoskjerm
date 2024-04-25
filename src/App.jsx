@@ -10,6 +10,8 @@ function App() {
       <Header />
       <Event />
       <Badge title ="hei" icon ="calender" />
+      <Badge title ="hei" icon ="calender" />
+      <Event />
     </div>
   );
 }
