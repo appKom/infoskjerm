@@ -1,7 +1,7 @@
 import OnlineLogo from './Logo/OnlineLogo.jsx';
 import { Badge } from './Badge.jsx';
 import { formatDateTime } from '../lib/date.js';
-import EVENT_TYPES from '../lib/eventTypes.js';
+// import EVENT_TYPES from '../lib/eventTypes.js';
 
 export function EventCard({event}){
 
