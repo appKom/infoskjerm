@@ -1,12 +1,14 @@
-// import moment from 'moment';
-// import eventTypes from '../../eventTypes';
+//import moment from 'moment';
+//import eventTypes from '../../eventTypes';
 import OnlineLogo from './Logo/OnlineLogo';
 import eventTypes from '../lib/eventTypes.js';
+//import { fetchEventsByStartDate } from '../api/EventApi';
 
 
 
-export function Event(){
+export function Event({event}){
   const imgSrc = 'https://online.ntnu.no/_next/image?url=https%3A%2F%2Fonlineweb4-prod.s3.eu-north-1.amazonaws.com%2Fmedia%2Fimages%2Fresponsive%2Flg%2Ffe5c674c-336d-411e-85d5-e89f3be7df23.jpeg&w=1200&q=75';
+
   return(
     <div>
       <a href="vg.no" className ="block max-w-sm w-327 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
