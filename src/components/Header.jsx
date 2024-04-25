@@ -15,8 +15,10 @@ export function Header(){
 
   return(
     <div className="flex items-center h-32 gap-8 px-12 py-6 border-b border-light-grey dark:border-gray-700">
-      <img  className="h-full" src="/online/online_logo.svg" alt="Online logo" />
-      <img className="h-full px-4 border-x dark:border-gray-700" src="/bekk/Bekk_navnetrekk_hvit.svg" alt="Bekk logo" />
+      <img className="h-full dark:hidden" src="/online/online_icon_blue.svg" alt="Online logo" />
+      <img className="hidden h-full dark:block" src="/online/online_icon_white.svg" alt="Online logo" />
+      <img className="h-full px-4 border-x dark:border-gray-700 dark:hidden" src="/bekk/Bekk_navnetrekk_blå.svg" alt="Bekk logo" />
+      <img className="hidden h-full px-4 border-x dark:border-gray-700 dark:block" src="/bekk/Bekk_navnetrekk_hvit.svg" alt="Bekk logo" />
       <span className="text-7xl text-online-blue dark:text-white">{time}</span>
     </div>
   );
