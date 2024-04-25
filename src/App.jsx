@@ -5,9 +5,10 @@ import './index.css';
 function App() {
 
   return (
-    <div className='h-full overflow-hidden'>
+    <div className='overflow-hidden dark:bg-[#111827]'>
       <Header />
       <div className='flex flex-col justify-between h-full'>
+        <EventCarousel />
         <EventCarousel />
       </div>
     </div>

@@ -14,10 +14,10 @@ export function Header(){
   }, []);
 
   return(
-    <div className="h-32 gap-8 flex items-center border-b border-light-grey px-12 py-6">
+    <div className="flex items-center h-32 gap-8 px-12 py-6 border-b border-light-grey dark:border-gray-700">
       <img  className="h-full" src="/online/online_logo.svg" alt="Online logo" />
-      <img className="h-full border-x px-4" src="/bekk/Bekk_navnetrekk_hvit.svg" alt="Bekk logo" />
-      <span className="text-7xl text-online-blue">{time}</span>
+      <img className="h-full px-4 border-x dark:border-gray-700" src="/bekk/Bekk_navnetrekk_hvit.svg" alt="Bekk logo" />
+      <span className="text-7xl text-online-blue dark:text-white">{time}</span>
     </div>
   );
 }

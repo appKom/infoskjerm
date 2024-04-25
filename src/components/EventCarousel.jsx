@@ -249,7 +249,7 @@ export function EventCarousel(){
 
   return(
     <div className='px-8 py-5'>
-      <h2 className="mb-5 text-4xl font-bold">Kommende arrangementer</h2>
+      <h2 className="mb-5 text-4xl font-bold dark:text-white">Kommende arrangementer</h2>
       <div className ="flex justify-between max-w-full gap-8" >
         {events.map((event) => <EventCard key={event.id} event={event} />)}
       </div>
