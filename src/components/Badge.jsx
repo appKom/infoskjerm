@@ -22,15 +22,15 @@ export function Badge({ text, leftIcon, color = 'gray', rightIcon }) {
   const rightSvg = rightIcon ? iconPaths[rightIcon] : '';
 
   return (
-    <div className={`${colorClass} text-xs font-medium inline-flex items-center px-3 py-1 rounded me-2 gap-1`}>
+    <div className={`${colorClass} text-sm font-medium inline-flex items-center px-2 py-1 rounded me-2 gap-1`}>
       {leftSvg && (
-        <svg className="w-5 h-5" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+        <svg className="w-5 h-5 min-w-5 min-h-5" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
           <path fillRule="evenodd" d={leftSvg} clipRule="evenodd" />
         </svg>
       )}
-      <div className="line-clamp-1">{text}</div>
+      <div className="w-max">{text}</div>
       {rightSvg && (
-        <svg className="w-5 h-5" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+        <svg className="w-5 h-5 min-w-5 min-h-5" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
           <path fillRule="evenodd" d={rightSvg} clipRule="evenodd" />
         </svg>
       )}

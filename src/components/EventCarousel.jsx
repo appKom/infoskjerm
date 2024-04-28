@@ -8,7 +8,7 @@ export function EventCarousel({title, events}){
       <div className ="grid justify-between max-w-full grid-cols-4 gap-8 " >
         {events.map((event) => <EventCard key={event.id} event={event} />)}
       </div>
-      <div className="mt-5 text-xl dark:text-white">Meld deg på arrangementer via <span className='font-medium'>online.ntnu.no</span>.</div>
+      <div className="mt-5 text-xl dark:text-white">Meld deg på arrangementer via <span className='font-medium'>online.ntnu.no</span></div>
     </div>
   );
 }

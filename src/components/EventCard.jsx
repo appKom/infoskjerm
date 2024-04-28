@@ -1,6 +1,6 @@
 import OnlineLogo from './Logo/OnlineLogo.jsx';
 import { Badge } from './Badge.jsx';
-import { formatDateTime } from '../lib/date.js';
+import { formatWeekday, formatClock, formatDateName } from '../lib/date.js';
 import EVENT_TYPES from '../lib/eventTypes.js';
 
 const calculateSeatsInfo = (attendanceEvent) => {
@@ -48,10 +48,10 @@ export function EventCard({ event }) {
         </div>
         <div className='flex w-full gap-1 overflow-hidden'>
           {eventTypeName && eventTypeColorName && <Badge text={eventTypeName} leftIcon='star' color={eventTypeColorName} />}
+          {event.event_start && <Badge text={formatWeekday(event.event_start) + ' ' + formatDateName(event.event_start) + ', ' + formatClock(event.event_start)} leftIcon='calendar' color='gray' />}
           {attendance_event && (
             <Badge text={`${attendance_event.number_of_seats_taken}/${attendance_event.max_capacity}`} leftIcon='people' color='gray' />
           )}
-          {event.event_start && <Badge text={formatDateTime(event.event_start)} leftIcon='calendar' color='gray' />}
         </div>
       </div>
     </div>
