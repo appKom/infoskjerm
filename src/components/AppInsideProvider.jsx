@@ -15,7 +15,7 @@ export function AppInsideProvider(){
   return(<div className='overflow-hidden dark:bg-[#111827] h-screen flex flex-col'>
     <Header />
     <div className='flex flex-col h-full'>
-      <EventCarousel events = {data.results.slice(0, 10)}/>
+      <EventCarousel events = {data.results.slice(0, 8)}/>
     </div>
   </div>);
 }
