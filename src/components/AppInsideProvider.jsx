@@ -3,8 +3,10 @@ import { EventCarousel } from './EventCarousel';
 import {fetchEventsByStartDate} from '../api/EventApi';
 import { useQuery } from 'react-query';
 
+const refetchIntervalMinutes = 5;
+
 export function AppInsideProvider(){
-  const { isLoading, isError, data } = useQuery('events', () => fetchEventsByStartDate(), { refetchInterval: 1000 * 60 * 60 * 3 });
+  const { isLoading, isError, data } = useQuery('events', () => fetchEventsByStartDate(), { refetchInterval: 1000 * 60 * refetchIntervalMinutes });
   if (isLoading){
     return <p>Loading</p>;
   }
