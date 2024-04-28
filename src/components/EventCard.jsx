@@ -23,7 +23,7 @@ export function EventCard({ event }) {
       <div className='flex flex-col justify-between flex-grow gap-2 px-4 pt-2 pb-3'>
         <div>
           <h5 className="w-full text-2xl font-bold tracking-tight line-clamp-1 dark:text-white">{event.title}</h5>
-          <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-3">{event.description}</p>
+          <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{event.description}</p>
         </div>
         <div className='flex gap-1'>
           {event.attendance_event && <Badge text={`${seatsTaken}/${maxCapacity}`} leftIcon='people' color='gray' />}
