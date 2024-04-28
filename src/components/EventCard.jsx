@@ -31,7 +31,7 @@ export function EventCard({ event }) {
     <div className="relative flex flex-col flex-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       {seatsLeft > 0 &&
         <div className={`${indicatorColor} absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900`}>
-          {seatsLeft} plasser igjen
+          {seatsLeft} {seatsLeft === 1 ? 'plass' : 'plasser'} igjen
         </div>
       }
       <div className={`${image ? '' : 'flex justify-center'} w-full h-60 border-b rounded-t-lg border-gray-200 dark:border-gray-700`}>
