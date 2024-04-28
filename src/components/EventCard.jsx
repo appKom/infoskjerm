@@ -43,15 +43,15 @@ export function EventCard({ event }) {
       </div>
       <div className='flex flex-col justify-between flex-grow gap-2 px-4 pt-2 pb-3'>
         <div>
-          <h5 className="w-full text-2xl font-bold tracking-tight line-clamp-1 dark:text-white">{event.title}</h5>
-          <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{event.description}</p>
+          {event.title && <h5 className="w-full text-2xl font-bold tracking-tight line-clamp-1 dark:text-white">{event.title}</h5>}
+          {event.title && <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{event.description}</p>}
         </div>
         <div className='flex w-full gap-1 overflow-hidden'>
-          <Badge text={eventTypeName} leftIcon='star' color={eventTypeColorName} />
+          {eventTypeName && eventTypeColorName && <Badge text={eventTypeName} leftIcon='star' color={eventTypeColorName} />}
           {attendance_event && (
             <Badge text={`${attendance_event.number_of_seats_taken}/${attendance_event.max_capacity}`} leftIcon='people' color='gray' />
           )}
-          <Badge text={formatDateTime(event.event_start)} leftIcon='calendar' color='gray' />
+          {event.event_start && <Badge text={formatDateTime(event.event_start)} leftIcon='calendar' color='gray' />}
         </div>
       </div>
     </div>
