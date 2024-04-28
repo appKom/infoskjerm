@@ -13,3 +13,16 @@
 body {
   font-family: 'Inter', sans-serif;
 }
+
+@keyframes scroll-horizontal {
+  0%, 100% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(calc(-1 * var(--overflow-width)));
+  }
+}
+
+.scrolling-text {
+  animation: scroll-horizontal 20s linear infinite;
+}
