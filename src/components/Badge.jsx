@@ -77,7 +77,6 @@ export function Badge({text, leftIcon, color = 'indigo', rightIcon}){
           )
         }
       </span>
-
     </div>
   );
 }
