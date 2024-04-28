@@ -59,24 +59,24 @@ export function Badge({text, leftIcon, color = 'indigo', rightIcon}){
   }
 
   return(
-    <div>
-      <span className={colorClass + ' text-xs font-medium inline-flex items-center px-2 py-1 rounded me-2 gap-1'}>
-        {
-          leftsvg !== '' && (
-            <svg className="flex w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-              <path fillRule="evenodd" d={leftsvg} clipRule="evenodd"/>
-            </svg>
-          )
-        }
+    <div className={colorClass + ' text-xs font-medium inline-flex items-center px-3 py-1 rounded me-2 gap-1'}>
+      {
+        leftsvg !== '' && (
+          <svg className="flex w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fillRule="evenodd" d={leftsvg} clipRule="evenodd"/>
+          </svg>
+        )
+      }
+      <div className="line-clamp-1">
         {text}
-        {
-          rightsvg !== '' && (
-            <svg className="flex w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-              <path fillRule="evenodd" d={rightsvg} clipRule="evenodd"/>
-            </svg>
-          )
-        }
-      </span>
+      </div>
+      {
+        rightsvg !== '' && (
+          <svg className="flex w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fillRule="evenodd" d={rightsvg} clipRule="evenodd"/>
+          </svg>
+        )
+      }
     </div>
   );
 }

@@ -5,7 +5,7 @@ const EVENT_TYPES = {
     colorName: 'green'
   },
   2: {
-    display: 'Bedriftspresentasjon',
+    display: 'Bedpress',
     color: 'rgb(235, 83, 110)',
     colorName: 'red'
   },
