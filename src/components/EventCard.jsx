@@ -4,12 +4,17 @@ import { formatDateTime } from '../lib/date.js';
 import EVENT_TYPES from '../lib/eventTypes.js';
 
 export function EventCard({ event }) {
-  const seatsTaken = event.attendance_event.number_of_seats_taken;
-  const maxCapacity = event.attendance_event.max_capacity;
+  let seatsTaken = undefined;
+  let maxCapacity = undefined;
+  if (event.attendance_event){
+    seatsTaken = event.attendance_event.number_of_seats_taken || 0;
+    maxCapacity = event.attendance_event.max_capacity || 0;
+  }
+
 
   return (
     <div className="flex flex-col flex-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <div className={`${event.image ? '' : 'flex justify-center'} w-full h-48 border-b rounded-t-lg border-gray-200 dark:border-gray-700`}>
+      <div className={`${event.image ? '' : 'flex justify-center'} w-full h-60 border-b rounded-t-lg border-gray-200 dark:border-gray-700`}>
         {event.image ?
           <img className="object-cover w-full h-full rounded-t-lg" src={event.image.lg} alt={event.image.description} /> :
           <OnlineLogo fillColor={EVENT_TYPES[event.event_type].color} />}
@@ -21,8 +26,9 @@ export function EventCard({ event }) {
           <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-3">{event.description}</p>
         </div>
         <div className='flex gap-1'>
-          <Badge text={`${seatsTaken}/${maxCapacity}`} icon='people' color='gray' />
-          <Badge text={formatDateTime(event.event_start)} icon='calendar' color='gray' />
+          {event.attendance_event && <Badge text={`${seatsTaken}/${maxCapacity}`} leftIcon='people' color='gray' />}
+          {/* <Badge leftIcon = 'people' color = 'gray' text='Ingen påmelding'/>*/}
+          <Badge text={formatDateTime(event.event_start)} leftIcon='calendar' color='gray' />
         </div>
       </div>
     </div>

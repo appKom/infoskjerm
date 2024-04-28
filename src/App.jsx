@@ -1,16 +1,14 @@
-import { Header } from './components/Header';
-import { EventCarousel } from './components/EventCarousel';
 import './index.css';
+import { AppInsideProvider } from './components/AppInsideProvider';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className='overflow-hidden dark:bg-[#111827] h-screen flex flex-col'>
-      <Header />
-      <div className='flex flex-col h-full'>
-        <EventCarousel />
-        <EventCarousel />
-      </div>
-    </div>
+    <QueryClientProvider client={queryClient} >
+      <AppInsideProvider/>
+    </QueryClientProvider>
   );
 }
 
