@@ -1,11 +1,22 @@
 import {useState, useEffect} from 'react';
 import moment from 'moment';
 
+const REFRESH_TIME = '03:00';
+
 export function Header(){
   const [ time, setTime ] = useState(moment().format('HH:mm:ss'));
+
   useEffect(() => {
     const timeInterval = setInterval(() => {
       setTime(moment().format('HH:mm:ss'));
+
+      const lastRefreshTime = localStorage.getItem('lastRefreshTime');
+      const currentTime = moment().format('YYYY-MM-DD HH:mm');
+
+      if (moment().format('HH:mm') === REFRESH_TIME && currentTime !== lastRefreshTime) {
+        localStorage.setItem('lastRefreshTime', currentTime);
+        window.location.reload();
+      }
     }, 1000);
 
     return () => {
