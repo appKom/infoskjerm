@@ -8,6 +8,7 @@
     "prepare": "husky install",
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch",
+    "test": "exit 0",
     "start": "vite",
     "dev": "vite",
     "build": "tsc && vite build",
