@@ -27,13 +27,17 @@ export function EventCard({ event }) {
   const eventTypeName = EVENT_TYPES[event_type].display;
   const eventTypeColorName = EVENT_TYPES[event_type].colorName;
 
+  const registration_end = new Date(attendance_event?.registration_end);
+  const isRegistrationEnded = new Date() > registration_end;
+
   return (
     <div className="relative flex flex-col flex-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      {seatsLeft > 0 &&
-        <div className={`${indicatorColor} absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900`}>
-          {seatsLeft} {seatsLeft === 1 ? 'plass' : 'plasser'} igjen
+      { attendance_event && seatsLeft > 0 &&
+        <div className={`absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white ${isRegistrationEnded ? 'bg-gray-400' : indicatorColor} border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900`}>
+          {isRegistrationEnded ? 'Påmeldingsfrist utløpt' : `${seatsLeft} ${seatsLeft === 1 ? 'plass' : 'plasser'} igjen`}
         </div>
       }
+
       <div className={`${image ? '' : 'flex justify-center'} w-full h-60 border-b rounded-t-lg border-gray-200 dark:border-gray-700`}>
         {image ? (
           <img className="object-cover w-full h-full rounded-t-lg" src={image.lg} alt={image.description} />
