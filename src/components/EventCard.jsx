@@ -62,9 +62,6 @@ export function EventCard({ event }) {
           {attendance_event && (
             <Badge text={`${attendance_event.number_of_seats_taken}/${attendance_event.max_capacity}`} leftIcon='people' color='gray' />
           )}
-          {attendance_event && (
-            <Badge text={`${attendance_event.number_of_seats_taken}/${attendance_event.max_capacity}`} leftIcon='people' color='gray' />
-          )}
         </div>
       </div>
     </div>
