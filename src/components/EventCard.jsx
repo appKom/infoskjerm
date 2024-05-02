@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import OnlineLogo from './Logo/OnlineLogo.jsx';
 import { Badge } from './Badge.jsx';
 import { formatWeekday, formatClock, formatDateName } from '../lib/date.js';
@@ -21,11 +22,20 @@ const selectIndicatorColor = (percentageFilled) => {
 };
 
 export function EventCard({ event }) {
+  const containerRef = useRef(null);
+  const contentRef = useRef(null);
+
   const { ingress, title, attendance_event, event_start, event_type, image } = event;
-  const { seatsLeft, percentageFilled } = calculateSeatsInfo(attendance_event);
-  const indicatorColor = selectIndicatorColor(percentageFilled);
   const eventTypeName = EVENT_TYPES[event_type].display;
   const eventTypeColorName = EVENT_TYPES[event_type].colorName;
+  const { seatsLeft, percentageFilled } = calculateSeatsInfo(attendance_event);
+  const indicatorColor = selectIndicatorColor(percentageFilled);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const overflowWidth = container.scrollWidth - container.offsetWidth;
+    container.style.setProperty('--overflow-width', `${overflowWidth}px`);
+  }, [event]);
 
   return (
     <div className="relative flex flex-col flex-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -41,12 +51,12 @@ export function EventCard({ event }) {
           <OnlineLogo fillColor={EVENT_TYPES[event_type].color} />
         )}
       </div>
-      <div className='flex flex-col justify-between flex-grow gap-2 px-4 pt-2 pb-3'>
+      <div ref={containerRef} className='flex flex-col justify-between flex-grow w-full gap-2 px-4 pt-2 pb-3 overflow-hidden'>
         <div>
           {title && <h5 className="w-full text-2xl font-bold tracking-tight line-clamp-1 dark:text-white">{title}</h5>}
           {ingress && <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{ingress}</p>}
         </div>
-        <div className='flex w-full gap-1 overflow-hidden'>
+        <div ref={contentRef} className='flex w-full gap-1 scrolling-text'>
           {eventTypeName && eventTypeColorName && <Badge text={eventTypeName} leftIcon='star' color={eventTypeColorName} />}
           {event_start && <Badge text={formatWeekday(event_start) + ' ' + formatDateName(event_start) + ', ' + formatClock(event_start)} leftIcon='calendar' color='gray' />}
           {attendance_event && (
