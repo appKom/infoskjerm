@@ -8,7 +8,6 @@ const calculateSeatsInfo = (attendanceEvent) => {
   const { number_of_seats_taken = 0, max_capacity = 0 } = attendanceEvent || {};
   const seatsLeft = max_capacity - number_of_seats_taken;
   const percentageFilled = (number_of_seats_taken / max_capacity) * 100;
-
   return { seatsLeft, percentageFilled };
 };
 
@@ -17,8 +16,21 @@ const selectIndicatorColor = (percentageFilled) => {
     return 'bg-red-500';
   } else if (percentageFilled >= 75) {
     return 'bg-orange-400';
+  } else {
+    return 'bg-green-500';
   }
-  return 'bg-green-500';
+};
+
+const determineStatusText = (isRegistrationEnded, seatsLeft, number_on_waitlist) => {
+  if (isRegistrationEnded) {
+    return 'Påmeldingsfrist utløpt';
+  } else if (seatsLeft === 0 && number_on_waitlist === 0) {
+    return 'Ingen plasser igjen';
+  } else if (number_on_waitlist > 0) {
+    return `${number_on_waitlist} på venteliste`;
+  } else {
+    return `${seatsLeft} ${seatsLeft === 1 ? 'plass' : 'plasser'} igjen`;
+  }
 };
 
 export function EventCard({ event }) {
@@ -42,11 +54,11 @@ export function EventCard({ event }) {
 
   return (
     <div className="relative flex flex-col flex-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      { attendance_event && seatsLeft > 0 &&
+      {attendance_event && (
         <div className={`absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white ${isRegistrationEnded ? 'bg-gray-400' : indicatorColor} border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900`}>
-          {isRegistrationEnded ? 'Påmeldingsfrist utløpt' : `${seatsLeft} ${seatsLeft === 1 ? 'plass' : 'plasser'} igjen`}
+          {determineStatusText(isRegistrationEnded, seatsLeft, attendance_event.number_on_waitlist)}
         </div>
-      }
+      )}
 
       <div className={`${image ? '' : 'flex justify-center'} w-full h-60 border-b rounded-t-lg border-gray-200 dark:border-gray-700`}>
         {image ? (
@@ -55,6 +67,7 @@ export function EventCard({ event }) {
           <OnlineLogo fillColor={EVENT_TYPES[event_type].color} />
         )}
       </div>
+
       <div ref={containerRef} className='flex flex-col justify-between flex-grow w-full gap-2 px-4 pt-2 pb-3 overflow-hidden'>
         <div>
           {title && <h5 className="w-full text-2xl font-bold tracking-tight line-clamp-1 dark:text-white">{title}</h5>}
@@ -62,10 +75,8 @@ export function EventCard({ event }) {
         </div>
         <div ref={contentRef} className='flex w-full gap-1 scrolling-text'>
           {eventTypeName && eventTypeColorName && <Badge text={eventTypeName} leftIcon='star' color={eventTypeColorName} />}
-          {event_start && <Badge text={formatWeekday(event_start) + ' ' + formatDateName(event_start) + ', ' + formatClock(event_start)} leftIcon='calendar' color='gray' />}
-          {attendance_event && (
-            <Badge text={`${attendance_event.number_of_seats_taken}/${attendance_event.max_capacity}`} leftIcon='people' color='gray' />
-          )}
+          {event_start && <Badge text={`${formatWeekday(event_start)} ${formatDateName(event_start)}, ${formatClock(event_start)}`} leftIcon='calendar' color='gray' />}
+          {attendance_event && <Badge text={`${attendance_event.number_of_seats_taken}/${attendance_event.max_capacity}`} leftIcon='people' color='gray' />}
         </div>
       </div>
     </div>
