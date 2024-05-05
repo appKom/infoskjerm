@@ -62,7 +62,7 @@ export function EventCard({ event }) {
 
       <div className={`${image ? '' : 'flex justify-center'} w-full h-60 border-b rounded-t-lg border-gray-200 dark:border-gray-700`}>
         {image ? (
-          <img className="object-cover w-full h-full rounded-t-lg" src={image.lg} alt={image.description} />
+          <img className="object-cover w-full h-full bg-white rounded-t-lg" src={image.lg} alt={image.description} />
         ) : (
           <OnlineLogo fillColor={EVENT_TYPES[event_type].color} />
         )}
