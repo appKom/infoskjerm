@@ -2,7 +2,7 @@ import './index.css';
 import { Header } from './components/Header';
 import { EventCarousel } from './components/EventCarousel';
 import { useQuery } from 'react-query';
-import { fetchEventsByStartDate } from './api/EventApi';
+import fetchEventsByStartDate from './api/eeee';
 import { DarkModeContainer } from './components/DarkModeContainer';
 
 const refetchIntervalMinutes = 5;
