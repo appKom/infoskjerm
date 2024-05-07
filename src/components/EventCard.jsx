@@ -21,8 +21,26 @@ const selectIndicatorColor = (percentageFilled) => {
   }
 };
 
-const determineStatusText = (isRegistrationEnded, seatsLeft, number_on_waitlist) => {
-  if (isRegistrationEnded) {
+const determineTimeBeforeRegistrationOpens = (registrationStart) => {
+  const timeDiff = registrationStart - new Date();
+
+  const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const hoursDiff = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutesDiff = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+  return { daysDiff, hoursDiff, minutesDiff };
+};
+
+const determineStatusText = (isRegistrationEnded, timeBeforeRegistrationOpens, seatsLeft, number_on_waitlist) => {
+  const { daysDiff, hoursDiff, minutesDiff } = timeBeforeRegistrationOpens;
+
+  if (daysDiff > 0) {
+    return `Påmeldingen åpner om ${daysDiff} ${daysDiff === 1 ? 'dag' : 'dager'}`;
+  } else if (hoursDiff > 0) {
+    return `Påmeldingen åpner om ${hoursDiff} ${hoursDiff === 1 ? 'time' : 'timer'}`;
+  } else if (minutesDiff > 0) {
+    return `Påmeldingen åpner om ${minutesDiff} ${minutesDiff === 1 ? 'minutt' : 'minutter'}`;
+  } else if (isRegistrationEnded) {
     return 'Påmeldingsfrist utløpt';
   } else if (seatsLeft === 0 && number_on_waitlist === 0) {
     return 'Ingen plasser igjen';
@@ -50,13 +68,15 @@ export function EventCard({ event }) {
   }, [event]);
 
   const registration_end = new Date(attendance_event?.registration_end);
+  const registration_start = new Date(attendance_event?.registration_start);
   const isRegistrationEnded = new Date() > registration_end;
+  const timeBeforeRegistrationOpens = determineTimeBeforeRegistrationOpens(registration_start);
 
   return (
     <div className="relative flex flex-col flex-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       {attendance_event && (
         <div className={`absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white ${isRegistrationEnded ? 'bg-gray-400' : indicatorColor} border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900`}>
-          {determineStatusText(isRegistrationEnded, seatsLeft, attendance_event.number_on_waitlist)}
+          {determineStatusText(isRegistrationEnded, timeBeforeRegistrationOpens, seatsLeft, attendance_event.number_on_waitlist)}
         </div>
       )}
 
