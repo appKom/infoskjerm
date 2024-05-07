@@ -5,10 +5,10 @@ import { useQuery } from 'react-query';
 import fetchEventsByStartDate from './api/eventApi.js';
 import { DarkModeContainer } from './components/DarkModeContainer';
 
-const refetchIntervalMinutes = 5;
+const REFETCH_INTERVAL_MINUTES = 5;
 
 function App() {
-  const { isLoading, isError, data } = useQuery('events', () => fetchEventsByStartDate(), { refetchInterval: 1000 * 60 * refetchIntervalMinutes });
+  const { isLoading, isError, data } = useQuery('events', () => fetchEventsByStartDate(), { refetchInterval: 1000 * 60 * REFETCH_INTERVAL_MINUTES });
 
   if (isLoading){
     return <p>Laster inn...</p>;

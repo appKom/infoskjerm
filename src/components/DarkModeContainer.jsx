@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import fetchSunTime from '../api/suntimeApi';
 import { useQuery } from 'react-query';
 
-const refetchIntervalHours = 8;
+const REFETCH_INTERVAL_HOURS = 8;
 
 export const DarkModeContainer = ({ children }) => {
   const [ isDarkMode, setIsDarkMode ] = useState(false);
 
   const { isLoading, isError, data } = useQuery('sunTime', fetchSunTime, {
-    refetchInterval: 1000 * 60 * 60 * refetchIntervalHours
+    refetchInterval: 1000 * 60 * 60 * REFETCH_INTERVAL_HOURS
   });
 
   useEffect(() => {
