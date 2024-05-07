@@ -11,7 +11,7 @@ function App() {
   const { isLoading, isError, data } = useQuery('events', () => fetchEventsByStartDate(), { refetchInterval: 1000 * 60 * refetchIntervalMinutes });
 
   if (isLoading){
-    return <p>Loading</p>;
+    return <p>Laster inn...</p>;
   }
   if (isError){
     return <p>{isError}. Kontakt appkom.</p>;
