@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import fetchSunTime from '../api/suntimeApi';
 import { useQuery } from 'react-query';
+import { Loading } from './Loading';
+import { Error } from './Error';
 
 const REFETCH_INTERVAL_HOURS = 8;
 
@@ -27,11 +29,11 @@ export const DarkModeContainer = ({ children }) => {
   }, [data]);
 
   if (isLoading) {
-    return <p>Laster inn...</p>;
+    return <Loading />;
   }
 
   if (isError) {
-    return <p>Feil ved innlasting av tider for soloppgang og solnedgang. Kontakt appkom.</p>;
+    return <Error />;
   }
 
   return (
