@@ -1,5 +1,6 @@
+import React from "react";
 
-export const Error = () => {
+export const Loading = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-10">
       <img
@@ -9,7 +10,7 @@ export const Error = () => {
         alt="Online logo"
         className="animate-pulse"
       />
-      <div className="text-xl">Det har skjedd en feil, helt sikkert dotkom...</div>
+      <div className="text-xl">{Math.random() > 0.9 ? "Dotkom er best..." :  "Venter på dotkom..."}</div>
     </div>
   );
 };

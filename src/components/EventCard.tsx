@@ -1,17 +1,18 @@
+import React from 'react';
 import { useEffect, useRef } from 'react';
 import OnlineLogo from './Logo/OnlineLogo.jsx';
 import { Badge } from './Badge.jsx';
 import { formatWeekday, formatClock, formatDateName } from '../lib/date.js';
-import EVENT_TYPES from '../lib/eventTypes.js';
+import { EVENT_TYPES } from '../lib/eventTypes.js';
 
-const calculateSeatsInfo = (attendanceEvent) => {
+const calculateSeatsInfo = (attendanceEvent: any) => {
   const { number_of_seats_taken = 0, max_capacity = 0 } = attendanceEvent || {};
   const seatsLeft = max_capacity - number_of_seats_taken;
   const percentageFilled = (number_of_seats_taken / max_capacity) * 100;
   return { seatsLeft, percentageFilled };
 };
 
-const selectIndicatorColor = (percentageFilled) => {
+const selectIndicatorColor = (percentageFilled: number) => {
   if (percentageFilled >= 90) {
     return 'bg-red-500';
   } else if (percentageFilled >= 75) {
@@ -21,8 +22,8 @@ const selectIndicatorColor = (percentageFilled) => {
   }
 };
 
-const determineTimeBeforeRegistrationOpens = (registrationStart) => {
-  const timeDiff = registrationStart - new Date();
+const determineTimeBeforeRegistrationOpens = (registrationStart: Date) => {
+  const timeDiff = registrationStart.getTime() - new Date().getTime();
 
   const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
   const hoursDiff = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -31,7 +32,11 @@ const determineTimeBeforeRegistrationOpens = (registrationStart) => {
   return { daysDiff, hoursDiff, minutesDiff };
 };
 
-const determineStatusText = (isRegistrationEnded, timeBeforeRegistrationOpens, seatsLeft, number_on_waitlist) => {
+const determineStatusText = (
+    isRegistrationEnded: boolean,
+    timeBeforeRegistrationOpens: { daysDiff: number, hoursDiff: number, minutesDiff: number },
+    seatsLeft: number,
+    number_on_waitlist: number) => {
   const { daysDiff, hoursDiff, minutesDiff } = timeBeforeRegistrationOpens;
 
   if (daysDiff > 0) {
@@ -51,18 +56,19 @@ const determineStatusText = (isRegistrationEnded, timeBeforeRegistrationOpens, s
   }
 };
 
-export function EventCard({ event }) {
-  const containerRef = useRef(null);
-  const contentRef = useRef(null);
+export function EventCard({ event }: { event: any }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const { ingress, title, attendance_event, event_start, event_type, image } = event;
-  const eventTypeName = EVENT_TYPES[event_type].display;
-  const eventTypeColorName = EVENT_TYPES[event_type].colorName;
+  const eventTypeName = EVENT_TYPES.get(event_type)!.display;
+  const eventTypeColorName = EVENT_TYPES.get(event_type)!.colorName;
   const { seatsLeft, percentageFilled } = calculateSeatsInfo(attendance_event);
   const indicatorColor = selectIndicatorColor(percentageFilled);
 
   useEffect(() => {
     const container = containerRef.current;
+    if (!container) return;
     const overflowWidth = container.scrollWidth - container.offsetWidth;
     container.style.setProperty('--overflow-width', `${overflowWidth}px`);
   }, [event]);
@@ -84,7 +90,7 @@ export function EventCard({ event }) {
         {image ? (
           <img className="object-cover w-full h-full bg-white rounded-t-lg" src={image.lg} alt={image.description} />
         ) : (
-          <OnlineLogo fillColor={EVENT_TYPES[event_type].color} />
+          <OnlineLogo fillColor={EVENT_TYPES.get(event_type)!.color} />
         )}
       </div>
 

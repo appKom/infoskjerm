@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react';
+import React from "react";
+import {useState, useEffect, PropsWithChildren} from 'react';
 import fetchSunTime from '../api/suntimeApi';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Loading } from './Loading';
 import { Error } from './Error';
 
 const REFETCH_INTERVAL_HOURS = 8;
 
-export const DarkModeContainer = ({ children }) => {
+export const DarkModeContainer = ({ children }: PropsWithChildren) => {
   const [ isDarkMode, setIsDarkMode ] = useState(false);
 
-  const { isLoading, isError, data } = useQuery('sunTime', fetchSunTime, {
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ['sunTime'],
+    queryFn: fetchSunTime,
     refetchInterval: 1000 * 60 * 60 * REFETCH_INTERVAL_HOURS
   });
 
