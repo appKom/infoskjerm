@@ -40,11 +40,11 @@ const determineStatusText = (
   const { daysDiff, hoursDiff, minutesDiff } = timeBeforeRegistrationOpens;
 
   if (daysDiff > 0) {
-    return `Påmeldingen åpner om ${daysDiff} ${daysDiff === 1 ? 'dag' : 'dager'}`;
+    return `Påmelding åpner om ${daysDiff} ${daysDiff === 1 ? 'dag' : 'dager'}`;
   } else if (hoursDiff > 0) {
-    return `Påmeldingen åpner om ${hoursDiff} ${hoursDiff === 1 ? 'time' : 'timer'}`;
+    return `Påmelding åpner om ${hoursDiff} ${hoursDiff === 1 ? 'time' : 'timer'}`;
   } else if (minutesDiff > 0) {
-    return `Påmeldingen åpner om ${minutesDiff} ${minutesDiff === 1 ? 'minutt' : 'minutter'}`;
+    return `Påmelding åpner om ${minutesDiff} ${minutesDiff === 1 ? 'minutt' : 'minutter'}`;
   } else if (isRegistrationEnded) {
     return 'Påmeldingsfrist utløpt';
   } else if (seatsLeft === 0 && number_on_waitlist === 0) {
@@ -61,8 +61,8 @@ export function EventCard({ event }: { event: any }) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const { ingress, title, attendance_event, event_start, event_type, image } = event;
-  const eventTypeName = EVENT_TYPES.get(event_type)!.display;
-  const eventTypeColorName = EVENT_TYPES.get(event_type)!.colorName;
+  const eventTypeName = EVENT_TYPES.get(event_type)?.display;
+  const eventTypeColorName = EVENT_TYPES.get(event_type)?.colorName;
   const { seatsLeft, percentageFilled } = calculateSeatsInfo(attendance_event);
   const indicatorColor = selectIndicatorColor(percentageFilled);
 
@@ -90,7 +90,7 @@ export function EventCard({ event }: { event: any }) {
         {image ? (
           <img className="object-cover w-full h-full bg-white rounded-t-lg" src={image.lg} alt={image.description} />
         ) : (
-          <OnlineLogo fillColor={EVENT_TYPES.get(event_type)!.color} />
+          <OnlineLogo fillColor={EVENT_TYPES.get(event_type)?.color} />
         )}
       </div>
 
