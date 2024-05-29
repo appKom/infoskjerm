@@ -7,12 +7,8 @@ module.exports = {
         'light-grey': '#E5E7EB',
         'online-blue': '#0B5374'
       },
-
-      spacing: {
-        '327': '327px',
-        '182': '182.33px',
-      },
     },
   },
+  darkMode: 'selector',
   plugins: [],
 };

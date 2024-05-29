@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 * {
   box-sizing: border-box;
@@ -12,4 +12,17 @@
 
 body {
   font-family: 'Inter', sans-serif;
+}
+
+@keyframes scroll-horizontal {
+  0%, 100% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(calc(-1 * var(--overflow-width)));
+  }
+}
+
+.scrolling-text {
+  animation: scroll-horizontal 15s linear infinite;
 }
