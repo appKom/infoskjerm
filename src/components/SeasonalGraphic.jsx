@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from 'react';
 
 function getSeason(date) {
@@ -27,9 +28,9 @@ function getSeason(date) {
   }
 
   // Regular seasonal check if no special conditions are met
-  if (month >= 3 && month <= 5) {
+  if (month >= 3 && month <= 4) {
     return 'spring'; // TODO
-  } else if (month >= 6 && month <= 8) {
+  } else if (month >= 5 && month <= 8) {
     return 'summer';
   } else if (month >= 9 && month <= 11) {
     return 'autumn'; // TODO
