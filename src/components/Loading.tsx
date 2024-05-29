@@ -10,7 +10,7 @@ export const Loading = () => {
         alt="Online logo"
         className="animate-pulse"
       />
-      <div className="text-xl">{Math.random() > 0.9 ? "Dotkom er best..." :  "Venter på dotkom..."}</div>
+      <div className="text-xl">Venter på dotkom...</div>
     </div>
   );
 };
