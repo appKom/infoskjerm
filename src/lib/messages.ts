@@ -7,7 +7,6 @@ const messagePeriods = [
     messages: [
       'Lykke til på eksamen!',
       'Husk obligatoriske ispauser!',
-      'Stå på A4-krigere!',
     ]
   },
   { // eksamensperiode høst
@@ -15,6 +14,7 @@ const messagePeriods = [
     end: '12-22',
     messages: [
       'Lykke til på eksamen!',
+      'Ikke lenge til jul!'
     ]
   },
   { // sommer
@@ -25,11 +25,18 @@ const messagePeriods = [
       'Spis nok is!',
     ]
   },
+  { // sommerferie
+    start: '06-15',
+    end: '08-1',
+    messages: [
+      'Hva gjør du på A4 i ferien? Kom deg ut!',
+    ]
+  },
   { // fadderuke
     start: '08-12',
     end: '08-25',
     messages: [
-      'Velkommen nye A4 krigere!',
+      'Ha en super fadderuke!',
     ]
   },
 ];
