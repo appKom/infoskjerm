@@ -38,8 +38,8 @@ export function Header() {
   }, []);
 
   return (
-    <div className='relative h-32 border-b-[1.5px] border-light-grey dark:border-gray-700'>
-      <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic dark:text-white duration-1000 ${showMessage ? 'animate-[slideIn_1s_forwards]' : 'animate-[slideOut_1s_forwards]'}`}>
+    <div className='relative h-32 border-b-[1.5px] border-light-grey dark:border-gray-700 dark:text-white'>
+      <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic duration-1000 ${showMessage ? 'animate-[slideIn_1s_forwards]' : 'animate-[slideOut_1s_forwards]'}`}>
         {MESSAGE_CONTENT}
       </div>
       <div className={`h-full flex items-center justify-between transition-transform duration-1000  ${showMessage ? 'translate-x-full' : ''}`}>
@@ -50,7 +50,7 @@ export function Header() {
           <img className="px-4 h-5/6 border-x-[1.5px] dark:border-gray-700 dark:hidden" src="/bekk/Bekk_navnetrekk_svart.svg" alt="Bekk logo" />
           <img className="hidden px-4 h-5/6 border-x dark:border-gray-700 dark:block" src="/bekk/Bekk_navnetrekk_hvit.svg" alt="Bekk logo" />
 
-          <span className="text-6xl ">{time}</span>
+          <span className="text-6xl">{time}</span>
         </div>
 
         <div className='flex h-full gap-5 px-4'>
