@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SeasonalGraphic } from './SeasonalGraphic.jsx';
 import moment from 'moment';
 
-const MESSAGE_INTERVAL_MINUTES = 1;
+const MESSAGE_INTERVAL_MINUTES = 2;
 const MESSAGE_TIME_SECONDS = 10;
 const MESSAGE_CONTENT = 'Lykke til på eksamen!';
 
