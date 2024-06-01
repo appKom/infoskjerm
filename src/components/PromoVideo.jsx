@@ -1,3 +1,5 @@
+/* global process */
+import React from 'react';
 import { useState, useEffect } from 'react';
 
 const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
@@ -39,7 +41,6 @@ const PromoVideo = () => {
 
     // Clean up the interval on component unmount
     return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
