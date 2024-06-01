@@ -53,7 +53,7 @@ export function Header() {
         {messageContent}
       </div>
 
-      <div className={`h-full flex items-center justify-between transition-transform duration-1000  ${showMessage ? 'translate-x-full' : ''}`}>
+      <div className={`h-full flex items-center justify-between transition-transform duration-1000 ${showMessage ? 'translate-x-full' : ''}`}>
         <div className="flex items-center h-full gap-8 px-12 py-6">
           <img className="h-5/6 dark:hidden" src="/online/online_icon_blue.svg" alt="Online logo" />
           <img className="hidden h-5/6 dark:block" src="/online/online_icon_white.svg" alt="Online logo" />
