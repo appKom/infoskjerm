@@ -32,11 +32,11 @@ module.exports = {
     ],
     "rules": {
         "@typescript-eslint/no-explicit-any": "off",
-        "react/react-in-jsx-scope": "off"  // Add this rule to not require React import for JSX
+        "react/react-in-jsx-scope": "off"
     },
     "settings": {
         "react": {
-            "version": "detect"  // Automatically detect the React version
+            "version": "detect"
         }
     }
 }
