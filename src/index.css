@@ -31,10 +31,6 @@ body {
 
 /* Header animation */
 
-.pushed {
-  transform: translateX(100vw);
-}
-
 @keyframes slideIn {
   from {
     transform: translateX(-100%);
