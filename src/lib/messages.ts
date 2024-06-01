@@ -5,7 +5,7 @@ const messagePeriods = [
     start: '05-01',
     end: '06-15',
     messages: [
-      'Lykke til på eksamen!',
+      'Lykke til med eksamen!',
       'Husk obligatoriske ispauser!',
     ]
   },
@@ -13,7 +13,7 @@ const messagePeriods = [
     start: '11-15',
     end: '12-22',
     messages: [
-      'Lykke til på eksamen!',
+      'Lykke til med eksamen!',
       'Ikke lenge til jul!'
     ]
   },
@@ -58,7 +58,7 @@ const isDateWithinPeriod = (currentDate, start, end) => {
 // Get messages for the current date
 export const getRelevantMessages = () => {
   const today = moment();
-  let relevantMessages = [];
+  let relevantMessages: string[] = [];
 
   messagePeriods.forEach(period => {
     if (isDateWithinPeriod(today, period.start, period.end)) {
