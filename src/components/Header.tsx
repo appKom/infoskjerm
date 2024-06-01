@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SeasonalGraphic } from './SeasonalGraphic.jsx';
+import { SeasonalGraphic } from './SeasonalGraphic';
 import moment from 'moment';
 
 const REFRESH_TIME = '03:00';
