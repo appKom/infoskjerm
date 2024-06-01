@@ -31,8 +31,12 @@ body {
 
 /* Header animation */
 
-.message {
+.slideIn {
   animation: slideIn 1s forwards;
+}
+
+.slideOut {
+  animation: slideOut 1s forwards;
 }
 
 .pushed {
@@ -45,5 +49,14 @@ body {
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
   }
 }

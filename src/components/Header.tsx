@@ -4,14 +4,13 @@ import moment from 'moment';
 
 const REFRESH_TIME = '03:00';
 
-const MESSAGE_INTERVAL_MINUTES = 2;
-const MESSAGE_TIME_SECONDS = 10;
+const MESSAGE_INTERVAL_MINUTES = 2; // how long between each message
+const MESSAGE_TIME_SECONDS = 10; // how long the message should be displayed
 const MESSAGE_CONTENT = 'Lykke til på eksamen alle A4-krigere!';
 
 export function Header() {
   const [time, setTime] = useState(moment().format('HH:mm:ss'));
   const [showMessage, setShowMessage] = useState(false);
-  const [moveContent, setMoveContent] = useState(false);
 
   useEffect(() => {
     const timeInterval = setInterval(() => {
@@ -27,10 +26,8 @@ export function Header() {
 
     const messageInterval = setInterval(() => {
       setShowMessage(true);
-      setMoveContent(true);
       setTimeout(() => {
-        setMoveContent(false);
-        setTimeout(() => setShowMessage(false), 1000);
+        setShowMessage(false)
       }, 1000 * MESSAGE_TIME_SECONDS);
     }, 1000 * 60 * MESSAGE_INTERVAL_MINUTES);
 
@@ -42,12 +39,10 @@ export function Header() {
 
   return (
     <div className='relative h-32 border-b-[1.5px] border-light-grey dark:border-gray-700'>
-      {showMessage && (
-        <div className='absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic dark:text-white message'>
-          {MESSAGE_CONTENT}
-        </div>
-      )}
-      <div className={`h-full flex items-center justify-between transition-transform duration-1000 ${moveContent ? 'pushed' : ''}`}>
+      <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic dark:text-white message ${showMessage ? 'slideIn' : 'slideOut'}`}>
+        {MESSAGE_CONTENT}
+      </div>
+      <div className={`h-full flex items-center justify-between transition-transform duration-1000 ${showMessage ? 'pushed' : ''}`}>
         <div className="flex items-center h-full gap-8 px-12 py-6">
           <img className="h-5/6 dark:hidden" src="/online/online_icon_blue.svg" alt="Online logo" />
           <img className="hidden h-5/6 dark:block" src="/online/online_icon_white.svg" alt="Online logo" />
