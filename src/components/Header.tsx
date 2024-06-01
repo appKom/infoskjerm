@@ -6,11 +6,20 @@ const REFRESH_TIME = '03:00';
 
 const MESSAGE_INTERVAL_MINUTES = 2; // how long between each message
 const MESSAGE_TIME_SECONDS = 10; // how long the message should be displayed
-const MESSAGE_CONTENT = 'Lykke til på eksamen alle A4-krigere!';
+
+const MESSAGES = [
+  'Lykke til på eksamen!',
+  'Stå på A4-krigere!'
+]
+
+const getRandomMessage = () => {
+  return MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
+}
 
 export function Header() {
-  const [time, setTime] = useState(moment().format('HH:mm:ss'));
-  const [showMessage, setShowMessage] = useState(false);
+  const [time, setTime] = useState<string>(moment().format('HH:mm:ss'));
+  const [showMessage, setShowMessage] = useState<boolean>(false);
+  const [messageContent, setMessageContent] = useState<string>();
 
   useEffect(() => {
     const timeInterval = setInterval(() => {
@@ -25,6 +34,7 @@ export function Header() {
     }, 1000);
 
     const messageInterval = setInterval(() => {
+      setMessageContent(getRandomMessage());
       setShowMessage(true);
       setTimeout(() => {
         setShowMessage(false)
@@ -40,8 +50,9 @@ export function Header() {
   return (
     <div className='relative h-32 border-b-[1.5px] border-light-grey dark:border-gray-700 dark:text-white'>
       <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic duration-1000 ${showMessage ? 'animate-[slideIn_1s_forwards]' : 'animate-[slideOut_1s_forwards]'}`}>
-        {MESSAGE_CONTENT}
+        {messageContent}
       </div>
+
       <div className={`h-full flex items-center justify-between transition-transform duration-1000  ${showMessage ? 'translate-x-full' : ''}`}>
         <div className="flex items-center h-full gap-8 px-12 py-6">
           <img className="h-5/6 dark:hidden" src="/online/online_icon_blue.svg" alt="Online logo" />
