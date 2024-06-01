@@ -4,7 +4,7 @@ import moment from 'moment';
 
 const MESSAGE_INTERVAL_MINUTES = 2;
 const MESSAGE_TIME_SECONDS = 10;
-const MESSAGE_CONTENT = 'Lykke til på eksamen!';
+const MESSAGE_CONTENT = 'Lykke til på eksamen alle A4-krigere!';
 
 export function Header() {
   const [time, setTime] = useState(moment().format('HH:mm:ss'));
