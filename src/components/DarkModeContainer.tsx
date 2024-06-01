@@ -1,4 +1,3 @@
-import React from "react";
 import {useState, useEffect, PropsWithChildren} from 'react';
 import fetchSunTime from '../api/suntimeApi';
 import { useQuery } from '@tanstack/react-query';

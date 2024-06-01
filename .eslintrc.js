@@ -31,6 +31,12 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "react/react-in-jsx-scope": "off"  // Add this rule to not require React import for JSX
+    },
+    "settings": {
+        "react": {
+            "version": "detect"  // Automatically detect the React version
+        }
     }
 }
