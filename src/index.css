@@ -31,14 +31,6 @@ body {
 
 /* Header animation */
 
-.slideIn {
-  animation: slideIn 1s forwards;
-}
-
-.slideOut {
-  animation: slideOut 1s forwards;
-}
-
 .pushed {
   transform: translateX(100vw);
 }

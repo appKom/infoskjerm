@@ -39,7 +39,7 @@ export function Header() {
 
   return (
     <div className='relative h-32 border-b-[1.5px] border-light-grey dark:border-gray-700'>
-      <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic dark:text-white message ${showMessage ? 'slideIn' : 'slideOut'}`}>
+      <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic dark:text-white message ${showMessage ? 'animate-[slideIn_1s_forwards]' : 'animate-[slideOut_1s_forwards]'}`}>
         {MESSAGE_CONTENT}
       </div>
       <div className={`h-full flex items-center justify-between transition-transform duration-1000 ${showMessage ? 'pushed' : ''}`}>
