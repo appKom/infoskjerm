@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { SeasonalGraphic } from './SeasonalGraphic';
 import moment from 'moment';
+import { getRelevantMessages } from '../lib/messages';
 
 const REFRESH_TIME = '03:00';
 
 const MESSAGE_INTERVAL_MINUTES = 2; // how long between each message
 const MESSAGE_TIME_SECONDS = 10; // how long the message should be displayed
-
-const MESSAGES = [
-  'Lykke til på eksamen!',
-  'Stå på A4-krigere!'
-]
-
-const getRandomMessage = () => {
-  return MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
-}
 
 export function Header() {
   const [time, setTime] = useState<string>(moment().format('HH:mm:ss'));
@@ -23,8 +15,11 @@ export function Header() {
 
   useEffect(() => {
     const timeInterval = setInterval(() => {
+
+      // update the clock
       setTime(moment().format('HH:mm:ss'));
 
+      // logic for refreshing the page once each day
       const currentTime = moment().format('YYYY-MM-DD HH:mm');
       const lastRefreshTime = localStorage.getItem('lastRefreshTime');
       if (moment().format('HH:mm') === REFRESH_TIME && currentTime !== lastRefreshTime) {
@@ -33,12 +28,19 @@ export function Header() {
       }
     }, 1000);
 
+    // logic for displaying messages
     const messageInterval = setInterval(() => {
-      setMessageContent(getRandomMessage());
-      setShowMessage(true);
-      setTimeout(() => {
-        setShowMessage(false)
-      }, 1000 * MESSAGE_TIME_SECONDS);
+      const messages = getRelevantMessages();
+      if (messages.length > 0) { // Check if there are any relevant messages
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        setMessageContent(randomMessage);
+        setShowMessage(true);
+        setTimeout(() => {
+          setShowMessage(false);
+        }, 1000 * MESSAGE_TIME_SECONDS);
+      } else {
+        setShowMessage(false); // No messages, stop showing any animation
+      }
     }, 1000 * 60 * MESSAGE_INTERVAL_MINUTES);
 
     return () => {
