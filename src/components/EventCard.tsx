@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useRef } from 'react';
 import OnlineLogo from './Logo/OnlineLogo.jsx';
 import { Badge } from './Badge.jsx';

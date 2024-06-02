@@ -1,4 +1,3 @@
-import React from 'react';
 import { EventCard } from './EventCard';
 
 export function EventCarousel({title, events}: {title: string, events: any[]}) {
