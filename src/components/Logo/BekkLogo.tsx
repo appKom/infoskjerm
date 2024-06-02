@@ -1,5 +1,3 @@
-import React from 'react';
-
 const BekkLogo = () => {
   return (
     <svg width="100%" height="100%" viewBox="-230 30 700 190" fill="none" xmlns="http://www.w3.org/2000/svg">
