@@ -14,6 +14,12 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+/* Event badge scrolling animation */
+
+.scrolling-text {
+  animation: scroll-horizontal 15s linear infinite;
+}
+
 @keyframes scroll-horizontal {
   0%, 100% {
     transform: translateX(0%);
@@ -23,6 +29,22 @@ body {
   }
 }
 
-.scrolling-text {
-  animation: scroll-horizontal 15s linear infinite;
+/* Header animation */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
