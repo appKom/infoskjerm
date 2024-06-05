@@ -50,7 +50,7 @@ export function SeasonalGraphic() {
   return (
     imageExists && season ? (
       <img
-        className='w-auto h-full'
+        className='w-auto h-[85%]'
         src={`/graphics/${season}.svg`}
         alt={`${season} graphic`}
         onError={handleImageError}
