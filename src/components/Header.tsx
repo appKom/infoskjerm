@@ -66,7 +66,7 @@ export function Header() {
           <span className="text-6xl">{time}</span>
         </div>
 
-        <div className='flex h-full gap-5 px-4'>
+        <div className='flex items-center h-full gap-5 px-4'>
           <SeasonalGraphic />
         </div>
       </div>
