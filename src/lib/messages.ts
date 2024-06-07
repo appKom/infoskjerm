@@ -14,7 +14,7 @@ const messagePeriods = [
     end: '12-22',
     messages: [
       'Lykke til med eksamen!',
-      'Ikke lenge til jul!'
+      'Ikke lenge til jul!',
     ]
   },
   { // sommer
@@ -39,6 +39,28 @@ const messagePeriods = [
       'Ha en super fadderuke!',
     ]
   },
+  { //Valentinsdag
+    start: '02-14',
+    end: '02-14',
+    messages: [
+      'Er det kjærlighet i lufta?',
+    ]
+  },
+  { //17.mai
+    start: '05-17',
+    end: '05-17',
+    messages: [
+      'Gratulerer med dagen!!',
+    ]
+  },
+  { //Kvinnedagen
+    start: '03-08',
+    end: '03-08',
+    messages: [
+      'Gratulerer med kvinnedagen!',
+      'Kvinner kan, kvinner vil!'
+    ]
+  }
 ];
 
 // This function checks if the current date is within a given range
