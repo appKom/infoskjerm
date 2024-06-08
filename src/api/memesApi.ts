@@ -1,5 +1,5 @@
 export const fetchMemes = async (amount: number) => {
-  const apiUrl = 'https://slack-memes-backend.vercel.app/latest-memes?count=' + amount;
+  const apiUrl = `https://slack-memes-backend.vercel.app/latest-memes?count=${amount}`;
 
   const response = await fetch(apiUrl, {
     headers: {
