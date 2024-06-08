@@ -6,7 +6,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const REFETCH_INTERVAL_MINUTES = 15;
-const AMOUNT_OF_MEMES = 3;
+const AMOUNT_OF_MEMES = 5;
 const MEME_SHOW_TIME_SECONDS = 10;
 
 export const Memes2 = () => {
@@ -45,11 +45,11 @@ export const Memes2 = () => {
 
   return (
     <div className='px-8 py-5'>
-      <div className="mb-5 text-4xl font-bold dark:text-white">Siste memes</div>
+      <div className="mb-5 text-4xl font-bold dark:text-white">Siste fra #memeogvinogklinoggrin2</div>
       <div className="flex justify-between h-[800px]">
-        <div className="relative flex justify-center p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="relative flex justify-center overflow-hidden bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div>
-            <div className="flex items-center w-full">
+            <div className="flex items-center w-full p-6 border-b-[1.5px]">
               <div className="flex items-center w-full gap-4">
                 <img className="w-10 h-10 rounded-full" src={data[currentMeme].author_image} alt={data[currentMeme].author} />
                 <div className="font-medium dark:text-white">
@@ -68,8 +68,8 @@ export const Memes2 = () => {
                   strokeLinecap: "butt",
                 })}
               />
-          </div>
-          <img src={data[currentMeme].url} className="h-[700px] mt-4 rounded" alt={`Meme ${currentMeme}`} />
+            </div>
+            <img src={data[currentMeme].url} className="h-[700px]" alt={`Meme ${currentMeme}`} />
           </div>
         </div>
         <div className="flex flex-col items-end justify-between h-full">
@@ -80,7 +80,7 @@ export const Memes2 = () => {
           ))}
         </div>
       </div>
-      <div className="mt-5 text-xl dark:text-white">Hentet fra slack-kanalen <span className='font-medium'>#memeogvinogklinoggrin2</span></div>
+      <div className="mt-5 text-xl dark:text-white">Hentet fra online-slacken: <span className='font-medium'>onlinentnu.slack.com</span></div>
     </div>
   );
 };
