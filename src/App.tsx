@@ -5,7 +5,7 @@ import { Loading } from './components/Loading';
 import { Error } from './components/Error';
 import { fetchEventsByStartDate} from './api/EventApi';
 import {useQuery} from "@tanstack/react-query";
-import { Memes } from './components/Memes';
+import { Memes2 } from './components/Memes2';
 
 const REFETCH_INTERVAL_MINUTES = 5;
 
@@ -27,7 +27,7 @@ function App() {
       <DarkModeContainer>
         <div className='overflow-hidden dark:bg-[#111827] h-screen flex flex-col'>
           <Header />
-          <Memes />
+          <Memes2 />
         </div>
       </DarkModeContainer>
   );
