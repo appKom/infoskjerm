@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { SeasonalGraphic } from './SeasonalGraphic.jsx';
+import { SeasonalGraphic } from './SeasonalGraphic';
 import moment from 'moment';
 import { getRelevantMessages } from '../lib/messages';
 

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
-import OnlineLogo from './Logo/OnlineLogo.jsx';
-import { Badge } from './Badge.jsx';
-import { formatWeekday, formatClock, formatDateName } from '../lib/date.js';
-import { EVENT_TYPES } from '../lib/eventTypes.js';
+import OnlineLogo from './Logo/OnlineLogo';
+import { Badge } from './Badge';
+import { formatWeekday, formatClock, formatDateName } from '../lib/date';
+import { EVENT_TYPES } from '../lib/types';
 
 const calculateSeatsInfo = (attendanceEvent: any) => {
   const { number_of_seats_taken = 0, max_capacity = 0 } = attendanceEvent || {};
