@@ -4,8 +4,8 @@ import { EventCard } from "./EventCard";
 import { Loading } from "./Loading";
 import { Error } from "./Error";
 
-const REFETCH_INTERVAL_MINUTES = 5;
-const NUMBER_OF_EVENTS = 8;
+const REFETCH_INTERVAL_MINUTES = 5; // how often to refetch events from Online API
+const NUMBER_OF_EVENTS = 8; // how many events to display
 
 export const UpcomingEvents = () => {
   const { isLoading, isError, data } = useQuery({

@@ -3,10 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchMemes } from "../api/memesApi";
 import { MemeType } from "../lib/types";
 
-const REFETCH_INTERVAL_MINUTES = 15;
-const AMOUNT_OF_MEMES = 5;
-const SPEED = .25;
-const TRAINLENGTH = 3;
+const REFETCH_INTERVAL_MINUTES = 15; // how often to refetch memes from slack
+const AMOUNT_OF_MEMES = 5; // how many memes to fetch
+const SPEED = .25; // how fast the memes should move
+
+const TRAINLENGTH = 3; // how many duplicated meme-lists to show for the infinite scroll effect
+
+const MEME_HEIGHT_PX = 300; // height of the meme images
 
 type ComponentType = {
   id: number;
@@ -87,7 +90,7 @@ export const LatestMemes = () => {
           >
             {component.element.map((element) => (
             <div
-              className="relative flex flex-col justify-center overflow-hidden bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+              className="relative flex flex-col justify-center overflow-hidden bg-white border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700"
               key={element.url}
             >
               <div className="flex items-center w-full gap-4 p-4">
@@ -104,9 +107,10 @@ export const LatestMemes = () => {
                 </div>
               </div>
               <img
-                className="object-scale-down bg-white border border-gray-200 shadow h-[675px] dark:bg-gray-800 dark:border-gray-700"
+                className="object-scale-down bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700"
                 src={element.url}
                 alt={`Meme ${element.url}`}
+                style={{ height: `${MEME_HEIGHT_PX}px` }}
               />
               </div>
             ))}

@@ -5,7 +5,7 @@ import { DarkModeContainer } from './components/DarkModeContainer';
 import { UpcomingEvents } from './components/UpcomingEvents';
 import { LatestMemes } from './components/LatestMemes';
 
-const SECONDS_PER_PAGE = 5;
+const SECONDS_PER_PAGE = 120;
 
 function App() {
   const components = [

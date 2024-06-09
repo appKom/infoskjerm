@@ -3,7 +3,7 @@ import { SeasonalGraphic } from './SeasonalGraphic';
 import moment from 'moment';
 import { getRelevantMessages } from '../lib/messages';
 
-const REFRESH_TIME = '03:00';
+const REFRESH_TIME = '03:00'; // the time of day to refresh the page (use latest code from git)
 
 const MESSAGE_INTERVAL_MINUTES = 2; // how long between each message
 const MESSAGE_TIME_SECONDS = 10; // how long the message should be displayed
