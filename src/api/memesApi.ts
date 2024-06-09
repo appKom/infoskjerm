@@ -1,6 +1,6 @@
 import { MemeType } from "../lib/types";
 
-export const fetchMemes = async (amount: number): Promise<MemeType> => {
+export const fetchMemes = async (amount: number): Promise<MemeType[]> => {
   const apiUrl = `https://slack-memes-backend.vercel.app/latest-memes?count=${amount}`;
 
   const response = await fetch(apiUrl, {
