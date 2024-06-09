@@ -2,15 +2,15 @@ import './index.css';
 import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { DarkModeContainer } from './components/DarkModeContainer';
-import { Memes } from './components/Memes';
 import { UpcomingEvents } from './components/UpcomingEvents';
+import { LatestMemes } from './components/LatestMemes';
 
 const SECONDS_PER_PAGE = 5;
 
 function App() {
   const components = [
     <UpcomingEvents key={0} />,
-    <Memes key={1} />
+    <LatestMemes key={1} />
   ];
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
