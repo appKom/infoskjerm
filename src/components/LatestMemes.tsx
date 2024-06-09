@@ -9,7 +9,7 @@ const SPEED = .25; // how fast the memes should move
 
 const TRAINLENGTH = 3; // how many duplicated meme-lists to show for the infinite scroll effect
 
-const MEME_HEIGHT_PX = 300; // height of the meme images
+const MEME_HEIGHT_PX = 600; // height of the meme images
 
 type ComponentType = {
   id: number;
