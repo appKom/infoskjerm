@@ -1,5 +1,5 @@
 import './index.css';
-import { useState, useEffect } from 'react';
+/* import { useState, useEffect } from 'react'; */
 import { Header } from './components/Header';
 import { DarkModeContainer } from './components/DarkModeContainer';
 import { UpcomingEvents } from './components/UpcomingEvents';
