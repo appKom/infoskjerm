@@ -31,9 +31,8 @@ function App() {
     <DarkModeContainer>
       <div className='overflow-hidden dark:bg-[#111827] h-screen flex flex-col'>
         <Header />
-        <div className='flex flex-col h-full gap-6 px-8 py-8' /* style={{ transition: 'opacity 500ms', opacity }} */>
-          <UpcomingEvents />
-          <LatestMemes />
+        <div className='flex flex-col h-full gap-6 px-8 py-8' style={{ transition: 'opacity 500ms', opacity }}>
+          {components[currentComponentIndex]}
         </div>
       </div>
     </DarkModeContainer>

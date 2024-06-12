@@ -10,7 +10,7 @@ const SPEED = .25; // how fast the memes should move
 
 const TRAINLENGTH = 2; // how many duplicated meme-lists to show for the infinite scroll effect
 
-const MEME_HEIGHT_PX = 300; // height of the meme images
+const MEME_HEIGHT_PX = 700; // height of the meme images
 
 type ComponentType = {
   id: number;
@@ -95,6 +95,7 @@ export const LatestMemes = () => {
           </div>
         ))}
       </div>
+      <div className="mt-5 text-xl dark:text-white">Hentet fra <span className='font-medium'>online-slacken</span> (onlinentnu.slack.com)</div>
     </div>
   );
 };
