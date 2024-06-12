@@ -5,12 +5,12 @@ import { DarkModeContainer } from './components/DarkModeContainer';
 import { UpcomingEvents } from './components/UpcomingEvents';
 import { LatestMemes } from './components/LatestMemes';
 
-/* const SECONDS_PER_PAGE = 120; */
+const SECONDS_PER_PAGE = 10;
 
 function App() {
-  /* const components = [
-    <UpcomingEvents key={0} />,
-    <LatestMemes key={1} />
+  const components = [
+    <LatestMemes key={1} />,
+    <UpcomingEvents key={0} />
   ];
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
@@ -25,7 +25,7 @@ function App() {
     }, 1000 * SECONDS_PER_PAGE);
 
     return () => clearInterval(interval);
-  }, []); */
+  }, []);
 
   return (
     <DarkModeContainer>
