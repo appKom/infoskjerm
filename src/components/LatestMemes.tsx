@@ -5,7 +5,7 @@ import { MemeType } from "../lib/types";
 import { MemeCard } from "./MemeCard";
 
 const REFETCH_INTERVAL_MINUTES = 15; // how often to refetch memes from slack
-const AMOUNT_OF_MEMES = 10; // how many memes to fetch
+const AMOUNT_OF_MEMES = 5; // how many memes to fetch
 const SPEED = .25; // how fast the memes should move
 
 const TRAINLENGTH = 2; // how many duplicated meme-lists to show for the infinite scroll effect
