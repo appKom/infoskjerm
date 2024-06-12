@@ -28,7 +28,7 @@ export const LatestMemes = () => {
   const [divWidth, setDivWidth] = useState(0);
   const [componentOffset, setComponentOffset] = useState(0);
 
-  const memesArray = useRef<MemeType[]>([]);
+  const memesArray = useRef<MemeType[][]>([]);
   const intervalRef = useRef<number | undefined>(undefined);
   const divRef = useRef(null);
   const resizeObserver = useRef(new ResizeObserver(entries => {
