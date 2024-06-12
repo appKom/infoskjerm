@@ -5,12 +5,12 @@ import { DarkModeContainer } from './components/DarkModeContainer';
 import { UpcomingEvents } from './components/UpcomingEvents';
 import { LatestMemes } from './components/LatestMemes';
 
-const SECONDS_PER_PAGE = 10;
+const SECONDS_PER_PAGE = 20;
 
 function App() {
   const components = [
-    <LatestMemes key={1} />,
-    <UpcomingEvents key={0} />
+    <UpcomingEvents key={0} />,
+    <LatestMemes key={1} />
   ];
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
