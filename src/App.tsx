@@ -5,10 +5,10 @@ import { DarkModeContainer } from './components/DarkModeContainer';
 import { UpcomingEvents } from './components/UpcomingEvents';
 import { LatestMemes } from './components/LatestMemes';
 
-const SECONDS_PER_PAGE = 120;
+/* const SECONDS_PER_PAGE = 120; */
 
 function App() {
-  const components = [
+  /* const components = [
     <UpcomingEvents key={0} />,
     <LatestMemes key={1} />
   ];
@@ -25,14 +25,15 @@ function App() {
     }, 1000 * SECONDS_PER_PAGE);
 
     return () => clearInterval(interval);
-  }, []);
+  }, []); */
 
   return (
     <DarkModeContainer>
       <div className='overflow-hidden dark:bg-[#111827] h-screen flex flex-col'>
         <Header />
-        <div className='flex flex-col h-full px-8 py-8' style={{ transition: 'opacity 500ms', opacity }}>
-          {components[currentComponentIndex]}
+        <div className='flex flex-col h-full gap-6 px-8 py-8' /* style={{ transition: 'opacity 500ms', opacity }} */>
+          <UpcomingEvents />
+          <LatestMemes />
         </div>
       </div>
     </DarkModeContainer>
