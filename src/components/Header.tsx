@@ -50,7 +50,7 @@ export function Header() {
   }, []);
 
   return (
-    <div className='relative h-32 border-b-[1.5px] border-light-grey dark:border-gray-700 dark:text-white'>
+    <div className='relative h-32 border-b-[1.5px] border-light-grey dark:border-gray-700 dark:text-white z-10 bg-white dark:bg-[#111827]'>
       <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic duration-1000 ${showMessage ? 'animate-[slideIn_1s_forwards]' : 'animate-[slideOut_1s_forwards]'}`}>
         {messageContent}
       </div>

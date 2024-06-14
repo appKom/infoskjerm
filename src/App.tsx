@@ -4,13 +4,18 @@ import { Header } from './components/Header';
 import { DarkModeContainer } from './components/DarkModeContainer';
 import { UpcomingEvents } from './components/UpcomingEvents';
 import { LatestMemes } from './components/LatestMemes';
+import { LatestBlasts } from './components/LatestBlasts';
 
-const SECONDS_PER_PAGE = 20;
+const SECONDS_PER_PAGE = 120;
 
 function App() {
   const components = [
-    <UpcomingEvents key={0} />,
-    <LatestMemes key={1} />
+    <div className='flex justify-between' key={1}>
+      <LatestMemes />
+      <LatestBlasts />
+    </div>
+    ,
+    <UpcomingEvents key={0} />
   ];
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
