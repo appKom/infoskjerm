@@ -1,5 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 
+type ComponentItem = {
+  id: number;
+  element: React.ReactNode[];
+};
+
 type InfiniteAnimateProps = {
   axis: 'x' | 'y';
   speed: number;
@@ -9,13 +14,13 @@ type InfiniteAnimateProps = {
 }
 
 export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
-  const [components, setComponents] = useState([]);
+  const [components, setComponents] = useState<ComponentItem[]>([]);
   const [divSize, setDivSize] = useState(0);
   const [componentOffset, setComponentOffset] = useState(0);
 
   const childrenArray = useRef<React.ReactNode[][]>([]);
   const intervalRef = useRef<number | undefined>(undefined);
-  const divRef = useRef(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
   const resizeObserver = useRef(new ResizeObserver(entries => {
     for (const entry of entries) {
       setDivSize(props.axis === 'x' ? entry.contentRect.width : props.axis === 'y' ? entry.contentRect.height : 0);
@@ -31,19 +36,17 @@ export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
         resizeObserver.current.unobserve(divRef.current);
       }
     };
-  }, [divRef.current]);
+  }, []);
 
   const handleInterval = useCallback(() => {
     setComponentOffset((offset) => offset < -divSize / props.trainLength ? 0 : offset - props.speed);
-  }, [divSize]);
+  }, [divSize, props.speed, props.trainLength]);
 
   useEffect(() => {
     if (divSize > 0) {
       intervalRef.current = setInterval(handleInterval, 10);
       return () => {
-        if (typeof intervalRef.current !== 'undefined') {
-          clearInterval(intervalRef.current);
-        }
+        clearInterval(intervalRef.current!);
       };
     }
   }, [divSize, handleInterval]);
@@ -54,12 +57,12 @@ export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
       childrenArray.current.push(props.children);
     }
     setComponents(childrenArray.current.map((e, i) => ({ id: i, element: e })));
-  }, []);
+  }, [props.children, props.trainLength]);
 
   return (
     <div
       ref={divRef}
-      className={`relative flex ${props.axis === 'y' && 'flex-col'} gap-8 overflow-hidden w-max`}
+      className={`relative flex ${props.axis === 'y' ? 'flex-col' : ''} gap-8 overflow-hidden w-max`}
       style={props.axis === 'x' ? { left: `${componentOffset}px` } : { top: `${componentOffset}px` }}
     >
       {components.map((component, index) => (
@@ -67,14 +70,13 @@ export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
           key={index}
           className={`flex ${props.axis === 'y' ? 'flex-col' : ''} gap-8`}
         >
-          {component.element.map((meme, memeIndex) => (
-            <div key={memeIndex}>
-              {meme}
+          {component.element.map((item, itemIndex) => (
+            <div key={itemIndex}>
+              {item}
             </div>
           ))}
         </div>
       ))}
     </div>
-
-  )
-}
+  );
+};
