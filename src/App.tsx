@@ -10,11 +10,10 @@ const SECONDS_PER_PAGE = 120;
 
 function App() {
   const components = [
-    <div className='flex justify-between' key={1}>
+    <div className='flex justify-between px-10' key={1}>
       <LatestMemes />
       <LatestBlasts />
-    </div>
-    ,
+    </div>,
     <UpcomingEvents key={0} />
   ];
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);

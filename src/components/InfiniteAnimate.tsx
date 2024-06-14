@@ -10,7 +10,6 @@ type InfiniteAnimateProps = {
   speed: number;
   children: React.ReactNode[];
   trainLength: number;
-  divSize?: number;
 }
 
 export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
@@ -62,13 +61,13 @@ export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
   return (
     <div
       ref={divRef}
-      className={`relative flex ${props.axis === 'y' ? 'flex-col' : ''} gap-8 overflow-hidden w-max`}
+      className={`relative flex ${props.axis === 'y' ? 'flex-col' : ''} gap-16 overflow-hidden w-max`}
       style={props.axis === 'x' ? { left: `${componentOffset}px` } : { top: `${componentOffset}px` }}
     >
       {components.map((component, index) => (
         <div
           key={index}
-          className={`flex ${props.axis === 'y' ? 'flex-col' : ''} gap-8`}
+          className={`flex ${props.axis === 'y' ? 'flex-col' : ''} gap-16`}
         >
           {component.element.map((item, itemIndex) => (
             <div key={itemIndex}>

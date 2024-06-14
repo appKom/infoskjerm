@@ -21,7 +21,7 @@ export const MemeCard = ({ meme, width }: { meme: MemeType, width: number }) => 
         </div>
       </div>
       <img
-        className="bg-white border-t border-gray-200  dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+        className="bg-white border-t border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
         src={meme.url}
         alt={`Meme ${meme.url}`}
         style={{ width: `${width}px` }}
