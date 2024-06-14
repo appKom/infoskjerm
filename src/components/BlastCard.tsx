@@ -7,7 +7,7 @@ import joypixels from 'emoji-toolkit';
 export const BlastCard = ({ blast }: { blast: BlastType }) => {
   return (
     <div
-      className={`relative flex flex-col justify-center overflow-hidden bg-white border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700 w-[1000px]`}
+      className={`relative flex flex-col justify-center overflow-hidden bg-white border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700 w-[1220px]`}
       key={2}
     >
       <div className="flex items-center w-full gap-4 p-4">
