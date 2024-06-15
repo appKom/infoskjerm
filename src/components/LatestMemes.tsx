@@ -10,7 +10,7 @@ const SPEED = .25; // how fast the memes should move
 
 const TRAINLENGTH = 2; // how many duplicated meme-lists to show for the infinite scroll effect
 
-const MEME_WIDTH_PX = 600; // height of the meme images
+const MEME_WIDTH_PX = 550; // height of the meme images
 
 export const LatestMemes = () => {
   const { isLoading, isError, data } = useQuery({

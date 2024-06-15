@@ -18,7 +18,7 @@ export const UpcomingEvents = () => {
   isError && <Error />;
 
   return (
-    <div>
+    <div className="px-8 py-8">
       <div className="mb-5 text-4xl font-bold dark:text-white">Kommende arrangementer</div>
       <div className ="grid justify-between max-w-full grid-cols-4 gap-8" >
         {data?.results.slice(0, NUMBER_OF_EVENTS).map((event: any) => <EventCard key={event.id} event={event} />)}

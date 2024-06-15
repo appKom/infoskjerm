@@ -1,14 +1,19 @@
 import {useState, useEffect} from 'react';
-import { SeasonalGraphic } from './SeasonalGraphic';
 import moment from 'moment';
 import { getRelevantMessages } from '../lib/messages';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
 const REFRESH_TIME = '03:00'; // the time of day to refresh the page (use latest code from git)
 
-const MESSAGE_INTERVAL_MINUTES = 2; // how long between each message
+const MESSAGE_INTERVAL_MINUTES = 1.5; // how long between each message
 const MESSAGE_TIME_SECONDS = 10; // how long the message should be displayed
 
-export function Header() {
+type HeaderProps = {
+  timeToComponentChange: number;
+  timePerComponent: number;
+};
+
+export const Header = (props: HeaderProps) => {
   const [time, setTime] = useState<string>(moment().format('HH:mm:ss'));
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [messageContent, setMessageContent] = useState<string>();
@@ -65,10 +70,22 @@ export function Header() {
 
           <span className="text-6xl">{time}</span>
         </div>
-
-        <div className='flex items-center h-full gap-5 px-4'>
-          <SeasonalGraphic />
+        <div className='mr-12'>
+          <CircularProgressbar
+            className="h-12"
+            value={props.timeToComponentChange}
+            maxValue={props.timePerComponent}
+            strokeWidth={50}
+            styles={buildStyles({
+              pathColor: '#0B5374',
+              trailColor: '#eee',
+              strokeLinecap: "butt",
+            })}
+          />
         </div>
+        {/* <div className='flex items-center h-full gap-5 px-4'>
+          <SeasonalGraphic />
+        </div> */}
       </div>
     </div>
   );

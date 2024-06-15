@@ -4,10 +4,10 @@ import { MemeType } from "../lib/types";
 export const MemeCard = ({ meme, width }: { meme: MemeType, width: number }) => {
   return (
     <div
-      className="relative flex flex-col justify-center overflow-hidden bg-white border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700"
+      className="relative flex flex-col justify-center overflow-hidden bg-white border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700 -z-10"
       key={meme.url}
     >
-      <div className="flex items-center w-full gap-4 p-4">
+      <div className="flex items-center w-full gap-4 px-4 py-3">
         <img
           className="w-10 h-10 rounded-full"
           src={meme.author_image}
