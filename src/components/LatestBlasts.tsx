@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { BlastType } from "../lib/types";
-import { InfiniteAnimate } from "./InfiniteAnimate";
-import { BlastCard } from "./BlastCard";
+import { InfiniteAnimate } from "./utils/InfiniteAnimate";
+import { BlastCard } from "./cards/BlastCard";
 import { fetchBlasts } from "../api/blastsApi";
 
 const REFETCH_INTERVAL_MINUTES = 15; // how often to refetch blasts from slack

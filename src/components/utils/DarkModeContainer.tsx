@@ -1,5 +1,5 @@
 import {useState, useEffect, PropsWithChildren} from 'react';
-import fetchSunTime from '../api/suntimeApi';
+import fetchSunTime from '../../api/suntimeApi';
 import { useQuery } from '@tanstack/react-query';
 import { Loading } from './Loading';
 import { Error } from './Error';
@@ -39,7 +39,7 @@ export const DarkModeContainer = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <div className={isDarkMode ? 'dark' : ''}>
+    <div className={isDarkMode ? 'dark' : 'dark'}>
       {children}
     </div>
   );

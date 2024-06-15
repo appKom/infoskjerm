@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchEventsByStartDate } from "../api/EventApi";
-import { EventCard } from "./EventCard";
-import { Loading } from "./Loading";
-import { Error } from "./Error";
+import { fetchEventsByStartDate } from "../api/eventsApi";
+import { EventCard } from "./cards/EventCard";
+import { Loading } from "./utils/Loading";
+import { Error } from "./utils/Error";
 
 const REFETCH_INTERVAL_MINUTES = 5; // how often to refetch events from Online API
 const NUMBER_OF_EVENTS = 8; // how many events to display

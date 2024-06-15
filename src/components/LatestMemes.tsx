@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchMemes } from "../api/memesApi";
 import { MemeType } from "../lib/types";
-import { MemeCard } from "./MemeCard";
-import { InfiniteAnimate } from "./InfiniteAnimate";
+import { MemeCard } from "./cards/MemeCard";
+import { InfiniteAnimate } from "./utils/InfiniteAnimate";
 
 const REFETCH_INTERVAL_MINUTES = 15; // how often to refetch memes from slack
 const AMOUNT_OF_MEMES = 5; // how many memes to fetch
