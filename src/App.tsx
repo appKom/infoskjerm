@@ -1,4 +1,3 @@
-import './index.css';
 import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { DarkModeContainer } from './components/DarkModeContainer';
@@ -10,9 +9,10 @@ const SECONDS_PER_COMPONENT = 60;  // Total time in seconds for each component
 const MS_PER_COMPONENT = SECONDS_PER_COMPONENT * 1000;  // Convert seconds to milliseconds
 
 function App() {
+  // array of main components to cycle through
   const components = [
     <>
-      <div className='flex justify-between p-3 mb-5 text-4xl font-bold bg-white border dark:border-b-gray-700 dark:bg-[#111827] dark:border-0 dark:border-b-[1px] dark:text-white border-b-red-600 px-28'>
+      <div className='flex justify-between p-3 mb-5 text-4xl font-bold bg-white border dark:border-b-gray-700 dark:bg-[#111827] dark:border-0 dark:border-b-[1px] dark:text-white border-b-light-grey px-28'>
         <div>#memeogvinogklinoggrin2</div>
         <div>#korktavla</div>
       </div>
