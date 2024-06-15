@@ -5,7 +5,7 @@ export const fetchMemes = async (amount: number): Promise<MemeType[]> => {
 
   const response = await fetch(apiUrl, {
     headers: {
-        'x-api-key': import.meta.env.VITE_MEME_API_KEY
+      'x-api-key': import.meta.env.VITE_MEME_API_KEY
     }
   });
 
