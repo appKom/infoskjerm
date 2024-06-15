@@ -77,12 +77,12 @@ export const Header = (props: HeaderProps) => {
             maxValue={props.timePerComponent}
             strokeWidth={50}
             styles={buildStyles({
-              pathColor: '#0B5374',
+              pathColor: '#0D5474',
               trailColor: '#eee',
-              strokeLinecap: "butt",
             })}
           />
         </div>
+        {/* DONT KNOW WETHER TO KEEP THIS OR NOT */}
         {/* <div className='flex items-center h-full gap-5 px-4'>
           <SeasonalGraphic />
         </div> */}
