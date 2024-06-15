@@ -12,17 +12,17 @@ function App() {
   // array of main components to cycle through
   const components = [
     <UpcomingEvents key={0} />,
-    <>
-      <div className='flex justify-between p-3 mb-5 text-4xl font-bold bg-white border dark:border-b-gray-700 dark:bg-[#111827] dark:border-0 dark:border-b-[1px] dark:text-white border-b-light-grey px-28'>
+    <div key={1}>
+      <div className='relative flex justify-between p-3 mb-5 text-4xl font-bold z-10 bg-white border dark:border-b-gray-700 dark:bg-[#111827] dark:border-0 dark:border-b-[1px] dark:text-white border-b-light-grey px-28'>
         <div>#memeogvinogklinoggrin2</div>
         <div>#korktavla</div>
       </div>
-      <div className='flex justify-between px-28' key={1}>
+      <div className='relative flex justify-between px-28'>
         <LatestMemes />
-        <div className='w-1 -mt-10 border-l -z-10 border-light-grey'></div>
+        <div className='relative w-1 -mt-10 border-l -z-10 border-light-grey'></div>
         <LatestBlasts />
       </div>
-    </>
+    </div>
   ];
   const [currentComponentIndex, setCurrentComponentIndex] = useState(1);
   const [opacity, setOpacity] = useState(1);
