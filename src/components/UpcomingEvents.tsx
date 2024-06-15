@@ -14,8 +14,8 @@ export const UpcomingEvents = () => {
     refetchInterval: 1000 * 60 * REFETCH_INTERVAL_MINUTES
   });
 
-  isLoading && <Loading />;
-  isError && <Error />;
+  if (isLoading) return <Loading text="Henter siste arrangementer fra OW..." />;
+  if (isError) return <Error />;
 
   return (
     <div className="px-8 py-8">

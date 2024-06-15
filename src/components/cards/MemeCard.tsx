@@ -2,7 +2,9 @@ import { formatSlackDate } from "../../lib/date";
 import { MemeType } from "../../lib/types";
 import { BaseCard } from "./BaseCard";
 
-export const MemeCard = ({ meme, width }: { meme: MemeType, width: number }) => {
+const WIDTH = 500;
+
+export const MemeCard = ({ meme }: { meme: MemeType }) => {
   return (
     <BaseCard>
       <div className="flex items-center w-full gap-4 px-4 py-3">
@@ -22,7 +24,7 @@ export const MemeCard = ({ meme, width }: { meme: MemeType, width: number }) => 
         className="bg-white border-t border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
         src={meme.url}
         alt={`Meme ${meme.url}`}
-        style={{ width: `${width}px` }}
+        style={{ width: `${WIDTH}px` }}
       />
     </BaseCard>
   )

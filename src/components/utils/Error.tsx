@@ -7,7 +7,7 @@ export const Error = () => {
         height={100}
         alt="Online logo"
       />
-      <div className="text-xl">Det har skjedd en feil, helt sikkert dotkom...</div>
+      <div className="text-xl dark:text-white">Det har skjedd en feil, helt sikkert dotkom...</div>
     </div>
   );
 };

@@ -3,6 +3,8 @@ import { BlastType } from "../lib/types";
 import { InfiniteAnimate } from "./utils/InfiniteAnimate";
 import { BlastCard } from "./cards/BlastCard";
 import { fetchBlasts } from "../api/blastsApi";
+import { Loading } from "./utils/Loading";
+import { Error } from "./utils/Error";
 
 const REFETCH_INTERVAL_MINUTES = 15; // how often to refetch blasts from slack
 const AMOUNT_OF_BLASTS = 5; // how many blasts to fetch
@@ -17,8 +19,8 @@ export const LatestBlasts = () => {
     refetchInterval: 1000 * 60 * REFETCH_INTERVAL_MINUTES
   });
 
-  if (isLoading) return <div className="flex items-center justify-center h-full animate-pulse dark:text-white">Henter blæsts...</div>;
-  if (isError) return <div>memes error</div>;
+  if (isLoading) return <Loading text="Henter nyeste blæsts..." hideLogo />;
+  if (isError) return <Error />;
 
   return (
     <InfiniteAnimate
