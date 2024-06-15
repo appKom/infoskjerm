@@ -39,7 +39,7 @@ export const DarkModeContainer = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <div className={isDarkMode ? 'dark' : 'dark'}>
+    <div className={isDarkMode ? 'dark' : ''}>
       {children}
     </div>
   );
