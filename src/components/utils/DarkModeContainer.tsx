@@ -5,7 +5,7 @@ import { Loading } from './Loading';
 import { Error } from './Error';
 
 const REFETCH_INTERVAL_HOURS = 8; // how often to refetch sunrise/sunset times
-const CHECK_INTERVAL_MINUTES = 1; // interval to check for dark mode toggle
+const CHECK_INTERVAL_MINUTES = 5; // interval to check for dark mode toggle
 
 export const DarkModeContainer = ({ children }: PropsWithChildren) => {
   const [ isDarkMode, setIsDarkMode ] = useState(false);
