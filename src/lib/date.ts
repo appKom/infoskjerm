@@ -27,3 +27,31 @@ export function formatClock(dateStr: string) {
   const minutes = date.getMinutes().toString().padStart(2, '0'); // Pad with leading zero if necessary
   return `${hours}:${minutes}`;
 }
+
+export const formatSlackDate = (dateInput: string): string => {
+  const date = new Date(dateInput);
+  if (isNaN(date.getTime())) {
+    return 'Ugyldig dato'; // Handles invalid date inputs
+  }
+
+  const now = new Date();
+  const yesterday = new Date(now);
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  // Use 24-hour time format without AM/PM in Norwegian
+  const time = date.toLocaleTimeString('nb-NO', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+
+  // Compare dates ignoring time
+  const isToday = date.toDateString() === now.toDateString();
+  const isYesterday = date.toDateString() === yesterday.toDateString();
+
+  if (isToday) {
+    return `I dag, ${time}`;
+  } else if (isYesterday) {
+    return `I går, ${time}`;
+  } else {
+    const diffTime = Math.abs(now.getTime() - date.getTime());
+    const diffDays = Math.floor(diffTime / (1000 * 3600 * 24)); // Using floor to calculate full past days
+    return `${diffDays} dager siden`;
+  }
+};

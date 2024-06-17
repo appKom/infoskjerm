@@ -1,14 +1,19 @@
 import {useState, useEffect} from 'react';
-import { SeasonalGraphic } from './SeasonalGraphic.jsx';
 import moment from 'moment';
 import { getRelevantMessages } from '../lib/messages';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
-const REFRESH_TIME = '03:00';
+const REFRESH_TIME = '03:00'; // the time of day to refresh the page (use latest code from git)
 
-const MESSAGE_INTERVAL_MINUTES = 2; // how long between each message
+const MESSAGE_INTERVAL_MINUTES = 1.5; // how long between each message
 const MESSAGE_TIME_SECONDS = 10; // how long the message should be displayed
 
-export function Header() {
+type HeaderProps = {
+  timeToComponentChange: number;
+  timePerComponent: number;
+};
+
+export const Header = (props: HeaderProps) => {
   const [time, setTime] = useState<string>(moment().format('HH:mm:ss'));
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [messageContent, setMessageContent] = useState<string>();
@@ -50,7 +55,7 @@ export function Header() {
   }, []);
 
   return (
-    <div className='relative h-32 border-b-[1.5px] border-light-grey dark:border-gray-700 dark:text-white'>
+    <div className='relative h-32 border-b-[1.5px] border-light-grey dark:border-gray-700 dark:text-white z-20 bg-white dark:bg-[#111827]'>
       <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic duration-1000 ${showMessage ? 'animate-[slideIn_1s_forwards]' : 'animate-[slideOut_1s_forwards]'}`}>
         {messageContent}
       </div>
@@ -65,10 +70,22 @@ export function Header() {
 
           <span className="text-6xl">{time}</span>
         </div>
-
-        <div className='flex items-center h-full gap-5 px-4'>
-          <SeasonalGraphic />
+        <div className='mr-12'>
+          <CircularProgressbar
+            className="h-12"
+            value={props.timeToComponentChange}
+            maxValue={props.timePerComponent}
+            strokeWidth={50}
+            styles={buildStyles({
+              pathColor: '#0D5474',
+              trailColor: '#eee',
+            })}
+          />
         </div>
+        {/* DONT KNOW WETHER TO KEEP THIS OR NOT */}
+        {/* <div className='flex items-center h-full gap-5 px-4'>
+          <SeasonalGraphic />
+        </div> */}
       </div>
     </div>
   );

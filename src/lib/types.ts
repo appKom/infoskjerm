@@ -8,3 +8,21 @@ export const EVENT_TYPES = new Map([
   [7, { display: 'Annet', color: 'rgb(179, 107, 205)', colorName: 'purple' }],
   [8, { display: 'Realfagskjelleren', color: 'rgb(231, 94, 59)', colorName: 'red' }]
 ]);
+
+export type MemeType = {
+  id: string;
+  name: number;
+  author: string;
+  author_image: string;
+  date: string;
+  url: string;
+};
+
+export type BlastType = {
+  id: string;
+  name: number;
+  author: string;
+  author_image: string;
+  date: string;
+  text: string;
+}

@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
-import OnlineLogo from './Logo/OnlineLogo.jsx';
-import { Badge } from './Badge.jsx';
-import { formatWeekday, formatClock, formatDateName } from '../lib/date.js';
-import { EVENT_TYPES } from '../lib/eventTypes.js';
+import OnlineLogo from '../Logo/OnlineLogo';
+import { Badge } from '../Badge';
+import { formatWeekday, formatClock, formatDateName } from '../../lib/date';
+import { EVENT_TYPES } from '../../lib/types';
+import { BaseCard } from './BaseCard';
 
 const calculateSeatsInfo = (attendanceEvent: any) => {
   const { number_of_seats_taken = 0, max_capacity = 0 } = attendanceEvent || {};
@@ -78,7 +79,7 @@ export function EventCard({ event }: { event: any }) {
   const timeBeforeRegistrationOpens = determineTimeBeforeRegistrationOpens(registration_start);
 
   return (
-    <div className="relative flex flex-col flex-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <BaseCard showOverflow>
       {attendance_event && (
         <div className={`absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white ${isRegistrationEnded ? 'bg-gray-400' : indicatorColor} border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900`}>
           {determineStatusText(isRegistrationEnded, timeBeforeRegistrationOpens, seatsLeft, attendance_event.number_on_waitlist)}
@@ -104,6 +105,6 @@ export function EventCard({ event }: { event: any }) {
           {attendance_event && <Badge text={`${attendance_event.number_of_seats_taken}/${attendance_event.max_capacity}`} leftIcon='people' color='gray' />}
         </div>
       </div>
-    </div>
+    </BaseCard>
   );
 }
