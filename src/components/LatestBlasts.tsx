@@ -22,6 +22,10 @@ export const LatestBlasts = () => {
   if (isLoading) return <Loading text="Henter nyeste blæsts..." hideLogo />;
   if (isError) return <Error />;
 
+  if (data?.length === 0) return (
+    <p className='text-lg text-gray-500 dark:text-gray-400'>Her var det tomt :(</p>
+  )
+
   return (
     <InfiniteAnimate
       axis='y'
