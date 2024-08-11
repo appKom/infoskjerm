@@ -10,7 +10,7 @@ const REFETCH_INTERVAL_MINUTES = 15; // how often to refetch blasts from slack
 const AMOUNT_OF_BLASTS = 5; // how many blasts to fetch
 const SPEED = .1; // how fast the blasts should move
 
-const TRAINLENGTH = 2; // how many duplicated blasts-lists to show for the infinite scroll effect
+const TRAINLENGTH = 3; // how many duplicated blasts-lists to show for the infinite scroll effect
 
 export const LatestBlasts = () => {
   const { isLoading, isError, data } = useQuery({
@@ -32,9 +32,9 @@ export const LatestBlasts = () => {
       speed={SPEED}
       trainLength={TRAINLENGTH}
     >
-      {data ? data.map((blast: BlastType) => (
+      {data?.map((blast: BlastType) => (
         <BlastCard key={blast.id} blast={blast} />
-      )) : []}
+      )) || []}
     </InfiniteAnimate>
   );
 };
