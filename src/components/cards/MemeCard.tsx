@@ -4,9 +4,20 @@ import { MemeType } from "../../lib/types";
 import { BaseCard } from "./BaseCard";
 
 const WIDTH = 500;
+const MAX_RETRIES = 10;
 
 export const MemeCard = ({ meme }: { meme: MemeType }) => {
   const [imageError, setImageError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+
+  const handleImageError = () => {
+    if (retryCount < MAX_RETRIES) {
+      setRetryCount(retryCount + 1);
+      setImageError(false);
+    } else {
+      setImageError(true);
+    }
+  };
 
   return (
     <BaseCard>
@@ -15,7 +26,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
           className="w-10 h-10 rounded-full"
           src={meme.author_image}
           alt={meme.author}
-          />
+        />
         <div className="font-medium dark:text-white">
           <div>{meme.author}</div>
           <div className="text-sm text-gray-500 dark:text-gray-400">
@@ -33,12 +44,12 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
       ) : (
         <img
           className="bg-white dark:bg-gray-800 dark:text-white"
-          src={meme.url}
+          src={`${meme.url}?retry=${retryCount}`}
           alt={`Meme ${meme.url}`}
           style={{ width: `${WIDTH}px` }}
-          onError={() => setImageError(true)}
+          onError={handleImageError}
         />
       )}
     </BaseCard>
-  )
-}
+  );
+};
