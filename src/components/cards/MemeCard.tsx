@@ -3,7 +3,7 @@ import { formatSlackDate } from "../../lib/date";
 import { MemeType } from "../../lib/types";
 import { BaseCard } from "./BaseCard";
 
-const WIDTH = 500;
+const WIDTH = 600;
 const MAX_RETRIES = 10;
 
 export const MemeCard = ({ meme }: { meme: MemeType }) => {
