@@ -6,7 +6,7 @@ import { InfiniteAnimate } from "./utils/InfiniteAnimate";
 import { Loading } from "./utils/Loading";
 import { Error } from "./utils/Error";
 
-const REFETCH_INTERVAL_MINUTES = 15; // how often to refetch memes from slack
+const REFETCH_INTERVAL_MINUTES = 60; // how often to refetch memes from slack
 const AMOUNT_OF_MEMES = 5; // how many memes to fetch
 const SPEED = .2; // how fast the memes should move
 
