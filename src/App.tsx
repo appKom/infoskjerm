@@ -4,6 +4,7 @@ import { DarkModeContainer } from './components/utils/DarkModeContainer';
 import { UpcomingEvents } from './components/UpcomingEvents';
 import { LatestMemes } from './components/LatestMemes';
 import { LatestBlasts } from './components/LatestBlasts';
+//import Marquee from 'react-fast-marquee';
 
 const SECONDS_PER_COMPONENT = 60;  // Total time in seconds for each component
 const MS_PER_COMPONENT = SECONDS_PER_COMPONENT * 1000;  // Convert seconds to milliseconds
@@ -11,8 +12,8 @@ const MS_PER_COMPONENT = SECONDS_PER_COMPONENT * 1000;  // Convert seconds to mi
 function App() {
   // array of main components to cycle through
   const components = [
-    <UpcomingEvents key={0} />,
     <SlackPage key={1} />,
+    <UpcomingEvents key={0} />,
   ];
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
@@ -57,20 +58,42 @@ function App() {
       </div>
     </DarkModeContainer>
   );
+
+  /* return (
+    <Marquee speed={250} direction='up' className='h-full bg-red-100'>
+      <div className='flex flex-col'>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+      </div>
+    </Marquee>
+  ); */
 }
 
 export default App;
 
 const SlackPage = () => {
  return (
-  <div key={1}>
-    <div className='relative flex justify-between p-3 mb-5 text-4xl font-bold z-10 bg-white border dark:border-b-gray-700 dark:bg-[#111827] dark:border-0 dark:border-b-[1px] dark:text-white border-b-light-grey px-28'>
+  <div>
+    <div className='flex justify-between p-3 text-4xl font-bold z-10 bg-white border dark:border-b-gray-700 dark:bg-[#111827] dark:border-0 dark:border-b-[1px] dark:text-white border-b-light-grey px-28'>
       <div>#memeogvinogklinoggrin2</div>
       <div>#korktavla</div>
     </div>
-    <div className='relative flex justify-between px-28'>
+    <div className='flex h-full'>
       <LatestMemes />
-      <div className='relative w-1 -mt-10 border-l border-light-grey dark:border-gray-700'></div>
+      {/* <div className='relative w-1 -mt-10 border-l border-light-grey dark:border-gray-700'></div> */}
       <LatestBlasts />
     </div>
   </div>

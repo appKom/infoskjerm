@@ -2,15 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchMemes } from "../api/memesApi";
 import { MemeType } from "../lib/types";
 import { MemeCard } from "./cards/MemeCard";
-import { InfiniteAnimate } from "./utils/InfiniteAnimate";
 import { Loading } from "./utils/Loading";
 import { Error } from "./utils/Error";
+import Marquee from "react-fast-marquee";
 
 const REFETCH_INTERVAL_MINUTES = 15; // how often to refetch memes from slack
 const AMOUNT_OF_MEMES = 5; // how many memes to fetch
-const SPEED = .2; // how fast the memes should move
-
-const TRAINLENGTH = 2; // how many duplicated meme-lists to show for the infinite scroll effect
+const SPEED = 30; // how fast the memes should move
 
 export const LatestMemes = () => {
   const { isLoading, isError, data } = useQuery({
@@ -27,14 +25,10 @@ export const LatestMemes = () => {
   )
 
   return (
-    <InfiniteAnimate
-      axis='y'
-      speed={SPEED}
-      trainLength={TRAINLENGTH}
-    >
+    <Marquee speed={SPEED} direction='up' className='w-0 overflow-hidden'>
       {data ? data.map((meme: MemeType) => (
-        <MemeCard key={meme.id} meme={meme} />
-      )) : []}
-    </InfiniteAnimate>
+          <MemeCard key={meme.id} meme={meme} />
+        )) : []}
+    </Marquee>
   );
 };
