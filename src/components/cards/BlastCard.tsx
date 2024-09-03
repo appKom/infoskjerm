@@ -30,7 +30,7 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
         dangerouslySetInnerHTML={{ __html: formattedText }}
       />
       {isOverflowing && (
-        <div className="px-4 py-2 border-t border-gray-200 dark:border-gray-700 dark:text-white">
+        <div className="px-4 pt-0 pb-2 text-gray-500 dark:text-white">
           Les resten på <span className="text-blue-500">#korktavla</span>
         </div>
       )}
