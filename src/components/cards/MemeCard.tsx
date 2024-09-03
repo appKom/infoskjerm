@@ -23,13 +23,13 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
     <BaseCard>
       <div className="flex items-center w-full gap-4 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
         <img
-          className="w-10 h-10 rounded-full"
+          className="w-12 h-12 rounded-full"
           src={meme.author_image}
           alt={meme.author}
         />
         <div className="font-medium dark:text-white">
           <div>{meme.author}</div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">
+          <div className="text-gray-500 dark:text-gray-400">
             {formatSlackDate(meme.date)}
           </div>
         </div>
