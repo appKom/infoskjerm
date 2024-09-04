@@ -40,6 +40,9 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
 
 
 const useFormattedText = (text: string) => {
+  // Escape HTML entities (e.g. < to &lt;)
+  const htmlEscapedText = escapeHtmlEntities(text);
+
   // Convert shortnames to Unicode emojis
   const unicodeText = joypixels.shortnameToUnicode(text);
 
@@ -57,7 +60,7 @@ const useFormattedText = (text: string) => {
 
   // Join lines back into a single string, ensuring line breaks are preserved
   const formattedText = filteredLines
-    .map((line: string) => line === "" ? "\n\n" : line)
+    .map((line: string, index: number) => line === "" ? "\n" : line + (index < filteredLines.length - 1 ? "\n" : ""))
     .join('')
     .replace(/\n/g, '<br />');
 
