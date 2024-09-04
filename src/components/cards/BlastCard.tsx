@@ -44,7 +44,7 @@ const useFormattedText = (text: string) => {
   const htmlEscapedText = escapeHtmlEntities(text);
 
   // Convert shortnames to Unicode emojis
-  const unicodeText = joypixels.shortnameToUnicode(text);
+  const unicodeText = joypixels.shortnameToUnicode(htmlEscapedText);
 
   // Split text into lines
   const lines = unicodeText.split('\n');
@@ -80,3 +80,26 @@ const useIsOverflowing = (formattedText: string) => {
 
   return { contentRef, isOverflowing };
 };
+
+const escapeHtmlEntities = (str: string) => {
+  return str.replace(/[&<>"'/|]/g, function (char) {
+    switch (char) {
+      case '&':
+        return '&amp;';
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '"':
+        return '&quot;';
+      case "'":
+        return '&#39;';
+      case '/':
+        return '&#47;';
+      case '|':
+        return '&#124;';
+      default:
+        return char;
+    }
+  });
+}
