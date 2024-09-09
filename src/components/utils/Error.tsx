@@ -7,7 +7,7 @@ const errorTexts = [
   "Noen har progget i fylla :(",
   "En katt har gått over tastaturet :(",
   "En feil har oppstått, siste commit ble gjort av dotkom :(",
-  "Nytt forskiningsresultat: ballmers peak er en myte :(",
+  "Nytt forskningsresultat: ballmers peak er en myte :(",
 ]
 
 export const Error = (props: { text?: string }) => {
