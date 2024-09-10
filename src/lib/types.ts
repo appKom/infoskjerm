@@ -11,16 +11,17 @@ export const EVENT_TYPES = new Map([
 
 export type MemeType = {
   id: string;
-  name: number;
+  name: string;
   author: string;
   author_image: string;
   date: string;
   url: string;
+  type: "image" | "video";
 };
 
 export type BlastType = {
   id: string;
-  name: number;
+  name: string;
   author: string;
   author_image: string;
   date: string;
