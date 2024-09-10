@@ -26,7 +26,7 @@ export const LatestMemes = () => {
 
   const data: MemeType[] = [
     {
-      id: "1",
+      id: "F07M3AWPS6M",
       name: "Sparebank1.mov",
       author: "Jo Gramnæs Tjernshaugen",
       author_image: "https://avatars.slack-edge.com/2023-10-15/6034303400982_5a8a12072c0007a91359_72.jpg",
@@ -35,7 +35,7 @@ export const LatestMemes = () => {
       type: "video",
     },
     {
-      id: "2",
+      id: "F07KPCZK79B",
       name: "cm-chat-media-video-27695C2F-2482-46FE-AC92-46241D5F8058.MOV",
       author: "TheThinker",
       author_image: "https://avatars.slack-edge.com/2024-09-03/7665824856326_6f725bb1c3d41093032e_72.png",
@@ -44,7 +44,7 @@ export const LatestMemes = () => {
       type: "video",
     },
     {
-      id: "3",
+      id: "F07J2AVG98S",
       name: "Steinar Sagen om kjedelige bøker.mp4",
       author: "Jørgen Galdal",
       author_image: "https://avatars.slack-edge.com/2023-02-03/4747126099794_5b45446dddf754c50250_72.png",
