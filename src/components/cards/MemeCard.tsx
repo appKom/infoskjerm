@@ -7,15 +7,15 @@ const WIDTH = 600;
 const MAX_RETRIES = 10;
 
 export const MemeCard = ({ meme }: { meme: MemeType }) => {
-  const [imageError, setImageError] = useState(false);
+  const [mediaError, setMediaError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
 
-  const handleImageError = () => {
+  const handleMediaError = () => {
     if (retryCount < MAX_RETRIES) {
       setRetryCount(retryCount + 1);
-      setImageError(false);
+      setMediaError(false);
     } else {
-      setImageError(true);
+      setMediaError(true);
     }
   };
 
@@ -34,7 +34,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
           </div>
         </div>
       </div>
-      {imageError ? (
+      {mediaError ? (
         <div
           className="flex items-center justify-center py-12 bg-white dark:text-white dark:bg-gray-800"
           style={{ width: `${WIDTH}px` }}
@@ -42,13 +42,30 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
           Oops, her skjedde det en feil :(
         </div>
       ) : (
-        <img
-          className="bg-white dark:bg-gray-800 dark:text-white"
-          src={`${meme.url}?retry=${retryCount}`}
-          alt={`Meme ${meme.url}`}
-          style={{ width: `${WIDTH}px` }}
-          onError={handleImageError}
-        />
+        <>
+          {meme.type === 'image' ? (
+            <img
+              className="bg-white dark:bg-gray-800 dark:text-white"
+              src={`${meme.url}?retry=${retryCount}`}
+              alt={`Meme ${meme.url}`}
+              style={{ width: `${WIDTH}px` }}
+              onError={handleMediaError}
+            />
+          ) : meme.type === 'video' ? (
+            <video
+              className="bg-white dark:bg-gray-800 dark:text-white"
+              src={`${meme.url}?retry=${retryCount}`}
+              style={{ width: `${WIDTH}px` }}
+              autoPlay
+              muted
+              loop
+              preload="metadata"
+              onError={handleMediaError}
+            >
+              Ooops, denne nettleseren støtter ikke video :(
+            </video>
+          ) : null}
+        </>
       )}
     </BaseCard>
   );
