@@ -11,8 +11,8 @@ const MS_PER_COMPONENT = SECONDS_PER_COMPONENT * 1000;  // Convert seconds to mi
 function App() {
   // array of main components to cycle through
   const components = [
-    <SlackPage key={1} />,
     <UpcomingEvents key={0} />,
+    <SlackPage key={1} />,
   ];
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
