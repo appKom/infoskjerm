@@ -23,10 +23,10 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
           </div>
         </div>
       </div>
-      <div className="mx-4 mt-3 mb-2 text-xl font-bold dark:text-white">{headerLine}</div>
+      <div className="mx-4 mt-3 mb-2 text-2xl font-bold dark:text-white">{headerLine}</div>
       <div
         ref={contentRef}
-        className="mx-4 mb-2 break-words text-ellipsis dark:text-white line-clamp-3"
+        className="mx-4 mb-2 text-lg break-words text-ellipsis dark:text-white line-clamp-3"
         dangerouslySetInnerHTML={{ __html: formattedText }}
       />
       {isOverflowing && (
