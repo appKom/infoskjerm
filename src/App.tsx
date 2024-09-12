@@ -68,7 +68,7 @@ const SlackPage = () => {
       <div>#memeogvinogklinoggrin2</div>
       <div>#korktavla</div>
     </div>
-    <div className='relative flex justify-between px-28'>
+    <div className='relative flex justify-between h-full px-28'>
       <LatestMemes />
       <div className='relative w-1 -mt-10 border-l border-light-grey dark:border-gray-700'></div>
       <LatestBlasts />

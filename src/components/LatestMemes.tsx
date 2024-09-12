@@ -6,9 +6,9 @@ import { InfiniteAnimate } from "./utils/InfiniteAnimate";
 import { Loading } from "./utils/Loading";
 import { Error } from "./utils/Error";
 
-const REFETCH_INTERVAL_MINUTES = 15; // how often to refetch memes from slack
+const REFETCH_INTERVAL_MINUTES = 60; // how often to refetch memes from slack
 const AMOUNT_OF_MEMES = 5; // how many memes to fetch
-const SPEED = .4; // how fast the memes should move
+const SPEED = .2; // how fast the memes should move
 
 const TRAINLENGTH = 2; // how many duplicated meme-lists to show for the infinite scroll effect
 
@@ -21,6 +21,10 @@ export const LatestMemes = () => {
 
   if (isLoading) return <Loading text="Mekker de ferskeste memesa..." hideLogo />;
   if (isError) return <Error />;
+
+  if (data?.length === 0) return (
+    <p className='text-lg text-gray-500 dark:text-gray-400'>Her var det tomt :(</p>
+  )
 
   return (
     <InfiniteAnimate

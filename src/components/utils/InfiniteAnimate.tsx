@@ -13,6 +13,8 @@ type InfiniteAnimateProps = {
 }
 
 export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
+  const { axis, speed, children, trainLength } = props;
+
   const [components, setComponents] = useState<ComponentItem[]>([]);
   const [divSize, setDivSize] = useState(0);
   const [componentOffset, setComponentOffset] = useState(0);
@@ -22,7 +24,7 @@ export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
   const divRef = useRef<HTMLDivElement | null>(null);
   const resizeObserver = useRef(new ResizeObserver(entries => {
     for (const entry of entries) {
-      setDivSize(props.axis === 'x' ? entry.contentRect.width : props.axis === 'y' ? entry.contentRect.height : 0);
+      setDivSize(axis === 'x' ? entry.contentRect.width : axis === 'y' ? entry.contentRect.height : 0);
     }
   }));
 
@@ -38,8 +40,8 @@ export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
   }, []);
 
   const handleInterval = useCallback(() => {
-    setComponentOffset((offset) => offset < -divSize / props.trainLength ? 0 : offset - props.speed);
-  }, [divSize, props.speed, props.trainLength]);
+    setComponentOffset((offset) => offset < -divSize / trainLength ? 0 : offset - speed);
+  }, [divSize, speed, trainLength]);
 
   useEffect(() => {
     if (divSize > 0) {
@@ -52,22 +54,30 @@ export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
 
   useEffect(() => {
     childrenArray.current = [];
-    for (let i = 0; i < props.trainLength; i++) {
-      childrenArray.current.push(props.children);
+    for (let i = 0; i < trainLength; i++) {
+      childrenArray.current.push(children);
     }
     setComponents(childrenArray.current.map((e, i) => ({ id: i, element: e })));
-  }, [props.children, props.trainLength]);
+  }, [children, trainLength]);
+
+  if (children?.length < 3) return (
+    <div className="flex flex-col gap-8 overflow-hidden w-max">
+      {children?.map((child) => (
+        child
+      )) || []}
+    </div>
+  );
 
   return (
     <div
       ref={divRef}
-      className={`relative flex ${props.axis === 'y' ? 'flex-col' : ''} gap-8 overflow-hidden w-max`}
-      style={props.axis === 'x' ? { left: `${componentOffset}px` } : { top: `${componentOffset}px` }}
+      className={`relative flex ${axis === 'y' ? 'flex-col' : ''} gap-8 overflow-hidden w-max`}
+      style={axis === 'x' ? { left: `${componentOffset}px` } : { top: `${componentOffset}px` }}
     >
       {components.map((component, index) => (
         <div
           key={index}
-          className={`flex ${props.axis === 'y' ? 'flex-col' : ''} gap-8`}
+          className={`flex ${axis === 'y' ? 'flex-col' : ''} gap-8`}
         >
           {component.element.map((item, itemIndex) => (
             <div key={itemIndex}>
