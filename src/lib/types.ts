@@ -17,6 +17,11 @@ export type MemeType = {
   date: string;
   url: string;
   type: 'image' | 'video';
+  reactions: {
+    name: string;
+    count: number;
+    url: string;
+  }[]
 };
 
 export type BlastType = {
