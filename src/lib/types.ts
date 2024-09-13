@@ -16,6 +16,11 @@ export type MemeType = {
   author_image: string;
   date: string;
   url: string;
+  reactions: [{
+    name: string;
+    count: number;
+    url: string;
+  }]
 };
 
 export type BlastType = {

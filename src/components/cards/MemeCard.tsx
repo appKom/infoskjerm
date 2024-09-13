@@ -20,22 +20,6 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
     }
   };
 
-  // TEMPORARY REACTIONS
-  const reactions = [
-    {
-      count: 69,
-      url: 'https://emojiisland.com/cdn/shop/products/Flushed_Emoji_Icon_5e6ce936-4add-472b-96ba-9082998adcf7_large.png?v=1571606089'
-    },
-    {
-      count: 3,
-      url: 'https://emojiisland.com/cdn/shop/products/Emoji_Icon_-_Sunglasses_cool_emoji_large.png?v=1571606093'
-    },
-    {
-      count: 12,
-      url: 'https://ps.w.org/emoji-toolbar/assets/icon-256x256.png?rev=2580091'
-    }
-  ]
-
   return (
     <BaseCard>
       <div className="flex items-center w-full gap-4 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
@@ -67,13 +51,14 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
           onError={handleImageError}
         />
       )}
-      {reactions.length > 0 && (
+      {meme.reactions.length > 0 && (
         <div className="flex gap-2 p-2 border-t border-gray-200 dark:border-gray-700">
-          {reactions.map((reaction, index) => (
+          {meme.reactions.map((reaction, index) => (
             <SlackReaction
               key={index}
               url={reaction.url}
               count={reaction.count}
+              name={reaction.name}
             />
           ))}
         </div>
