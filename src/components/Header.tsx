@@ -11,6 +11,7 @@ const MESSAGE_TIME_SECONDS = 10; // how long the message should be displayed
 type HeaderProps = {
   timeToComponentChange: number;
   timePerComponent: number;
+  nextPage: () => void;
 };
 
 export const Header = (props: HeaderProps) => {
@@ -70,7 +71,10 @@ export const Header = (props: HeaderProps) => {
 
           <span className="text-6xl">{time}</span>
         </div>
-        <div className='mr-12'>
+        <div
+          className='mr-12 cursor-pointer'
+          onClick={props.nextPage}
+        >
           <CircularProgressbar
             className="h-12"
             value={props.timeToComponentChange}
