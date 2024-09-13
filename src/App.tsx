@@ -18,15 +18,17 @@ function App() {
   const [opacity, setOpacity] = useState(1);
   const [millisecondsLeft, setMillisecondsLeft] = useState(MS_PER_COMPONENT);
 
+  const nextPage = () => {
+    setOpacity(0);
+    setTimeout(() => {
+      setCurrentComponentIndex(prevIndex => (prevIndex + 1) % components.length);
+      setOpacity(1);
+      setMillisecondsLeft(MS_PER_COMPONENT);  // Reset the countdown in milliseconds
+    }, 500);
+  }
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setOpacity(0);
-      setTimeout(() => {
-        setCurrentComponentIndex(prevIndex => (prevIndex + 1) % components.length);
-        setOpacity(1);
-        setMillisecondsLeft(MS_PER_COMPONENT);  // Reset the countdown in milliseconds
-      }, 500);
-    }, MS_PER_COMPONENT);
+    const interval = setInterval(nextPage, MS_PER_COMPONENT);
 
     const countdown = setInterval(() => {
       setMillisecondsLeft(prevMilliseconds => {
@@ -50,6 +52,7 @@ function App() {
         <Header
           timePerComponent={SECONDS_PER_COMPONENT}
           timeToComponentChange={millisecondsLeft / 1000}  // Convert milliseconds back to seconds for display
+          nextPage={nextPage}
         />
         <div className='h-full' style={{ transition: 'opacity 500ms', opacity }}>
           {components[currentComponentIndex]}
