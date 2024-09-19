@@ -51,7 +51,7 @@ const useFormattedText = (text: string) => {
 
   // Extract header line and the remaining lines
   const headerLine = lines[0];
-  const restLines = lines.slice(2);
+  const restLines = lines.slice(1);
 
   // Filter out leading empty lines, keep only from the first non-empty line onward
   const filteredLines = restLines.filter((line: string, index: number) =>
