@@ -23,7 +23,7 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
           </div>
         </div>
       </div>
-      <div className="mx-4 mt-3 mb-2 text-2xl font-bold dark:text-white">{headerLine}</div>
+      <div className="mx-4 mt-3 mb-2 text-2xl font-bold dark:text-white" dangerouslySetInnerHTML={{ __html: headerLine }} />
       <div
         ref={contentRef}
         className="mx-4 mb-2 text-lg break-words text-ellipsis dark:text-white line-clamp-3"
@@ -46,8 +46,13 @@ const useFormattedText = (text: string) => {
   // Convert shortnames to Unicode emojis
   const unicodeText = joypixels.shortnameToUnicode(htmlEscapedText);
 
+  // Convert *text* to bold and _text_ to italic using regex
+  const formattedTextWithStyles = unicodeText
+    .replace(/\*(.*?)\*/g, '<strong>$1</strong>') // Bold for *text*
+    .replace(/_(.*?)_/g, '<em>$1</em>'); // Italic for _text_
+
   // Split text into lines
-  const lines = unicodeText.split('\n');
+  const lines = formattedTextWithStyles.split('\n');
 
   // Extract header line and the remaining lines
   const headerLine = lines[0];
