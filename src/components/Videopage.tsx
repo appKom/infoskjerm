@@ -6,6 +6,7 @@ const videoIds = [
 ];
 
 const API_KEY = import.meta.env.VITE_VIDEO_API_KEY;
+const videoTime = 120;
 
 function randomVideo(){
   const randomIndex = Math.floor(Math.random() * videoIds.length);
@@ -34,7 +35,7 @@ const parseISODuration = (isoDuration) => {
 };
 
 function getRandomStartPoint(videoDuration: number){
-  return Math.floor(Math.random() * videoDuration);
+  return Math.floor(Math.random() * videoDuration - videoTime);
 }
 
 export function Videopage(){
