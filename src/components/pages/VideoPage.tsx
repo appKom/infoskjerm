@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getRandomElement } from "../../lib/misc";
 
 const videoIds = [
-  'A03oI0znAoc', // Abdul Bari big O
+  //'A03oI0znAoc', // Abdul Bari big O
   'Rsf35tugWkg', // low quality pausefisk
   'b65MoVwANq4', // disco fruit party
   'AgpWX18dby4', // 4K ocean
