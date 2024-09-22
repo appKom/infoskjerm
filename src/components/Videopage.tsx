@@ -30,7 +30,7 @@ const parseISODuration = (isoDuration) => {
   const minutes = parseInt(matches[2] || 0, 10);
   const seconds = parseInt(matches[3] || 0, 10);
 
-  return (hours * 3600 + minutes * 60 + seconds) * 1000;
+  return (hours * 3600 + minutes * 60 + seconds);
 };
 
 function getRandomStartPoint(videoDuration: number){
