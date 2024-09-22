@@ -66,11 +66,11 @@ export const VideoPage = (props: {pageTime: number}) => {
     getVideoDuration();
   }, [videoId]);
 
-  if (!randomStartPoint){
-    return (
-      <div>Heihei</div>
-    )
-  }
+  if (!videoId || !randomStartPoint || !videoUrl) return (
+    <div className="flex items-center justify-center w-full h-full">
+      <div className="dark:text-white w-max">OOpsie dopsie, noe galt har skjedd :o</div>
+    </div>
+  )
 
   return (
     <iframe
