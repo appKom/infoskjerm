@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { BlastType } from "../../lib/types";
-import joypixels from 'emoji-toolkit';
 import { formatSlackDate } from "../../lib/date";
 import { BaseCard } from "./BaseCard";
+import { useFormattedSlackText } from '../../lib/text';
 
 export const BlastCard = ({ blast }: { blast: BlastType }) => {
-  const { headerLine, formattedText } = useFormattedText(blast.text);
+  const { headerLine, formattedText } = useFormattedSlackText(blast.text);
   const { contentRef, isOverflowing } = useIsOverflowing(formattedText);
 
   return (
@@ -38,41 +38,7 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
   );
 };
 
-
-const useFormattedText = (text: string) => {
-  // Escape HTML entities (e.g. < to &lt;)
-  const htmlEscapedText = escapeHtmlEntities(text);
-
-  // Convert shortnames to Unicode emojis
-  const unicodeText = joypixels.shortnameToUnicode(htmlEscapedText);
-
-  // Convert *text* to bold and _text_ to italic using regex
-  const formattedTextWithStyles = unicodeText
-    .replace(/\*(.*?)\*/g, '<strong>$1</strong>') // Bold for *text*
-    .replace(/_(.*?)_/g, '<em>$1</em>'); // Italic for _text_
-
-  // Split text into lines
-  const lines = formattedTextWithStyles.split('\n');
-
-  // Extract header line and the remaining lines
-  const headerLine = lines[0];
-  const restLines = lines.slice(1);
-
-  // Filter out leading empty lines, keep only from the first non-empty line onward
-  const filteredLines = restLines.filter((line: string, index: number) =>
-    line !== "" || restLines.slice(0, index).some((l: string) => l !== "")
-  );
-
-  // Join lines back into a single string, ensuring line breaks are preserved
-  const formattedText = filteredLines
-    .map((line: string, index: number) => line === "" ? "\n" : line + (index < filteredLines.length - 1 ? "\n" : ""))
-    .join('')
-    .replace(/\n/g, '<br />');
-
-  return { headerLine, formattedText };
-};
-
-const useIsOverflowing = (formattedText: string) => {
+const useIsOverflowing = (text: string) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
 
@@ -81,30 +47,7 @@ const useIsOverflowing = (formattedText: string) => {
 
     // Check if the content is overflowing
     if (contentEl)setIsOverflowing(contentEl.scrollHeight > contentEl.clientHeight);
-  }, [formattedText]);
+  }, [text]);
 
   return { contentRef, isOverflowing };
 };
-
-const escapeHtmlEntities = (str: string) => {
-  return str.replace(/[&<>"'/|]/g, function (char) {
-    switch (char) {
-      case '&':
-        return '&amp;';
-      case '<':
-        return '&lt;';
-      case '>':
-        return '&gt;';
-      case '"':
-        return '&quot;';
-      case "'":
-        return '&#39;';
-      case '/':
-        return '&#47;';
-      case '|':
-        return '&#124;';
-      default:
-        return char;
-    }
-  });
-}

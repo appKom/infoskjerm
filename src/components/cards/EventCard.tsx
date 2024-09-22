@@ -4,6 +4,7 @@ import { Badge } from '../Badge';
 import { formatWeekday, formatClock, formatDateName } from '../../lib/date';
 import { EVENT_TYPES } from '../../lib/types';
 import { BaseCard } from './BaseCard';
+import { removeOWFormatting } from '../../lib/text';
 
 const calculateSeatsInfo = (attendanceEvent: any) => {
   const { number_of_seats_taken = 0, max_capacity = 0 } = attendanceEvent || {};
@@ -96,8 +97,8 @@ export function EventCard({ event }: { event: any }) {
 
       <div ref={containerRef} className='flex flex-col justify-between flex-grow w-full gap-2 px-4 pt-2 pb-3 overflow-hidden'>
         <div>
-          {title && <h5 className="w-full text-2xl font-bold tracking-tight line-clamp-1 dark:text-white">{title}</h5>}
-          {ingress && <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{ingress}</p>}
+          {title && <h5 className="w-full text-2xl font-bold tracking-tight line-clamp-1 dark:text-white">{removeOWFormatting(title)}</h5>}
+          {ingress && <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{removeOWFormatting(ingress)}</p>}
         </div>
         <div ref={contentRef} className='flex w-full gap-1 scrolling-text'>
           {eventTypeName && eventTypeColorName && <Badge text={eventTypeName} leftIcon='star' color={eventTypeColorName} />}
