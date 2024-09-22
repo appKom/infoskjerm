@@ -33,13 +33,14 @@ const parseISODuration = (isoDuration) => {
   return (hours * 3600 + minutes * 60 + seconds) * 1000;
 };
 
-function getRandomStartPoint(videoDuration:number){
+function getRandomStartPoint(videoDuration: number){
   return Math.floor(Math.random() * videoDuration);
 }
 
 export function Videopage(){
   const [videoId, setVideoId] = useState<string>()
   const [randomStartPoint, setRandomStartPoint] = useState<number>()
+  const [videoUrl, setVideoUrl] = useState<string>()
 
   useEffect(() => {
     setVideoId(randomVideo);
@@ -48,9 +49,16 @@ export function Videopage(){
   useEffect(() => {
     const getVideoDuration = async() => {
       if(!videoId) return
-      setRandomStartPoint(getRandomStartPoint(await fetchVideoDuration(videoId)))
-      console.log(await fetchVideoDuration(videoId))
-      console.log(getRandomStartPoint(await fetchVideoDuration(videoId)));
+      const videoDuration = await fetchVideoDuration(videoId);
+      const randomStartPoint = getRandomStartPoint(videoDuration);
+      const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&cc_load_policy=1&start=${randomStartPoint}`
+
+      console.log("videoDuration:", videoDuration);
+      console.log("randomStartPoint:", randomStartPoint);
+      console.log("videoUrl:", videoUrl);
+
+      setRandomStartPoint(randomStartPoint)
+      setVideoUrl(videoUrl)
     }
     getVideoDuration();
   }, [videoId]);
@@ -66,9 +74,9 @@ export function Videopage(){
   }
 
   return (
-    <iframe 
-    className="h-full w-full"
-    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&cc_load_policy=1&start=${randomStartPoint}`}
+    <iframe
+      className="w-full h-full"
+      src={videoUrl}
     ></iframe>
   )
 }
