@@ -4,6 +4,7 @@ import { DarkModeContainer } from './components/utils/DarkModeContainer';
 import { UpcomingEvents } from './components/UpcomingEvents';
 import { LatestMemes } from './components/LatestMemes';
 import { LatestBlasts } from './components/LatestBlasts';
+import { VideoPage } from './components/Videopage';
 
 const SECONDS_PER_COMPONENT = 60;  // Total time in seconds for each component
 const MS_PER_COMPONENT = SECONDS_PER_COMPONENT * 1000;  // Convert seconds to milliseconds
@@ -13,6 +14,7 @@ function App() {
   const components = [
     <UpcomingEvents key={0} />,
     <SlackPage key={1} />,
+    <VideoPage key={2} />,
   ];
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
