@@ -17,7 +17,7 @@ const randomVideo= (): string => {
 }
 
 const fetchVideoDuration = async (videoId: string) => {
-  const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY}`);
+  const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY}&cc_lang_pref=en`);
   const data = await response.json();
 
   if (data && data.items && data.items.length > 0) {
