@@ -14,7 +14,7 @@ function App() {
   const components = [
     <UpcomingEvents key={0} />,
     <SlackPage key={1} />,
-    <VideoPage key={2} />,
+    <VideoPage key={2} pageTime={SECONDS_PER_COMPONENT} />,
   ];
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);

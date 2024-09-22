@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 
 const videoIds = [
-  'G52dUQLxPzg',
-  '0IAPZzGSbME'
+  'A03oI0znAoc', // Abdul Bari big O
+  'Rsf35tugWkg', // low quality pausefisk
+  'b65MoVwANq4', // disco fruit party
+  'AgpWX18dby4', // 4K ocean
+  'AaK0AKQFCNY', // kittens
+  'oRDRfikj2z8', // baby animals
 ];
 
 const API_KEY = import.meta.env.VITE_VIDEO_API_KEY;
-const videoTime = 120;
 
 const randomVideo= (): string => {
   const randomIndex = Math.floor(Math.random() * videoIds.length);
@@ -36,11 +39,11 @@ const parseISODuration = (isoDuration: string): number => {
   return hours * 3600 + minutes * 60 + seconds;
 };
 
-const getRandomStartPoint = (videoDuration: number): number => {
-  return Math.floor(Math.random() * videoDuration - videoTime);
+const getRandomStartPoint = (totalVideoDuration: number, videoTime: number): number => {
+  return Math.floor(Math.random() * totalVideoDuration - videoTime);
 }
 
-export const VideoPage = () => {
+export const VideoPage = (props: {pageTime: number}) => {
   const [videoId, setVideoId] = useState<string>()
   const [randomStartPoint, setRandomStartPoint] = useState<number>()
   const [videoUrl, setVideoUrl] = useState<string>()
@@ -53,8 +56,9 @@ export const VideoPage = () => {
     const getVideoDuration = async() => {
       if (!videoId) return
       const videoDuration = await fetchVideoDuration(videoId);
-      const randomStartPoint = getRandomStartPoint(videoDuration);
-      const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&cc_load_policy=1&start=${randomStartPoint}`
+      if (!videoDuration) return
+      const randomStartPoint = getRandomStartPoint(videoDuration, props.pageTime);
+      const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&cc_load_policy=1&showinfo=0&start=${randomStartPoint}`
 
       setRandomStartPoint(randomStartPoint)
       setVideoUrl(videoUrl)
