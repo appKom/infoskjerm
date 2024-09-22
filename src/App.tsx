@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { DarkModeContainer } from './components/utils/DarkModeContainer';
 import { EventsPage } from './components/pages/EventsPage';
-import { VideoPage } from './components/pages/Videopage';
+import { VideoPage } from './components/pages/VideoPage';
 import { SlackPage } from './components/pages/SlackPage';
 
 const SECONDS_PER_COMPONENT = 60;  // Total time in seconds for each component
