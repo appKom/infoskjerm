@@ -22,10 +22,6 @@ export const DarkModeContainer = ({ children }: PropsWithChildren) => {
         const sunrise = new Date(data.properties.sunrise.time);
         const sunset = new Date(data.properties.sunset.time);
 
-        // Adjust for the timezone offset, if the API returns times in UTC
-        sunrise.setMinutes(sunrise.getMinutes() + sunrise.getTimezoneOffset());
-        sunset.setMinutes(sunset.getMinutes() + sunset.getTimezoneOffset());
-
         // Check if current time is after sunset or before sunrise
         setIsDarkMode(now < sunrise || now > sunset);
       } else {
