@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react';
 import moment from 'moment';
-import { getRelevantMessages } from '../lib/messages';
+import { getRelevantMessages } from '../../lib/messages';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { DebugQR } from './DebugQR';
 
 const REFRESH_TIME = '03:00'; // the time of day to refresh the page (use latest code from git)
 
@@ -71,20 +72,25 @@ export const Header = (props: HeaderProps) => {
 
           <span className="text-6xl">{time}</span>
         </div>
-        <div
-          className='mr-12 cursor-pointer'
-          onClick={props.nextPage}
-        >
-          <CircularProgressbar
-            className="h-12"
-            value={props.timeToComponentChange}
-            maxValue={props.timePerComponent}
-            strokeWidth={50}
-            styles={buildStyles({
-              pathColor: '#0D5474',
-              trailColor: '#eee',
-            })}
-          />
+
+        <div className='flex items-center h-full gap-10'>
+          <DebugQR />
+
+          <div
+            className='mr-12 cursor-pointer pl-10 border-l-[1.5px] dark:border-gray-700'
+            onClick={props.nextPage}
+          >
+            <CircularProgressbar
+              className="h-12"
+              value={props.timeToComponentChange}
+              maxValue={props.timePerComponent}
+              strokeWidth={50}
+              styles={buildStyles({
+                pathColor: '#0D5474',
+                trailColor: '#eee',
+              })}
+            />
+          </div>
         </div>
         {/* DONT KNOW WETHER TO KEEP THIS OR NOT */}
         {/* <div className='flex items-center h-full gap-5 px-4'>
