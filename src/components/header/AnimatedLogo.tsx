@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useState, useEffect } from "react"
 
-const LOGO_INTERVAL_SECONDS = 15 // Time in seconds between logo changes
+const LOGO_INTERVAL_SECONDS = 10 // Time in seconds between logo changes
 
 const logos = [
   {
