@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Header } from './components/Header';
+import { Header } from './components/header/Header';
 import { DarkModeContainer } from './components/utils/DarkModeContainer';
 import { EventsPage } from './components/pages/EventsPage';
 import { VideoPage } from './components/pages/VideoPage';
