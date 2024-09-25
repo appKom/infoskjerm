@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react';
 import moment from 'moment';
-import { getRelevantMessages } from '../lib/messages';
+import { getRelevantMessages } from '../../lib/messages';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { AnimatedLogo } from './AnimatedLogo';
 
 const REFRESH_TIME = '03:00'; // the time of day to refresh the page (use latest code from git)
 
@@ -56,21 +57,17 @@ export const Header = (props: HeaderProps) => {
   }, []);
 
   return (
-    <div className='relative h-32 border-b-[1.5px] border-light-grey dark:border-gray-700 dark:text-white z-20 bg-white dark:bg-[#111827]'>
+    <div className='relative border-b-[1.5px] min-h-32 h-32 max-h-32 border-light-grey dark:border-gray-700 dark:text-white z-20 bg-white dark:bg-[#111827]'>
       <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic duration-1000 ${showMessage ? 'animate-[slideIn_1s_forwards]' : 'animate-[slideOut_1s_forwards]'}`}>
         {messageContent}
       </div>
 
       <div className={`h-full flex items-center justify-between transition-transform duration-1000 ${showMessage ? 'translate-x-full' : ''}`}>
-        <div className="flex items-center h-full gap-8 px-12 py-6">
-          <img className="h-5/6 dark:hidden" src="/online/online_icon_blue.svg" alt="Online logo" />
-          <img className="hidden h-5/6 dark:block" src="/online/online_icon_white.svg" alt="Online logo" />
-
-          <img className="px-4 h-5/6 border-x-[1.5px] dark:border-gray-700 dark:hidden" src="/bekk/Bekk_navnetrekk_svart.svg" alt="Bekk logo" />
-          <img className="hidden px-4 h-5/6 border-x dark:border-gray-700 dark:block" src="/bekk/Bekk_navnetrekk_hvit.svg" alt="Bekk logo" />
-
-          <span className="text-6xl">{time}</span>
+        <div className="flex items-center gap-8 px-8">
+          <AnimatedLogo />
+          <span className="pl-8 text-6xl border-l-[1.5px] dark:border-gray-700">{time}</span>
         </div>
+
         <div
           className='mr-12 cursor-pointer'
           onClick={props.nextPage}
