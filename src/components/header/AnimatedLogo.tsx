@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useState, useEffect } from "react"
+import { useDarkMode } from "../utils/DarkModeProvider"
 
 const LOGO_INTERVAL_SECONDS = 7 // Time in seconds between logo changes
 
@@ -18,6 +19,7 @@ const logos = [
 
 export const AnimatedLogo = () => {
   const [currentLogo, setCurrentLogo] = useState(0)
+  const { isDarkMode } = useDarkMode();
 
   useEffect(() => {
     const logoInterval = setInterval(() => {
@@ -25,8 +27,6 @@ export const AnimatedLogo = () => {
     }, 1000 * LOGO_INTERVAL_SECONDS)
     return () => clearInterval(logoInterval)
   }, [])
-
-  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
 
   return (
     <AnimatePresence mode="wait">
