@@ -63,8 +63,8 @@ export const Header = (props: HeaderProps) => {
 
       <div className={`h-full flex items-center justify-between transition-transform duration-1000 ${showMessage ? 'translate-x-full' : ''}`}>
         <div className="flex items-center h-full gap-8 px-12 py-6">
-          <img className="h- dark:hidden" src="/online/online_icon_blue.svg" alt="Online logo" />
-          <img className="hidden h-2/3 dark:block" src="/online/online_icon_white.svg" alt="Online logo" />
+          <img className="h-full dark:hidden" src="/online/online_icon_blue.svg" alt="Online logo" />
+          <img className="hidden h-full dark:block" src="/online/online_icon_white.svg" alt="Online logo" />
 
           <img className="px-8 h-3/5 border-x-[1.5px] dark:border-gray-700 dark:hidden" src="/bekk/Bekk_navnetrekk_svart.svg" alt="Bekk logo" />
           <img className="hidden px-8 h-3/5 border-x dark:border-gray-700 dark:block" src="/bekk/Bekk_navnetrekk_hvit.svg" alt="Bekk logo" />
