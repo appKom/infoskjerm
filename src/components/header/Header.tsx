@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import moment from 'moment';
 import { getRelevantMessages } from '../../lib/messages';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { AnimatedLogo } from './AnimatedLogo';
 import { DebugQR } from './DebugQR';
 
 const REFRESH_TIME = '03:00'; // the time of day to refresh the page (use latest code from git)
@@ -64,12 +65,8 @@ export const Header = (props: HeaderProps) => {
 
       <div className={`h-full flex items-center justify-between transition-transform duration-1000 ${showMessage ? 'translate-x-full' : ''}`}>
         <div className="flex items-center h-full gap-8 px-12 py-6">
-          <img className="h-full dark:hidden" src="/online/online_icon_blue.svg" alt="Online logo" />
-          <img className="hidden h-full dark:block" src="/online/online_icon_white.svg" alt="Online logo" />
-
-          <img className="px-8 h-3/5 border-x-[1.5px] dark:border-gray-700 dark:hidden" src="/bekk/Bekk_navnetrekk_svart.svg" alt="Bekk logo" />
-          <img className="hidden px-8 h-3/5 border-x dark:border-gray-700 dark:block" src="/bekk/Bekk_navnetrekk_hvit.svg" alt="Bekk logo" />
-          <span className="text-6xl">{time}</span>
+          <AnimatedLogo />
+          <span className="pl-8 text-6xl border-l-[1.5px] dark:border-gray-700">{time}</span>
         </div>
 
         <div className='flex items-center h-full gap-10'>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Header } from './components/header/Header';
-import { DarkModeContainer } from './components/utils/DarkModeContainer';
+import { DarkModeProvider } from './components/utils/DarkModeProvider';
 import { EventsPage } from './components/pages/EventsPage';
 import { VideoPage } from './components/pages/VideoPage';
 import { SlackPage } from './components/pages/SlackPage';
@@ -48,7 +48,7 @@ function App() {
   }, []);
 
   return (
-    <DarkModeContainer>
+    <DarkModeProvider>
       <div className='overflow-hidden dark:bg-[#111827] h-screen flex flex-col'>
         <Header
           timePerComponent={SECONDS_PER_COMPONENT}
@@ -59,7 +59,7 @@ function App() {
           {components[currentComponentIndex]}
         </div>
       </div>
-    </DarkModeContainer>
+    </DarkModeProvider>
   );
 }
 
