@@ -40,7 +40,7 @@ const parseISODuration = (isoDuration: string): number => {
 const getRandomStartPoint = (totalDuration: number, videoTime: number): number =>
   Math.floor(Math.random() * totalDuration - videoTime)
 
-export const VideoPage = ({ pageTime }: { pageTime: number }) => {
+export const VideoPage = ({ pageDuration }: { pageDuration: number }) => {
   const [videoId, setVideoId] = useState<string>()
   const [videoUrl, setVideoUrl] = useState<string>()
 
@@ -52,7 +52,7 @@ export const VideoPage = ({ pageTime }: { pageTime: number }) => {
       const videoDuration = await fetchVideoDuration(videoId);
 
       if (!videoDuration) return
-      const startPoint = getRandomStartPoint(videoDuration, pageTime);
+      const startPoint = getRandomStartPoint(videoDuration, pageDuration);
 
       const videoUrl = `https://www.youtube.com/embed/${videoId}?cc_load_policy=1&autoplay=1&controls=0&showinfo=0&mute=1&start=${startPoint}`
       setVideoUrl(videoUrl)
