@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import moment from 'moment';
 import { getRelevantMessages } from '../../lib/messages';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
@@ -11,8 +11,8 @@ const MESSAGE_INTERVAL_MINUTES = 1.5; // how long between each message
 const MESSAGE_TIME_SECONDS = 10; // how long the message should be displayed
 
 type HeaderProps = {
-  timeToComponentChange: number;
-  timePerComponent: number;
+  timeRemaining: number;
+  displayDuration: number;
   nextPage: () => void;
 };
 
@@ -23,7 +23,6 @@ export const Header = (props: HeaderProps) => {
 
   useEffect(() => {
     const timeInterval = setInterval(() => {
-
       // update the clock
       setTime(moment().format('HH:mm:ss'));
 
@@ -78,8 +77,8 @@ export const Header = (props: HeaderProps) => {
           >
             <CircularProgressbar
               className="h-12"
-              value={props.timeToComponentChange}
-              maxValue={props.timePerComponent}
+              value={props.timeRemaining}
+              maxValue={props.displayDuration}
               strokeWidth={50}
               styles={buildStyles({
                 pathColor: '#0D5474',
@@ -88,10 +87,6 @@ export const Header = (props: HeaderProps) => {
             />
           </div>
         </div>
-        {/* DONT KNOW WETHER TO KEEP THIS OR NOT */}
-        {/* <div className='flex items-center h-full gap-5 px-4'>
-          <SeasonalGraphic />
-        </div> */}
       </div>
     </div>
   );
