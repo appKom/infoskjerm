@@ -9,17 +9,17 @@ function App() {
   // All pages with their respective probabilities and durations in seconds
   const pages = [
     {
-      component: <EventsPage key={0} />,
+      component: <EventsPage />,
       duration: 60,
       probability: 0.45,
     },
     {
-      component: <SlackPage key={1} />,
+      component: <SlackPage />,
       duration: 60,
       probability: 0.45,
     },
     {
-      component: <VideoPage key={2} pageDuration={120} />,
+      component: <VideoPage pageDuration={120} />,
       duration: 60,
       probability: 0.10,
     },
