@@ -19,7 +19,7 @@ function App() {
       probability: 0.45,
     },
     {
-      component: <VideoPage pageDuration={120} />,
+      component: <VideoPage pageDuration={60} />,
       duration: 60,
       probability: 0.10,
     },
