@@ -6,28 +6,28 @@ import { VideoPage } from './components/pages/VideoPage';
 import { SlackPage } from './components/pages/SlackPage';
 
 function App() {
-  // All pages with their respective probabilities and times in seconds
+  // All pages with their respective probabilities and durations in seconds
   const pages = [
     {
       component: <EventsPage key={0} />,
-      time: 5,
+      duration: 60,
       probability: 0.45,
     },
     {
       component: <SlackPage key={1} />,
-      time: 10,
+      duration: 60,
       probability: 0.45,
     },
     {
-      component: <VideoPage key={2} pageTime={120} />,
-      time: 20,
+      component: <VideoPage key={2} pageDuration={120} />,
+      duration: 60,
       probability: 0.10,
     },
   ];
 
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
-  const [millisecondsLeft, setMillisecondsLeft] = useState(pages[0].time * 1000);
+  const [millisecondsLeft, setMillisecondsLeft] = useState(pages[0].duration * 1000);
 
   // Function to select the next component based on probabilities
   const selectNextComponent = () => {
@@ -53,7 +53,7 @@ function App() {
       const nextIndex = selectNextComponent();
       setCurrentComponentIndex(nextIndex);
       setOpacity(1);
-      setMillisecondsLeft(pages[nextIndex].time * 1000); // Set time for the next component
+      setMillisecondsLeft(pages[nextIndex].duration * 1000); // Set duration for the next component
     }, 500);
   };
 
@@ -63,7 +63,7 @@ function App() {
     const countdown = setInterval(() => {
       setMillisecondsLeft(prevMilliseconds => {
         if (prevMilliseconds <= 250) {
-          return pages[selectNextComponent()].time * 1000; // Reset for the next component
+          return pages[selectNextComponent()].duration * 1000; // Reset for the next component
         } else {
           return prevMilliseconds - 250;
         }
@@ -80,7 +80,7 @@ function App() {
     <DarkModeProvider>
       <div className='overflow-hidden dark:bg-[#111827] h-screen flex flex-col'>
         <Header
-          displayDuration={pages[currentComponentIndex].time}
+          displayDuration={pages[currentComponentIndex].duration}
           timeRemaining={millisecondsLeft / 1000}
           nextPage={nextPage}
         />
