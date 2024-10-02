@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { formatSlackDate } from "../../lib/date";
-import { MemeType } from "../../lib/types";
+import { ISlackMessage } from "../../lib/types";
 import { BaseCard } from "./BaseCard";
 
 const WIDTH = 600;
 const MAX_RETRIES = 10;
 
-export const MemeCard = ({ meme }: { meme: MemeType }) => {
+export const MemeCard = ({ slackMessage }: { slackMessage: ISlackMessage }) => {
   const [mediaError, setMediaError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
 
@@ -19,10 +19,12 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
     }
   };
 
+  console.log(slackMessage.files[0].mp4);
+
   return (
     <BaseCard>
       <div className="flex items-center w-full gap-4 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-        <img
+        {/* <img
           className="w-12 h-12 rounded-full"
           src={meme.author_image}
           alt={meme.author}
@@ -32,7 +34,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
           <div className="text-gray-500 dark:text-gray-400">
             {formatSlackDate(meme.date)}
           </div>
-        </div>
+        </div> */}
       </div>
       {mediaError ? (
         <div
@@ -43,7 +45,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
         </div>
       ) : (
         <>
-          {meme.type === 'image' ? (
+          {/* {meme.type === 'image' ? (
             <img
               className="bg-white dark:bg-gray-800 dark:text-white"
               src={`${meme.url}?retry=${retryCount}`}
@@ -52,9 +54,9 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
               onError={handleMediaError}
             />
           ) : meme.type === 'video' ? (
-            <video
+             */}<video
               className="bg-white dark:bg-gray-800 dark:text-white"
-              src={`${meme.url}?retry=${retryCount}`}
+              src={`http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`}
               style={{ width: `${WIDTH}px` }}
               autoPlay
               muted
@@ -64,7 +66,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
             >
               Ooops, denne nettleseren støtter ikke video :(
             </video>
-          ) : null}
+          {/* ) : null} */}
         </>
       )}
     </BaseCard>
