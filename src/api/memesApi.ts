@@ -1,7 +1,7 @@
-import { MemeType } from "../lib/types";
+import { ISlackMessage } from "../lib/types";
 
-export const fetchMemes = async (amount: number): Promise<MemeType[]> => {
-  const apiUrl = `https://infoskjerm-backend-appkom.vercel.app/latest-memes?count=${amount}`;
+export const fetchMemes = async (amount: number): Promise<ISlackMessage[]> => {
+  const apiUrl = `http://localhost:3000/memes`;
 
   const response = await fetch(apiUrl, {
     headers: {
