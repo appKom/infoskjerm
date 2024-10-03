@@ -60,7 +60,7 @@ export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
     setComponents(childrenArray.current.map((e, i) => ({ id: i, element: e })));
   }, [children, trainLength]);
 
-  if (children?.length < 3) return (
+  if (children?.length === 1) return (
     <div className="flex flex-col gap-8 overflow-hidden w-max">
       {children?.map((child) => (
         child

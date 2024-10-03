@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchEventsByStartDate } from "../api/eventsApi";
-import { EventCard } from "./cards/EventCard";
-import { Loading } from "./utils/Loading";
-import { Error } from "./utils/Error";
+import { fetchEventsByStartDate } from "../../api/eventsApi";
+import { EventCard } from "../cards/EventCard";
+import { Loading } from "../utils/Loading";
+import { Error } from "../utils/Error";
 
 const REFETCH_INTERVAL_MINUTES = 5; // how often to refetch events from Online API
 const NUMBER_OF_EVENTS = 8; // how many events to display
 
-export const UpcomingEvents = () => {
+export const EventsPage = () => {
   const { isLoading, isError, data } = useQuery({
     queryKey: ['events'],
     queryFn: () => fetchEventsByStartDate(),

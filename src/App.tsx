@@ -1,41 +1,71 @@
 import { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { DarkModeContainer } from './components/utils/DarkModeContainer';
-import { UpcomingEvents } from './components/UpcomingEvents';
-import { LatestMemes } from './components/LatestMemes';
-import { LatestBlasts } from './components/LatestBlasts';
-
-const SECONDS_PER_COMPONENT = 60;  // Total time in seconds for each component
-const MS_PER_COMPONENT = SECONDS_PER_COMPONENT * 1000;  // Convert seconds to milliseconds
+import { Header } from './components/header/Header';
+import { DarkModeProvider } from './components/utils/DarkModeProvider';
+import { EventsPage } from './components/pages/EventsPage';
+import { VideoPage } from './components/pages/VideoPage';
+import { SlackPage } from './components/pages/SlackPage';
 
 function App() {
-  // array of main components to cycle through
-  const components = [
-    <UpcomingEvents key={0} />,
-    <SlackPage key={1} />,
+  // All pages with their respective probabilities and durations in seconds
+  const pages = [
+    {
+      component: <EventsPage />,
+      duration: 60,
+      probability: 0.45,
+    },
+    {
+      component: <SlackPage />,
+      duration: 60,
+      probability: 0.45,
+    },
+    {
+      component: <VideoPage pageDuration={60} />,
+      duration: 60,
+      probability: 0.10,
+    },
   ];
+
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
-  const [millisecondsLeft, setMillisecondsLeft] = useState(MS_PER_COMPONENT);
+  const [millisecondsLeft, setMillisecondsLeft] = useState(pages[0].duration * 1000);
+
+  // Function to select the next component based on probabilities
+  const selectNextComponent = () => {
+    const randomNum = Math.random();
+    let cumulativeProbability = 0;
+
+    for (let i = 0; i < pages.length; i++) {
+      cumulativeProbability += pages[i].probability;
+      if (randomNum < cumulativeProbability) {
+        // Try again if the same component is selected
+        if (i === currentComponentIndex) return selectNextComponent();
+        return i;
+      }
+    }
+
+    // Fallback, should not reach here
+    return (currentComponentIndex + 1) % pages.length;
+  };
 
   const nextPage = () => {
     setOpacity(0);
     setTimeout(() => {
-      setCurrentComponentIndex(prevIndex => (prevIndex + 1) % components.length);
+      const nextIndex = selectNextComponent();
+      setCurrentComponentIndex(nextIndex);
       setOpacity(1);
-      setMillisecondsLeft(MS_PER_COMPONENT);  // Reset the countdown in milliseconds
+      setMillisecondsLeft(pages[nextIndex].duration * 1000); // Set duration for the next component
     }, 500);
-  }
+  };
 
   useEffect(() => {
-    const interval = setInterval(nextPage, MS_PER_COMPONENT);
+    const interval = setInterval(nextPage, millisecondsLeft);
 
     const countdown = setInterval(() => {
       setMillisecondsLeft(prevMilliseconds => {
-        if (prevMilliseconds <= 250) {  // Near zero, reset
-          return MS_PER_COMPONENT;
+        if (prevMilliseconds <= 250) {
+          return pages[selectNextComponent()].duration * 1000; // Reset for the next component
         } else {
-          return prevMilliseconds - 250;  // Decrement by 100ms
+          return prevMilliseconds - 250;
         }
       });
     }, 250);
@@ -44,38 +74,22 @@ function App() {
       clearInterval(interval);
       clearInterval(countdown);
     };
-  }, []);
+  }, [currentComponentIndex, millisecondsLeft]);
 
   return (
-    <DarkModeContainer>
+    <DarkModeProvider>
       <div className='overflow-hidden dark:bg-[#111827] h-screen flex flex-col'>
         <Header
-          timePerComponent={SECONDS_PER_COMPONENT}
-          timeToComponentChange={millisecondsLeft / 1000}  // Convert milliseconds back to seconds for display
+          displayDuration={pages[currentComponentIndex].duration}
+          timeRemaining={millisecondsLeft / 1000}
           nextPage={nextPage}
         />
         <div className='h-full' style={{ transition: 'opacity 500ms', opacity }}>
-          {components[currentComponentIndex]}
+          {pages[currentComponentIndex].component}
         </div>
       </div>
-    </DarkModeContainer>
+    </DarkModeProvider>
   );
 }
 
 export default App;
-
-const SlackPage = () => {
- return (
-  <div key={1}>
-    <div className='relative flex justify-between p-3 mb-5 text-4xl font-bold z-10 bg-white border dark:border-b-gray-700 dark:bg-[#111827] dark:border-0 dark:border-b-[1px] dark:text-white border-b-light-grey px-28'>
-      <div>#memeogvinogklinoggrin2</div>
-      <div>#korktavla</div>
-    </div>
-    <div className='relative flex justify-between px-28'>
-      <LatestMemes />
-      <div className='relative w-1 -mt-10 border-l border-light-grey dark:border-gray-700'></div>
-      <LatestBlasts />
-    </div>
-  </div>
- )
-}

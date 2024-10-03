@@ -1,4 +1,4 @@
-import { useState, useEffect, PropsWithChildren } from 'react';
+import { createContext, useContext, useEffect, useState, PropsWithChildren } from 'react';
 import fetchSunTime from '../../api/suntimeApi';
 import { useQuery } from '@tanstack/react-query';
 import { Loading } from './Loading';
@@ -6,13 +6,15 @@ import { Loading } from './Loading';
 const REFETCH_INTERVAL_HOURS = 8; // how often to refetch sunrise/sunset times
 const CHECK_INTERVAL_MINUTES = 5; // interval to check for dark mode toggle
 
-export const DarkModeContainer = ({ children }: PropsWithChildren) => {
+const DarkModeContext = createContext<{ isDarkMode: boolean }>({ isDarkMode: false });
+
+export const DarkModeProvider = ({ children }: PropsWithChildren) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const { isLoading, isError, data } = useQuery({
     queryKey: ['sunTime'],
     queryFn: fetchSunTime,
-    refetchInterval: 1000 * 60 * 60 * REFETCH_INTERVAL_HOURS
+    refetchInterval: 1000 * 60 * 60 * REFETCH_INTERVAL_HOURS,
   });
 
   useEffect(() => {
@@ -21,10 +23,6 @@ export const DarkModeContainer = ({ children }: PropsWithChildren) => {
         const now = new Date();
         const sunrise = new Date(data.properties.sunrise.time);
         const sunset = new Date(data.properties.sunset.time);
-
-        // Adjust for the timezone offset, if the API returns times in UTC
-        sunrise.setMinutes(sunrise.getMinutes() + sunrise.getTimezoneOffset());
-        sunset.setMinutes(sunset.getMinutes() + sunset.getTimezoneOffset());
 
         // Check if current time is after sunset or before sunrise
         setIsDarkMode(now < sunrise || now > sunset);
@@ -44,8 +42,14 @@ export const DarkModeContainer = ({ children }: PropsWithChildren) => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className={isDarkMode ? 'dark' : ''}>
-      {children}
-    </div>
+    <DarkModeContext.Provider value={{ isDarkMode }}>
+      <div className={isDarkMode ? 'dark' : ''}>
+        {children}
+      </div>
+    </DarkModeContext.Provider>
   );
+};
+
+export const useDarkMode = () => {
+  return useContext(DarkModeContext);
 };
