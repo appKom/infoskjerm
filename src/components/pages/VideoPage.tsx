@@ -8,6 +8,7 @@ const videoIds = [
   'AgpWX18dby4', // 4K ocean
   'AaK0AKQFCNY', // kittens
   'oRDRfikj2z8', // baby animals
+  'kPRA0W1kECg', // sorting algorithms visualized
 ];
 
 const API_KEY = import.meta.env.VITE_VIDEO_API_KEY;
