@@ -4,6 +4,7 @@ import { DarkModeProvider } from './components/utils/DarkModeProvider';
 import { EventsPage } from './components/pages/EventsPage';
 import { VideoPage } from './components/pages/VideoPage';
 import { SlackPage } from './components/pages/SlackPage';
+import { ChristmasPage } from './components/pages/ChristmasPage';
 
 function App() {
   // All pages with their respective probabilities and durations in seconds
@@ -11,15 +12,20 @@ function App() {
     {
       component: <EventsPage />,
       duration: 60,
-      probability: 0.45,
+      probability: 0.40,
     },
     {
       component: <SlackPage />,
       duration: 60,
-      probability: 0.45,
+      probability: 0.40,
     },
     {
       component: <VideoPage pageDuration={60} />,
+      duration: 60,
+      probability: 0.10,
+    },
+    {
+      component: <ChristmasPage />,
       duration: 60,
       probability: 0.10,
     },
