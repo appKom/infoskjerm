@@ -53,7 +53,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
       )}
       {meme.reactions.length > 0 && (
         <div
-          className='flex justify-between flex-grow w-full gap-2 p-2 overflow-hidden'
+          className='flex justify-start flex-grow w-full gap-2 p-2 overflow-hidden'
           style={{ width: `${WIDTH}px` }}
         >
           {meme.reactions.map((reaction, index) => (
