@@ -2,6 +2,7 @@ import { useState } from "react";
 import { formatSlackDate } from "../../lib/date";
 import { MemeType } from "../../lib/types";
 import { BaseCard } from "./BaseCard";
+import { SlackReaction } from "../SlackReaction";
 
 const WIDTH = 600;
 const MAX_RETRIES = 10;
@@ -49,6 +50,21 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
           style={{ width: `${WIDTH}px` }}
           onError={handleImageError}
         />
+      )}
+      {meme.reactions.length > 0 && (
+        <div
+          className='flex justify-start flex-grow w-full gap-2 p-2 overflow-hidden'
+          style={{ width: `${WIDTH}px` }}
+        >
+          {meme.reactions.map((reaction, index) => (
+            <SlackReaction
+              key={index}
+              url={reaction.url}
+              count={reaction.count}
+              name={reaction.name}
+            />
+          ))}
+        </div>
       )}
     </BaseCard>
   );
