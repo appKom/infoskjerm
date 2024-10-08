@@ -9,9 +9,9 @@ import { useEffect, useState } from "react";
 
 const REFETCH_INTERVAL_MINUTES = 60; // how often to refetch memes from slack
 const AMOUNT_OF_MEMES = 5; // how many memes to fetch
-const SPEED = .2; // how fast the memes should move
+const SPEED = .3; // how fast the memes should move
 
-const TRAINLENGTH = 2; // how many duplicated meme-lists to show for the infinite scroll effect
+const TRAINLENGTH = 3; // how many duplicated meme-lists to show for the infinite scroll effect
 
 export const LatestMemes = () => {
   const { isLoading, isError, data } = useQuery({
