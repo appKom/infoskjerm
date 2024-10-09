@@ -45,7 +45,7 @@ export const ChristmasPage = () => {
 
         <div className="mb-12 text-center">
           <p className="font-extrabold text-red-600 text-8xl dark:text-500">{daysUntilChristmas}</p>
-          <p className="mt-2 text-xl text-gray-600 dark:text-gray-300">dager igjen!</p>
+          <p className="mt-2 text-xl text-gray-600 dark:text-gray-300">{daysUntilChristmas === 1 ? "dag" : "dager"} igjen!</p>
         </div>
 
         <div className="py-8 mb-8 border-t border-b border-gray-200">

@@ -9,7 +9,7 @@ import { ChristmasPage } from './components/pages/ChristmasPage';
 function App() {
   // All pages with their respective probabilities and durations in seconds
   const pages = [
- /*    {
+    {
       component: <EventsPage />,
       duration: 60,
       probability: 0.40,
@@ -22,12 +22,12 @@ function App() {
     {
       component: <VideoPage pageDuration={60} />,
       duration: 60,
-      probability: 0.10,
-    }, */
+      probability: 0.05,
+    },
     {
       component: <ChristmasPage />,
       duration: 60,
-      probability: 0.10,
+      probability: 0.15,
     },
   ];
 
