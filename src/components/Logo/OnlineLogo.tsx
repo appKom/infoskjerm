@@ -39,8 +39,16 @@ const OnlineLogo = ({ fillColor = 'white', size = 'small' }: { fillColor?: strin
   );
 
   if (size === 'small') return (
-    <svg viewBox="0 0 167 167" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"
-      strokeLinejoin="round" strokeMiterlimit="2" width="40%">
+    <svg
+      viewBox="0 0 167 167"
+      xmlns="http://www.w3.org/2000/svg"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      strokeLinejoin="round"
+      strokeMiterlimit="2"
+      width="40%"
+      className="opacity-60"
+    >
       <path
         d="M124.905 11.06L87.031 67.129l37.212.475-72.599 92.573 29.028-74.663-36.85-.094L85.854 0s11.014.306 20.49 2.973c9.448 2.66 18.56 8.087 18.56 8.087z"
         fill={fillColor || 'rgb(250,183,89)'} fillRule="nonzero"></path>
