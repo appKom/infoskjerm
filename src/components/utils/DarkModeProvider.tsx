@@ -6,7 +6,7 @@ import { Loading } from './Loading';
 const REFETCH_INTERVAL_HOURS = 8; // how often to refetch sunrise/sunset times
 const CHECK_INTERVAL_MINUTES = 5; // interval to check for dark mode toggle
 
-const DarkModeContext = createContext<{ isDarkMode: boolean }>({ isDarkMode: false });
+const DarkModeContext = createContext<{ isDarkMode: boolean; toggleDarkMode: () => void }>({ isDarkMode: false, toggleDarkMode: () => {} });
 
 export const DarkModeProvider = ({ children }: PropsWithChildren) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -39,10 +39,14 @@ export const DarkModeProvider = ({ children }: PropsWithChildren) => {
     return () => clearInterval(intervalId);
   }, [data, isError]);
 
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+
   if (isLoading) return <Loading />;
 
   return (
-    <DarkModeContext.Provider value={{ isDarkMode }}>
+    <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
       <div className={isDarkMode ? 'dark' : ''}>
         {children}
       </div>
