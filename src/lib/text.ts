@@ -42,8 +42,11 @@ export const useFormattedSlackText = (text: string) => {
   // Convert shortnames to Unicode emojis
   const unicodeText = joypixels.shortnameToUnicode(htmlEscapedText);
 
+  // Remove unsupported emojis
+  const cleanText = removeUnsupportedEmojis(unicodeText);
+
   // Convert *text* to bold and _text_ to italic using regex
-  const formattedTextWithStyles = unicodeText
+  const formattedTextWithStyles = cleanText
     .replace(/\*(.*?)\*/g, '<strong>$1</strong>') // Bold for *text*
     .replace(/_(.*?)_/g, '<em>$1</em>'); // Italic for _text_
 
@@ -67,3 +70,10 @@ export const useFormattedSlackText = (text: string) => {
 
   return { headerLine, formattedText };
 };
+
+export const removeUnsupportedEmojis = (input: string): string => {
+  // Regular expression to find text-based emoji like :man-surfing:
+  const emojiRegex = /:[a-zA-Z0-9_\-+]+:/g;
+
+  return input.replace(emojiRegex, '');
+}
