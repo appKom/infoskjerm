@@ -36,6 +36,12 @@ npm install
 yarn install
 ```
 
+Fill in the environment template and fill in the required variables:
+
+```bash
+cp .env.template .env
+```
+
 ### Running the Development Server
 
 Start the development server:

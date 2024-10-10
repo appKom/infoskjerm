@@ -5,7 +5,7 @@ export const fetchBlasts = async (amount: number): Promise<BlastType[]> => {
 
   const response = await fetch(apiUrl, {
     headers: {
-        'x-api-key': import.meta.env.VITE_MEME_API_KEY
+        'x-api-key': import.meta.env.VITE_BACKEND_API_KEY
     }
   });
 
