@@ -75,7 +75,7 @@ export function EventCard({ event }: { event: IEvent }) {
           {ingress && <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{removeOWFormatting(ingress)}</p>}
         </div>
         <div ref={contentRef} className='flex w-full gap-1 scrolling-text'>
-          {eventType && eventType && <Badge text={eventType} leftIcon='star' color={eventType} />}
+          {eventType && eventType && <Badge text={eventType} leftIcon='star' color={eventColor} />}
           {start_date && <Badge text={`${formatWeekday(start_date)} ${formatDateName(start_date)}, ${formatClock(start_date)}`} leftIcon='calendar' color='gray' />}
           {isRegistrationEvent && attendanceData && (
             <Badge text={`${attendanceData.number_of_seats_taken}/${attendanceData.max_capacity}`} leftIcon='people' color='gray' />
