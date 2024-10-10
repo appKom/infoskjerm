@@ -98,7 +98,7 @@ export interface IEventAttendanceDetails {
   has_extras: boolean;
   has_reservation: boolean;
   extras: IExtraOption[];
-  payment: any | null; // Adjust type based on expected structure if needed
+  payment: number | null;
   feedback: number;
   is_eligible_for_signup: boolean | null;
   is_attendee: boolean | null;
