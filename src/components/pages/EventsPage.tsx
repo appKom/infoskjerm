@@ -9,7 +9,7 @@ const REFETCH_INTERVAL_MINUTES = 5; // how often to refetch events from Online A
 const NUMBER_OF_EVENTS = 8; // how many events to display
 
 export const EventsPage = () => {
-  const { isLoading, isError, data } = useQuery<IEvent[]>({
+  const { isLoading, isError, data } = useQuery({
     queryKey: ['events'],
     queryFn: () => fetchEventsByStartDate(),
     refetchInterval: 1000 * 60 * REFETCH_INTERVAL_MINUTES
