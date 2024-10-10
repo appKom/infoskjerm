@@ -37,8 +37,6 @@ export function EventCard({ event }: { event: IEvent }) {
   const eventType = EVENT_TYPES.get(event_type)?.display;
   const eventColor = EVENT_TYPES.get(event_type)?.colorName;
 
-  console.log(eventColor)
-
   const { seatsLeft, percentageFilled } = calculateSeatsInfo(attendanceData);
   const indicatorColor = selectIndicatorColor(percentageFilled);
   const registrationEnd = new Date(attendanceData?.registration_end);
