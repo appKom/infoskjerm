@@ -4,6 +4,7 @@ import { getRelevantMessages } from '../../lib/messages';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { AnimatedLogo } from './AnimatedLogo';
 import { DebugQR } from './DebugQR';
+import clsx from 'clsx';
 
 const REFRESH_TIME = '03:00'; // the time of day to refresh the page (use latest code from git)
 
@@ -17,14 +18,15 @@ type HeaderProps = {
 };
 
 export const Header = (props: HeaderProps) => {
-  const [time, setTime] = useState<string>(moment().format('HH:mm:ss'));
+  const [time, setTime] = useState<string>(moment().format('HH:mm'));
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [messageContent, setMessageContent] = useState<string>();
+  const [isColonVisible, setIsColonVisible] = useState<boolean>(true);
 
   useEffect(() => {
     const timeInterval = setInterval(() => {
       // update the clock
-      setTime(moment().format('HH:mm:ss'));
+      setTime(moment().format('HH:mm'));
 
       // logic for refreshing the page once each day
       const currentTime = moment().format('YYYY-MM-DD HH:mm');
@@ -34,6 +36,11 @@ export const Header = (props: HeaderProps) => {
         window.location.reload();
       }
     }, 1000);
+
+    // Blinking colon interval
+    const blinkInterval = setInterval(() => {
+      setIsColonVisible(prev => !prev);
+    }, 500);
 
     // logic for displaying messages
     const messageInterval = setInterval(() => {
@@ -52,9 +59,12 @@ export const Header = (props: HeaderProps) => {
 
     return () => {
       clearInterval(timeInterval);
+      clearInterval(blinkInterval);
       clearInterval(messageInterval);
     };
   }, []);
+
+  const [hours, minutes] = time.split(':');
 
   return (
     <div className='relative border-b-[1.5px] min-h-32 h-32 max-h-32 border-light-grey dark:border-gray-700 dark:text-white z-20 bg-white dark:bg-[#111827]'>
@@ -65,7 +75,9 @@ export const Header = (props: HeaderProps) => {
       <div className={`h-full flex items-center justify-between transition-transform duration-1000 ${showMessage ? 'translate-x-full' : ''}`}>
         <div className="flex items-center h-full gap-8 px-12 py-6">
           <AnimatedLogo />
-          <span className="pl-8 text-6xl border-l-[1.5px] dark:border-gray-700">{time}</span>
+          <span className="pl-8 text-6xl border-l-[1.5px] dark:border-gray-700">
+            {hours}<span className={clsx(isColonVisible ? 'text-[#111827]' : 'text-white')}>:</span>{minutes}
+          </span>
         </div>
 
         <div className='flex items-center h-full gap-10'>
