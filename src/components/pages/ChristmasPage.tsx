@@ -52,7 +52,7 @@ export const ChristmasPage = () => {
           <p className="mt-2 text-xl text-gray-600 dark:text-gray-300">{daysUntilChristmas === 1 ? "dag" : "dager"} igjen!</p>
         </div>
 
-        <div className="py-8 mb-8 border-t border-b border-gray-200">
+        <div className="py-8 mb-8 border-y border-gray-200 dark:border-gray-700">
           <h2 className="mb-4 text-2xl font-semibold text-center text-gray-700 dark:text-gray-200">Nominer Årets Nisse</h2>
           <p className="mb-4 text-center text-gray-600 dark:text-gray-400">Skann QR-koden og send inn din nominasjon før julebordet!</p>
           <div className="flex justify-center">
