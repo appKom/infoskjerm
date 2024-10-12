@@ -3,12 +3,7 @@ import Snowfall from "react-snowfall";
 import { useDarkMode } from "../utils/DarkModeProvider";
 import clsx from 'clsx';
 
-const slackEmojis = {
-  julebrus: "https://emoji.slack-edge.com/T03S8TX18/julebrus/0d5529e3ff9e4957.png",
-  folksomergladijul: "https://emoji.slack-edge.com/T03S8TX18/folksomergladijul/d7da5ca5a6ac293b.png",
-  christmaslesbianbarista: "https://emoji.slack-edge.com/T03S8TX18/christmaslesbianbarista/b396503c0688fb07.png",
-  christmas_parrot: "https://emoji.slack-edge.com/T03S8TX18/christmas_parrot/49c1a209126c1f35.gif",
-};
+const folksomergladijulEmoji = "https://emoji.slack-edge.com/T03S8TX18/folksomergladijul/d7da5ca5a6ac293b.png";
 
 const calculateDaysUntilChristmas = () => {
   const today = new Date();
@@ -69,7 +64,7 @@ export const ChristmasPage = () => {
         {['top-4 left-4', 'top-4 right-4', 'bottom-4 right-4', 'bottom-4 left-4'].map((pos) => (
           <img 
             key={pos} 
-            src={slackEmojis.folksomergladijul} 
+            src={folksomergladijulEmoji} 
             className={clsx("absolute max-h-14", pos)}
           />
         ))}
