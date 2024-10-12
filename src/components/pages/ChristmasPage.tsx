@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Snowfall from "react-snowfall";
 import { useDarkMode } from "../utils/DarkModeProvider";
 import clsx from 'clsx';
+import { SnowPile } from "../SnowPile";
 
 const folksomergladijulEmoji = "https://emoji.slack-edge.com/T03S8TX18/folksomergladijul/d7da5ca5a6ac293b.png";
 
@@ -45,18 +46,7 @@ export const ChristmasPage = () => {
       </div>
 
       <div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 50 ${snowHeight}`} className="relative w-full z-10 -bottom-5">
-          <defs>
-            <pattern id="snow-pattern" patternUnits="userSpaceOnUse" width={500} height={30}>
-              <image href="https://img.freepik.com/free-photo/translucent-texture_1160-798.jpg?t=st=1728740536~exp=1728744136~hmac=2beb5b5ac0ffd69c18c238584f9a1d0bdac2f09d556f4acab99ff1f0b54f5482&w=1380"
-                x={0} y={0} width={50} />
-            </pattern>
-          </defs>
-          <path
-            fill="url(#snow-pattern)"
-            d={`m 50,${snowHeight} h -50 c 0,-${snowHeight} 0,-${snowHeight} 25,-${snowHeight} 25,0 25,0 25,${snowHeight} z`}
-          />
-        </svg>
+        <SnowPile height={snowHeight} className="relative w-full z-10 -bottom-5" />
         <div className="relative w-full max-w-2xl z-20 p-8 bg-white border border-gray-200 shadow-xl dark:bg-gray-800 dark:border-gray-700 rounded-3xl">
           <h1 className="mb-8 text-4xl font-bold text-center text-gray-800 dark:text-gray-100">Nedtelling til jul</h1>
 
@@ -86,9 +76,11 @@ export const ChristmasPage = () => {
               />
             ))}
           </div>
+        </div>
+      </div>
 
+      <SnowPile height={snowHeight / 3} className="w-full absolute bottom-0 opacity-95 z-10" />
 
-        </div></div>
       <svg
         viewBox="0 0 1000 400"
         className="w-full absolute bottom-0 opacity-95"
