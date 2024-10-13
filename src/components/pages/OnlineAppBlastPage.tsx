@@ -20,10 +20,19 @@ export const OnlineAppBlastPage = () => {
           Dette er det virkelig på tide å endre på!
         </p>
         <div className="relative pt-16 justify-center flex">
-          <img className='w-24 absolute' src="/arrows/arrow1.svg" alt="" />
-          <img className='w-24 absolute' src="/arrows/arrow2.svg" alt="" />
-          <img className='w-24 absolute' src="/arrows/arrow3.svg" alt="" />
-          <img className='w-24 absolute' src="/arrows/arrow4.svg" alt="" />
+          {/* Top-left arrow */}
+          <img className='w-24 absolute top-[40px] left-[180px] rotate-[210deg]' src="/arrows/arrow1.svg" alt="" />
+          
+          {/* Top-right arrow */}
+          <img className='w-24 absolute top-0 right-[200px] -rotate-[40deg]' src="/arrows/arrow2.svg" alt="" />
+          
+          {/* Bottom-left arrow */}
+          <img className='w-24 absolute -bottom-[120px] left-[250px] rotate-[130deg]' src="/arrows/arrow3.svg" alt="" />
+          
+          {/* Bottom-right arrow */}
+          <img className='w-24 absolute bottom-[100px] right-[125px] rotate-[5deg]' src="/arrows/arrow4.svg" alt="" />
+          
+          {/* QR code */}
           <img
             className="w-[250px] h-[250px]"
             src={isDarkMode ? "/qr-codes/online-app-white.svg" : "/qr-codes/online-app-blue.svg"}
