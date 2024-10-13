@@ -36,17 +36,11 @@ export const formatSlackDate = (dateInput: string): string => {
   const yesterday = new Date(now);
   yesterday.setDate(now.getDate() - 1);
 
-  const time = date.toLocaleTimeString('nb-NO', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hourCycle: 'h23',
-  });
-
   const isSameDay = (firstDate: Date, secondDate: Date) =>
     firstDate.toDateString() === secondDate.toDateString();
 
-  if (isSameDay(date, now)) return `I dag, ${time}`;
-  if (isSameDay(date, yesterday))return `I går, ${time}`;
+  if (isSameDay(date, now)) return 'I dag';
+  if (isSameDay(date, yesterday))return 'I går';
 
   const diffDays = Math.floor(
     Math.abs(now.getTime() - date.getTime()) / (1000 * 3600 * 24)

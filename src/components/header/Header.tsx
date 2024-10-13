@@ -5,6 +5,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { AnimatedLogo } from './AnimatedLogo';
 import { DebugQR } from './DebugQR';
 import clsx from 'clsx';
+import { useDarkMode } from '../utils/DarkModeProvider';
 
 const REFRESH_TIME = '03:00'; // the time of day to refresh the page (use latest code from git)
 
@@ -22,6 +23,8 @@ export const Header = (props: HeaderProps) => {
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [messageContent, setMessageContent] = useState<string>();
   const [isColonVisible, setIsColonVisible] = useState<boolean>(true);
+
+  const { toggleDarkMode } = useDarkMode();
 
   useEffect(() => {
     const timeInterval = setInterval(() => {
@@ -73,7 +76,7 @@ export const Header = (props: HeaderProps) => {
       </div>
 
       <div className={`h-full flex items-center justify-between transition-transform duration-1000 ${showMessage ? 'translate-x-full' : ''}`}>
-        <div className="flex items-center h-full gap-8 px-12 py-6">
+        <div className="flex items-center h-full gap-8 px-12 py-6 cursor-pointer" onClick={toggleDarkMode}>
           <AnimatedLogo />
           <span className="pl-8 text-6xl border-l-[1.5px] dark:border-gray-700">
             {hours}<span className={clsx(isColonVisible ? 'text-[#111827]' : 'text-white')}>:</span>{minutes}
