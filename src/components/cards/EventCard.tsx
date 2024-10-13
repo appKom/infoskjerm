@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import clsx from 'clsx';
 import OnlineLogo from '../Logo/OnlineLogo';
 import { Badge } from '../Badge';
 import { formatWeekday, formatClock, formatDateName } from '../../lib/date';
@@ -48,9 +49,10 @@ export function EventCard({ event }: { event: IEvent }) {
     <BaseCard showOverflow>
       {isRegistrationEvent && (
         <div
-          className={`absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white 
-            ${isRegistrationEnded ? 'bg-gray-400' : indicatorColor} 
-            border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900`}
+          className={clsx(
+            'absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900',
+            isRegistrationEnded ? 'bg-gray-400' : indicatorColor,
+          )}
         >
           {determineStatusText(
             isRegistrationEnded,
@@ -61,7 +63,10 @@ export function EventCard({ event }: { event: IEvent }) {
         </div>
       )}
 
-      <div className={`${image ? '' : 'flex justify-center'} w-full h-60 border-b rounded-t-lg border-gray-200 dark:border-gray-700`}>
+      <div className={clsx(
+        'w-full h-60 border-b rounded-t-lg border-gray-200 dark:border-gray-700', 
+        image && 'flex justify-center',
+      )}>
         {image ? (
           <img className="object-cover w-full h-full bg-white rounded-t-lg" src={image.lg} alt={image.description} />
         ) : (
@@ -75,8 +80,12 @@ export function EventCard({ event }: { event: IEvent }) {
           {ingress && <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{removeOWFormatting(ingress)}</p>}
         </div>
         <div ref={contentRef} className='flex w-full gap-1 scrolling-text'>
-          {eventType && eventType && <Badge text={eventType} leftIcon='star' color={eventColor} />}
-          {start_date && <Badge text={`${formatWeekday(start_date)} ${formatDateName(start_date)}, ${formatClock(start_date)}`} leftIcon='calendar' color='gray' />}
+          {eventType && (
+            <Badge text={eventType} leftIcon='star' color={eventColor} />
+          )}
+          {start_date && (
+            <Badge text={`${formatWeekday(start_date)} ${formatDateName(start_date)}, ${formatClock(start_date)}`} leftIcon='calendar' color='gray' />
+          )}
           {isRegistrationEvent && attendanceData && (
             <Badge text={`${attendanceData.number_of_seats_taken}/${attendanceData.max_capacity}`} leftIcon='people' color='gray' />
           )}

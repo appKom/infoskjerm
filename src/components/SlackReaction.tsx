@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import emoji from 'emoji-dictionary';
 
 export const SlackReaction = ({ url, count, name }: { url: string, count: number, name: string }) => {
@@ -13,7 +14,10 @@ export const SlackReaction = ({ url, count, name }: { url: string, count: number
 }
 const EmojiComponent = ({ name }: { name: string }) => {
   const emojiChar = emoji.getUnicode(name);
-  const className = emojiChar ? '' : 'text-sm text-gray-400';
 
-  return <span className={className}>{emojiChar || `:${name}:`}</span>;
+  return (
+    <span className={clsx(emojiChar && 'text-sm text-gray-400')}>
+      {emojiChar || `:${name}:`}
+    </span>
+  );
 };
