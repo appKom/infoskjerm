@@ -7,7 +7,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/app" element={<AppRedirect />} />
+        <Route path="/online-appen" element={<AppRedirect />} />
       </Routes>
     </Router>
   );
