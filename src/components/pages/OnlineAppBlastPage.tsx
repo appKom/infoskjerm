@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export const OnlineAppBlastPage = () => {
   return (
     <div className="min-h-screen flex justify-around items-center relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br dark:from-[#111827] dark:to-[#0B5374] from-[#fff] to-[#0d547420]animate-gradient-x" />
+      <div className="absolute inset-0 bg-gradient-to-br dark:from-[#111827] dark:to-[#0B5374] from-white via-white via-60% to-online-yellow animate-gradient-x" />
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -14,7 +14,7 @@ export const OnlineAppBlastPage = () => {
           Visste du at det finnes folk som ikke har <span className="text-online-yellow">Online-Appen</span>?
         </h1>
         <p className="text-xl mb-8 dark:text-white">
-          Hvis du er blant dem, så er det virkelig på tide å endre på det:
+          Hvis du er blant dem, så er det virkelig på tide å endre på det.
         </p>
         <div className="flex flex-row gap-6">
           <motion.div 
@@ -46,8 +46,9 @@ export const OnlineAppBlastPage = () => {
               ease: "easeInOut"
             }
           }}
-          className="w-[800px] object-contain drop-shadow-2xl"
-          src="https://pngimg.com/d/iphone_12_PNG23.png"
+          className="h-[700px] object-contain drop-shadow-2xl"
+          // src="https://pngimg.com/d/iphone_12_PNG23.png"
+          src='online-app/ep.png'
           alt="Online App on iPhone"
         />
       </motion.div>
