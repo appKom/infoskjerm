@@ -31,6 +31,7 @@ export type BlastType = {
   author_image: string;
   date: string;
   text: string;
+  channel_name: string;
 }
 
 export interface IEventImage {
