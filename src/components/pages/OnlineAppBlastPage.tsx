@@ -50,7 +50,7 @@ export const OnlineAppBlastPage = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="z-10"
       >
-        <div className='flex items-end'>
+        <div className='flex gap-4 items-end'>
           <FloatingImage
             src="online-app/iphone-1.png"
             height="700px"
