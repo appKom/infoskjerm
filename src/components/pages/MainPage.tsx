@@ -10,26 +10,26 @@ import { VideoPage } from './VideoPage';
 export const MainPage = () => {
   // All pages with their respective probabilities and durations in seconds
   const pages = [
-    // {
-    //   component: <EventsPage />,
-    //   duration: 60,
-    //   probability: 0.40,
-    // },
-    // {
-    //   component: <SlackPage />,
-    //   duration: 60,
-    //   probability: 0.40,
-    // },
-    // {
-    //   component: <VideoPage pageDuration={60} />,
-    //   duration: 60,
-    //   probability: 0.05,
-    // },
-    // {
-    //   component: <ChristmasPage />,
-    //   duration: 60,
-    //   probability: 0.15,
-    // },
+    {
+      component: <EventsPage />,
+      duration: 60,
+      probability: 0.40,
+    },
+    {
+      component: <SlackPage />,
+      duration: 60,
+      probability: 0.30,
+    },
+    {
+      component: <VideoPage pageDuration={60} />,
+      duration: 60,
+      probability: 0.05,
+    },
+    {
+      component: <ChristmasPage />,
+      duration: 60,
+      probability: 0.10,
+    },
     {
       component: <OnlineAppBlastPage />,
       duration: 30,
