@@ -53,17 +53,17 @@ export const OnlineAppBlastPage = () => {
         <div className='flex items-end'>
           <FloatingImage
             src="online-app/iphone-1.png"
-            height="900px"
+            height="700px"
             delay={0}
           />
           <FloatingImage
             src="online-app/iphone-2.png"
-            height="800px"
+            height="600px"
             delay={1}
           />
           <FloatingImage
             src="online-app/iphone-3.png"
-            height="700px"
+            height="500px"
             delay={2}
           />
         </div>
@@ -87,7 +87,8 @@ const FloatingImage = ({ src, height, delay }: {
         delay: delay,
       },
     }}
-    className={`h-[${height}] object-contain drop-shadow-[0_150px_150px_rgba(0,0,0,0.25)]`}
+    style={{ height }}
+    className='object-contain drop-shadow-[0_150px_150px_rgba(0,0,0,0.25)]'
     src={src}
   />
 );
