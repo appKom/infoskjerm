@@ -23,22 +23,13 @@ export const OnlineAppBlastPage = () => {
           <img className='h-16' src="online-app/download-app-store.svg" />
           <img className='h-16' src="online-app/download-google-play.svg" />
         </div>
-        <div className="relative mt-32 justify-center hidden">
-          {/* Top-left arrow */}
-          <img className='w-20 absolute -top-[40px] left-[200px] rotate-[210deg]' src="/arrows/arrow1.svg" />
-          
-          {/* Top-right arrow */}
-          <img className='w-24 absolute -top-[70px] right-[200px] -rotate-[40deg]' src="/arrows/arrow2.svg" />
-          
-          {/* Bottom-left arrow */}
-          <img className='w-20 absolute -bottom-[120px] left-[270px] rotate-[130deg]' src="/arrows/arrow3.svg" />
-          
-          {/* Bottom-right arrow */}
-          <img className='w-24 absolute bottom-[100px] right-[125px] rotate-[5deg]' src="/arrows/arrow4.svg" />
+        <div className="relative">
+          {/* Arrow */}
+          <img className='w-20 absolute top-[50px] left-[175px] rotate-[20deg]' src="/arrows/arrow1.svg" />
           
           {/* QR code */}
           <img
-            className="w-[250px] h-[250px]"
+            className="w-[150px] h-[150px] mt-8"
             src={isDarkMode ? "/qr-codes/online-app-white.svg" : "/qr-codes/online-app-blue.svg"}
             alt="Online-appen QR kode"
           />
