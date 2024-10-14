@@ -19,18 +19,22 @@ export const OnlineAppBlastPage = () => {
         <p className="text-xl mb-8 dark:text-white">
           Dette er det virkelig på tide å endre på!
         </p>
-        <div className="relative pt-32 justify-center flex">
+        <div className='flex gap-6'>
+          <img className='h-16' src="online-app/download-app-store.svg" />
+          <img className='h-16' src="online-app/download-google-play.svg" />
+        </div>
+        <div className="relative mt-32 justify-center hidden">
           {/* Top-left arrow */}
-          <img className='w-20 absolute top-[50px] left-[180px] rotate-[210deg]' src="/arrows/arrow1.svg" alt="" />
+          <img className='w-20 absolute -top-[40px] left-[200px] rotate-[210deg]' src="/arrows/arrow1.svg" />
           
           {/* Top-right arrow */}
-          <img className='w-24 absolute top-0 right-[200px] -rotate-[40deg]' src="/arrows/arrow2.svg" alt="" />
+          <img className='w-24 absolute -top-[70px] right-[200px] -rotate-[40deg]' src="/arrows/arrow2.svg" />
           
           {/* Bottom-left arrow */}
-          <img className='w-20 absolute -bottom-[120px] left-[270px] rotate-[130deg]' src="/arrows/arrow3.svg" alt="" />
+          <img className='w-20 absolute -bottom-[120px] left-[270px] rotate-[130deg]' src="/arrows/arrow3.svg" />
           
           {/* Bottom-right arrow */}
-          <img className='w-24 absolute bottom-[100px] right-[125px] rotate-[5deg]' src="/arrows/arrow4.svg" alt="" />
+          <img className='w-24 absolute bottom-[100px] right-[125px] rotate-[5deg]' src="/arrows/arrow4.svg" />
           
           {/* QR code */}
           <img
