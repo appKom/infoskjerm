@@ -31,7 +31,7 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
           />
           {isOverflowing && (
             <div className="pt-0 pb-2 text-gray-500 dark:text-white">
-              Les resten på <span className="text-blue-500">#korktavla</span>
+              Les resten på <span className="text-blue-500">#{blast.channel_name}</span>
             </div>
           )}
         </div>
