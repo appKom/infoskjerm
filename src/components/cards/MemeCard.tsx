@@ -24,7 +24,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
     <BaseCard>
       <div className="flex items-center w-full gap-4 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
         <img
-          className="w-12 h-12 rounded-full"
+          className="w-12 h-12 rounded-lg"
           src={meme.author_image}
           alt={meme.author}
         />
