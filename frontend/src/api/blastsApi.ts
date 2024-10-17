@@ -1,7 +1,7 @@
 import { BlastType } from "../lib/types";
 
 export const fetchBlasts = async (amount: number): Promise<BlastType[]> => {
-  const apiUrl = `https://infoskjerm-backend-appkom.vercel.app/latest-blasts?count=${amount}`;
+  const apiUrl = import.meta.env.VITE_BACKEND_URL + `/latest-blasts?count=${amount}`;
 
   const response = await fetch(apiUrl, {
     headers: {
