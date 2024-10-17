@@ -1,4 +1,5 @@
-import { CircleX } from 'lucide-react'
+import { CircleX } from 'lucide-react';
+import clsx from 'clsx';
 
 export const BaseCard = ({
   children,
@@ -14,11 +15,13 @@ export const BaseCard = ({
   isError?: boolean,
 }) => {
   const style = width ? { width: `${width}px` } : undefined;
-  const overflowClass = showOverflow ? '' : 'overflow-hidden';
 
   return (
     <div
-      className={`relative ${overflowClass} bg-white flex flex-col border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700`}
+      className={clsx(
+        'relative bg-white flex flex-col border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700',
+        !showOverflow && 'overflow-hidden'
+      )}
       style={style}
     >
       {isLoading ? (

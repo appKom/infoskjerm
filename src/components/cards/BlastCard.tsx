@@ -47,8 +47,7 @@ const useIsOverflowing = (text: string) => {
   useEffect(() => {
     const contentEl = contentRef.current;
 
-    // Check if the content is overflowing
-    if (contentEl)setIsOverflowing(contentEl.scrollHeight > contentEl.clientHeight);
+    if (contentEl) setIsOverflowing (contentEl.scrollHeight > contentEl.clientHeight);
   }, [text]);
 
   return { contentRef, isOverflowing };

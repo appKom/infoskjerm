@@ -5,6 +5,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { AnimatedLogo } from './AnimatedLogo';
 import { DebugQR } from './DebugQR';
 import { useDarkMode } from '../utils/DarkModeProvider';
+import clsx from 'clsx';
 
 const REFRESH_TIME = '03:00'; // the time of day to refresh the page (use latest code from git)
 
@@ -61,7 +62,10 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <div className='relative border-b-[1.5px] min-h-32 h-32 max-h-32 border-light-grey dark:border-gray-700 dark:text-white z-20 bg-white dark:bg-[#111827]'>
-      <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic duration-1000 ${showMessage ? 'animate-[slideIn_1s_forwards]' : 'animate-[slideOut_1s_forwards]'}`}>
+      <div className={clsx(
+        'absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic duration-1000',
+        showMessage ? 'animate-[slideIn_1s_forwards]' : 'animate-[slideOut_1s_forwards]'
+      )}>
         {messageContent}
       </div>
 
@@ -93,4 +97,4 @@ export const Header = (props: HeaderProps) => {
       </div>
     </div>
   );
-}
+};

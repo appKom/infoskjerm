@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import clsx from "clsx";
 
 type ComponentItem = {
   id: number;
@@ -71,13 +72,19 @@ export const InfiniteAnimate = (props: InfiniteAnimateProps) => {
   return (
     <div
       ref={divRef}
-      className={`relative flex ${axis === 'y' ? 'flex-col' : ''} gap-8 overflow-hidden w-max`}
+      className={clsx(
+        "relative flex gap-8 overflow-hidden w-max",
+        axis === 'y' && 'flex-col'
+      )}
       style={axis === 'x' ? { left: `${componentOffset}px` } : { top: `${componentOffset}px` }}
     >
       {components.map((component, index) => (
         <div
           key={index}
-          className={`flex ${axis === 'y' ? 'flex-col' : ''} gap-8`}
+          className={clsx(
+            "flex gap-8",
+            axis === 'y' && 'flex-col'
+          )}
         >
           {component.element.map((item, itemIndex) => (
             <div key={itemIndex}>
