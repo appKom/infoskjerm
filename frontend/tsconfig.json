@@ -18,5 +18,5 @@
     "types": ["vite/client", "vite-plugin-svgr/client"],
     "noImplicitAny": false
   },
-  "include": ["frontend/src"],
+  "include": ["src"],
 }
