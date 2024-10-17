@@ -15,6 +15,9 @@ export const fetchTextMessagesFromChannels = async (channelIds: string[], count:
   
   let allMessages: any[] = [];
   
+  // Store channel names to avoid multiple API calls for the same channel
+  const channelNameCache: { [channelId: string]: string } = {};
+
   for (const channelId of channelIds) {
     // Fetch channel information to get the channel name
     const channelInfo = await web.conversations.info({ channel: channelId });
@@ -34,9 +37,12 @@ export const fetchTextMessagesFromChannels = async (channelIds: string[], count:
       if (message.text && !message.subtype && !message.bot_id) {
         const userInfo = await web.users.info({ user: message.user || "" });
         
+        // Replace channel tags in the message text
+        const processedText = await replaceChannelTags(message.text, channelNameCache);
+
         allMessages.push({
           id: message.ts,
-          text: message.text,
+          text: processedText,
           author: userInfo.user?.real_name,
           author_image: userInfo.user?.profile?.image_72,
           date: new Date(parseInt(message.ts || "") * 1000).toISOString(),
@@ -67,4 +73,30 @@ export const fetchTextMessagesFromChannels = async (channelIds: string[], count:
     console.log(`Text message saved: ${filePath}`);
     savedCount++;
   }
+};
+
+const replaceChannelTags = async (text: string, channelNameCache: { [channelId: string]: string }) => {
+  const channelTagRegex = /<#(C\w+)\|?>/g;
+
+  // Find all matches of channel tags
+  const channelTagMatches = [...text.matchAll(channelTagRegex)];
+
+  // Iterate over all found channel tags and fetch the channel names
+  for (const match of channelTagMatches) {
+    const channelId = match[1]; // Extract the channel ID
+
+    // Check if the channel name is already cached
+    if (!channelNameCache[channelId]) {
+      // Fetch the channel name from Slack API
+      const channelInfo = await web.conversations.info({ channel: channelId });
+      const channelName = channelInfo.channel?.name || 'unknown-channel';
+      // Cache the channel name
+      channelNameCache[channelId] = channelName;
+    }
+
+    // Replace the tag in the text with the actual channel name
+    text = text.replace(match[0], `#${channelNameCache[channelId]}`);
+  }
+
+  return text;
 };
