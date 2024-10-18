@@ -22,7 +22,7 @@ export function Badge({ text, leftIcon, color = 'gray', rightIcon }: { text: str
   const rightSvg = rightIcon ? iconPaths.get(rightIcon) : '';
 
   return (
-    <div className={`${colorClass} text-sm font-medium inline-flex items-center px-2 py-1 rounded me-2 gap-1`}>
+    <div className={`${colorClass} text-sm font-medium inline-flex items-center px-2 py-1 rounded gap-1`}>
       {leftSvg && (
         <svg className="w-5 h-5 min-w-5 min-h-5" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
           <path fillRule="evenodd" d={leftSvg} clipRule="evenodd" />
