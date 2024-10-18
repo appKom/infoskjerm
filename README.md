@@ -8,24 +8,12 @@ You can view the live Infoskjerm [here](https://infoskjerm-online.vercel.app/).
 
 We welcome contributions from everyone. Please note that all contributions require approval from a member of Appkom, before going live.
 
-## Getting Started
+## Setup frontend
 
-### Prerequisites
-
-Before you start, make sure you have Node.js and npm/yarn installed on your machine.
-
-### Setup
-
-Clone the repository to your local machine:
+From root, navigate into frontend-folder:
 
 ```bash
-git clone https://github.com/appKom/infoskjerm.git
-```
-
-Navigate into the project directory:
-
-```bash
-cd infoskjerm
+cd frontend
 ```
 
 Install the dependencies:
@@ -44,9 +32,42 @@ cp .env.template .env
 
 - **VITE_BACKEND_API_KEY**: The API key which grants you access to the backend REST API. Contact a member of Appkom at [appkom@online.ntnu.no](mailto:appkom@online.ntnu.no) to obtain a key.
 - **VITE_VIDEO_API_KEY**: Key to the YouTube API V3. Retrieve your key here: [Google Cloud Console](https://console.cloud.google.com/apis/library/youtube.googleapis.com).
+- **VITE_BACKEND_URL**: Url to the backend. `https://infoskjerm-backend-appkom.vercel.app` is the running backend in prod.
 
 
-### Running the Development Server
+Start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+## Setup backend
+
+From root, navigate into backend-folder:
+
+```bash
+cd backend
+```
+
+Install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+Fill in the environment template and fill in the required variables:
+
+```bash
+cp .env.template .env
+```
+
+- **SLACK_TOKEN**: The token retrieved from slack
+- **API_KEY**: String that will be the key to the REST API
+
 
 Start the development server:
 
