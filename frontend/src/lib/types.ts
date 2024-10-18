@@ -21,7 +21,8 @@ export type MemeType = {
     name: string;
     count: number;
     url: string;
-  }[]
+  }[];
+  channel_name: string;
 };
 
 export type BlastType = {
