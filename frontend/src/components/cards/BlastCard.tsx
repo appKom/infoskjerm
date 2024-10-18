@@ -24,7 +24,7 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
             </div>
           </div>
           <div
-            className="my-2 text-2xl font-bold dark:text-white" 
+            className="my-2 text-2xl font-bold dark:text-white line-clamp-5" 
             dangerouslySetInnerHTML={{ __html: headerLine }}
             />
           <div
