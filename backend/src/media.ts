@@ -13,6 +13,11 @@ const web = new WebClient(token);
 
 export const fetchMedia = async (channelId: string, count: number, req: Request) => {
   console.log('Fetching media...');
+  
+  // Fetch channel information to get the channel name
+  const channelInfo = await web.conversations.info({ channel: channelId });
+  const channelName = channelInfo.channel?.name || 'unknown-channel';
+
   const result = await web.conversations.history({
     channel: channelId
   });
@@ -68,7 +73,8 @@ export const fetchMedia = async (channelId: string, count: number, req: Request)
           date: new Date(parseInt(message.ts || "") * 1000).toISOString(),
           url: `${req.protocol}://${req.headers.host}/media/${media.id}-${encodeURIComponent(media.name || "")}`,
           type: getMediaType(media.mimetype),
-          reactions: reactions
+          reactions: reactions,
+          channel_name: channelName
         }));
 
         console.log(`Media saved: ${filePath}`);
