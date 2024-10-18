@@ -66,7 +66,6 @@ export const ChristmasPage = () => {
               />
             </div>
 
-            <p className="text-sm text-center text-gray-500 dark:text-gray-400">Presentert av interessegruppen <span className="font-bold">folk som er glad i jul</span>!</p>
 
             {['top-4 left-4', 'top-4 right-4', 'bottom-4 right-4', 'bottom-4 left-4'].map((pos) => (
               <img
@@ -76,6 +75,7 @@ export const ChristmasPage = () => {
               />
             ))}
           </div>
+          <p className="text-sm text-center text-gray-500 dark:text-gray-400">Presentert av interessegruppen <span className="font-bold">folk som er glad i jul</span>!</p>
         </div>
       </div>
 
