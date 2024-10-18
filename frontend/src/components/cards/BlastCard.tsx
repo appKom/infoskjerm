@@ -16,14 +16,17 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
           src={blast.author_image}
           alt={blast.author}
         />
-        <div>
+        <div className=''>
           <div className="flex gap-2 items-center font-medium dark:text-white">
             <div className="font-medium">{blast.author}</div>
             <div className="text-sm text-gray-500 dark:text-gray-400">
               {formatSlackDate(blast.date)}
             </div>
           </div>
-          <div className="my-2 text-2xl font-bold dark:text-white" dangerouslySetInnerHTML={{ __html: headerLine }} />
+          <div
+            className="my-2 text-2xl break-words text-ellipsis max-w-[900px] font-bold dark:text-white" 
+            dangerouslySetInnerHTML={{ __html: headerLine }}
+            />
           <div
             ref={contentRef}
             className="mb-2 text-lg break-words text-ellipsis dark:text-white line-clamp-5"
