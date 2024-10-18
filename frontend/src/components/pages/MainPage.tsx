@@ -6,6 +6,7 @@ import { ChristmasPage } from './ChristmasPage';
 import { EventsPage } from './EventsPage';
 import { SlackPage } from './SlackPage';
 import { VideoPage } from './VideoPage';
+import { NapkomPage } from './Napkom';
 
 interface PageAbstract {
   component: ReactElement;
@@ -46,6 +47,18 @@ export const MainPage = () => {
       component: <SlackPage />,
       duration: 60,
       priority: () => 3,
+    },
+    {
+      component: <NapkomPage />,
+      duration: 60,
+      priority: () => {
+        const weight = 5
+        const hour = new Date().getHours()
+
+        if (0 <= hour && hour < 6) return weight
+        else if (hour >= 16) return (hour / 24) * weight
+        else return 0
+      },
     },
     {
       component: <VideoPage pageDuration={60} />,
