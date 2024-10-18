@@ -13,7 +13,7 @@ interface PageAbstract {
 }
 
 interface PageSpecification extends PageAbstract {
-  priority: number;
+  priority: () => number;
 }
 
 interface Page extends PageAbstract {
@@ -21,12 +21,12 @@ interface Page extends PageAbstract {
 }
 
 function preparePageSpecifications(pages: PageSpecification[]): Page[] {
-  const totalPriority = pages.map(page => page.priority).reduce((a, b) => a + b, 0)
+  const totalPriority = pages.map(page => page.priority()).reduce((a, b) => a + b, 0)
 
   return pages.map((page) => {
     const mappedPage = page as any
 
-    mappedPage.probability = page.priority / totalPriority
+    mappedPage.probability = page.priority() / totalPriority
     delete mappedPage.priority
 
     return mappedPage
@@ -40,27 +40,27 @@ export const MainPage = () => {
     {
       component: <EventsPage />,
       duration: 60,
-      priority: 4,
+      priority: () => 4,
     },
     {
       component: <SlackPage />,
       duration: 60,
-      priority: 3,
+      priority: () => 3,
     },
     {
       component: <VideoPage pageDuration={60} />,
       duration: 60,
-      priority: 0.5,
+      priority: () => 0.5,
     },
     {
       component: <ChristmasPage />,
       duration: 60,
-      priority: 1,
+      priority: () => 1,
     },
     {
       component: <OnlineAppBlastPage />,
       duration: 30,
-      priority: 1.5,
+      priority: () => 1.5,
     },
   ];
 
