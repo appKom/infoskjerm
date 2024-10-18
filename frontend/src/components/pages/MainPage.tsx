@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Header } from './components/header/Header';
-import { DarkModeProvider } from './components/utils/DarkModeProvider';
-import { EventsPage } from './components/pages/EventsPage';
-import { VideoPage } from './components/pages/VideoPage';
-import { SlackPage } from './components/pages/SlackPage';
-import { ChristmasPage } from './components/pages/ChristmasPage';
+import { Header } from '../header/Header';
+import { DarkModeProvider } from '../utils/DarkModeProvider';
+import { OnlineAppBlastPage } from './OnlineAppBlastPage';
+import { ChristmasPage } from './ChristmasPage';
+import { EventsPage } from './EventsPage';
+import { SlackPage } from './SlackPage';
+import { VideoPage } from './VideoPage';
 
-function App() {
+export const MainPage = () => {
   // All pages with their respective probabilities and durations in seconds
   const pages = [
     {
@@ -17,7 +18,7 @@ function App() {
     {
       component: <SlackPage />,
       duration: 60,
-      probability: 0.40,
+      probability: 0.30,
     },
     {
       component: <VideoPage pageDuration={60} />,
@@ -27,6 +28,11 @@ function App() {
     {
       component: <ChristmasPage />,
       duration: 60,
+      probability: 0.10,
+    },
+    {
+      component: <OnlineAppBlastPage />,
+      duration: 30,
       probability: 0.15,
     },
   ];
@@ -97,5 +103,3 @@ function App() {
     </DarkModeProvider>
   );
 }
-
-export default App;

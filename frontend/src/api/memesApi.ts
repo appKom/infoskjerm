@@ -1,7 +1,7 @@
 import { MemeType } from "../lib/types";
 
 export const fetchMemes = async (amount: number): Promise<MemeType[]> => {
-  const apiUrl = `https://infoskjerm-backend-appkom.vercel.app/latest-memes?count=${amount}`;
+  const apiUrl = import.meta.env.VITE_BACKEND_URL + `/latest-memes?count=${amount}`;
 
   const response = await fetch(apiUrl, {
     headers: {
