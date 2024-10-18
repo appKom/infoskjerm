@@ -41,13 +41,13 @@ export const ChristmasPage = () => {
 
   return (
     <div className="relative flex items-center justify-center h-full bg-gradient-to-b from-[#9acdf5] to-[#d1e3f1] dark:bg-none">
-      <div className='z-10'>
+      <div className='z-30'>
         <Snowfall color={isDarkMode ? "#def1ff" : "#fff"} snowflakeCount={snowflakeCount} />
       </div>
 
-      <div className="w-full max-w-2xl">
-        <SnowPile height={snowHeight} className="relative w-full z-10 -bottom-5" />
-        <div className="relative z-20 p-8 bg-white border border-gray-200 shadow-xl dark:bg-gray-800 dark:border-gray-700 rounded-3xl">
+      <div className="w-full max-w-2xl relative">
+        <SnowPile height={snowHeight / 2} className="absolute bottom-[calc(100%-20px)] w-full z-40" />
+        <div className="relative z-50 p-8 bg-white border border-gray-200 shadow-xl dark:bg-gray-800 dark:border-gray-700 rounded-3xl">
           <h1 className="mb-8 text-4xl font-bold text-center text-gray-800 dark:text-gray-100">Nedtelling til jul</h1>
 
           <div className="mb-12 text-center">
