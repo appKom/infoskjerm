@@ -70,7 +70,7 @@ export const useFormattedSlackText = (text: string) => {
       if (line.startsWith('&amp;gt; ')) {
         // Remove "&amp;gt; " and add a CSS class for blockquote lines
         const cleanLine = line.substring(9); // This removes the first 9 characters "&amp;gt; "
-        return `<blockquote class="px-2 py-1 border-s-4 border-gray-300 dark:border-gray-500">${cleanLine}</blockquote>`;
+        return `<blockquote class="px-2 border-s-4 border-gray-300 dark:border-gray-500">${cleanLine}</blockquote>`;
       }
       
       // Ensure line breaks are preserved
