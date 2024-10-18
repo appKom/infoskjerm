@@ -45,9 +45,9 @@ export const ChristmasPage = () => {
         <Snowfall color={isDarkMode ? "#def1ff" : "#fff"} snowflakeCount={snowflakeCount} />
       </div>
 
-      <div>
+      <div className="w-full max-w-2xl">
         <SnowPile height={snowHeight} className="relative w-full z-10 -bottom-5" />
-        <div className="relative w-full max-w-2xl z-20 p-8 bg-white border border-gray-200 shadow-xl dark:bg-gray-800 dark:border-gray-700 rounded-3xl">
+        <div className="relative z-20 p-8 bg-white border border-gray-200 shadow-xl dark:bg-gray-800 dark:border-gray-700 rounded-3xl">
           <h1 className="mb-8 text-4xl font-bold text-center text-gray-800 dark:text-gray-100">Nedtelling til jul</h1>
 
           <div className="mb-12 text-center">
