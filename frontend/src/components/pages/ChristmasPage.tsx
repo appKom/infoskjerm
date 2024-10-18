@@ -7,7 +7,7 @@ import { SnowPile } from "../SnowPile";
 const folksomergladijulEmoji = "https://emoji.slack-edge.com/T03S8TX18/folksomergladijul/d7da5ca5a6ac293b.png";
 
 const calculateDaysUntilChristmas = () => {
-  const today = new Date()
+  const today = new Date();
   const christmas = new Date(today.getFullYear(), 11, 24); // December 24th
   if (today > christmas) {
     // If today is after this year's Christmas, calculate for next year's Christmas
