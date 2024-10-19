@@ -35,7 +35,7 @@ const preparePageSpecifications = (pages: PageSpecification[]): Page[] => {
 }
 
 export const MainPage = () => {
-  // All pages with their respective probabilities and durations in seconds
+  // All pages with their respective priorities and durations in seconds
   const pageSpecifications: PageSpecification[] = [
     {
       component: <EventsPage />,
