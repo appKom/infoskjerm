@@ -3,6 +3,7 @@ import { BlastType } from "../../lib/types";
 import { formatSlackDate } from "../../lib/date";
 import { BaseCard } from "./BaseCard";
 import { useFormattedSlackText } from '../../lib/text';
+import { Badge } from '../Badge';
 
 export const BlastCard = ({ blast }: { blast: BlastType }) => {
   const { headerLine, formattedText } = useFormattedSlackText(blast.text);
@@ -10,18 +11,21 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
 
   return (
     <BaseCard width={1000}>
-      <div className='flex px-4 py-3 gap-4'>
+      <div className='flex p-3 gap-4'>
         <img
           className="w-12 h-12 rounded-lg"
           src={blast.author_image}
           alt={blast.author}
         />
-        <div>
-          <div className="flex gap-2 items-center font-medium dark:text-white">
-            <div className="font-medium">{blast.author}</div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              {formatSlackDate(blast.date)}
+        <div className='flex-grow w-0'>
+          <div className="flex justify-between">
+            <div className='flex gap-2 items-center font-medium dark:text-white'>
+              <div className="font-medium">{blast.author}</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                {formatSlackDate(blast.date)}
+              </div>
             </div>
+            <Badge color='blue' text={"#" + blast.channel_name} />
           </div>
           <div className="my-2 text-2xl font-bold dark:text-white" dangerouslySetInnerHTML={{ __html: headerLine }} />
           <div
