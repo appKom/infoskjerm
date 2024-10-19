@@ -20,7 +20,7 @@ interface Page extends PageAbstract {
   probability: number;
 }
 
-function preparePageSpecifications(pages: PageSpecification[]): Page[] {
+const preparePageSpecifications = (pages: PageSpecification[]): Page[] => {
   const totalPriority = pages.map(page => page.priority()).reduce((a, b) => a + b, 0)
 
   return pages.map((page) => {
