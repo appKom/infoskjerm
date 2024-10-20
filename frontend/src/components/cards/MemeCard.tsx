@@ -5,7 +5,7 @@ import { BaseCard } from "./BaseCard";
 import { SlackReaction } from "../SlackReaction";
 import { Badge } from "../Badge";
 
-const WIDTH = 600;
+const WIDTH = 500;
 const MAX_RETRIES = 10;
 
 export const MemeCard = ({ meme }: { meme: MemeType }) => {
