@@ -62,9 +62,20 @@ export const useFormattedSlackText = (text: string) => {
     line !== "" || restLines.slice(0, index).some((l: string) => l !== "")
   );
 
-  // Join lines back into a single string, ensuring line breaks are preserved
+  // Join lines back into a single string
   const formattedText = filteredLines
-    .map((line: string, index: number) => line === "" ? "\n" : line + (index < filteredLines.length - 1 ? "\n" : ""))
+    .map((line: string, index: number) => {
+      
+      // Handle blockquote lines
+      if (line.startsWith('&amp;gt; ')) {
+        // Remove "&amp;gt; " and add a CSS class for blockquote lines
+        const cleanLine = line.substring(9); // This removes the first 9 characters "&amp;gt; "
+        return `<blockquote class="px-2 border-s-4 border-gray-300 dark:border-gray-500">${cleanLine}</blockquote>`;
+      }
+      
+      // Ensure line breaks are preserved
+      return line === "" ? "\n" : line + (index < filteredLines.length - 1 ? "\n" : "");
+    })
     .join('')
     .replace(/\n/g, '<br />');
 

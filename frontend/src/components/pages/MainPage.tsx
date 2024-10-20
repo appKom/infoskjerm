@@ -21,22 +21,18 @@ interface Page extends PageAbstract {
   probability: number;
 }
 
-function preparePageSpecifications(pages: PageSpecification[]): Page[] {
+const preparePageSpecifications = (pages: PageSpecification[]): Page[] => {
   const totalPriority = pages.map(page => page.priority()).reduce((a, b) => a + b, 0)
 
-  return pages.map((page) => {
-    const mappedPage = page as any
-
-    mappedPage.probability = page.priority() / totalPriority
-    delete mappedPage.priority
-
-    return mappedPage
-  }
+  return pages.map(({ priority, ...rest }) => ({
+    ...rest,
+    probability: priority() / totalPriority
+  })
   )
 }
 
 export const MainPage = () => {
-  // All pages with their respective probabilities and durations in seconds
+  // All pages with their respective priorities and durations in seconds
   const pageSpecifications: PageSpecification[] = [
     {
       component: <EventsPage />,
