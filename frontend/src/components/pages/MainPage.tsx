@@ -6,6 +6,7 @@ import { ChristmasPage } from './ChristmasPage';
 import { EventsPage } from './EventsPage';
 import { SlackPage } from './SlackPage';
 import { VideoPage } from './VideoPage';
+import { AppPollPage } from './AppPollPage';
 
 export const MainPage = () => {
   // All pages with their respective probabilities and durations in seconds
@@ -13,27 +14,32 @@ export const MainPage = () => {
     {
       component: <EventsPage />,
       duration: 60,
-      probability: 0.40,
+      probability: 0.01,
     },
     {
       component: <SlackPage />,
       duration: 60,
-      probability: 0.30,
+      probability: 0.01,
     },
     {
       component: <VideoPage pageDuration={60} />,
       duration: 60,
-      probability: 0.05,
+      probability: 0.01,
     },
     {
       component: <ChristmasPage />,
       duration: 60,
-      probability: 0.10,
+      probability: 0.01,
     },
     {
       component: <OnlineAppBlastPage />,
       duration: 30,
-      probability: 0.15,
+      probability: 0.01,
+    },
+    {
+      component: <AppPollPage />,
+      duration: 60,
+      probability: 0.95,
     },
   ];
 
