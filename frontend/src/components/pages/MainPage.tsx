@@ -6,6 +6,7 @@ import { ChristmasPage } from './ChristmasPage';
 import { EventsPage } from './EventsPage';
 import { SlackPage } from './SlackPage';
 import { VideoPage } from './VideoPage';
+import { BratPage } from './BratPage';
 
 interface PageAbstract {
   component: ReactElement;
@@ -57,6 +58,11 @@ export const MainPage = () => {
       component: <OnlineAppBlastPage />,
       duration: 30,
       priority: () => 1.5,
+    },
+    {
+      component: <BratPage />,
+      duration: 30,
+      priority: () => 0.2,
     },
   ];
 
