@@ -50,33 +50,34 @@ const StarSky = ({ starCount }: { starCount: number }) => {
   }, [starCount]);
 
   return (
-    <div className="absolute inset-0 w-full h-full bg-gray-950 overflow-hidden">
-      {stars.map((star: IStar, index) => (
-        <div
-          key={index}
-          className="absolute rounded-full bg-white"
-          style={{
-            left: star.left,
-            top: star.top,
-            width: star.size,
-            height: star.size,
-            boxShadow: '0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)',
-            animation: `pulse ${star.animationDuration} ease-in-out infinite`,
-          }}
+    <div className="absolute inset-0 w-full h-full overflow-hidden">
+      <div className="w-full h-full bg-gradient-to-t from-[#111] from-60% to-[#150d13]">
+        {stars.map((star: IStar, index) => (
+          <div
+            key={index}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: star.left,
+              top: star.top,
+              width: star.size,
+              height: star.size,
+              boxShadow: '0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)',
+              animation: `pulse ${star.animationDuration} ease-in-out infinite`,
+            }}
+          />
+        ))}
+        <div className="absolute z-10 w-full h-full bg-gradient-to-t from-[#0b1f3f] from-20%" />
+        <img
+          src="/graphics/forest.svg"
+          className="absolute w-full bottom-0 z-20"
         />
-      ))}
-
-      <svg
-        className="w-72 absolute top-80 left-16"
-        viewBox="0 0 24 24"
-      >
-        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#ffe18f"/>
-      </svg>
-
-      <img
-        src="/graphics/forest.svg"
-        className="absolute w-full bottom-0"
-      />
+        <svg
+          className="w-72 absolute top-80 left-16"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#ffe18f"/>
+        </svg>
+      </div>
     </div>
   );
 }
