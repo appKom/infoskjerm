@@ -8,6 +8,18 @@ module.exports = {
         'online-blue': '#0B5374',
         'online-yellow': '#F9B759'
       },
+      fontFamily: {
+        minecraft: ['Minecraftia', 'sans-serif'],
+      },
+      animation: {
+        swing: 'swing 4s ease-in-out infinite',
+      },
+      keyframes: {
+        swing: {
+          '0%, 100%': { transform: 'rotate(7deg)', transformOrigin: 'top' },
+          '50%': { transform: 'rotate(-7deg)', transformOrigin: 'top' },
+        },
+      },
     },
   },
   darkMode: 'selector',
