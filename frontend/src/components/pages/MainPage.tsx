@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactElement } from 'react';
 import { Header } from '../header/Header';
 import { DarkModeProvider } from '../utils/DarkModeProvider';
 import { OnlineAppBlastPage } from './OnlineAppBlastPage';
@@ -7,35 +7,60 @@ import { EventsPage } from './EventsPage';
 import { SlackPage } from './SlackPage';
 import { VideoPage } from './VideoPage';
 
+interface PageAbstract {
+  component: ReactElement;
+  duration: number;
+}
+
+interface PageSpecification extends PageAbstract {
+  priority: () => number;
+}
+
+interface Page extends PageAbstract {
+  probability: number;
+}
+
+const preparePageSpecifications = (pages: PageSpecification[]): Page[] => {
+  const totalPriority = pages.map(page => page.priority()).reduce((a, b) => a + b, 0)
+
+  return pages.map(({ priority, ...rest }) => ({
+    ...rest,
+    probability: priority() / totalPriority
+  })
+  )
+}
+
 export const MainPage = () => {
-  // All pages with their respective probabilities and durations in seconds
-  const pages = [
+  // All pages with their respective priorities and durations in seconds
+  const pageSpecifications: PageSpecification[] = [
     {
       component: <EventsPage />,
       duration: 60,
-      probability: 0.40,
+      priority: () => 4,
     },
     {
       component: <SlackPage />,
       duration: 60,
-      probability: 0.30,
+      priority: () => 3,
     },
     {
       component: <VideoPage pageDuration={60} />,
       duration: 60,
-      probability: 0.05,
+      priority: () => 0.5,
     },
     {
       component: <ChristmasPage />,
       duration: 60,
-      probability: 0.10,
+      priority: () => 1,
     },
     {
       component: <OnlineAppBlastPage />,
       duration: 30,
-      probability: 0.15,
+      priority: () => 1.5,
     },
   ];
+
+  const pages = preparePageSpecifications(pageSpecifications)
 
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
