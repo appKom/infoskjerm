@@ -1,27 +1,32 @@
 import { useState, useEffect } from "react";
-import { MinecraftChat } from "../MinecraftChat";
+import { motion } from "framer-motion";
 
-const AMOUNT_OF_STARS = 150;
+const AMOUNT_OF_STARS = 250;
 
 export const NapkomPage = () => (
-  <div className="h-full flex justify-around items-center relative overflow-hidden">
+  <div className="h-full flex justify-around items-center relative overflow-hidden w-full">
     <StarSky starCount={AMOUNT_OF_STARS} />
-    <MinecraftChat />
+    {/* Dingling Jon Blund */}
+    <img src="/napkom/jon-blund.png" alt="Jon Blund" className="absolute top-0 right-10 w-56 animate-swing" />
+
+    {/* Napkom logo */}
+    <img src="/napkom/NapKom.svg" alt="Napkom logo" className="absolute bottom-10 left-10 w-32 z-30" />
     
-    <img src="/napkom/jon-blund.png" alt="Jon Blund" className=" absolute top-0 right-10 w-64 animate-swing" />
-    <div className="relative flex flex-col items-center w-full max-w-4xl aspect-video z-20 p-12 bg-white border border-gray-200 shadow-xl dark:bg-gray-800 dark:border-gray-700 rounded-3xl">
-      <h1 className="mb-8 text-4xl font-bold text-center text-gray-800 dark:text-gray-100">Sov godt i natt!</h1>
-      <img src="/napkom/JonBlund.png" alt="Jon Blund" className="w-4/5" />
-      <p className="text-center mt-12 text-gray-500 dark:text-gray-400 ">Denne meldingen er presentert av <b>NapKom</b> i samarbeid med <b>Jon Blund</b>!</p>
-
-      {['top-6 left-6', 'top-6 right-6', 'bottom-6 right-6', 'bottom-6 left-6'].map((pos) => (
-        <img
-          key={pos}
-          src="/napkom/NapKom.svg"
-          className={`absolute max-h-16 ${pos}`}
-        />
-      ))}
-
+    {/* Message */}
+    <div className="absolute inset-0 flex items-center justify-center">
+      <motion.div
+        className="z-20 text-white text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 2, }}
+      >
+        <div className="text-8xl font-bold">
+          Sov godt i natt
+        </div>
+        <div className="text-3xl mt-10">
+          Presentert av <span className="text-online-yellow font-bold">Napkom</span> i samarbeid med <span className="text-online-yellow font-bold">Jon Blund</span>.
+        </div>
+      </motion.div>
     </div>
   </div >
 );
@@ -101,3 +106,26 @@ interface IStar {
   size: number;
   animationDuration: number;
 }
+
+interface IFloatingCloudProps {
+  size: string;
+  duration: number;
+  opacity: number;
+}
+
+const FloatingCloud = ({ size, duration, opacity }: IFloatingCloudProps) => {
+  return (
+    <motion.div
+      className={`absolute ${size} bg-white rounded-full`}
+      style={{ opacity }}
+      animate={{
+        x: ['-100%', '100%'], // Start off-screen to the left and go off-screen to the right
+      }}
+      transition={{
+        duration,
+        repeat: Infinity,
+        ease: 'linear',
+      }}
+    />
+  );
+};
