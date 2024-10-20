@@ -12,7 +12,7 @@ export const NapkomPage = () => (
     <div className="relative flex flex-col items-center w-full max-w-4xl aspect-video z-20 p-12 bg-white border border-gray-200 shadow-xl dark:bg-gray-800 dark:border-gray-700 rounded-3xl">
       <h1 className="mb-8 text-4xl font-bold text-center text-gray-800 dark:text-gray-100">Sov godt i natt!</h1>
       <img src="/napkom/JonBlund.png" alt="Jon Blund" className="w-4/5" />
-      <p className="text-center mt-12 text-gray-500 font-minecraft dark:text-gray-400 ">Denne meldingen er presentert av <b>NapKom</b> i samarbeid med <b>Jon Blund</b>!</p>
+      <p className="text-center mt-12 text-gray-500 dark:text-gray-400 ">Denne meldingen er presentert av <b>NapKom</b> i samarbeid med <b>Jon Blund</b>!</p>
 
       {['top-6 left-6', 'top-6 right-6', 'bottom-6 right-6', 'bottom-6 left-6'].map((pos) => (
         <img
