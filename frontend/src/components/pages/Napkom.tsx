@@ -26,51 +26,63 @@ export const NapkomPage = () => (
   </div >
 );
 
-const MAX_STAR_SIZE = 12;
+const MAX_STAR_SIZE = 8
 const MIN_STAR_SIZE = 1;
 
-const MAX_ANIMATION_DURATION = 5;
-const MIN_ANIMATION_DURATION = 1;
+const MAX_ANIMATION_DURATION = 10;
+const MIN_ANIMATION_DURATION = 2;
 
 const StarSky = ({ starCount }: { starCount: number }) => {
   const [stars, setStars] = useState<IStar[]>([]);
 
   useEffect(() => {
-    const newStars = Array(starCount).fill(0).map(() => {
-      const size = Math.random() * MAX_STAR_SIZE + MIN_STAR_SIZE;
-      const animationDuration = Math.random() * MAX_ANIMATION_DURATION + MIN_ANIMATION_DURATION;
-      return {
-        left: `${Math.random() * 100}vw`,
-        top: `${Math.random() * 100}vh`,
-        size: `${size}px`,
-        animationDuration: `${animationDuration}s`,
-      };
-    });
-    setStars(newStars);
+    const initialStars = Array.from({ length: starCount }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * (MAX_STAR_SIZE - MIN_STAR_SIZE) + MIN_STAR_SIZE,
+      animationDuration: Math.random() * (MAX_ANIMATION_DURATION - MIN_ANIMATION_DURATION) + MIN_ANIMATION_DURATION,
+    }));
+    setStars(initialStars);
   }, [starCount]);
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden">
       <div className="w-full h-full bg-gradient-to-t from-[#111] from-60% to-[#150d13]">
-        {stars.map((star: IStar, index) => (
-          <div
-            key={index}
-            className="absolute rounded-full bg-white"
+        {/* Twinkling stars */}
+        {stars.map((star) => (
+          <motion.div
+            key={star.id}
+            className="absolute rounded-full"
             style={{
-              left: star.left,
-              top: star.top,
+              left: `${star.x}%`,
+              top: `${star.y}%`,
               width: star.size,
               height: star.size,
-              boxShadow: '0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)',
-              animation: `pulse ${star.animationDuration} ease-in-out infinite`,
+              backgroundColor: 'white',
+            }}
+            animate={{
+              opacity: [0, 1, 0],
+              scale: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: star.animationDuration,
+              repeat: Infinity,
+              repeatType: 'reverse',
             }}
           />
         ))}
+
+        {/* Fog */}
         <div className="absolute z-10 w-full h-full bg-gradient-to-t from-[#0b1f3f] from-20%" />
+
+        {/* Forest */}
         <img
           src="/graphics/forest.svg"
           className="absolute w-full bottom-0 z-20"
         />
+
+        {/* Moon */}
         <svg
           className="w-72 absolute top-80 left-16"
           viewBox="0 0 24 24"
@@ -80,11 +92,12 @@ const StarSky = ({ starCount }: { starCount: number }) => {
       </div>
     </div>
   );
-}
+};
 
 interface IStar {
-  left: string;
-  top: string;
-  size: string;
-  animationDuration: string;
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  animationDuration: number;
 }
