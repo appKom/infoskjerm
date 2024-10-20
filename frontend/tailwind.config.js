@@ -12,7 +12,7 @@ module.exports = {
         minecraft: ['Minecraftia', 'sans-serif'],
       },
       animation: {
-        swing: 'swing 4s ease-in-out infinite',
+        swing: 'swing 5s ease-in-out infinite',
       },
       keyframes: {
         swing: {
