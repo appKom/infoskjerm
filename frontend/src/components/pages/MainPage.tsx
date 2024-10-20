@@ -23,14 +23,10 @@ interface Page extends PageAbstract {
 const preparePageSpecifications = (pages: PageSpecification[]): Page[] => {
   const totalPriority = pages.map(page => page.priority()).reduce((a, b) => a + b, 0)
 
-  return pages.map((page) => {
-    const mappedPage = page as any
-
-    mappedPage.probability = page.priority() / totalPriority
-    delete mappedPage.priority
-
-    return mappedPage
-  }
+  return pages.map(({ priority, ...rest }) => ({
+    ...rest,
+    probability: priority() / totalPriority
+  })
   )
 }
 
