@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { StarSky } from "../napkom/StarSky";
 
-const AMOUNT_OF_STARS = 250;
+const AMOUNT_OF_STARS = 500;
 
 export const NapkomPage = () => (
   <div className="h-full flex justify-around items-center relative overflow-hidden w-full">
@@ -24,7 +24,7 @@ export const NapkomPage = () => (
           Sov godt i natt
         </div>
         <div className="text-3xl mt-10">
-          Presentert av <span className="text-online-yellow font-bold">Napkom</span> i samarbeid med <span className="text-online-yellow font-bold">Jon Blund</span>.
+          Presentert av <span className="text-online-yellow font-bold">Napkom</span>, i samarbeid med <span className="text-online-yellow font-bold">Jon Blund</span>.
         </div>
       </motion.div>
     </div>
