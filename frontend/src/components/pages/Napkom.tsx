@@ -106,26 +106,3 @@ interface IStar {
   size: number;
   animationDuration: number;
 }
-
-interface IFloatingCloudProps {
-  size: string;
-  duration: number;
-  opacity: number;
-}
-
-const FloatingCloud = ({ size, duration, opacity }: IFloatingCloudProps) => {
-  return (
-    <motion.div
-      className={`absolute ${size} bg-white rounded-full`}
-      style={{ opacity }}
-      animate={{
-        x: ['-100%', '100%'], // Start off-screen to the left and go off-screen to the right
-      }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: 'linear',
-      }}
-    />
-  );
-};
