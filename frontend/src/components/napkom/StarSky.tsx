@@ -53,7 +53,7 @@ export const StarSky = ({ starCount }: { starCount: number }) => {
 
         {/* Forest */}
         <img
-          src="/graphics/forest.svg"
+          src="/napkom/forest.svg"
           className="absolute w-full bottom-0 z-20"
         />
 
