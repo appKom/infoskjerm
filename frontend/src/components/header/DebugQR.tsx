@@ -1,7 +1,9 @@
+import { DebugLogo } from "../Logo/DebugLogo";
+
+
 export const DebugQR = () => (
-  <div className='flex items-center justify-center h-full gap-3 p-1.5 bg-[#f3f4f6] dark:bg-[#212f4d] rounded-lg max-h-min'>
-    <img src="/debug/debug-logo.svg" alt="Debug-logo"
-      className="h-2/3" />
+  <div className='flex items-center justify-center h-full gap-3 p-1.5 bg-[#f3f4f6] dark:bg-[#212f4d] rounded-lg max-h-min fill-gray-600 dark:fill-white'>
+    <DebugLogo />
     <div className="p-1 text-center text-gray-600 dark:text-white">
       <div className="flex items-center justify-center gap-2">
         <p className="font-semibold">Debug</p>
