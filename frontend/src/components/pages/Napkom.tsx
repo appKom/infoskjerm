@@ -18,7 +18,7 @@ export const NapkomPage = () => (
 
       <div className="relative text-8xl font-bold">
         Sov godt i natt
-        {[0, 2, 4].map((animationOffset, index) => <p
+        {[0, 2, 4].map((animationOffset, index) => <b
           key={index}
           className="absolute text-white text-5xl -right-5 -top-5"
           style={{
@@ -27,7 +27,7 @@ export const NapkomPage = () => (
             animationDelay: `${animationOffset}s`,
             animationIterationCount: "infinite",
             animationTimingFunction: "linear"
-          }}>Z</p>)}
+          }}>Z</b>)}
       </div>
       <div className="text-3xl mt-10">
         Presentert av <span className="text-online-yellow font-bold">Napkom</span>, i samarbeid med <span className="text-online-yellow font-bold">Jon Blund</span>.
