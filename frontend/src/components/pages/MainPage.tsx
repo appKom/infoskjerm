@@ -52,7 +52,14 @@ export const MainPage = () => {
     {
       component: <ChristmasPage />,
       duration: 60,
-      priority: () => 1,
+      priority: () => {
+        const today = new Date();
+        const seasonStart = new Date(today.getFullYear(), 9, 1)
+        const seasonEnd = new Date(today.getFullYear(), 11, 24)
+
+        if (seasonStart <= today && today <= seasonEnd) return 1
+        else return 0
+      },
     },
     {
       component: <OnlineAppBlastPage />,
