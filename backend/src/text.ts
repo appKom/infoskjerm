@@ -25,7 +25,7 @@ export const fetchTextMessagesFromChannels = async (channelIds: string[], count:
 
     const result = await web.conversations.history({
       channel: channelId,
-      limit: count,
+      limit: count * 2, // Fetch more messages than needed to account for messages that are filtered out
     });
 
     // Collect all valid messages from the current channel
