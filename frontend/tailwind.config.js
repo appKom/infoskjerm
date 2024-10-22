@@ -8,9 +8,6 @@ module.exports = {
         'online-blue': '#0B5374',
         'online-yellow': '#F9B759'
       },
-      fontFamily: {
-        minecraft: ['Minecraftia', 'sans-serif'],
-      },
       animation: {
         swing: 'swing 5s ease-in-out infinite',
       },
