@@ -14,7 +14,7 @@ export const NapkomPage = () => (
 
     {/* Message */}
     <div className="absolute inset-0 flex items-center flex-col justify-center z-20 text-white">
-      <img src="/napkom/jon-blund.png" alt="" className="h-2/5 m-10" style={{ boxShadow: "0 2em 4em 1em black" }} />
+      <img src="/napkom/jon-blund.png" alt="" className="h-2/5 m-10 shadow-xl" />
 
       <div className="relative text-8xl font-bold mt-12">
         Sov godt i natt
