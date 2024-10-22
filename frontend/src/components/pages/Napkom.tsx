@@ -16,18 +16,19 @@ export const NapkomPage = () => (
     <div className="absolute inset-0 flex items-center flex-col justify-center z-20 text-white">
       <img src="/napkom/jon-blund.png" alt="" className="h-2/5 m-10 shadow-xl" />
 
-      <div className="relative text-8xl font-bold mt-12">
+      <div className="relative text-8xl font-bold">
         Sov godt i natt
-        {[0, 2, 4].map((animationOffset, index) => <b
-          key={index}
-          className="absolute text-white text-5xl -right-5 -top-5"
-          style={{
-            animationName: "driftOff",
-            animationDuration: "6s",
-            animationDelay: `${animationOffset}s`,
-            animationIterationCount: "infinite",
-            animationTimingFunction: "linear"
-          }}>Z</b>)}
+        {[0, 2, 4].map((animationOffset, index) => (
+          <b
+            key={index}
+            className="absolute text-white text-5xl -right-5 -top-5 animate-driftOff opacity-0"
+            style={{
+              animationDelay: `${animationOffset}s`,
+            }}
+          >
+            Z
+          </b>
+        ))}
       </div>
       <div className="text-3xl mt-8 mb-16">
         Presentert av <span className="text-online-yellow font-bold">Napkom</span>, i samarbeid med <span className="text-online-yellow font-bold">Jon Blund</span>.

@@ -10,11 +10,17 @@ module.exports = {
       },
       animation: {
         swing: 'swing 5s ease-in-out infinite',
+        driftOff: 'driftOff 6s linear infinite',
       },
       keyframes: {
         swing: {
           '0%, 100%': { transform: 'rotate(7deg)', transformOrigin: 'top' },
           '50%': { transform: 'rotate(-7deg)', transformOrigin: 'top' },
+        },
+        driftOff: {
+          '0%': { transform: 'translate(0)', opacity: '0' },
+          '10%': { opacity: '1' },
+          '100%': { transform: 'translate(400%, -200%) scale(0.75) rotate(-10deg)', opacity: '0' },
         },
       },
     },

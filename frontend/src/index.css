@@ -48,19 +48,3 @@ body {
     transform: translateX(-100%);
   }
 }
-
-
-/* Napkom animation */
-@keyframes driftOff {
-  from {
-    transform: translate(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1
-  }
-  to {
-    transform: translate(400%, -200%);
-    opacity: 0;
-  }
-}
