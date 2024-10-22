@@ -10,11 +10,11 @@ export const NapkomPage = () => (
     <img src="/napkom/dingling-jon-blund.png" alt="Jon Blund" className="absolute top-0 right-32 z-10 w-56 animate-swing" />
 
     {/* Napkom logo */}
-    <img src="/napkom/NapKom.svg" alt="Napkom logo" className="absolute bottom-8 right-8 w-32 z-30" />
+    <img src="/napkom/napkom-logo.svg" alt="Napkom logo" className="absolute bottom-8 right-8 w-32 z-30" />
 
     {/* Message */}
     <div className="absolute inset-0 flex items-center flex-col justify-center z-20 text-white">
-      <img src="/napkom/JonBlund.png" alt="" className="h-2/5 m-10" style={{ boxShadow: "0 2em 4em 1em black" }} />
+      <img src="/napkom/jon-blund.png" alt="" className="h-2/5 m-10" style={{ boxShadow: "0 2em 4em 1em black" }} />
 
       <div className="relative text-8xl font-bold mt-12">
         Sov godt i natt
