@@ -15,10 +15,10 @@ export const removeOWFormatting = (text: string) => {
 
 export const useFormattedSlackText = (text: string) => {
   // Sanitize the text to prevent XSS attacks
-  const htmlEscapedText = DOMPurify.sanitize(text);
+  const sanitizedText = DOMPurify.sanitize(text);
 
   // Convert shortnames to Unicode emojis
-  const unicodeText = joypixels.shortnameToUnicode(htmlEscapedText);
+  const unicodeText = joypixels.shortnameToUnicode(sanitizedText);
 
   // Remove unsupported emojis
   const cleanText = removeUnsupportedEmojis(unicodeText);
