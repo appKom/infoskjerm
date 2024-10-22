@@ -13,4 +13,4 @@ root.render(
     <Analytics />
     <App />
   </QueryClientProvider>
-  );
+);
