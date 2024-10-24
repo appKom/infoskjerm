@@ -5,6 +5,8 @@ import clsx from 'clsx';
 
 const folksomergladijulEmoji = "https://emoji.slack-edge.com/T03S8TX18/folksomergladijul/d7da5ca5a6ac293b.png";
 
+const julebordDate = new Date(2024, 10, 13); // 13. november
+
 const calculateDaysUntilChristmas = () => {
   const today = new Date();
   const christmas = new Date(today.getFullYear(), 11, 24); // December 24th
@@ -16,9 +18,16 @@ const calculateDaysUntilChristmas = () => {
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 };
 
+const formatJulebordDate = (date: Date): string => {
+  const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long' };
+  return date.toLocaleDateString('no-NO', options);
+};
+
 export const ChristmasPage = () => {
   const [daysUntilChristmas, setDaysUntilChristmas] = useState(calculateDaysUntilChristmas());
   const { isDarkMode } = useDarkMode();
+
+  const isAfterJulebord = new Date() > julebordDate;
 
   // Snowflake count ranges from 150 to 750 based on the days until Christmas
   const minSnowflakes = 150;
@@ -43,21 +52,25 @@ export const ChristmasPage = () => {
         <h1 className="mb-8 text-4xl font-bold text-center text-gray-800 dark:text-gray-100">Nedtelling til jul</h1>
 
         <div className="mb-12 text-center">
-          <p className="font-extrabold text-red-600 text-8xl dark:text-500">{daysUntilChristmas}</p>
-          <p className="mt-2 text-xl text-gray-600 dark:text-gray-300">{daysUntilChristmas === 1 ? "dag" : "dager"} igjen!</p>
+          <p className="font-extrabold text-red-600 dark:text-500 text-[138px] leading-none" >
+            {daysUntilChristmas}
+          </p>
+          <p className="text-xl text-gray-600 dark:text-gray-300">{daysUntilChristmas === 1 ? "dag" : "dager"} igjen!</p>
         </div>
 
-        <div className="py-8 mb-8 border-y border-gray-200 dark:border-gray-700">
-          <h2 className="mb-4 text-2xl font-semibold text-center text-gray-700 dark:text-gray-200">Nominer Årets Nisse</h2>
-          <p className="mb-4 text-center text-gray-600 dark:text-gray-400">Skann QR-koden og send inn din nominasjon før julebordet!</p>
-          <div className="flex justify-center">
-            <img
-              className="w-64"
-              src={isDarkMode ? "/qr-codes/nisse-white.svg" : "/qr-codes/nisse-green.svg"}
-              alt="Årets Nisse QR Kode"
-            />
+        {!isAfterJulebord && (
+          <div className="py-8 mb-8 border-y border-gray-200 dark:border-gray-700">
+            <h2 className="mb-4 text-2xl font-semibold text-center text-gray-700 dark:text-gray-200">Nominer Årets Nisse</h2>
+            <p className="mb-4 text-center text-gray-600 dark:text-gray-400">Skann QR-koden og send inn din nominasjon før julebordet <b>{formatJulebordDate(julebordDate)}</b>!</p>
+            <div className="flex justify-center">
+              <img
+                className="w-64"
+                src={isDarkMode ? "/qr-codes/nisse-white.svg" : "/qr-codes/nisse-green.svg"}
+                alt="Årets Nisse QR Kode"
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <p className="text-sm text-center text-gray-500 dark:text-gray-400">Presentert av interessegruppen <span className="font-bold">folk som er glad i jul</span>!</p>
 
