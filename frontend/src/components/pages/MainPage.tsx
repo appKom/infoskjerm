@@ -69,7 +69,7 @@ export const MainPage = () => {
     {
       component: <BratPage />,
       duration: 30,
-      priority: () => 0.2,
+      priority: () => 0.02,
     },
   ];
 
