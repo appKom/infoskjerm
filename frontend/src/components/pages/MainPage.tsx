@@ -27,8 +27,7 @@ const preparePageSpecifications = (pages: PageSpecification[]): Page[] => {
   return pages.map(({ priority, ...rest }) => ({
     ...rest,
     probability: priority() / totalPriority
-  })
-  )
+  }))
 }
 
 export const MainPage = () => {
@@ -120,9 +119,25 @@ export const MainPage = () => {
       });
     }, 250);
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      let newIndex = currentComponentIndex;
+    
+      if (event.key === 'ArrowLeft') {
+        newIndex = (currentComponentIndex - 1 + pages.length) % pages.length;
+      } else if (event.key === 'ArrowRight') {
+        newIndex = (currentComponentIndex + 1) % pages.length;
+      }
+    
+      setCurrentComponentIndex(newIndex);
+      setMillisecondsLeft(pages[newIndex].duration * 1000);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
       clearInterval(interval);
       clearInterval(countdown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [currentComponentIndex, millisecondsLeft]);
 
