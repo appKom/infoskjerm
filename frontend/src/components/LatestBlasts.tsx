@@ -3,6 +3,7 @@ import { BlastType } from "../lib/types";
 import { BlastCard } from "./cards/BlastCard";
 import { fetchBlasts } from "../api/blastsApi";
 import { Error } from "./utils/Error";
+import { BlastCardSkeleton } from "./skeletons/BlastCardSkeleton";
 
 const REFETCH_INTERVAL_MINUTES = 15; // how often to refetch blasts from slack
 const AMOUNT_OF_BLASTS = 5; // how many blasts to fetch
@@ -14,18 +15,6 @@ export const LatestBlasts = () => {
     refetchInterval: 1000 * 60 * REFETCH_INTERVAL_MINUTES,
   });
 
-  if (isLoading)
-    return (
-      <div className="my-8 flex flex-col gap-8 overflow-hidden w-max">
-        {[...Array(4)].map((_, index) => (
-          <div className="pr-24" key={index}>
-            <div className="flex flex-col items-center justify-center gap-4 text-center w-full h-full animate-pulse">
-              <div className="overflow-hidden bg-gray-700 w-[800px] h-64" />
-            </div>
-          </div>
-        ))}
-      </div>
-    );
   if (isError) return <Error />;
 
   if (data?.length === 0)
@@ -37,9 +26,13 @@ export const LatestBlasts = () => {
 
   return (
     <div className="my-8 flex flex-col gap-8 overflow-hidden w-max">
-      {data?.map((blast: BlastType) => (
-        <BlastCard key={blast.id} blast={blast} />
-      )) || []}
+      {isLoading
+        ? [...Array(AMOUNT_OF_BLASTS)].map((_, index) => (
+            <BlastCardSkeleton key={index} />
+          ))
+        : data?.map((blast: BlastType) => (
+            <BlastCard key={blast.id} blast={blast} />
+          ))}
     </div>
   );
 };

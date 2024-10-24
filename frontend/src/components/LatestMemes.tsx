@@ -5,11 +5,11 @@ import { MemeCard } from "./cards/MemeCard";
 import { InfiniteAnimate } from "./utils/InfiniteAnimate";
 import { Error } from "./utils/Error";
 import { useEffect, useState } from "react";
+import { MemeCardSkeleton } from "./skeletons/MemeCardSkeleton";
 
 const REFETCH_INTERVAL_MINUTES = 60; // how often to refetch memes from slack
 const AMOUNT_OF_MEMES = 5; // how many memes to fetch
 const SPEED = 0.3; // how fast the memes should move
-
 const TRAINLENGTH = 3; // how many duplicated meme-lists to show for the infinite scroll effect
 
 export const LatestMemes = () => {
@@ -30,35 +30,31 @@ export const LatestMemes = () => {
   }, [data]);
   // TEMPORARY END
 
-  if (isLoading)
+  if (isError) return <Error />;
+
+  if (isLoading) {
     return (
       <InfiniteAnimate axis="y" speed={SPEED} trainLength={TRAINLENGTH}>
-        {[...Array(4)].map((_, index) => (
-          <div className="px-5" key={index}>
-            <div className="flex flex-col items-center justify-center gap-4 text-center w-full h-full animate-pulse">
-              <div className="overflow-hidden bg-gray-700 h-48 w-64 lg:w-96 lg:h-64" />
-            </div>
-          </div>
+        {[...Array(AMOUNT_OF_MEMES)].map((_, index) => (
+          <MemeCardSkeleton key={index} />
         ))}
       </InfiniteAnimate>
     );
+  }
 
-  if (isError) return <Error />;
-
-  if (filteredMemes?.length === 0)
+  if (filteredMemes?.length === 0) {
     return (
       <p className="text-lg text-gray-500 dark:text-gray-400">
         Her var det tomt :(
       </p>
     );
+  }
 
   return (
     <InfiniteAnimate axis="y" speed={SPEED} trainLength={TRAINLENGTH}>
-      {filteredMemes
-        ? filteredMemes.map((meme: MemeType) => (
-            <MemeCard key={meme.id} meme={meme} />
-          ))
-        : []}
+      {filteredMemes.map((meme: MemeType) => (
+        <MemeCard key={meme.id} meme={meme} />
+      ))}
     </InfiniteAnimate>
   );
 };
