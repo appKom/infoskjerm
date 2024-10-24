@@ -51,7 +51,10 @@ export const ChristmasPage = () => {
       <div className="relative w-full max-w-2xl z-20 p-8 bg-white border border-gray-200 shadow-xl dark:bg-gray-800 dark:border-gray-700 rounded-3xl">
         <h1 className="mb-8 text-4xl font-bold text-center text-gray-800 dark:text-gray-100">Nedtelling til jul</h1>
 
-        <div className="mb-12 text-center">
+        <div className={clsx(
+          "text-center",
+          isAfterJulebord ? "my-32" : "mb-12"
+          )}>
           <p className="font-extrabold text-red-600 dark:text-500 text-[138px] leading-none" >
             {daysUntilChristmas}
           </p>
