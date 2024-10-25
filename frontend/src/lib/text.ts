@@ -1,4 +1,5 @@
 import joypixels from 'emoji-toolkit';
+import DOMPurify from 'dompurify';
 
 export const removeOWFormatting = (text: string) => {
   return text
@@ -12,35 +13,12 @@ export const removeOWFormatting = (text: string) => {
     .replace(/~{2}([^~]+)~{2}/g, '$1');
 };
 
-export const escapeHtmlEntities = (str: string) => {
-  return str.replace(/[&<>"'/|]/g, function (char) {
-    switch (char) {
-      case '&':
-        return '&amp;';
-      case '<':
-        return '&lt;';
-      case '>':
-        return '&gt;';
-      case '"':
-        return '&quot;';
-      case "'":
-        return '&#39;';
-      case '/':
-        return '&#47;';
-      case '|':
-        return '&#124;';
-      default:
-        return char;
-    }
-  });
-}
-
 export const useFormattedSlackText = (text: string) => {
-  // Escape HTML entities (e.g. < to &lt;)
-  const htmlEscapedText = escapeHtmlEntities(text);
+  // Sanitize the text to prevent XSS attacks
+  const sanitizedText = DOMPurify.sanitize(text);
 
   // Convert shortnames to Unicode emojis
-  const unicodeText = joypixels.shortnameToUnicode(htmlEscapedText);
+  const unicodeText = joypixels.shortnameToUnicode(sanitizedText);
 
   // Remove unsupported emojis
   const cleanText = removeUnsupportedEmojis(unicodeText);
