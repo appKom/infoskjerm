@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactElement } from 'react';
 import { Header } from '../header/Header';
 import { DarkModeProvider } from '../utils/DarkModeProvider';
 import { OnlineAppBlastPage } from './OnlineAppBlastPage';
@@ -6,36 +6,86 @@ import { ChristmasPage } from './ChristmasPage';
 import { EventsPage } from './EventsPage';
 import { SlackPage } from './SlackPage';
 import { VideoPage } from './VideoPage';
+import { NapkomPage } from './Napkom';
+import { BratPage } from './BratPage';
+
+interface PageAbstract {
+  component: ReactElement;
+  duration: number;
+}
+
+interface PageSpecification extends PageAbstract {
+  priority: () => number;
+}
+
+interface Page extends PageAbstract {
+  probability: number;
+}
+
+const preparePageSpecifications = (pages: PageSpecification[]): Page[] => {
+  const totalPriority = pages.map(page => page.priority()).reduce((a, b) => a + b, 0)
+
+  return pages.map(({ priority, ...rest }) => ({
+    ...rest,
+    probability: priority() / totalPriority
+  }))
+}
 
 export const MainPage = () => {
-  // All pages with their respective probabilities and durations in seconds
-  const pages = [
+  // All pages with their respective priorities and durations in seconds
+  const pageSpecifications: PageSpecification[] = [
     {
       component: <EventsPage />,
       duration: 60,
-      probability: 0.40,
+      priority: () => 4,
     },
     {
       component: <SlackPage />,
       duration: 60,
-      probability: 0.30,
+      priority: () => 3,
+    },
+    {
+      component: <NapkomPage />,
+      duration: 60,
+      priority: () => {
+        const weight = 5
+        const hour = new Date().getHours()
+
+        if (0 <= hour && hour < 6) return weight
+        else if (hour >= 16) return (hour / 24) * weight
+        else return 0
+      },
     },
     {
       component: <VideoPage pageDuration={60} />,
       duration: 60,
-      probability: 0.05,
+      priority: () => 0.5,
     },
     {
       component: <ChristmasPage />,
       duration: 60,
-      probability: 0.10,
+      priority: () => {
+        const today = new Date();
+        const seasonStart = new Date(today.getFullYear(), 9, 1)
+        const seasonEnd = new Date(today.getFullYear(), 11, 24)
+
+        if (seasonStart <= today && today <= seasonEnd) return 1
+        else return 0
+      },
     },
     {
       component: <OnlineAppBlastPage />,
       duration: 30,
-      probability: 0.15,
+      priority: () => 1.5,
+    },
+    {
+      component: <BratPage />,
+      duration: 30,
+      priority: () => 0.02,
     },
   ];
+
+  const pages = preparePageSpecifications(pageSpecifications)
 
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
@@ -82,9 +132,25 @@ export const MainPage = () => {
       });
     }, 250);
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      let newIndex = currentComponentIndex;
+    
+      if (event.key === 'ArrowLeft') {
+        newIndex = (currentComponentIndex - 1 + pages.length) % pages.length;
+      } else if (event.key === 'ArrowRight') {
+        newIndex = (currentComponentIndex + 1) % pages.length;
+      }
+    
+      setCurrentComponentIndex(newIndex);
+      setMillisecondsLeft(pages[newIndex].duration * 1000);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
       clearInterval(interval);
       clearInterval(countdown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [currentComponentIndex, millisecondsLeft]);
 

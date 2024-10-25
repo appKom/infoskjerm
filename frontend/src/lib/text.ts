@@ -1,4 +1,5 @@
 import joypixels from 'emoji-toolkit';
+import DOMPurify from 'dompurify';
 
 export const removeOWFormatting = (text: string) => {
   return text
@@ -12,35 +13,12 @@ export const removeOWFormatting = (text: string) => {
     .replace(/~{2}([^~]+)~{2}/g, '$1');
 };
 
-export const escapeHtmlEntities = (str: string) => {
-  return str.replace(/[&<>"'/|]/g, function (char) {
-    switch (char) {
-      case '&':
-        return '&amp;';
-      case '<':
-        return '&lt;';
-      case '>':
-        return '&gt;';
-      case '"':
-        return '&quot;';
-      case "'":
-        return '&#39;';
-      case '/':
-        return '&#47;';
-      case '|':
-        return '&#124;';
-      default:
-        return char;
-    }
-  });
-}
-
 export const useFormattedSlackText = (text: string) => {
-  // Escape HTML entities (e.g. < to &lt;)
-  const htmlEscapedText = escapeHtmlEntities(text);
+  // Sanitize the text to prevent XSS attacks
+  const sanitizedText = DOMPurify.sanitize(text);
 
   // Convert shortnames to Unicode emojis
-  const unicodeText = joypixels.shortnameToUnicode(htmlEscapedText);
+  const unicodeText = joypixels.shortnameToUnicode(sanitizedText);
 
   // Remove unsupported emojis
   const cleanText = removeUnsupportedEmojis(unicodeText);
@@ -62,9 +40,20 @@ export const useFormattedSlackText = (text: string) => {
     line !== "" || restLines.slice(0, index).some((l: string) => l !== "")
   );
 
-  // Join lines back into a single string, ensuring line breaks are preserved
+  // Join lines back into a single string
   const formattedText = filteredLines
-    .map((line: string, index: number) => line === "" ? "\n" : line + (index < filteredLines.length - 1 ? "\n" : ""))
+    .map((line: string, index: number) => {
+      
+      // Handle blockquote lines
+      if (line.startsWith('&amp;gt; ')) {
+        // Remove "&amp;gt; " and add a CSS class for blockquote lines
+        const cleanLine = line.substring(9); // This removes the first 9 characters "&amp;gt; "
+        return `<blockquote class="px-2 border-s-4 border-gray-300 dark:border-gray-500">${cleanLine}</blockquote>`;
+      }
+      
+      // Ensure line breaks are preserved
+      return line === "" ? "\n" : line + (index < filteredLines.length - 1 ? "\n" : "");
+    })
     .join('')
     .replace(/\n/g, '<br />');
 
