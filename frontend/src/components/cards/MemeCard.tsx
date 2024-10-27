@@ -5,7 +5,7 @@ import { BaseCard } from "./BaseCard";
 import { SlackReaction } from "../SlackReaction";
 import { Badge } from "../Badge";
 
-const WIDTH = 500;
+const WIDTH = 550;
 const MAX_RETRIES = 10;
 
 export const MemeCard = ({ meme }: { meme: MemeType }) => {
@@ -22,7 +22,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
   };
 
   return (
-    <BaseCard>
+    <BaseCard width={WIDTH}>
       <div className="relative flex items-center w-full gap-4 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
         <img
           className="w-12 h-12 rounded-lg"
@@ -38,10 +38,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
         <Badge text={"#" + meme.channel_name} color="blue" className="absolute top-3 right-3" />
       </div>
       {imageError ? (
-        <div
-          className="flex items-center justify-center py-12 bg-white dark:text-white dark:bg-gray-800"
-          style={{ width: `${WIDTH}px` }}
-        >
+        <div className="flex items-center justify-center py-12 bg-white dark:text-white dark:bg-gray-800">
           Oops, her skjedde det en feil :(
         </div>
       ) : (
@@ -49,15 +46,11 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
           className="bg-white dark:bg-gray-800 dark:text-white"
           src={`${meme.url}?retry=${retryCount}`}
           alt={`Meme ${meme.url}`}
-          style={{ width: `${WIDTH}px` }}
           onError={handleImageError}
         />
       )}
       {meme.reactions.length > 0 && (
-        <div
-          className='flex justify-start flex-grow w-full gap-2 p-2 overflow-hidden'
-          style={{ width: `${WIDTH}px` }}
-        >
+        <div className='flex justify-start flex-grow w-full gap-2 p-2 overflow-hidden'>
           {meme.reactions.map((reaction, index) => (
             <SlackReaction
               key={index}

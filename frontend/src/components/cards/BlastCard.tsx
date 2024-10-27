@@ -10,7 +10,7 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
   const { contentRef, isOverflowing } = useIsOverflowing(formattedText);
 
   return (
-    <BaseCard width={1000}>
+    <BaseCard width={1250}>
       <div className='flex p-3 gap-4'>
         <img
           className="w-12 h-12 rounded-lg"
@@ -27,14 +27,14 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
             </div>
             <Badge color='blue' text={"#" + blast.channel_name} />
           </div>
-          <div className="my-2 text-2xl font-bold dark:text-white" dangerouslySetInnerHTML={{ __html: headerLine }} />
+          <div className="my-1 text-2xl font-bold dark:text-white" dangerouslySetInnerHTML={{ __html: headerLine }} />
           <div
             ref={contentRef}
-            className="mb-2 text-lg break-words text-ellipsis dark:text-white line-clamp-5"
+            className="mb-1 text-lg break-words text-ellipsis dark:text-white line-clamp-5"
             dangerouslySetInnerHTML={{ __html: formattedText }}
           />
           {isOverflowing && (
-            <div className="pt-0 pb-2 text-gray-500 dark:text-white">
+            <div className="text-gray-500 dark:text-white">
               Les resten på <span className="text-blue-500">#{blast.channel_name}</span>
             </div>
           )}

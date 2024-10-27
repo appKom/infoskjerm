@@ -25,7 +25,7 @@ export const LatestBlasts = () => {
     );
 
   return (
-    <div className="my-8 flex flex-col gap-8 overflow-hidden w-max">
+    <div className="my-4 flex flex-col gap-4 overflow-hidden w-max">
       {isLoading
         ? [...Array(AMOUNT_OF_BLASTS)].map((_, index) => (
             <BlastCardSkeleton key={index} />
