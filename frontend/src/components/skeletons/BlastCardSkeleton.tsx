@@ -1,7 +1,7 @@
 import { BaseCard } from "../cards/BaseCard";
 
 export const BlastCardSkeleton = () => (
-  <BaseCard width={1000}>
+  <BaseCard width={1250}>
     <div className='flex p-3 gap-4 animate-pulse'>
       <svg
         className="w-12 h-12 rounded-lg text-gray-200 dark:text-gray-600"
