@@ -1,6 +1,6 @@
 export const EVENT_TYPES = new Map([
   [1, { display: 'Sosialt', color: 'rgb(67, 177, 113)', colorName: 'green' }],
-  [2, { display: 'Bedpress', color: 'rgb(235, 83, 110)', colorName: 'red' }],
+  [2, { display: 'Bedpres', color: 'rgb(235, 83, 110)', colorName: 'red' }],
   [3, { display: 'Kurs', color: 'rgb(18, 125, 189)', colorName: 'blue' }],
   [4, { display: 'Utflukt', color: 'rgb(253, 189, 71)', colorName: 'yellow' }],
   [5, { display: 'Ekskursjon', color: 'rgb(42, 198, 249)', colorName: 'blue' }],
