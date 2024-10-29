@@ -1,12 +1,12 @@
 export const EVENT_TYPES = [
-  { display: 'Sosialt', colorName: 'green' },
-  { display: 'Bedpres', colorName: 'red' },
-  { display: 'Kurs', colorName: 'blue' },
-  { display: 'Utflukt', colorName: 'yellow' },
-  { display: 'Ekskursjon', colorName: 'blue' },
-  { display: 'Internt', colorName: 'red' },
-  { display: 'Annet', colorName: 'purple' },
-  { display: 'Realfagskjelleren', colorName: 'orange' }
+  { typeName: 'Sosialt', colorName: 'green' },
+  { typeName: 'Bedpres', colorName: 'red' },
+  { typeName: 'Kurs', colorName: 'blue' },
+  { typeName: 'Utflukt', colorName: 'yellow' },
+  { typeName: 'Ekskursjon', colorName: 'blue' },
+  { typeName: 'Internt', colorName: 'red' },
+  { typeName: 'Annet', colorName: 'purple' },
+  { typeName: 'Realfagskjelleren', colorName: 'orange' }
 ]
 
 export type MemeType = {
