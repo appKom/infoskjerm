@@ -34,8 +34,8 @@ export function EventCard({ event }: { event: IEvent }) {
   if (attendanceIsLoading) return <BaseCard isLoading />;
   if (attendanceIsError) return <BaseCard isError />;
 
-  const eventType = EVENT_TYPES.get(event_type)?.display;
-  const eventColor = EVENT_TYPES.get(event_type)?.colorName;
+  const eventType = EVENT_TYPES[event_type - 1]?.display;
+  const eventColor = EVENT_TYPES[event_type - 1]?.colorName;
 
   const { seatsLeft, percentageFilled } = calculateSeatsInfo(attendanceData);
   const indicatorColor = selectIndicatorColor(percentageFilled);
@@ -61,7 +61,7 @@ export function EventCard({ event }: { event: IEvent }) {
         </div>
       )}
 
-      <div className={`${image ? '' : 'flex justify-center'} w-full h-60 border-b rounded-t-lg border-gray-200 dark:border-gray-700`}>
+      <div className='flex justify-center w-full h-60 border-b rounded-t-lg border-gray-200 dark:border-gray-700'>
         {image ? (
           <img className="object-cover w-full h-full bg-white rounded-t-lg" src={image.lg} alt={image.description} />
         ) : (
