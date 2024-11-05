@@ -28,8 +28,11 @@ export const useFormattedSlackText = (text: string) => {
     .replace(/\*(.*?)\*/g, '<strong>$1</strong>') // Bold for *text*
     .replace(/_(.*?)_/g, '<em>$1</em>'); // Italic for _text_
 
+  // Remove leading and trailing spaces and line breaks
+  const trimmedText = formattedTextWithStyles.trim();
+
   // Split text into lines
-  const lines = formattedTextWithStyles.split('\n');
+  const lines = trimmedText.split('\n').map(line => line.trim());
 
   // Extract header line and the remaining lines
   const headerLine = lines[0];
@@ -43,14 +46,14 @@ export const useFormattedSlackText = (text: string) => {
   // Join lines back into a single string
   const formattedText = filteredLines
     .map((line: string, index: number) => {
-      
+
       // Handle blockquote lines
       if (line.startsWith('&amp;gt; ')) {
         // Remove "&amp;gt; " and add a CSS class for blockquote lines
         const cleanLine = line.substring(9); // This removes the first 9 characters "&amp;gt; "
         return `<blockquote class="px-2 border-s-4 border-gray-300 dark:border-gray-500">${cleanLine}</blockquote>`;
       }
-      
+
       // Ensure line breaks are preserved
       return line === "" ? "\n" : line + (index < filteredLines.length - 1 ? "\n" : "");
     })
