@@ -6,6 +6,7 @@ import { ChristmasPage } from './ChristmasPage';
 import { EventsPage } from './EventsPage';
 import { SlackPage } from './SlackPage';
 import { VideoPage } from './VideoPage';
+import { NapkomPage } from './Napkom';
 import { BratPage } from './BratPage';
 
 interface PageAbstract {
@@ -27,8 +28,7 @@ const preparePageSpecifications = (pages: PageSpecification[]): Page[] => {
   return pages.map(({ priority, ...rest }) => ({
     ...rest,
     probability: priority() / totalPriority
-  })
-  )
+  }))
 }
 
 export const MainPage = () => {
@@ -43,6 +43,18 @@ export const MainPage = () => {
       component: <SlackPage />,
       duration: 60,
       priority: () => 3,
+    },
+    {
+      component: <NapkomPage />,
+      duration: 60,
+      priority: () => {
+        const weight = 5
+        const hour = new Date().getHours()
+
+        if (0 <= hour && hour < 6) return weight
+        else if (hour >= 16) return (hour / 24) * weight
+        else return 0
+      },
     },
     {
       component: <VideoPage pageDuration={60} />,
@@ -69,7 +81,7 @@ export const MainPage = () => {
     {
       component: <BratPage />,
       duration: 30,
-      priority: () => 0.2,
+      priority: () => 0.02,
     },
   ];
 
@@ -120,9 +132,25 @@ export const MainPage = () => {
       });
     }, 250);
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      let newIndex = currentComponentIndex;
+    
+      if (event.key === 'ArrowLeft') {
+        newIndex = (currentComponentIndex - 1 + pages.length) % pages.length;
+      } else if (event.key === 'ArrowRight') {
+        newIndex = (currentComponentIndex + 1) % pages.length;
+      }
+    
+      setCurrentComponentIndex(newIndex);
+      setMillisecondsLeft(pages[newIndex].duration * 1000);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
       clearInterval(interval);
       clearInterval(countdown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [currentComponentIndex, millisecondsLeft]);
 
