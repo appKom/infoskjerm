@@ -87,7 +87,7 @@ export const ChristmasPage = () => {
                   className="absolute -bottom-4 bg-green-100 gap-1.5 text-green-800 font-medium flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border-2 border-green-400"
                 >
                   <div className="w-max text-center">
-                    Godkjent av Fredda G
+                    Godkjent av Fredda Jul
                   </div>
                   <svg
                     className="w-5 h-5"
