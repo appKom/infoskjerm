@@ -6,7 +6,8 @@ module.exports = {
       colors: {
         'light-grey': '#E5E7EB',
         'online-blue': '#0B5374',
-        'online-yellow': '#F9B759'
+        'online-yellow': '#F9B759',
+        'spotify-green': '#1DB954',
       },
       animation: {
         swing: 'swing 5s ease-in-out infinite',
