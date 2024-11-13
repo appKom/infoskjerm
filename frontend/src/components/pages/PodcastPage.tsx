@@ -110,9 +110,12 @@ export const PodcastPage = () => {
         </h1>
         <div className="text-xl mb-24 dark:text-white gap-2 flex flex-col w-full relative">
           <p><span className="font-semibold">&quot;Nach på kontoret&quot;</span> er den ideelle følgesvennen når du gjør deg klar til vors, gjerne sammen med en kald pils eller to etter dusjen.</p>
-          <p>Har du spørsmål eller tips til neste episode? Send dem inn på <span className="font-semibold">Instagram</span>!</p>
-          <div className="absolute right-[140px] top-[100px]">
-            <div className="bg-gray-700 px-2 py-1 text-lg rounded-lg relative text-white font-medium w-max">
+            <p>Har du spørsmål eller tips til neste episode? Send dem inn på <span className="font-bold bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#8134AF] bg-clip-text text-transparent">
+              Instagram
+            </span>
+          !</p>
+          <div className="absolute right-[130px] top-[100px]">
+            <div className="bg-gray-700 px-2 py-1 text-xl rounded-lg relative text-white font-medium w-max">
               <div className="relative z-10 flex items-center gap-1">
                 <img className="w-6" src="/podcast/ig-logo.svg" />
                 <div className="p-1">online_nachpakontoret</div>
