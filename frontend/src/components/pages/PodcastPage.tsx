@@ -27,7 +27,7 @@ export const PodcastPage = () => {
 
   return (
     <div className="relative flex justify-center gap-24 items-center h-full">
-      <div className="absolute inset-0 bg-gradient-to-bl dark:from-[#111827] dark:to-spotify-green/30 from-white via-white via-60% to-spotify-green/40 animate-gradient-x" />
+      <div className="absolute inset-0 bg-gradient-to-bl dark:from-[#111827] dark:to-spotify-green/30 from-white via-white via-60% to-spotify-green/70 animate-gradient-x" />
 
       {/* Spotify player */}
       <div className="bg-[#212121]/80 backdrop-blur-m w-[500px] p-8 rounded-3xl shadow-2xl h-min z-10">
