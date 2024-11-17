@@ -43,44 +43,22 @@ export const OnlineAppBlastPage = () => (
       className="z-10"
     >
       <div className='flex gap-4 items-end'>
-        <FloatingImage
-          src="online-app/iphone-1.png"
-          height="700px"
-          delay={0}
+      <img
+        style={{ height: '700px' }}
+        className='object-contain drop-shadow-[0_150px_150px_rgba(0,0,0,0.25)]'
+        src="online-app/iphone-1.png"
         />
-        <FloatingImage
-          src="online-app/iphone-2.png"
-          height="600px"
-          delay={1}
-        />
-        <FloatingImage
-          src="online-app/iphone-3.png"
-          height="500px"
-          delay={2}
-        />
+      <img
+        style={{ height: '600px' }}
+        className='object-contain drop-shadow-[0_150px_150px_rgba(0,0,0,0.25)]'
+        src="online-app/iphone-2.png"
+      />
+      <img
+        style={{ height: '500px' }}
+        className='object-contain drop-shadow-[0_150px_150px_rgba(0,0,0,0.25)]'
+        src="online-app/iphone-3.png"
+      />
       </div>
     </motion.div>
   </div>
-);
-
-
-const FloatingImage = ({ src, height, delay }: { 
-  src: string;
-  height: string;
-  delay: number;
-}) => (
-  <motion.img
-    animate={{ y: [0, -10, 0] }}
-    transition={{
-      y: {
-        duration: 5,
-        repeat: Infinity,
-        ease: 'easeInOut',
-        delay: delay,
-      },
-    }}
-    style={{ height }}
-    className='object-contain drop-shadow-[0_150px_150px_rgba(0,0,0,0.25)]'
-    src={src}
-  />
 );
