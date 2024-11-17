@@ -12,11 +12,8 @@ const web = new WebClient(token);
 
 export const fetchTextMessagesFromChannels = async (channelIds: string[], count: number, req: Request) => {
   console.log('Fetching text messages from multiple channels...');
-  
+
   let allMessages: any[] = [];
-  
-  // Store channel names to avoid multiple API calls for the same channel
-  const channelNameCache: { [channelId: string]: string } = {};
 
   for (const channelId of channelIds) {
     // Fetch channel information to get the channel name
@@ -25,7 +22,6 @@ export const fetchTextMessagesFromChannels = async (channelIds: string[], count:
 
     const result = await web.conversations.history({
       channel: channelId,
-      limit: count,
     });
 
     // Collect all valid messages from the current channel
@@ -36,9 +32,9 @@ export const fetchTextMessagesFromChannels = async (channelIds: string[], count:
       // Include messages with text, even if they have files or attachments
       if (message.text && !message.subtype && !message.bot_id) {
         const userInfo = await web.users.info({ user: message.user || "" });
-        
-        // Replace channel tags in the message text
-        const processedText = await replaceChannelTags(message.text, channelNameCache);
+
+        // Replace channel and user tags in the message text
+        const processedText = await processText(message.text);
 
         allMessages.push({
           id: message.ts,
@@ -75,7 +71,13 @@ export const fetchTextMessagesFromChannels = async (channelIds: string[], count:
   }
 };
 
-const replaceChannelTags = async (text: string, channelNameCache: { [channelId: string]: string }) => {
+const processText = async (text: string) => {
+  text = await replaceChannelTags(text);
+  text = await replaceUserTags(text);
+  return text;
+};
+
+const replaceChannelTags = async (text: string) => {
   const channelTagRegex = /<#(C\w+)\|?>/g;
 
   // Find all matches of channel tags
@@ -85,17 +87,39 @@ const replaceChannelTags = async (text: string, channelNameCache: { [channelId: 
   for (const match of channelTagMatches) {
     const channelId = match[1]; // Extract the channel ID
 
-    // Check if the channel name is already cached
-    if (!channelNameCache[channelId]) {
-      // Fetch the channel name from Slack API
+    // Fetch the channel name from Slack API
+    try {
       const channelInfo = await web.conversations.info({ channel: channelId });
       const channelName = channelInfo.channel?.name || 'unknown-channel';
-      // Cache the channel name
-      channelNameCache[channelId] = channelName;
-    }
 
-    // Replace the tag in the text with the actual channel name
-    text = text.replace(match[0], `#${channelNameCache[channelId]}`);
+      // Replace the tag in the text with the actual channel name
+      text = text.replace(match[0], `#${channelName}`);
+    } catch (error) {
+      console.error(`Error fetching channel info for ${channelId}:`, error);
+      text = text.replace(match[0], '#unknown-channel');
+    }
+  }
+
+  return text;
+};
+
+const replaceUserTags = async (text: string) => {
+  const userTagRegex = /<@(U\w+)>/g;
+
+  const userTagMatches = [...text.matchAll(userTagRegex)];
+
+  for (const match of userTagMatches) {
+    const userId = match[1];
+
+    try {
+      const userInfo = await web.users.info({ user: userId });
+      const userName = userInfo.user?.profile?.display_name || 'unknown-user';
+
+      text = text.replace(match[0], `@${userName}`);
+    } catch (error) {
+      console.error(`Error fetching user info for ${userId}:`, error);
+      text = text.replace(match[0], '@unknown-user');
+    }
   }
 
   return text;

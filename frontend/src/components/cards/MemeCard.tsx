@@ -3,8 +3,9 @@ import { formatSlackDate } from "../../lib/date";
 import { MemeType } from "../../lib/types";
 import { BaseCard } from "./BaseCard";
 import { SlackReaction } from "../SlackReaction";
+import { Badge } from "../Badge";
 
-const WIDTH = 600;
+const WIDTH = 500;
 const MAX_RETRIES = 10;
 
 export const MemeCard = ({ meme }: { meme: MemeType }) => {
@@ -22,7 +23,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
 
   return (
     <BaseCard>
-      <div className="flex items-center w-full gap-4 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+      <div className="relative flex items-center w-full gap-4 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
         <img
           className="w-12 h-12 rounded-lg"
           src={meme.author_image}
@@ -34,6 +35,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
             {formatSlackDate(meme.date)}
           </div>
         </div>
+        <Badge text={"#" + meme.channel_name} color="blue" className="absolute top-3 right-3" />
       </div>
       {imageError ? (
         <div
