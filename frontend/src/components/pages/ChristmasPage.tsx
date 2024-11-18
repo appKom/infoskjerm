@@ -127,7 +127,7 @@ export const ChristmasPage = () => {
       <ChristmasBackgroundSVG/>
     </div>
     {/* Background hills */}
-    <svg
+      <svg
         viewBox="0 0 1000 400"
         className="w-full absolute -bottom-10 z-10"
       >
