@@ -118,7 +118,7 @@ export const ChristmasPage = () => {
       {/* Background hills */}
       <svg
         viewBox="0 0 1000 400"
-        className="w-full absolute bottom-0 z-10"
+        className="w-full absolute -bottom-10 z-10"
       >
         <g clipPath="url(#clip0_36_28)">
           <path d="M0 400C133.333 266.667 266.667 233.333 400 300C533.333 233.333 666.667 233.333 800 300C933.333 233.333 1000 266.667 1000 400H0Z" fill="#F1F5F9"/>
@@ -151,7 +151,7 @@ export const ChristmasPage = () => {
       </svg>
 
       {/* Mountains */}
-      <img className="absolute bottom-0" src="/graphics/mountains2.svg" alt="" />
+      <img className="absolute bottom-0" src="/christmas/mountains.svg" alt="" />
     </div>
   );
 };
