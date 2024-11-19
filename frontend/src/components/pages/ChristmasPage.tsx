@@ -125,7 +125,7 @@ export const ChristmasPage = () => {
       </div>
 
       {/* Background hill */}
-      <img className="w-full absolute -bottom-10 opacity-95 z-10" src="/christmas/hill.svg" alt="" />
+      <img className="w-full absolute -bottom-10 z-10" src="/christmas/hill.svg" alt="" />
 
       {/* Mountains */}
       <img className="absolute bottom-0" src="/christmas/mountains.svg" alt="" />
