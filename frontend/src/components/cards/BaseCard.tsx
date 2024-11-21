@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { CircleX } from 'lucide-react'
 
 export const BaseCard = ({
@@ -6,19 +7,27 @@ export const BaseCard = ({
   showOverflow = false,
   isLoading = false,
   isError = false,
+  isHighlighted = false,
 }: {
   children?: React.ReactNode,
   width?: number,
   showOverflow?: boolean,
   isLoading?: boolean,
   isError?: boolean,
+  isHighlighted?: boolean,
 }) => {
   const style = width ? { width: `${width}px` } : undefined;
-  const overflowClass = showOverflow ? '' : 'overflow-hidden';
+  const highlightClass = isHighlighted
+    ? 'bg-gradient-to-b from-amber-50 to-amber-100 border-amber-300 shadow-md dark:from-amber-900 dark:to-amber-800 dark:border-amber-600'
+    : 'bg-white border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700';
 
   return (
     <div
-      className={`relative ${overflowClass} bg-white flex flex-col border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700`}
+      className={clsx(
+        !showOverflow && 'overflow-hidden',
+        highlightClass,
+        'relative flex flex-col border rounded-xl transition-all duration-300 ease-in-out'
+      )}
       style={style}
     >
       {isLoading ? (
@@ -41,12 +50,14 @@ export const BaseCard = ({
           </svg>
         </div>
       ) : isError ? (
-        <div className="flex flex-col items-center justify-center w-full h-full text-center text-gray-600 my-24 gap-2">
+        <div className="flex flex-col items-center justify-center w-full h-full text-center text-gray-600 dark:text-gray-400 my-24 gap-2">
           <CircleX className="w-5" />
           <p>Wops, her har det skjedd noe feil.</p>
         </div>
       ) : (
-        children
+        <div className={`relative z-10 ${isHighlighted ? 'text-amber-900 dark:text-amber-100' : ''}`}>
+          {children}
+        </div>
       )}
     </div>
   );
