@@ -18,7 +18,7 @@ export const BaseCard = ({
 }) => {
   const style = width ? { width: `${width}px` } : undefined;
   const highlightClass = isHighlighted
-    ? 'bg-gradient-to-b from-amber-50 to-amber-100 border-amber-300 shadow-md dark:from-amber-900 dark:to-amber-800 dark:border-amber-600'
+    ? 'bg-gradient-to-b from-amber-50 to-amber-100 border-amber-300 shadow-md dark:from-[#292e37] dark:to-[#403d2f]'
     : 'bg-white border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700';
 
   return (
@@ -55,7 +55,7 @@ export const BaseCard = ({
           <p>Wops, her har det skjedd noe feil.</p>
         </div>
       ) : (
-        <div className={`relative z-10 ${isHighlighted ? 'text-amber-900 dark:text-amber-100' : ''}`}>
+        <div className={clsx('relative z-10', isHighlighted && 'text-amber-900')}>
           {children}
         </div>
       )}
