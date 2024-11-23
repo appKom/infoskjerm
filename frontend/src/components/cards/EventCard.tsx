@@ -51,7 +51,7 @@ export function EventCard({ event }: { event: IEvent }) {
     : `${formatWeekday(start_date)} ${formatDateName(start_date)}, ${formatClock(start_date)}`;
 
   return (
-    <BaseCard showOverflow isHighlighted={isLongDurationEvent}>
+    <BaseCard showOverflow isGolden={isLongDurationEvent}>
       {isRegistrationEvent && (
         <div
           className={`absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white 
