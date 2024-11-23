@@ -8,6 +8,7 @@ import { removeOWFormatting } from '../../lib/text';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAttendanceByEventId } from '../../api/owApi';
 import { calculateSeatsInfo, selectIndicatorColor, determineTimeBeforeRegistrationOpens, determineStatusText } from '../../lib/event';
+import clsx from 'clsx';
 
 export function EventCard({ event }: { event: IEvent }) {
   const { ingress, title, start_date, end_date, event_type, images } = event;
@@ -76,7 +77,7 @@ export function EventCard({ event }: { event: IEvent }) {
       </div>
 
       <div ref={containerRef} className='flex flex-col justify-between flex-grow w-full gap-2 px-4 pt-2 pb-3 overflow-hidden'>
-        <div>
+        <div className={clsx(isLongDurationEvent && 'text-amber-900')}>
           {title && <h5 className="w-full text-2xl font-bold tracking-tight line-clamp-1 dark:text-white">{removeOWFormatting(title)}</h5>}
           {ingress && <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{removeOWFormatting(ingress)}</p>}
         </div>

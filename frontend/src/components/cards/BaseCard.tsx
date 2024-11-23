@@ -23,7 +23,7 @@ export const BaseCard = ({
       className={clsx(
         !showOverflow && 'overflow-hidden',
         isGolden
-          ? 'text-amber-900 bg-gradient-to-b from-amber-50 to-amber-100 border-amber-300 dark:from-[#292e37] dark:to-[#403d2f]'
+          ? 'bg-gradient-to-b from-amber-50 to-amber-100 border-amber-300 dark:from-[#292e37] dark:to-[#403d2f]'
           : 'bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700',
         'relative flex flex-col border rounded-xl transition-all duration-300 ease-in-out z-10 shadow',
       )}
