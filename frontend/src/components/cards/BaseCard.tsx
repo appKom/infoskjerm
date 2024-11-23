@@ -54,7 +54,7 @@ export const BaseCard = ({
           <p>Wops, her har det skjedd noe feil.</p>
         </div>
       ) : (
-          children
+        children
       )}
     </div>
   );
