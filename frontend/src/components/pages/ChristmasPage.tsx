@@ -59,14 +59,28 @@ export const ChristmasPage = () => {
         <div className="relative z-50 p-8 bg-white border border-gray-200 shadow-xl dark:bg-gray-800 dark:border-gray-700 rounded-3xl">
           <h1 className="mb-8 text-4xl font-bold text-center text-gray-800 dark:text-gray-100">Nedtelling til jul</h1>
 
-          <div className={clsx(
-            "text-center",
-            isAfterJulebord ? "my-32" : "mb-12"
-            )}>
-            <p className="font-extrabold text-red-600 dark:text-500 text-[138px] leading-none" >
+          <div
+            className={clsx(
+              "text-center",
+              isAfterJulebord ? "my-16" : "mb-12"
+            )}
+          >
+            <p
+              className={clsx(
+                "font-extrabold text-red-600 dark:text-500 leading-none",
+                isAfterJulebord ? "text-[250px]" : "text-[138px]"
+              )}
+            >
               {daysUntilChristmas}
             </p>
-            <p className="text-xl text-gray-600 dark:text-gray-300">{daysUntilChristmas === 1 ? "dag" : "dager"} igjen!</p>
+            <p
+              className={clsx(
+                "text-gray-600 dark:text-gray-300",
+                isAfterJulebord ? "text-3xl" : "text-xl"
+              )}
+            >
+              {daysUntilChristmas === 1 ? "dag" : "dager"} igjen!
+            </p>
           </div>
 
           {!isAfterJulebord && (
