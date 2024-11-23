@@ -17,16 +17,15 @@ export const BaseCard = ({
   isHighlighted?: boolean,
 }) => {
   const style = width ? { width: `${width}px` } : undefined;
-  const highlightClass = isHighlighted
-    ? 'bg-gradient-to-b from-amber-50 to-amber-100 border-amber-300 shadow-md dark:from-[#292e37] dark:to-[#403d2f]'
-    : 'bg-white border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700';
 
   return (
     <div
       className={clsx(
         !showOverflow && 'overflow-hidden',
-        highlightClass,
-        'relative flex flex-col border rounded-xl transition-all duration-300 ease-in-out'
+        isHighlighted
+          ? 'text-amber-900 bg-gradient-to-b from-amber-50 to-amber-100 border-amber-300 dark:from-[#292e37] dark:to-[#403d2f]'
+          : 'bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700',
+        'relative flex flex-col border rounded-xl transition-all duration-300 ease-in-out z-10 shadow',
       )}
       style={style}
     >
@@ -55,9 +54,7 @@ export const BaseCard = ({
           <p>Wops, her har det skjedd noe feil.</p>
         </div>
       ) : (
-        <div className={clsx('relative z-10', isHighlighted && 'text-amber-900')}>
-          {children}
-        </div>
+          children
       )}
     </div>
   );
