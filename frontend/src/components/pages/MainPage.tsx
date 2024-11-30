@@ -9,6 +9,7 @@ import { VideoPage } from './VideoPage';
 import { NapkomPage } from './Napkom';
 import { BratPage } from './BratPage';
 import { PodcastPage } from './PodcastPage';
+import { Kunnskapkom } from './Kunnskapkom';
 
 interface PageAbstract {
   component: ReactElement;
@@ -88,6 +89,11 @@ export const MainPage = () => {
       component: <PodcastPage />,
       duration: 30,
       priority: () => 1.5,
+    },
+    {
+      component: <Kunnskapkom />,
+      duration: 60,
+      priority: () => 0.03,
     }
   ];
 
