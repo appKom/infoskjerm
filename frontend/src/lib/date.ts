@@ -48,3 +48,9 @@ export const formatSlackDate = (dateInput: string): string => {
 
   return diffDays === 1 ? '1 dag siden' : `${diffDays} dager siden`;
 };
+
+export const isLongEvent = (start: Date, end: Date, thresholdDays: number = 5): boolean => {
+  const durationMs = end.getTime() - start.getTime();
+  const durationDays = durationMs / (1000 * 60 * 60 * 24); // Convert milliseconds to days
+  return durationDays >= thresholdDays;
+}
