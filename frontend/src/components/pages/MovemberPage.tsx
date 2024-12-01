@@ -56,7 +56,7 @@ export const MovemberPage = () => {
               ))
             }
           </div>
-        ) : shuffledData?.length > 0 ? (
+        ) : data?.length > 0 ? (
           <Marquee speed={125}>
             {shuffledData.map((result: any) => (
               <BaseCard className="mr-12" key={result.url}>
