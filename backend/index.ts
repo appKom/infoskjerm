@@ -5,6 +5,7 @@ import { authenticate } from './src/authentication';
 import { fetchMedia } from './src/media';
 import { fetchTextMessagesFromChannels } from './src/text';
 import { mediaDir, listFiles, manageDirectory, textDir } from './src/directories';
+import { fetchImagesFromDate } from './src/movember';
 
 const channels = {
   memes: [
@@ -13,7 +14,8 @@ const channels = {
   blasts: [
     "CGR4J7PLH", // #korktavla
     "C03S8TX1L" // #online
-  ]
+  ],
+  movember: "C01DL1YV4N6", // #movember
 };
 
 const app = express();
@@ -56,5 +58,17 @@ app.get('/latest-blasts', authenticate, async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Failed to get blasts:', error);
     res.status(500).send('Failed to get blasts :(');
+  }
+});
+
+app.get('/movember', authenticate , async (req: Request, res: Response) => {
+  try {
+    await manageDirectory(mediaDir);
+    await fetchImagesFromDate(channels.movember, '2024-11-29', req);
+    const imageMetadata = await listFiles(mediaDir);
+    res.json(imageMetadata);
+  } catch (error) {
+    console.error('Failed to get memes:', error);
+    res.status(500).send('Failed to get memes :(');
   }
 });
