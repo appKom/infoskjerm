@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 const REFETCH_INTERVAL_MINUTES = 60;
+const MAX_RETRIES = 10;
 
 export const MovemberPage = () => {
   const [shuffledData, setShuffledData] = useState<string[]>([]);
@@ -58,13 +59,8 @@ export const MovemberPage = () => {
           </div>
         ) : data?.length > 0 ? (
           <Marquee speed={125}>
-            {shuffledData.map((result: any) => (
-              <BaseCard className="mr-12" key={result.url}>
-                <img
-                  src={result.url}
-                  className="max-h-[650px]"
-                />
-              </BaseCard>
+            {shuffledData.map((result: any, index) => (
+              <MovemberCard result={result} index={index} key={index} />
             ))}
           </Marquee>
         ) : (
@@ -74,5 +70,50 @@ export const MovemberPage = () => {
         )
       }
     </div>
+  )
+}
+
+const MovemberCard = ({ result, index }: { result: any, index: number }) => {
+  const [imageError, setImageError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+  const [imageSrc, setImageSrc] = useState(result.url);
+
+  const handleImageError = () => {
+    if (retryCount < MAX_RETRIES) {
+      setRetryCount(retryCount + 1);
+      setImageError(false);
+    } else {
+      setImageError(true);
+    }
+  };
+
+  useEffect(() => {
+    const loadTimeout = setTimeout(() => {
+      setImageSrc(result.url);
+      console.log("Loaded image", result.url);
+    }, 500 * index);
+    return () => clearTimeout(loadTimeout);
+  }, []);
+
+
+  if (imageError) {
+    return (
+      <div
+        className="flex items-center justify-center py-12 bg-white dark:text-white dark:bg-gray-800 min-w-[350px] h-[650px] mr-12 rounded-lg"
+      >
+        Oops, her skjedde det en feil :(
+      </div>
+    )
+  }
+
+  return (
+    <BaseCard className="mr-12" key={result.url}>
+      <img
+        src={`${imageSrc}?retry=${retryCount}`}
+        className="max-h-[650px]"
+        onError={handleImageError}
+        loading="lazy"
+      />
+    </BaseCard>
   )
 }
