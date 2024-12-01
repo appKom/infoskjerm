@@ -6,19 +6,21 @@ export const BaseCard = ({
   showOverflow = false,
   isLoading = false,
   isError = false,
+  className
 }: {
   children?: React.ReactNode,
   width?: number,
   showOverflow?: boolean,
   isLoading?: boolean,
   isError?: boolean,
+  className?: string
 }) => {
   const style = width ? { width: `${width}px` } : undefined;
   const overflowClass = showOverflow ? '' : 'overflow-hidden';
 
   return (
     <div
-      className={`relative ${overflowClass} bg-white flex flex-col border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700`}
+      className={`relative ${overflowClass} ${className} bg-white flex flex-col border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700`}
       style={style}
     >
       {isLoading ? (
