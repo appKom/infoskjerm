@@ -10,7 +10,7 @@ export const MovemberPage = () => {
   const [shuffledData, setShuffledData] = useState<string[]>([]);
 
   const { isLoading, isError, data } = useQuery({
-    queryKey: ["memes"],
+    queryKey: ["movember"],
     queryFn: () => fetchMovemberResults(),
     refetchInterval: 1000 * 60 * REFETCH_INTERVAL_MINUTES,
   });
