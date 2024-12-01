@@ -9,6 +9,7 @@ import { VideoPage } from './VideoPage';
 import { NapkomPage } from './Napkom';
 import { BratPage } from './BratPage';
 import { PodcastPage } from './PodcastPage';
+import { MovemberPage } from './MovemberPage';
 
 interface PageAbstract {
   component: ReactElement;
@@ -88,6 +89,21 @@ export const MainPage = () => {
       component: <PodcastPage />,
       duration: 30,
       priority: () => 1.5,
+    },
+    {
+      component: <MovemberPage />,
+      duration: 30,
+      priority: () => {
+        const today = new Date();
+        const year = today.getFullYear();
+
+        const seasonStart = new Date(year, 11, 1);
+        const seasonEnd = new Date(year, 11, 15);
+
+        if (seasonStart <= today && today <= seasonEnd) return 0.5;
+        else return 0;
+      }
+
     }
   ];
 
