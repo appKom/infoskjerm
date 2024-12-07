@@ -92,15 +92,15 @@ export const MainPage = () => {
     },
     {
       component: <MovemberPage />,
-      duration: 30,
+      duration: 60,
       priority: () => {
         const today = new Date();
         const year = today.getFullYear();
 
-        const seasonStart = new Date(year, 11, 1);
-        const seasonEnd = new Date(year, 11, 15);
+        const seasonStart = new Date(year, 11, 1); // December 1st
+        const seasonEnd = new Date(year, 11, 24); // December 24th
 
-        if (seasonStart <= today && today <= seasonEnd) return 0.5;
+        if (seasonStart <= today && today <= seasonEnd) return 1;
         else return 0;
       }
 
