@@ -38,26 +38,30 @@ export function EventCard({ event }: { event: IEvent }) {
   const eventColor = EVENT_TYPES[event_type - 1]?.colorName;
 
   const { seatsLeft, percentageFilled } = calculateSeatsInfo(attendanceData);
-  const indicatorColor = selectIndicatorColor(percentageFilled);
+  const indicatorColor = selectIndicatorColor(percentageFilled, event.start_date, event.end_date);
   const registrationEnd = new Date(attendanceData?.registration_end);
   const registrationStart = new Date(attendanceData?.registration_start);
   const isRegistrationEnded = new Date() > registrationEnd;
   const timeBeforeRegistrationOpens = determineTimeBeforeRegistrationOpens(registrationStart);
 
+  const statusText = determineStatusText(
+    isRegistrationEnded,
+    timeBeforeRegistrationOpens,
+    seatsLeft,
+    attendanceData?.number_on_waitlist,
+    event.start_date,
+    event.end_date,
+  );
+
   return (
     <BaseCard showOverflow>
-      {isRegistrationEvent && (
+      {statusText && (
         <div
           className={`absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white 
-            ${isRegistrationEnded ? 'bg-gray-400' : indicatorColor} 
+            ${isRegistrationEnded ? 'bg-gray-400' : indicatorColor}
             border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900`}
         >
-          {determineStatusText(
-            isRegistrationEnded,
-            timeBeforeRegistrationOpens,
-            seatsLeft,
-            attendanceData?.number_on_waitlist
-          )}
+          {statusText}
         </div>
       )}
 
