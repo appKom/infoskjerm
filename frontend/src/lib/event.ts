@@ -12,7 +12,18 @@ export const calculateSeatsInfo = (attendanceEvent: IEventAttendanceDetails): At
   return { seatsLeft, percentageFilled };
 };
 
-export const selectIndicatorColor = (percentageFilled: number): string => {
+export const selectIndicatorColor = (
+  percentageFilled: number,
+  startDate: string,
+  endDate: string
+): string => {
+  const currentDate = new Date().toISOString();
+
+  // Check if event is ongoing
+  if (currentDate >= startDate && currentDate <= endDate) {
+    return 'bg-amber-200 text-amber-800';
+  }
+
   if (percentageFilled >= 90) return 'bg-red-500';
   if (percentageFilled >= 75) return 'bg-orange-400';
   return 'bg-green-500';
@@ -32,8 +43,17 @@ export const determineStatusText = (
   isRegistrationEnded: boolean,
   { daysDiff, hoursDiff, minutesDiff }: { daysDiff: number; hoursDiff: number; minutesDiff: number },
   seatsLeft: number,
-  numberOnWaitlist: number
-): string => {
+  numberOnWaitlist: number,
+  start_date: string,
+  end_date: string,
+): string | undefined => {
+  const currentDate = new Date().toISOString();
+
+  // Check if event is ongoing
+  if (currentDate >= start_date && currentDate <= end_date) {
+    return 'Pågående';
+  }
+
   if (daysDiff > 0) {
     return `Påmelding åpner om ${daysDiff} ${daysDiff === 1 ? 'dag' : 'dager'}`;
   } else if (hoursDiff > 0) {
@@ -47,5 +67,10 @@ export const determineStatusText = (
   } else if (numberOnWaitlist > 0) {
     return `${numberOnWaitlist} på venteliste`;
   }
-  return `${seatsLeft} ${seatsLeft === 1 ? 'plass' : 'plasser'} igjen`;
+
+  if (seatsLeft > 0) {
+    return `${seatsLeft} ${seatsLeft === 1 ? 'plass' : 'plasser'} igjen`;
+  }
+
+  return undefined;
 };
