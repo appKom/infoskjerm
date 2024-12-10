@@ -8,6 +8,7 @@ export const BaseCard = ({
   isLoading = false,
   isError = false,
   isGolden = false,
+  className
 }: {
   children?: React.ReactNode,
   width?: number,
@@ -15,12 +16,14 @@ export const BaseCard = ({
   isLoading?: boolean,
   isError?: boolean,
   isGolden?: boolean,
+  className?: string
 }) => {
   const style = width ? { width: `${width}px` } : undefined;
 
   return (
     <div
       className={clsx(
+        className,
         !showOverflow && 'overflow-hidden',
         isGolden
           ? 'bg-gradient-to-b from-amber-50 to-amber-100 border-amber-300 dark:from-[#292e37] dark:to-[#403d2f]'

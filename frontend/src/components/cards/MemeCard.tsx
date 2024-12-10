@@ -51,6 +51,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
           alt={`Meme ${meme.url}`}
           style={{ width: `${WIDTH}px` }}
           onError={handleImageError}
+          loading="lazy"
         />
       )}
       {meme.reactions.length > 0 && (
