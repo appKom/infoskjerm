@@ -48,9 +48,9 @@ export function EventCard({ event }: { event: IEvent }) {
 
   const dateBadgeText = isLongDurationEvent
   ? sameMonth(start_date, end_date)
-    ? `Fra ${formatDateName(start_date, false)} til ${formatDateName(end_date)}`
-    : `${formatDateName(start_date)} - ${formatDateName(end_date)}`
-  : `${formatWeekday(start_date)} ${formatDateName(start_date)}, ${formatClock(start_date)}`;
+    ? `Fra ${formatDateName(start_date, false)} til ${formatDateName(end_date)}` // Start and end date in same month
+    : `Fra ${formatDateName(start_date)} til ${formatDateName(end_date)}` // Start and end date in different months
+  : `${formatWeekday(start_date)} ${formatDateName(start_date)}, ${formatClock(start_date)}`; // Single day event
 
   const statusText = determineStatusText(
     isRegistrationEnded,
