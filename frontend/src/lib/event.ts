@@ -21,7 +21,7 @@ export const selectIndicatorColor = (
 
   // Check if event is ongoing
   if (currentDate >= startDate && currentDate <= endDate) {
-    return 'bg-red-500';
+    return 'bg-amber-200 text-amber-800';
   }
 
   if (percentageFilled >= 90) return 'bg-red-500';

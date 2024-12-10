@@ -8,6 +8,7 @@ import { removeOWFormatting } from '../../lib/text';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAttendanceByEventId } from '../../api/owApi';
 import { calculateSeatsInfo, selectIndicatorColor, determineTimeBeforeRegistrationOpens, determineStatusText } from '../../lib/event';
+import clsx from 'clsx';
 
 export function EventCard({ event }: { event: IEvent }) {
   const { ingress, title, start_date, event_type, images } = event;
@@ -57,9 +58,10 @@ export function EventCard({ event }: { event: IEvent }) {
     <BaseCard showOverflow>
       {statusText && (
         <div
-          className={`absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold text-white 
-            ${isRegistrationEnded ? 'bg-gray-400' : indicatorColor}
-            border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900`}
+          className= {clsx(
+            'absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold border-2 border-white text-white rounded-full -top-2 -end-2 dark:border-gray-900',
+            isRegistrationEnded ? 'bg-gray-400' : indicatorColor
+          )}
         >
           {statusText}
         </div>
