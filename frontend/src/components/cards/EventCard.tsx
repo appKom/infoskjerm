@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import OnlineLogo from '../Logo/OnlineLogo';
 import { Badge } from '../Badge';
-import { formatWeekday, formatClock, formatDateName, isLongEvent } from '../../lib/date';
+import { formatWeekday, formatClock, formatDateName, isLongEvent, sameMonth } from '../../lib/date';
 import { EVENT_TYPES, IEvent } from '../../lib/types';
 import { BaseCard } from './BaseCard';
 import { removeOWFormatting } from '../../lib/text';
@@ -47,7 +47,9 @@ export function EventCard({ event }: { event: IEvent }) {
   const isLongDurationEvent = isLongEvent(new Date(start_date), new Date(end_date));
 
   const dateBadgeText = isLongDurationEvent
-  ? `${formatDateName(start_date)} - ${formatDateName(end_date)}`
+  ? sameMonth(start_date, end_date)
+    ? `Fra ${formatDateName(start_date, false)} til ${formatDateName(end_date)}`
+    : `${formatDateName(start_date)} - ${formatDateName(end_date)}`
   : `${formatWeekday(start_date)} ${formatDateName(start_date)}, ${formatClock(start_date)}`;
 
   const statusText = determineStatusText(
@@ -60,8 +62,8 @@ export function EventCard({ event }: { event: IEvent }) {
   );
 
   return (
-    <BaseCard showOverflow isGolden={isLongDurationEvent}>
-      {statusText && ( // && isRegistrationEvent ??????
+    <BaseCard showOverflow>
+      {statusText && (
         <div
           className= {clsx(
             'absolute inline-flex items-center justify-center py-0.5 px-2 text-sm font-bold border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900',
@@ -81,7 +83,7 @@ export function EventCard({ event }: { event: IEvent }) {
       </div>
 
       <div ref={containerRef} className='flex flex-col justify-between flex-grow w-full gap-2 px-4 pt-2 pb-3 overflow-hidden'>
-        <div className={clsx(isLongDurationEvent && 'text-amber-900')}>
+        <div>
           {title && <h5 className="w-full text-2xl font-bold tracking-tight line-clamp-1 dark:text-white">{removeOWFormatting(title)}</h5>}
           {ingress && <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{removeOWFormatting(ingress)}</p>}
         </div>

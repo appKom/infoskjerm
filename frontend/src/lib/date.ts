@@ -12,14 +12,15 @@ export function formatDate(dateStr: string) {
   return `${day}.${month}`;
 }
 
-export function formatDateName(dateStr: string) {
+export function formatDateName(dateStr: string, includeMonth: boolean = true) {
   const date = new Date(dateStr);
-  const day = date.getDate();  // Get day of the month as a number without leading zero
-  const month = date.toLocaleDateString('nb-NO', { month: 'long' });  // Get full month name in Norwegian
+  const day = date.getDate(); // Get day of the month as a number without leading zero
+  const month = date.toLocaleDateString('nb-NO', { month: 'long' }); // Get full month name in Norwegian
 
-  return `${day}. ${month.charAt(0).toUpperCase() + month.slice(1)}`;  // Capitalize the first letter of the month
+  return includeMonth
+    ? `${day}. ${month.charAt(0).toUpperCase() + month.slice(1)}` // Capitalize the first letter of the month
+    : `${day}.`;
 }
-
 
 export function formatClock(dateStr: string) {
   const date = new Date(dateStr);
@@ -49,8 +50,14 @@ export const formatSlackDate = (dateInput: string): string => {
   return diffDays === 1 ? '1 dag siden' : `${diffDays} dager siden`;
 };
 
-export const isLongEvent = (start: Date, end: Date, thresholdDays: number = 5): boolean => {
+export const isLongEvent = (start: Date, end: Date, thresholdDays: number = 1): boolean => {
   const durationMs = end.getTime() - start.getTime();
   const durationDays = durationMs / (1000 * 60 * 60 * 24); // Convert milliseconds to days
   return durationDays >= thresholdDays;
 }
+
+export const sameMonth = (startDate: string, endDate: string): boolean => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  return start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
+};
