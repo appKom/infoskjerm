@@ -11,8 +11,9 @@ import {
   textDir,
 } from "./src/directories";
 import { fetchImagesFromDate } from "./src/movember";
+import "./src/cronJob";
 
-export const channels = {
+export const channelsConfig = {
   memes: [
     "C01DG6JFNSG", // #memeogvinogklinoggrin2
   ],
@@ -22,6 +23,8 @@ export const channels = {
   ],
   movember: "C01DL1YV4N6", // #movember
 };
+
+export const channels = channelsConfig;
 
 const app = express();
 const port = 3000;
@@ -42,7 +45,7 @@ app.get("/latest-memes", authenticate, async (req: Request, res: Response) => {
 
   try {
     await manageDirectory(mediaDir);
-    await fetchMedia(channels.memes[0], count, req);
+    await fetchMedia(channels.memes[0], count);
     const imageMetadata = await listFiles(mediaDir);
     res.json(imageMetadata);
   } catch (error) {
@@ -59,7 +62,7 @@ app.get("/latest-blasts", authenticate, async (req: Request, res: Response) => {
 
   try {
     await manageDirectory(textDir);
-    await fetchTextMessagesFromChannels(channels.blasts, count, req);
+    await fetchTextMessagesFromChannels(channels.blasts, count);
     const textMetadata = await listFiles(textDir);
     res.json(textMetadata);
   } catch (error) {
@@ -75,7 +78,7 @@ app.get("/movember", authenticate, async (req: Request, res: Response) => {
     const imageMetadata = await listFiles(mediaDir);
     res.json(imageMetadata);
   } catch (error) {
-    console.error("Failed to get memes:", error);
-    res.status(500).send("Failed to get memes :(");
+    console.error("Failed to get Movember images:", error);
+    res.status(500).send("Failed to get Movember images :(");
   }
 });

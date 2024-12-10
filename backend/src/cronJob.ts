@@ -11,7 +11,7 @@ cron.schedule("0 * * * *", async () => {
     try {
       const memeChannelIds = channels.memes;
       for (const channelId of memeChannelIds) {
-        await fetchMedia(channelId, 10, {} as Request);
+        await fetchMedia(channelId, 10);
       }
     } catch (error) {
       console.error("Error fetching memes:", error);
@@ -20,7 +20,7 @@ cron.schedule("0 * * * *", async () => {
     // Fetch Blasts
     try {
       const blastChannelIds = channels.blasts;
-      await fetchTextMessagesFromChannels(blastChannelIds, 20, {} as Request);
+      await fetchTextMessagesFromChannels(blastChannelIds, 20);
     } catch (error) {
       console.error("Error fetching blasts:", error);
     }

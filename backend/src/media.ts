@@ -11,11 +11,7 @@ const token = process.env.SLACK_TOKEN;
 
 const web = new WebClient(token);
 
-export const fetchMedia = async (
-  channelId: string,
-  count: number,
-  req: Request
-) => {
+export const fetchMedia = async (channelId: string, count: number) => {
   console.log("Fetching media...");
 
   const pool = await poolPromise;

@@ -11,8 +11,7 @@ const web = new WebClient(token);
 
 export const fetchTextMessagesFromChannels = async (
   channelIds: string[],
-  count: number,
-  req: Request
+  count: number
 ) => {
   console.log("Fetching text messages from multiple channels...");
 
