@@ -24,9 +24,9 @@ export const selectIndicatorColor = (
     return 'bg-amber-200 text-amber-800';
   }
 
-  if (percentageFilled >= 90) return 'bg-red-500';
-  if (percentageFilled >= 75) return 'bg-orange-400';
-  return 'bg-green-500';
+  if (percentageFilled >= 90) return 'bg-red-500 text-white';
+  if (percentageFilled >= 75) return 'bg-orange-400 text-white';
+  return 'bg-green-500 text-white';
 };
 
 export const determineTimeBeforeRegistrationOpens = (registrationStart: Date) => {
