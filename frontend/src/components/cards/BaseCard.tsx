@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { CircleX } from 'lucide-react'
 
 export const BaseCard = ({
@@ -16,11 +17,14 @@ export const BaseCard = ({
   className?: string
 }) => {
   const style = width ? { width: `${width}px` } : undefined;
-  const overflowClass = showOverflow ? '' : 'overflow-hidden';
 
   return (
     <div
-      className={`relative ${overflowClass} ${className} bg-white flex flex-col border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700`}
+      className={clsx(
+        !showOverflow && 'overflow-hidden',
+        className,
+        'relative bg-white flex flex-col border border-gray-200 shadow rounded-xl dark:bg-gray-800 dark:border-gray-700',
+      )}
       style={style}
     >
       {isLoading ? (

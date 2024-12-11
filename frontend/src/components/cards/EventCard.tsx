@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import OnlineLogo from '../Logo/OnlineLogo';
 import { Badge } from '../Badge';
-import { formatWeekday, formatClock, formatDateName } from '../../lib/date';
+import { formatWeekday, formatClock, formatDateName, isLongEvent, sameMonth } from '../../lib/date';
 import { EVENT_TYPES, IEvent } from '../../lib/types';
 import { BaseCard } from './BaseCard';
 import { removeOWFormatting } from '../../lib/text';
@@ -11,7 +11,7 @@ import { calculateSeatsInfo, selectIndicatorColor, determineTimeBeforeRegistrati
 import clsx from 'clsx';
 
 export function EventCard({ event }: { event: IEvent }) {
-  const { ingress, title, start_date, event_type, images } = event;
+  const { ingress, title, start_date, end_date, event_type, images } = event;
   const image = images[0];
 
   const isRegistrationEvent = event.max_capacity !== null;
@@ -44,6 +44,13 @@ export function EventCard({ event }: { event: IEvent }) {
   const registrationStart = new Date(attendanceData?.registration_start);
   const isRegistrationEnded = new Date() > registrationEnd;
   const timeBeforeRegistrationOpens = determineTimeBeforeRegistrationOpens(registrationStart);
+  const isLongDurationEvent = isLongEvent(new Date(start_date), new Date(end_date));
+
+  const dateBadgeText = isLongDurationEvent
+  ? sameMonth(start_date, end_date)
+    ? `Fra ${formatDateName(start_date, false)} til ${formatDateName(end_date)}` // Start and end date in same month
+    : `Fra ${formatDateName(start_date)} til ${formatDateName(end_date)}` // Start and end date in different months
+  : `${formatWeekday(start_date)} ${formatDateName(start_date)}, ${formatClock(start_date)}`; // Single day event
 
   const statusText = determineStatusText(
     isRegistrationEnded,
@@ -82,7 +89,7 @@ export function EventCard({ event }: { event: IEvent }) {
         </div>
         <div ref={contentRef} className='flex w-full gap-3 scrolling-text'>
           {eventTypeName && <Badge text={eventTypeName} leftIcon='star' color={eventColor} />}
-          {start_date && <Badge text={`${formatWeekday(start_date)} ${formatDateName(start_date)}, ${formatClock(start_date)}`} leftIcon='calendar' color='gray' />}
+          {start_date && <Badge text={dateBadgeText} leftIcon='calendar' color='gray' />}
           {isRegistrationEvent && attendanceData && (
             <Badge text={`${attendanceData.number_of_seats_taken}/${attendanceData.max_capacity}`} leftIcon='people' color='gray' />
           )}
