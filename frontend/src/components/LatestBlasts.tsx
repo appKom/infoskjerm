@@ -31,7 +31,7 @@ export const LatestBlasts = () => {
             <BlastCardSkeleton key={index} />
           ))
         : data?.map((blast: BlastType) => (
-            <BlastCard key={blast.Id} blast={blast} />
+            <BlastCard key={blast.id} blast={blast} />
           ))}
     </div>
   );

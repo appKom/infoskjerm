@@ -1,39 +1,39 @@
 export const EVENT_TYPES = [
-  { typeName: "Sosialt", colorName: "green" },
-  { typeName: "Bedpres", colorName: "red" },
-  { typeName: "Kurs", colorName: "blue" },
-  { typeName: "Utflukt", colorName: "yellow" },
-  { typeName: "Ekskursjon", colorName: "blue" },
-  { typeName: "Internt", colorName: "red" },
-  { typeName: "Annet", colorName: "purple" },
-  { typeName: "Realfagskjelleren", colorName: "orange" },
-];
+  { typeName: 'Sosialt', colorName: 'green' },
+  { typeName: 'Bedpres', colorName: 'red' },
+  { typeName: 'Kurs', colorName: 'blue' },
+  { typeName: 'Utflukt', colorName: 'yellow' },
+  { typeName: 'Ekskursjon', colorName: 'blue' },
+  { typeName: 'Internt', colorName: 'red' },
+  { typeName: 'Annet', colorName: 'purple' },
+  { typeName: 'Realfagskjelleren', colorName: 'orange' }
+]
 
 export type MemeType = {
-  Id: string;
-  Name: number;
-  Author: string;
-  AuthorImage: string;
-  Date: string;
-  Url: string;
-  Type: "image" | "video";
-  Reactions: {
-    Name: string;
-    Count: number;
-    Url: string;
+  id: string;
+  name: number;
+  author: string;
+  author_image: string;
+  date: string;
+  url: string;
+  type: 'image' | 'video';
+  reactions: {
+    name: string;
+    count: number;
+    url: string;
   }[];
-  ChannelName: string;
+  channel_name: string;
 };
 
 export type BlastType = {
-  Id: string;
-  Name: number;
-  Author: string;
-  AuthorImage: string;
-  Date: string;
+  id: string;
+  name: number;
+  author: string;
+  author_image: string;
+  date: string;
   text: string;
-  ChannelName: string;
-};
+  channel_name: string;
+}
 
 export interface IEventImage {
   id: number;
@@ -61,7 +61,7 @@ export interface IEvent {
   ingress_short: string;
   description: string;
   start_date: string; // ISO date string
-  end_date: string; // ISO date string
+  end_date: string;   // ISO date string
   location: string;
   event_type: number;
   event_type_display: string;
@@ -75,7 +75,7 @@ export interface IEvent {
   number_of_seats_taken: number;
   attendee_info: string | null;
   registration_start: string; // ISO date string
-  registration_end: string; // ISO date string
+  registration_end: string;   // ISO date string
 }
 
 export interface IExtraOption {
@@ -90,8 +90,8 @@ export interface IEventAttendanceDetails {
   waitlist: boolean;
   guest_attendance: boolean;
   registration_start: string; // ISO date string
-  registration_end: string; // ISO date string
-  unattend_deadline: string; // ISO date string
+  registration_end: string;   // ISO date string
+  unattend_deadline: string;  // ISO date string
   automatically_set_marks: boolean;
   rule_bundles: number[];
   number_on_waitlist: number;
