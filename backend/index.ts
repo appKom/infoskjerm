@@ -125,14 +125,16 @@ app.get(
     try {
       const poolConnection = await poolPromise;
       const channel = "movember";
+      const cutoffDate = req.query.date || "2024-11-30";
 
       const result = await poolConnection
         .request()
         .input("ChannelName", sql.NVarChar, channel)
+        .input("CutoffDate", sql.Date, cutoffDate)
         .input("Count", sql.Int, 50).query(`
             SELECT TOP (@Count) Id, Name, Author, Username, AuthorImage, Date, Url, Type, Reactions, ChannelName
             FROM MediaFiles
-            WHERE ChannelName = @ChannelName
+            WHERE ChannelName = @ChannelName AND Date >= @CutoffDate
             ORDER BY Date DESC
           `);
 
