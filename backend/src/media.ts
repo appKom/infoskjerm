@@ -22,6 +22,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
     channel: channelId,
   });
 
+  // Get custom emojis for the workspace
   const customEmojis = await fetchCustomEmojis();
   console.log("Custom emojis fetched:", customEmojis);
 
@@ -66,7 +67,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
           return {
             name: reaction.name,
             count: reaction.count,
-            url: emojiUrl,
+            url: emojiUrl, // Include the URL if it's a custom emoji
           };
         });
 
@@ -128,6 +129,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
 
 const getMediaType = (mimetype: string | undefined): string => {
   if (!mimetype) return "unknown";
+  // Extract the type before the '/'
   const type = mimetype.split("/")[0];
   return type || "unknown";
 };
