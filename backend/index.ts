@@ -122,8 +122,6 @@ app.get(
       .withMessage("Date must be in ISO8601 format (YYYY-MM-DD)"),
   ],
   async (req: Request, res: Response) => {
-    const dateParam = req.query.date as string;
-
     try {
       const poolConnection = await poolPromise;
       const channel = "movember";
