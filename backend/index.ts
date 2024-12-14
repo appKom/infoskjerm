@@ -6,6 +6,7 @@ import sql from "mssql";
 import "./src/cronJob";
 import { query, validationResult } from "express-validator";
 import { poolPromise } from "./src/azureClients";
+import { toCamelCaseKeys } from "./src/utils";
 
 export const channelsConfig = {
   memes: [
@@ -60,7 +61,11 @@ app.get(
           ORDER BY Date DESC
         `);
 
-      res.json(result.recordset);
+      const parsedRecords = result.recordset.map((record) =>
+        toCamelCaseKeys(record)
+      );
+
+      res.json(parsedRecords);
     } catch (error) {
       console.error("Failed to get memes:", error);
       res.status(500).send("Failed to get memes :(");
@@ -95,7 +100,11 @@ app.get(
           ORDER BY Date DESC
         `);
 
-      res.json(result.recordset);
+      const parsedRecords = result.recordset.map((record) =>
+        toCamelCaseKeys(record)
+      );
+
+      res.json(parsedRecords);
     } catch (error) {
       console.error("Failed to get blasts:", error);
       res.status(500).send("Failed to get blasts :(");
@@ -130,7 +139,11 @@ app.get(
           ORDER BY Date DESC
         `);
 
-      res.json(result.recordset);
+      const parsedRecords = result.recordset.map((record) =>
+        toCamelCaseKeys(record)
+      );
+
+      res.json(parsedRecords);
     } catch (error) {
       console.error("Failed to get Movember images:", error);
       res.status(500).send("Failed to get Movember images :(");
