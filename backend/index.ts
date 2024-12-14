@@ -4,9 +4,8 @@ import cors from "cors";
 import { authenticate } from "./src/authentication";
 import sql from "mssql";
 import "./src/cronJob";
-import { pool } from "mssql";
+import { query, validationResult } from "express-validator";
 import { poolPromise } from "./src/azureClients";
-import { body, query, validationResult } from "express-validator";
 
 export const channelsConfig = {
   memes: [
@@ -48,7 +47,7 @@ app.get(
     const count = parseInt(req.query.count as string, 10) || 10;
 
     try {
-      const poolConnection = await pool;
+      const poolConnection = await poolPromise;
       const result = await poolConnection
         .request()
         .input("ChannelName", sql.NVarChar, "memes")
@@ -85,7 +84,7 @@ app.get(
     const count = parseInt(req.query.count as string, 10) || 5;
 
     try {
-      const poolConnection = await pool;
+      const poolConnection = await poolPromise;
       const result = await poolConnection
         .request()
         .input("Count", sql.Int, count).query(`
@@ -118,7 +117,7 @@ app.get(
       : new Date("2024-11-29");
 
     try {
-      const poolConnection = await pool;
+      const poolConnection = await poolPromise;
       const result = await poolConnection
         .request()
         .input("ChannelName", sql.NVarChar, "movember")

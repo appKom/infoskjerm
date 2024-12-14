@@ -1,7 +1,6 @@
 import { WebClient } from "@slack/web-api";
 import axios from "axios";
 import dotenv from "dotenv";
-import { Request } from "express";
 import { mediaContainerClient, poolPromise } from "./azureClients";
 import sql from "mssql";
 import sharp from "sharp";
