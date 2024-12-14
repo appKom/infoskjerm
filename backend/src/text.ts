@@ -1,6 +1,5 @@
 import { WebClient } from "@slack/web-api";
 import dotenv from "dotenv";
-import { Request } from "express";
 import { textContainerClient, poolPromise } from "./azureClients";
 import sql from "mssql";
 

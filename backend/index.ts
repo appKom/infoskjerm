@@ -48,9 +48,11 @@ app.get(
 
     try {
       const poolConnection = await poolPromise;
+      const channel = "memeogvinogklinoggrin2";
+
       const result = await poolConnection
         .request()
-        .input("ChannelName", sql.NVarChar, "memes")
+        .input("ChannelName", sql.NVarChar, channel)
         .input("Count", sql.Int, count).query(`
           SELECT TOP (@Count) Id, Name, Author, Username, AuthorImage, Date, Url, Type, Reactions, ChannelName
           FROM MediaFiles
