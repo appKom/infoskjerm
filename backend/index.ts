@@ -123,21 +123,20 @@ app.get(
   ],
   async (req: Request, res: Response) => {
     const dateParam = req.query.date as string;
-    const specificDate = dateParam
-      ? new Date(dateParam)
-      : new Date("2024-11-29");
 
     try {
       const poolConnection = await poolPromise;
+      const channel = "movember";
+
       const result = await poolConnection
         .request()
-        .input("ChannelName", sql.NVarChar, "movember")
-        .input("SpecificDate", sql.Date, specificDate).query(`
-          SELECT Id, Name, Author, Username, AuthorImage, Date, Url, Type, Reactions, ChannelName
-          FROM MediaFiles
-          WHERE ChannelName = @ChannelName AND CAST(Date AS DATE) = @SpecificDate
-          ORDER BY Date DESC
-        `);
+        .input("ChannelName", sql.NVarChar, channel)
+        .input("Count", sql.Int, 50).query(`
+            SELECT TOP (@Count) Id, Name, Author, Username, AuthorImage, Date, Url, Type, Reactions, ChannelName
+            FROM MediaFiles
+            WHERE ChannelName = @ChannelName
+            ORDER BY Date DESC
+          `);
 
       const parsedRecords = result.recordset.map((record) =>
         toCamelCaseKeys(record)
