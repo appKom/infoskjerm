@@ -1,6 +1,8 @@
 import { fetchMedia } from "./media";
 import { fetchTextMessagesFromChannels } from "./text";
 import { channelsConfig } from "../index";
+import { fetchComments } from "./comments";
+import { forEach } from "lodash";
 
 export const saveMedia = async ({ limit }: { limit: number }) => {
   console.log("Saving media...");
@@ -19,5 +21,25 @@ export const saveTextMessages = async ({ limit }: { limit: number }) => {
     await fetchTextMessagesFromChannels(channelsConfig.blasts, limit);
   } catch (error) {
     console.error("Error fetching blasts:", error);
+  }
+};
+
+export const saveComments = async ({
+  limit,
+  postId,
+  parentId,
+}: {
+  limit: number;
+  postId: string;
+  parentId: string;
+}) => {
+  console.log("Saving comments...");
+
+  try {
+    for (const channelId of channelsConfig.memes) {
+      await fetchComments(channelId, limit, postId, parentId);
+    }
+  } catch (error) {
+    console.error("Error fetching comments:", error);
   }
 };

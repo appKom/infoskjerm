@@ -4,49 +4,58 @@ import dotenv from "dotenv";
 import { mediaContainerClient, poolPromise } from "./azureClients";
 import sql from "mssql";
 import sharp from "sharp";
-import { saveComments } from "./client";
+import { fetchCustomEmojis, getMediaType } from "./media";
 
 dotenv.config();
 const token = process.env.SLACK_TOKEN;
 
 const web = new WebClient(token);
 
-export const fetchMedia = async (channelId: string, count: number) => {
-  console.log("Fetching media...");
+export const fetchComments = async (
+  channelId: string,
+  count: number,
+  postId: string,
+  parentId: string
+) => {
+  console.log("Fetching comments...");
 
   const pool = await poolPromise;
 
   const channelInfo = await web.conversations.info({ channel: channelId });
   const channelName = channelInfo.channel?.name || "unknown-channel";
 
-  const result = await web.conversations.history({
+  const result = await web.conversations.replies({
     channel: channelId,
+    ts: postId,
+    limit: count,
   });
+
+  // Removes the original post from the list
+  result.messages?.shift();
 
   // Get custom emojis for the workspace
   const customEmojis = await fetchCustomEmojis();
-  console.log("Custom emojis fetched:", customEmojis);
 
   let mediaCount = 0;
   for (const message of result.messages || []) {
     if (mediaCount >= count) break;
 
     if (message.files && message.files.length > 0) {
-      const mediaFiles = message.files.filter(
+      const Comments = message.files.filter(
         (file) =>
           file.mimetype &&
           (file.mimetype.startsWith("image/") ||
             file.mimetype.startsWith("video/"))
       );
 
-      for (const media of mediaFiles) {
+      for (const media of Comments) {
         if (mediaCount >= count) break;
 
         // Check if media already exists in Azure SQL
         const existing = await pool
           .request()
-          .input("Id", sql.NVarChar, media.id)
-          .query("SELECT * FROM MediaFiles WHERE Id = @Id");
+          .input("CommentId", sql.NVarChar, media.id)
+          .query("SELECT * FROM Comments WHERE CommentId = @CommentId");
 
         // Download media
         const response = await axios.get(media.url_private || "", {
@@ -67,13 +76,13 @@ export const fetchMedia = async (channelId: string, count: number) => {
           };
         });
 
-        // Upload media to Azure Blob
+        // Upload comment to Azure Blob
         const blobName = `${channelName}/${media.id}-${media.name}`;
         const blockBlobClient =
           mediaContainerClient.getBlockBlobClient(blobName);
 
         if (existing.recordset.length > 0) {
-          console.log(`Media already exists: ${media.id}`);
+          console.log(`Comment already exists: ${media.id}`);
 
           // Compares existing data with new data to decide if an update is necessary
           const existingRecord = existing.recordset[0];
@@ -90,32 +99,20 @@ export const fetchMedia = async (channelId: string, count: number) => {
 
           // If reactions has changed it updates the record
           if (reactionsChanged || textChanged) {
-            console.log(`Updating media record: ${media.id}`);
-
-            if (message.ts && media.id) {
-              try {
-                saveComments({
-                  limit: count,
-                  postId: message.ts,
-                  parentId: media.id,
-                });
-              } catch (error) {
-                console.error("Error fetching comments:", error);
-              }
-            }
+            console.log(`Updating comment record: ${media.id}`);
 
             await pool
               .request()
-              .input("Id", sql.NVarChar, media.id)
+              .input("CommentId", sql.NVarChar, media.id)
               .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
               .input("Text", sql.NVarChar, message.text || "").query(`
-              UPDATE MediaFiles
+              UPDATE Comments
               SET Reactions = @Reactions,
                   Text = @Text
-              WHERE Id = @Id
+              WHERE CommentId = @CommentId
             `);
 
-            console.log(`Media record updated: ${media.id}`);
+            console.log(`Comment updated: ${media.id}`);
           } else {
             console.log(`No updates required for media: ${media.id}`);
           }
@@ -158,12 +155,14 @@ export const fetchMedia = async (channelId: string, count: number) => {
         }
 
         const blobUrl = blockBlobClient.url;
+        console.log(message.text);
 
         // Insert metadata into Azure SQL using an UPSERT (MERGE) statement
         await pool
           .request()
-          .input("Id", sql.NVarChar, media.id)
-          .input("Name", sql.NVarChar, media.name)
+          .input("CommentId", sql.NVarChar, message.ts)
+          .input("PostId", sql.NVarChar, parentId)
+          .input("Name", sql.NVarChar, media.name || null)
           .input("Author", sql.NVarChar, userInfo.user?.real_name || "Unknown")
           .input("Username", sql.NVarChar, userInfo.user?.name || "unknown")
           .input(
@@ -174,65 +173,40 @@ export const fetchMedia = async (channelId: string, count: number) => {
           .input(
             "Date",
             sql.DateTime,
-            new Date(parseInt(message.ts || "0") * 1000)
+            new Date(parseFloat(message.ts || "0") * 1000)
           )
-          .input("Url", sql.NVarChar, blobUrl)
-          .input("Type", sql.NVarChar, getMediaType(media.mimetype))
+          .input("Url", sql.NVarChar, blobUrl || null)
+          .input("Type", sql.NVarChar, getMediaType(media.mimetype) || null)
           .input("Text", sql.NVarChar, message.text || "")
           .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
-          .input("ChannelName", sql.NVarChar, channelName).query(`
-            MERGE MediaFiles AS target
-            USING (SELECT @Id AS Id) AS source
-            ON target.Id = source.Id
+          .input("ChannelName", sql.NVarChar, channelName)
+          .input("FileUrl", sql.NVarChar, blobUrl || null).query(`
+            MERGE Comments AS target
+            USING (SELECT @CommentId AS CommentId) AS source
+            ON target.CommentId = source.CommentId
             WHEN MATCHED THEN 
               UPDATE SET 
+                PostId = @PostId,
                 Name = @Name,
                 Author = @Author,
                 Username = @Username,
                 AuthorImage = @AuthorImage,
                 Date = @Date,
                 Url = @Url,
-                Text = @Text, -- Add Text to the UPDATE clause
+                Text = @Text,
                 Type = @Type,
                 Reactions = @Reactions,
-                ChannelName = @ChannelName
+                ChannelName = @ChannelName,
+                FileUrl = @FileUrl,
+                UpdatedAt = GETDATE()
             WHEN NOT MATCHED THEN
-              INSERT (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, ChannelName) -- Include Text here
-              VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @ChannelName);
+              INSERT (CommentId, PostId, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, ChannelName, FileUrl)
+              VALUES (@CommentId, @PostId, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @ChannelName, @FileUrl);
           `);
 
-        if (message.ts && media.id) {
-          try {
-            saveComments({
-              limit: count,
-              postId: message.ts,
-              parentId: media.id,
-            });
-          } catch (error) {
-            console.error("Error fetching comments:", error);
-          }
-        }
-        console.log(`Media saved or updated: ${blobUrl}`);
+        console.log(`Comment saved or updated: ${blobUrl}`);
         mediaCount++;
       }
     }
-  }
-};
-
-export const getMediaType = (mimetype: string | undefined): string => {
-  if (!mimetype) return "unknown";
-  // Extract the type before the '/'
-  const type = mimetype.split("/")[0];
-  return type || "unknown";
-};
-
-// Fetch custom emojis for the workspace
-export const fetchCustomEmojis = async () => {
-  try {
-    const emojiList = await web.emoji.list({});
-    return emojiList.emoji;
-  } catch (error) {
-    console.error("Failed to fetch custom emojis:", error);
-    return {};
   }
 };
