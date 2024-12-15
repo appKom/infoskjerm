@@ -13,7 +13,7 @@ const web = new WebClient(token);
 
 export const fetchComments = async (
   channelId: string,
-  count: number,
+
   postId: string,
   parentId: string
 ) => {
@@ -27,7 +27,6 @@ export const fetchComments = async (
   const result = await web.conversations.replies({
     channel: channelId,
     ts: postId,
-    limit: count,
   });
 
   // Removes the original post from the list
@@ -38,8 +37,6 @@ export const fetchComments = async (
 
   let mediaCount = 0;
   for (const message of result.messages || []) {
-    if (mediaCount >= count) break;
-
     if (message.files && message.files.length > 0) {
       const Comments = message.files.filter(
         (file) =>
@@ -49,8 +46,6 @@ export const fetchComments = async (
       );
 
       for (const media of Comments) {
-        if (mediaCount >= count) break;
-
         // Check if media already exists in Azure SQL
         const existing = await pool
           .request()

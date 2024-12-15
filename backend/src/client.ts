@@ -25,11 +25,9 @@ export const saveTextMessages = async ({ limit }: { limit: number }) => {
 };
 
 export const saveComments = async ({
-  limit,
   postId,
   parentId,
 }: {
-  limit: number;
   postId: string;
   parentId: string;
 }) => {
@@ -37,7 +35,7 @@ export const saveComments = async ({
 
   try {
     for (const channelId of channelsConfig.memes) {
-      await fetchComments(channelId, limit, postId, parentId);
+      await fetchComments(channelId, postId, parentId);
     }
   } catch (error) {
     console.error("Error fetching comments:", error);

@@ -95,7 +95,6 @@ export const fetchMedia = async (channelId: string, count: number) => {
             if (message.ts && media.id) {
               try {
                 saveComments({
-                  limit: count,
                   postId: message.ts,
                   parentId: media.id,
                 });
@@ -204,7 +203,6 @@ export const fetchMedia = async (channelId: string, count: number) => {
         if (message.ts && media.id) {
           try {
             saveComments({
-              limit: count,
               postId: message.ts,
               parentId: media.id,
             });
