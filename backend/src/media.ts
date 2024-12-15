@@ -111,33 +111,39 @@ export const fetchMedia = async (channelId: string, count: number) => {
 
         // If media does not exist, proceed to upload and insert as new
         await blockBlobClient.upload(response.data, response.data.length);
-        const blobUrl = blockBlobClient.url;
 
         if (media.mimetype?.startsWith("image/")) {
-          const image = sharp(response.data);
-          const metadata = await image.metadata();
-
-          let compressedImageBuffer;
-
-          // Resize images larger than 1920px
-          if (metadata.width && metadata.width > 1920) {
-            compressedImageBuffer = await image
-              .resize({ width: Math.min(metadata.width, 1920) })
-              .jpeg({ quality: 80 })
-              .toBuffer();
+          if (media.mimetype === "image/gif") {
+            // **Handle GIFs without compression**
+            await blockBlobClient.upload(response.data, response.data.length);
           } else {
-            compressedImageBuffer = await image.toBuffer();
-          }
+            // **Handle other image types with compression**
+            const image = sharp(response.data);
+            const metadata = await image.metadata();
 
-          // Upload the compressed image
-          await blockBlobClient.upload(
-            compressedImageBuffer,
-            compressedImageBuffer.length
-          );
-        } else {
-          // Sharp doesn't support video compression, so we'll just upload the video as is
+            let compressedImageBuffer;
+
+            // Resize images larger than 1920px
+            if (metadata.width && metadata.width > 1920) {
+              compressedImageBuffer = await image
+                .resize({ width: Math.min(metadata.width, 1920) })
+                .jpeg({ quality: 80 })
+                .toBuffer();
+            } else {
+              compressedImageBuffer = await image.toBuffer();
+            }
+
+            await blockBlobClient.upload(
+              compressedImageBuffer,
+              compressedImageBuffer.length
+            );
+          }
+        } else if (media.mimetype?.startsWith("video/")) {
+          // Uploads videos without compression**
           await blockBlobClient.upload(response.data, response.data.length);
         }
+
+        const blobUrl = blockBlobClient.url;
 
         // Insert metadata into Azure SQL using an UPSERT (MERGE) statement
         await pool
