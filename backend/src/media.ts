@@ -132,18 +132,11 @@ export const fetchMedia = async (channelId: string, count: number) => {
           // Upload the compressed image
           await blockBlobClient.upload(
             compressedImageBuffer,
-            compressedImageBuffer.length,
-            { conditions: { ifNoneMatch: "*" } }
+            compressedImageBuffer.length
           );
-        } else if (media.mimetype?.startsWith("video/")) {
-          // Sharp doesn't support video compression, so we'll just upload the video as is
-          await blockBlobClient.upload(response.data, response.data.length, {
-            conditions: { ifNoneMatch: "*" },
-          });
         } else {
-          await blockBlobClient.upload(response.data, response.data.length, {
-            conditions: { ifNoneMatch: "*" },
-          });
+          // Sharp doesn't support video compression, so we'll just upload the video as is
+          await blockBlobClient.upload(response.data, response.data.length);
         }
 
         // Insert metadata into Azure SQL using an UPSERT (MERGE) statement
