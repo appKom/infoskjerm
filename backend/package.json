@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r ts-node/register index.ts",
     "dev": "nodemon --exec ts-node index.ts",
-    "seed": "ts-node seed.ts"
+    "seed": "ts-node src/seed.ts"
   },
   "keywords": [],
   "author": "",
