@@ -73,32 +73,6 @@ export const fetchTextMessagesFromChannels = async (
       continue; // Skip existing messages
     }
 
-    // Upload text to Azure Blob
-    const blobName = `${message.ts}.json`;
-    const blockBlobClient = textContainerClient.getBlockBlobClient(blobName);
-    await blockBlobClient.upload(
-      JSON.stringify({
-        id: message.id,
-        text: message.text,
-        author: message.author,
-        author_image: message.author_image,
-        date: message.date,
-        channel_name: message.channel_name,
-      }),
-      Buffer.byteLength(
-        JSON.stringify({
-          id: message.id,
-          text: message.text,
-          author: message.author,
-          author_image: message.author_image,
-          date: message.date,
-          channel_name: message.channel_name,
-        })
-      )
-    );
-
-    const blobUrl = blockBlobClient.url;
-
     // Insert metadata into Azure SQL
     await pool
       .request()
@@ -112,7 +86,7 @@ export const fetchTextMessagesFromChannels = async (
                 VALUES (@Id, @Text, @Author, @AuthorImage, @Date, @ChannelName)
             `);
 
-    console.log(`Text message saved: ${blobUrl}`);
+    console.log(`Text message saved from : ${message.channel_name}`);
     savedCount++;
   }
 };
