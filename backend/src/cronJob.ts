@@ -6,11 +6,8 @@ cron.schedule("0 * * * *", async () => {
     console.log("Starting scheduled fetch at", new Date().toISOString());
     const limit = 50;
 
-    // Fetch Memes
-    saveMedia({ limit });
-
-    // Fetch Blasts
-    saveTextMessages({ limit });
+    // Fetch media and text messages from the configured channels
+    await Promise.all([saveMedia({ limit }), saveTextMessages({ limit })]);
 
     console.log("Scheduled fetch completed at", new Date().toISOString());
   } catch (error) {

@@ -4,8 +4,7 @@ export const seed = async () => {
   console.log("Starting seed at", new Date().toISOString());
   const limit = 50;
 
-  saveMedia({ limit });
-  saveTextMessages({ limit });
+  await Promise.all([saveMedia({ limit }), saveTextMessages({ limit })]);
 
   console.log("Seed completed at", new Date().toISOString());
 };

@@ -79,18 +79,27 @@ export const fetchMedia = async (channelId: string, count: number) => {
         const blobUrl = blockBlobClient.url;
 
         if (media.mimetype?.startsWith("image/")) {
-          const compressedImageBuffer = await sharp(response.data)
-            .resize({ width: 800 })
-            .jpeg({ quality: 80 })
-            .toBuffer();
+          const image = sharp(response.data);
+          const metadata = await image.metadata();
+
+          let compressedImageBuffer;
+
+          // Resize images larger than 1920px
+          if (metadata.width && metadata.width > 1920) {
+            compressedImageBuffer = await image
+              .resize({ width: 1920 })
+              .toBuffer();
+          } else {
+            compressedImageBuffer = await image.toBuffer();
+          }
 
           await blockBlobClient.upload(
             compressedImageBuffer,
             compressedImageBuffer.length
           );
         } else if (media.mimetype?.startsWith("video/")) {
-          // TODO compress videos
-          break;
+          // Sharp doesn't support video compression, so we'll just upload the video as is
+          await blockBlobClient.upload(response.data, response.data.length);
         } else {
           await blockBlobClient.upload(response.data, response.data.length);
         }
