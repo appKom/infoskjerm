@@ -45,12 +45,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
         const existing = await pool
           .request()
           .input("Id", sql.NVarChar, media.id)
-          .query("SELECT Id FROM MediaFiles WHERE Id = @Id");
-
-        if (existing.recordset.length > 0) {
-          console.log(`Media already exists: ${media.id}`);
-          continue; // Skip existing media
-        }
+          .query("SELECT * FROM MediaFiles WHERE Id = @Id");
 
         // Download media
         const response = await axios.get(media.url_private || "", {
@@ -75,6 +70,46 @@ export const fetchMedia = async (channelId: string, count: number) => {
         const blobName = `${channelName}/${media.id}-${media.name}`;
         const blockBlobClient =
           mediaContainerClient.getBlockBlobClient(blobName);
+
+        if (existing.recordset.length > 0) {
+          console.log(`Media already exists: ${media.id}`);
+
+          // Compares existing data with new data to decide if an update is necessary
+          const existingRecord = existing.recordset[0];
+
+          // Checks if reactions have changed
+          const existingReactions = JSON.parse(
+            existingRecord.Reactions || "[]"
+          );
+          const newReactions = reactions;
+
+          const reactionsChanged =
+            JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
+
+          // If reactions has changed it updates the record
+          if (reactionsChanged) {
+            console.log(`Updating media record: ${media.id}`);
+
+            await pool
+              .request()
+              .input("Id", sql.NVarChar, media.id)
+              .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
+              .query(`
+                UPDATE MediaFiles
+                SET Reactions = @Reactions
+                --, OtherField = @OtherField
+                WHERE Id = @Id
+              `);
+
+            console.log(`Media record updated: ${media.id}`);
+          } else {
+            console.log(`No updates required for media: ${media.id}`);
+          }
+
+          continue; // Skip to the next media file
+        }
+
+        // If media does not exist, proceed to upload and insert as new
         await blockBlobClient.upload(response.data, response.data.length);
         const blobUrl = blockBlobClient.url;
 
@@ -87,24 +122,31 @@ export const fetchMedia = async (channelId: string, count: number) => {
           // Resize images larger than 1920px
           if (metadata.width && metadata.width > 1920) {
             compressedImageBuffer = await image
-              .resize({ width: 1920 })
+              .resize({ width: Math.min(metadata.width, 1920) })
+              .jpeg({ quality: 80 })
               .toBuffer();
           } else {
             compressedImageBuffer = await image.toBuffer();
           }
 
+          // Upload the compressed image
           await blockBlobClient.upload(
             compressedImageBuffer,
-            compressedImageBuffer.length
+            compressedImageBuffer.length,
+            { conditions: { ifNoneMatch: "*" } }
           );
         } else if (media.mimetype?.startsWith("video/")) {
           // Sharp doesn't support video compression, so we'll just upload the video as is
-          await blockBlobClient.upload(response.data, response.data.length);
+          await blockBlobClient.upload(response.data, response.data.length, {
+            conditions: { ifNoneMatch: "*" },
+          });
         } else {
-          await blockBlobClient.upload(response.data, response.data.length);
+          await blockBlobClient.upload(response.data, response.data.length, {
+            conditions: { ifNoneMatch: "*" },
+          });
         }
 
-        // Insert metadata into Azure SQL
+        // Insert metadata into Azure SQL using an UPSERT (MERGE) statement
         await pool
           .request()
           .input("Id", sql.NVarChar, media.id)
@@ -125,11 +167,26 @@ export const fetchMedia = async (channelId: string, count: number) => {
           .input("Type", sql.NVarChar, getMediaType(media.mimetype))
           .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
           .input("ChannelName", sql.NVarChar, channelName).query(`
-                        INSERT INTO MediaFiles (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Reactions, ChannelName)
-                        VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Reactions, @ChannelName)
-                    `);
+            MERGE MediaFiles AS target
+            USING (SELECT @Id AS Id) AS source
+            ON target.Id = source.Id
+            WHEN MATCHED THEN 
+              UPDATE SET 
+                Name = @Name,
+                Author = @Author,
+                Username = @Username,
+                AuthorImage = @AuthorImage,
+                Date = @Date,
+                Url = @Url,
+                Type = @Type,
+                Reactions = @Reactions,
+                ChannelName = @ChannelName
+            WHEN NOT MATCHED THEN
+              INSERT (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Reactions, ChannelName)
+              VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Reactions, @ChannelName);
+          `);
 
-        console.log(`Media saved: ${blobUrl}`);
+        console.log(`Media saved or updated: ${blobUrl}`);
         mediaCount++;
       }
     }
