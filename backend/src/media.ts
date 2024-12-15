@@ -85,9 +85,10 @@ export const fetchMedia = async (channelId: string, count: number) => {
 
           const reactionsChanged =
             JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
+          const textChanged = existingRecord.Text !== message.text;
 
           // If reactions has changed it updates the record
-          if (reactionsChanged) {
+          if (reactionsChanged || textChanged) {
             console.log(`Updating media record: ${media.id}`);
 
             await pool
@@ -164,6 +165,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
           )
           .input("Url", sql.NVarChar, blobUrl)
           .input("Type", sql.NVarChar, getMediaType(media.mimetype))
+          .input("Text", sql.NVarChar, message.text || "")
           .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
           .input("ChannelName", sql.NVarChar, channelName).query(`
             MERGE MediaFiles AS target
