@@ -95,12 +95,12 @@ export const fetchMedia = async (channelId: string, count: number) => {
               .request()
               .input("Id", sql.NVarChar, media.id)
               .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
-              .query(`
-                UPDATE MediaFiles
-                SET Reactions = @Reactions
-                --, OtherField = @OtherField
-                WHERE Id = @Id
-              `);
+              .input("Text", sql.NVarChar, message.text || "").query(`
+              UPDATE MediaFiles
+              SET Reactions = @Reactions,
+                  Text = @Text
+              WHERE Id = @Id
+            `);
 
             console.log(`Media record updated: ${media.id}`);
           } else {
@@ -145,6 +145,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
         }
 
         const blobUrl = blockBlobClient.url;
+        console.log(message.text);
 
         // Insert metadata into Azure SQL using an UPSERT (MERGE) statement
         await pool
@@ -179,12 +180,13 @@ export const fetchMedia = async (channelId: string, count: number) => {
                 AuthorImage = @AuthorImage,
                 Date = @Date,
                 Url = @Url,
+                Text = @Text, -- Add Text to the UPDATE clause
                 Type = @Type,
                 Reactions = @Reactions,
                 ChannelName = @ChannelName
             WHEN NOT MATCHED THEN
-              INSERT (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Reactions, ChannelName)
-              VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Reactions, @ChannelName);
+              INSERT (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, ChannelName) -- Include Text here
+              VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @ChannelName);
           `);
 
         console.log(`Media saved or updated: ${blobUrl}`);
