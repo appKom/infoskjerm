@@ -1,13 +1,13 @@
 import cron from "node-cron";
-import { saveMedia, saveTextMessages } from "./client";
+import { saveMedia } from "./client";
 
 cron.schedule("0 * * * *", async () => {
   try {
     console.log("Starting scheduled fetch at", new Date().toISOString());
-    const limit = 50;
+    const limit = 200;
 
     // Fetch media and text messages from the configured channels
-    await Promise.all([saveMedia({ limit }), saveTextMessages({ limit })]);
+    saveMedia({ limit });
 
     console.log("Scheduled fetch completed at", new Date().toISOString());
   } catch (error) {

@@ -92,11 +92,17 @@ app.get(
 
     try {
       const poolConnection = await poolPromise;
+
+      const channelNames = ["korktavla", "online"];
+
       const result = await poolConnection
         .request()
-        .input("Count", sql.Int, count).query(`
+        .input("Count", sql.Int, count)
+        .input("Channel1", sql.NVarChar, channelNames[0])
+        .input("Channel2", sql.NVarChar, channelNames[1]).query(`
           SELECT TOP (@Count) Id, Text, Author, AuthorImage, Date, ChannelName
-          FROM TextMessages
+          FROM MediaFiles
+          WHERE ChannelName IN (@Channel1, @Channel2)
           ORDER BY Date DESC
         `);
 
