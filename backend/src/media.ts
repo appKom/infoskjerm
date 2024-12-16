@@ -31,6 +31,111 @@ export const fetchMedia = async (channelId: string, count: number) => {
   for (const message of result.messages || []) {
     if (mediaCount >= count) break;
 
+    if (!message.files || message.files.length === 0) {
+      if (
+        message.subtype &&
+        (message.subtype === "channel_join" ||
+          message.subtype === "channel_leave")
+      )
+        continue;
+
+      console.log("Processing message without attachments...");
+
+      // Get user info
+      const userInfo = await web.users.info({ user: message.user || "" });
+
+      // Fetch reactions for the message
+      const reactions = (message.reactions || []).map((reaction) => {
+        const emojiUrl = customEmojis?.[reaction.name || ""] || null;
+        return {
+          name: reaction.name,
+          count: reaction.count,
+          url: emojiUrl, // Include the URL if it's a custom emoji
+        };
+      });
+
+      // Generate a unique ID for the text-only message
+      const messageId = message.ts || "unknown";
+
+      // Check if the message already exists in the database
+      const existing = await pool
+        .request()
+        .input("Id", sql.NVarChar, messageId)
+        .query("SELECT * FROM MediaFiles WHERE Id = @Id");
+
+      if (existing.recordset.length > 0) {
+        console.log(`Text-only message already exists: ${messageId}`);
+
+        const existingRecord = existing.recordset[0];
+        const existingReactions = JSON.parse(existingRecord.Reactions || "[]");
+        const newReactions = reactions;
+
+        const reactionsChanged =
+          JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
+        const textChanged = existingRecord.Text !== message.text;
+
+        const newComments = message.reply_count !== existingRecord.AmtComments;
+
+        if (reactionsChanged || textChanged || newComments) {
+          if (message.ts && messageId) {
+            try {
+              saveComments({
+                postId: message.ts,
+                parentId: messageId,
+              });
+            } catch (error) {
+              console.error("Error fetching comments:", error);
+            }
+          }
+
+          console.log(`Updating text-only message record: ${messageId}`);
+          await pool
+            .request()
+            .input("Id", sql.NVarChar, messageId)
+            .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
+            .input("AmtComments", sql.Int, message.reply_count || 0)
+            .input("Text", sql.NVarChar, message.text || "").query(`
+            UPDATE MediaFiles
+            SET Reactions = @Reactions,
+                AmtComments = @AmtComments,
+                Text = @Text
+            WHERE Id = @Id
+          `);
+        }
+        continue;
+      }
+
+      await pool
+        .request()
+        .input("Id", sql.NVarChar, messageId)
+        .input("Name", sql.NVarChar, `Message-${messageId}`)
+        .input("Author", sql.NVarChar, userInfo.user?.real_name || "Unknown")
+        .input("Username", sql.NVarChar, userInfo.user?.name || "unknown")
+        .input(
+          "AuthorImage",
+          sql.NVarChar,
+          userInfo.user?.profile?.image_72 || ""
+        )
+        .input(
+          "Date",
+          sql.DateTime,
+          new Date(parseInt(message.ts || "0") * 1000)
+        )
+        .input("Url", sql.NVarChar, null)
+        .input("Type", sql.NVarChar, "text")
+        .input("Text", sql.NVarChar, message.text || "")
+        .input("AmtComments", sql.Int, message.reply_count || 0)
+        .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
+        .input("ChannelName", sql.NVarChar, channelName).query(`
+          INSERT INTO MediaFiles (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Text, AmtComments, Reactions, ChannelName)
+          VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @AmtComments, @Reactions, @ChannelName);
+        `);
+
+      console.log(`Text-only message saved: ${messageId}`);
+      mediaCount++;
+      continue;
+    }
+
     if (message.files && message.files.length > 0) {
       const mediaFiles = message.files.filter(
         (file) =>

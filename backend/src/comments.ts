@@ -37,6 +37,89 @@ export const fetchComments = async (
 
   let mediaCount = 0;
   for (const message of result.messages || []) {
+    if (!message.files || message.files.length === 0) {
+      console.log("Processing comment without attachments...");
+
+      // Get user info
+      const userInfo = await web.users.info({ user: message.user || "" });
+
+      // Fetch reactions for the message
+      const reactions = (message.reactions || []).map((reaction) => {
+        const emojiUrl = customEmojis?.[reaction.name || ""] || null;
+        return {
+          name: reaction.name,
+          count: reaction.count,
+          url: emojiUrl, // Include the URL if it's a custom emoji
+        };
+      });
+
+      // Generate a unique ID for the text-only message
+      const messageId = message.ts || "unknown";
+
+      // Check if the message already exists in the database
+      const existing = await pool
+        .request()
+        .input("Id", sql.NVarChar, messageId)
+        .query("SELECT * FROM MediaFiles WHERE Id = @Id");
+
+      if (existing.recordset.length > 0) {
+        console.log(`Text-only message already exists: ${messageId}`);
+
+        const existingRecord = existing.recordset[0];
+        const existingReactions = JSON.parse(existingRecord.Reactions || "[]");
+        const newReactions = reactions;
+
+        const reactionsChanged =
+          JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
+        const textChanged = existingRecord.Text !== message.text;
+
+        if (reactionsChanged || textChanged) {
+          console.log(`Updating text-only comment record: ${messageId}`);
+          await pool
+            .request()
+            .input("CommentId", sql.NVarChar, messageId)
+            .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
+            .input("Text", sql.NVarChar, message.text || "").query(`
+            UPDATE Comments
+            SET Reactions = @Reactions,
+                Text = @Text
+            WHERE CommentId = @CommentId
+          `);
+        }
+        continue;
+      }
+
+      await pool
+        .request()
+        .input("CommentId", sql.NVarChar, messageId)
+        .input("PostId", sql.NVarChar, parentId)
+        .input("Name", sql.NVarChar, `Message-${messageId}`)
+        .input("Author", sql.NVarChar, userInfo.user?.real_name || "Unknown")
+        .input("Username", sql.NVarChar, userInfo.user?.name || "unknown")
+        .input(
+          "AuthorImage",
+          sql.NVarChar,
+          userInfo.user?.profile?.image_72 || ""
+        )
+        .input(
+          "Date",
+          sql.DateTime,
+          new Date(parseInt(message.ts || "0") * 1000)
+        )
+        .input("Url", sql.NVarChar, null)
+        .input("Type", sql.NVarChar, "text")
+        .input("Text", sql.NVarChar, message.text || "")
+        .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
+        .input("ChannelName", sql.NVarChar, channelName).query(`
+          INSERT INTO Comments (CommentId, PostId, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, ChannelName)
+          VALUES (@CommentId, @PostId, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @ChannelName);
+        `);
+
+      console.log(`Text-only message saved: ${messageId}`);
+      mediaCount++;
+      continue;
+    }
+
     if (message.files && message.files.length > 0) {
       const Comments = message.files.filter(
         (file) =>
@@ -192,11 +275,11 @@ export const fetchComments = async (
                 Type = @Type,
                 Reactions = @Reactions,
                 ChannelName = @ChannelName,
-                FileUrl = @FileUrl,
+  
                 UpdatedAt = GETDATE()
             WHEN NOT MATCHED THEN
-              INSERT (CommentId, PostId, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, ChannelName, FileUrl)
-              VALUES (@CommentId, @PostId, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @ChannelName, @FileUrl);
+              INSERT (CommentId, PostId, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, ChannelName)
+              VALUES (@CommentId, @PostId, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @ChannelName);
           `);
 
         console.log(`Comment saved or updated: ${blobUrl}`);
