@@ -88,8 +88,11 @@ export const fetchMedia = async (channelId: string, count: number) => {
             JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
           const textChanged = existingRecord.Text !== message.text;
 
-          // If reactions has changed it updates the record
-          if (reactionsChanged || textChanged) {
+          const newComments =
+            message.reply_count !== existingRecord.AmtComments;
+
+          // If changes it updates the record
+          if (reactionsChanged || textChanged || newComments) {
             console.log(`Updating media record: ${media.id}`);
 
             if (message.ts && media.id) {
@@ -106,11 +109,13 @@ export const fetchMedia = async (channelId: string, count: number) => {
             await pool
               .request()
               .input("Id", sql.NVarChar, media.id)
+              .input("AmtComments", sql.Int, message.reply_count || 0)
               .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
               .input("Text", sql.NVarChar, message.text || "").query(`
               UPDATE MediaFiles
               SET Reactions = @Reactions,
-                  Text = @Text
+                  Text = @Text,
+                  AmtComments = @AmtComments
               WHERE Id = @Id
             `);
 
@@ -178,6 +183,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
           .input("Url", sql.NVarChar, blobUrl)
           .input("Type", sql.NVarChar, getMediaType(media.mimetype))
           .input("Text", sql.NVarChar, message.text || "")
+          .input("AmtComments", sql.Int, message.reply_count || 0)
           .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
           .input("ChannelName", sql.NVarChar, channelName).query(`
             MERGE MediaFiles AS target
@@ -193,11 +199,12 @@ export const fetchMedia = async (channelId: string, count: number) => {
                 Url = @Url,
                 Text = @Text, -- Add Text to the UPDATE clause
                 Type = @Type,
+                AmtComments = @AmtComments,
                 Reactions = @Reactions,
                 ChannelName = @ChannelName
             WHEN NOT MATCHED THEN
-              INSERT (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, ChannelName) -- Include Text here
-              VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @ChannelName);
+              INSERT (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, AmtComments, ChannelName) -- Include Text here
+              VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @AmtComments, @ChannelName);
           `);
 
         if (message.ts && media.id) {
