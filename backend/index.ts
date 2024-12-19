@@ -19,8 +19,6 @@ export const channelsConfig = {
   movember: "C01DL1YV4N6", // #movember
 };
 
-export const channels = channelsConfig;
-
 const app = express();
 const port = 3000;
 
@@ -131,7 +129,7 @@ app.get(
     try {
       const poolConnection = await poolPromise;
       const channel = "movember";
-      const cutoffDate = req.query.date || "2024-11-30";
+      const cutoffDate = req.query.date;
 
       const result = await poolConnection
         .request()
