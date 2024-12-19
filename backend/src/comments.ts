@@ -13,12 +13,10 @@ const web = new WebClient(token);
 
 export const fetchComments = async (
   channelId: string,
-
   postId: string,
   parentId: string
 ) => {
-  console.log("Fetching comments...");
-
+  console.log("ChannelId:", channelId);
   const pool = await poolPromise;
 
   const channelInfo = await web.conversations.info({ channel: channelId });

@@ -5,38 +5,23 @@ import { fetchComments } from "./comments";
 export const saveMedia = async ({ limit }: { limit: number }) => {
   console.log("Saving media...");
 
-  // Fetcher memes
-  for (const channelId of channelsConfig.memes) {
-    try {
-      await fetchMedia(channelId, limit);
-    } catch (error) {
-      console.error("Error fetching memes:", error);
-    }
-  }
-
-  // Fetcher blasts
-  for (const channelId of channelsConfig.blasts) {
-    try {
-      await fetchMedia(channelId, limit);
-    } catch (error) {
-      console.error("Error fetching blasts:", error);
-    }
-  }
+  await Promise.all([
+    ...channelsConfig.memes.map((channelId) => fetchMedia(channelId, limit)),
+    ...channelsConfig.blasts.map((channelId) => fetchMedia(channelId, limit)),
+  ]);
 };
 
 export const saveComments = async ({
   postId,
   parentId,
+  channelId,
 }: {
   postId: string;
   parentId: string;
+  channelId: string;
 }) => {
-  console.log("Saving comments...");
-
   try {
-    for (const channelId of channelsConfig.memes) {
-      await fetchComments(channelId, postId, parentId);
-    }
+    await fetchComments(channelId, postId, parentId);
   } catch (error) {
     console.error("Error fetching comments:", error);
   }

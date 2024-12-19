@@ -13,6 +13,7 @@ const web = new WebClient(token);
 
 export const fetchMedia = async (channelId: string, count: number) => {
   console.log("Fetching media...");
+  console.log("Channel ID:", channelId);
 
   const pool = await poolPromise;
 
@@ -25,7 +26,6 @@ export const fetchMedia = async (channelId: string, count: number) => {
 
   // Get custom emojis for the workspace
   const customEmojis = await fetchCustomEmojis();
-  console.log("Custom emojis fetched:", customEmojis);
 
   let mediaCount = 0;
   for (const message of result.messages || []) {
@@ -82,6 +82,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
               saveComments({
                 postId: message.ts,
                 parentId: messageId,
+                channelId: channelId,
               });
             } catch (error) {
               console.error("Error fetching comments:", error);
@@ -205,6 +206,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
                 saveComments({
                   postId: message.ts,
                   parentId: media.id,
+                  channelId: channelId,
                 });
               } catch (error) {
                 console.error("Error fetching comments:", error);
@@ -235,35 +237,40 @@ export const fetchMedia = async (channelId: string, count: number) => {
         // If media does not exist, proceed to upload and insert as new
         await blockBlobClient.upload(response.data, response.data.length);
 
-        if (media.mimetype?.startsWith("image/")) {
-          if (media.mimetype === "image/gif") {
-            // **Handle GIFs without compression**
-            await blockBlobClient.upload(response.data, response.data.length);
-          } else {
-            // **Handle other image types with compression**
-            const image = sharp(response.data);
-            const metadata = await image.metadata();
-
-            let compressedImageBuffer;
-
-            // Resize images larger than 1920px
-            if (metadata.width && metadata.width > 1920) {
-              compressedImageBuffer = await image
-                .resize({ width: Math.min(metadata.width, 1920) })
-                .jpeg({ quality: 80 })
-                .toBuffer();
+        try {
+          if (media.mimetype?.startsWith("image/")) {
+            if (media.mimetype === "image/gif") {
+              // **Handle GIFs without compression**
+              await blockBlobClient.upload(response.data, response.data.length);
             } else {
-              compressedImageBuffer = await image.toBuffer();
-            }
+              // **Handle other image types with compression**
+              const image = sharp(response.data);
+              const metadata = await image.metadata();
 
-            await blockBlobClient.upload(
-              compressedImageBuffer,
-              compressedImageBuffer.length
-            );
+              let compressedImageBuffer;
+
+              // Resize images larger than 1920px
+              if (metadata.width && metadata.width > 1920) {
+                compressedImageBuffer = await image
+                  .resize({ width: Math.min(metadata.width, 1920) })
+                  .jpeg({ quality: 80 })
+                  .toBuffer();
+              } else {
+                compressedImageBuffer = await image.toBuffer();
+              }
+
+              await blockBlobClient.upload(
+                compressedImageBuffer,
+                compressedImageBuffer.length
+              );
+            }
+          } else if (media.mimetype?.startsWith("video/")) {
+            // Uploads videos without compression**
+            await blockBlobClient.upload(response.data, response.data.length);
           }
-        } else if (media.mimetype?.startsWith("video/")) {
-          // Uploads videos without compression**
-          await blockBlobClient.upload(response.data, response.data.length);
+        } catch (error) {
+          console.error("Error uploading media:", error);
+          continue;
         }
 
         const blobUrl = blockBlobClient.url;
@@ -317,6 +324,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
             saveComments({
               postId: message.ts,
               parentId: media.id,
+              channelId: channelId,
             });
           } catch (error) {
             console.error("Error fetching comments:", error);
