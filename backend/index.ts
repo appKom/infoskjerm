@@ -10,6 +10,7 @@ import { toCamelCaseKeys } from "./src/utils";
 
 const app = express();
 
+// Can be removed if we don't want CORS
 const allowedStaticOrigins = [
   "http://localhost:5173",
   "https://infoskjerm-online.vercel.app",
@@ -22,6 +23,7 @@ const corsOptions = {
     origin: string | undefined,
     callback: (err: any, allow?: boolean) => void
   ) {
+    console.log("Origin:", origin);
     if (!origin) return callback(null, true);
     if (allowedStaticOrigins.includes(origin)) {
       return callback(null, true);
@@ -37,7 +39,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
+app.use(express.json());
 if (process.env.NODE_ENV === "development") {
   const port = 3000;
   app.listen(port, () => {
