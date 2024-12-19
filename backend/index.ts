@@ -20,13 +20,15 @@ export const channelsConfig = {
 };
 
 const app = express();
-const port = 3000;
 
 app.use(cors());
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+if (process.env.NODE_ENV === "development") {
+  const port = 3000;
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+}
 
 app.get(
   "/latest-memes",
@@ -153,3 +155,5 @@ app.get(
     }
   }
 );
+
+export default app;
