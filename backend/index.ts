@@ -10,13 +10,27 @@ import { toCamelCaseKeys } from "./src/utils";
 
 const app = express();
 
-const allowedOrigins = [
+const allowedStaticOrigins = [
   "http://localhost:5173",
   "https://infoskjerm-online.vercel.app",
 ];
+const vercelPreviewPattern =
+  /^https:\/\/infoskjerm-[a-zA-Z0-9]+-appkom\.vercel\.app$/;
 
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: function (
+    origin: string | undefined,
+    callback: (err: any, allow?: boolean) => void
+  ) {
+    if (!origin) return callback(null, true);
+    if (allowedStaticOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    if (vercelPreviewPattern.test(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"), false);
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
   credentials: true,
