@@ -22,6 +22,7 @@ const corsOptions = {
     origin: string | undefined,
     callback: (err: any, allow?: boolean) => void
   ) {
+    console.log("Origin:", origin);
     if (!origin) return callback(null, true);
     if (allowedStaticOrigins.includes(origin)) {
       return callback(null, true);
@@ -37,7 +38,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
+app.use(express.json());
 if (process.env.NODE_ENV === "development") {
   const port = 3000;
   app.listen(port, () => {
