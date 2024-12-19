@@ -11,5 +11,12 @@
       "src": "/(.*)",
       "dest": "index.ts"
     }
+  ],
+
+  "crons": [
+    {
+      "path": "/src/cronJob",
+      "schedule": "0 10 * * *"
+    }
   ]
 }
