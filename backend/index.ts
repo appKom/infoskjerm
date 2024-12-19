@@ -10,6 +10,7 @@ import { toCamelCaseKeys } from "./src/utils";
 
 const app = express();
 
+// Can be removed if we don't want CORS
 const allowedStaticOrigins = [
   "http://localhost:5173",
   "https://infoskjerm-online.vercel.app",
