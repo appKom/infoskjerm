@@ -1,6 +1,7 @@
 import { fetchMedia } from "./media";
-import { channelsConfig } from "../index";
+
 import { fetchComments } from "./comments";
+import { channelsConfig } from "./channelsConfig";
 
 export const saveMedia = async ({ limit }: { limit: number }) => {
   console.log("Saving media...");
