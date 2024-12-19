@@ -73,6 +73,7 @@ app.get(
           SELECT TOP (@Count) Id, Name, Author, Username, AuthorImage, Date, Url, Type, Reactions, ChannelName
           FROM MediaFiles
           WHERE ChannelName = @ChannelName
+            AND Url IS NOT NULL
           ORDER BY Date DESC
         `);
 
