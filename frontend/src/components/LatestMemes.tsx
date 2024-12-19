@@ -4,7 +4,6 @@ import { MemeType } from "../lib/types";
 import { MemeCard } from "./cards/MemeCard";
 import { InfiniteAnimate } from "./utils/InfiniteAnimate";
 import { Error } from "./utils/Error";
-import { useEffect, useState } from "react";
 import { MemeCardSkeleton } from "./skeletons/MemeCardSkeleton";
 
 const REFETCH_INTERVAL_MINUTES = 60; // how often to refetch memes from slack
@@ -19,17 +18,6 @@ export const LatestMemes = () => {
     refetchInterval: 1000 * 60 * REFETCH_INTERVAL_MINUTES,
   });
 
-  // TEMPORARY START - until video frontend is finished
-  const [filteredMemes, setFilteredMemes] = useState<MemeType[]>([]);
-
-  useEffect(() => {
-    if (data) {
-      const filteredData = data.filter((item) => item?.type === "image");
-      setFilteredMemes(filteredData);
-    }
-  }, [data]);
-  // TEMPORARY END
-
   if (isError) return <Error />;
 
   if (isLoading) {
@@ -42,7 +30,7 @@ export const LatestMemes = () => {
     );
   }
 
-  if (filteredMemes?.length === 0) {
+  if (data?.length === 0 || !data) {
     return (
       <p className="text-lg text-gray-500 dark:text-gray-400">
         Her var det tomt :(
@@ -52,7 +40,7 @@ export const LatestMemes = () => {
 
   return (
     <InfiniteAnimate axis="y" speed={SPEED} trainLength={TRAINLENGTH}>
-      {filteredMemes.map((meme: MemeType) => (
+      {data.map((meme: MemeType) => (
         <MemeCard key={meme.id} meme={meme} />
       ))}
     </InfiniteAnimate>

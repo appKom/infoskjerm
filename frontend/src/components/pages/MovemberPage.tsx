@@ -73,30 +73,21 @@ export const MovemberPage = () => {
   )
 }
 
-const MovemberCard = ({ result, index }: { result: any, index: number }) => {
-  const [imageError, setImageError] = useState(false);
+const MovemberCard = ({ result }: { result: any, index: number }) => {
+  const [meidaError, setMediaError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
-  const [imageSrc, setImageSrc] = useState(result.url);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleImageError = () => {
+  const handleMediaError = () => {
     if (retryCount < MAX_RETRIES) {
       setRetryCount(retryCount + 1);
-      setImageError(false);
+      setMediaError(false);
     } else {
-      setImageError(true);
+      setMediaError(true);
     }
   };
 
-  useEffect(() => {
-    const loadTimeout = setTimeout(() => {
-      setImageSrc(result.url);
-      console.log("Loaded image", result.url);
-    }, 500 * index);
-    return () => clearTimeout(loadTimeout);
-  }, []);
-
-
-  if (imageError) {
+  if (meidaError) {
     return (
       <div
         className="flex items-center justify-center py-12 bg-white dark:text-white dark:bg-gray-800 min-w-[350px] h-[650px] mr-12 rounded-lg"
@@ -108,12 +99,38 @@ const MovemberCard = ({ result, index }: { result: any, index: number }) => {
 
   return (
     <BaseCard className="mr-12" key={result.url}>
-      <img
-        src={`${imageSrc}?retry=${retryCount}`}
-        className="max-h-[650px]"
-        onError={handleImageError}
-        loading="lazy"
-      />
+      {
+        result.type === "image" ? (
+          <img
+            src={`${result.url}?retry=${retryCount}`}
+            className="max-h-[650px]"
+            onError={handleMediaError}
+            onLoad={() => setIsLoading(false)}
+            loading="lazy"
+          />
+        ) : result.type === "video" ? (
+          <div>
+            {isLoading ? (
+              <img
+                src="graphics/male-placeholder-image.jpeg"
+                className="min-w-[650px] h-[650px]"
+              />
+            ) : (
+              <video
+                className="bg-white dark:bg-gray-800 dark:text-white max-h-[650px]"
+                src={result.url}
+                autoPlay
+                muted
+                loop
+                onError={handleMediaError}
+                onCanPlay={() => setIsLoading(false)}
+              >
+                Ooops, denne nettleseren støtter ikke video :(
+              </video>
+            )}
+          </div>
+        ) : null
+      }
     </BaseCard>
   )
 }
