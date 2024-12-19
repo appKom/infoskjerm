@@ -26,7 +26,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
       <div className="relative flex items-center w-full gap-4 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
         <img
           className="w-12 h-12 rounded-lg"
-          src={meme.author_image}
+          src={meme.authorImage}
           alt={meme.author}
         />
         <div className="font-medium dark:text-white">
@@ -35,7 +35,11 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
             {formatSlackDate(meme.date)}
           </div>
         </div>
-        <Badge text={"#" + meme.channel_name} color="blue" className="absolute top-3 right-3" />
+        <Badge
+          text={"#" + meme.channelName}
+          color="blue"
+          className="absolute top-3 right-3"
+        />
       </div>
       {imageError ? (
         <div
@@ -56,7 +60,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
       )}
       {meme.reactions.length > 0 && (
         <div
-          className='flex justify-start flex-grow w-full gap-2 p-2 overflow-hidden'
+          className="flex justify-start flex-grow w-full gap-2 p-2 overflow-hidden"
           style={{ width: `${WIDTH}px` }}
         >
           {meme.reactions.map((reaction, index) => (

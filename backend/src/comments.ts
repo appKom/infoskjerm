@@ -4,42 +4,39 @@ import dotenv from "dotenv";
 import { mediaContainerClient, poolPromise } from "./azureClients";
 import sql from "mssql";
 import sharp from "sharp";
-import { saveComments } from "./client";
+import { fetchCustomEmojis, getMediaType } from "./media";
 
 dotenv.config();
 const token = process.env.SLACK_TOKEN;
 
 const web = new WebClient(token);
 
-export const fetchMedia = async (channelId: string, count: number) => {
-  console.log("Fetching media...");
-  console.log("Channel ID:", channelId);
-
+export const fetchComments = async (
+  channelId: string,
+  postId: string,
+  parentId: string
+) => {
+  console.log("ChannelId:", channelId);
   const pool = await poolPromise;
 
   const channelInfo = await web.conversations.info({ channel: channelId });
   const channelName = channelInfo.channel?.name || "unknown-channel";
 
-  const result = await web.conversations.history({
+  const result = await web.conversations.replies({
     channel: channelId,
+    ts: postId,
   });
+
+  // Removes the original post from the list
+  result.messages?.shift();
 
   // Get custom emojis for the workspace
   const customEmojis = await fetchCustomEmojis();
 
   let mediaCount = 0;
   for (const message of result.messages || []) {
-    if (mediaCount >= count) break;
-
     if (!message.files || message.files.length === 0) {
-      if (
-        message.subtype &&
-        (message.subtype === "channel_join" ||
-          message.subtype === "channel_leave")
-      )
-        continue;
-
-      console.log("Processing message without attachments...");
+      console.log("Processing comment without attachments...");
 
       // Get user info
       const userInfo = await web.users.info({ user: message.user || "" });
@@ -74,33 +71,17 @@ export const fetchMedia = async (channelId: string, count: number) => {
           JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
         const textChanged = existingRecord.Text !== message.text;
 
-        const newComments = message.reply_count !== existingRecord.AmtComments;
-
-        if (reactionsChanged || textChanged || newComments) {
-          if (message.ts && messageId) {
-            try {
-              saveComments({
-                postId: message.ts,
-                parentId: messageId,
-                channelId: channelId,
-              });
-            } catch (error) {
-              console.error("Error fetching comments:", error);
-            }
-          }
-
-          console.log(`Updating text-only message record: ${messageId}`);
+        if (reactionsChanged || textChanged) {
+          console.log(`Updating text-only comment record: ${messageId}`);
           await pool
             .request()
-            .input("Id", sql.NVarChar, messageId)
+            .input("CommentId", sql.NVarChar, messageId)
             .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
-            .input("AmtComments", sql.Int, message.reply_count || 0)
             .input("Text", sql.NVarChar, message.text || "").query(`
-            UPDATE MediaFiles
+            UPDATE Comments
             SET Reactions = @Reactions,
-                AmtComments = @AmtComments,
                 Text = @Text
-            WHERE Id = @Id
+            WHERE CommentId = @CommentId
           `);
         }
         continue;
@@ -108,7 +89,8 @@ export const fetchMedia = async (channelId: string, count: number) => {
 
       await pool
         .request()
-        .input("Id", sql.NVarChar, messageId)
+        .input("CommentId", sql.NVarChar, messageId)
+        .input("PostId", sql.NVarChar, parentId)
         .input("Name", sql.NVarChar, `Message-${messageId}`)
         .input("Author", sql.NVarChar, userInfo.user?.real_name || "Unknown")
         .input("Username", sql.NVarChar, userInfo.user?.name || "unknown")
@@ -125,11 +107,10 @@ export const fetchMedia = async (channelId: string, count: number) => {
         .input("Url", sql.NVarChar, null)
         .input("Type", sql.NVarChar, "text")
         .input("Text", sql.NVarChar, message.text || "")
-        .input("AmtComments", sql.Int, message.reply_count || 0)
         .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
         .input("ChannelName", sql.NVarChar, channelName).query(`
-          INSERT INTO MediaFiles (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Text, AmtComments, Reactions, ChannelName)
-          VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @AmtComments, @Reactions, @ChannelName);
+          INSERT INTO Comments (CommentId, PostId, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, ChannelName)
+          VALUES (@CommentId, @PostId, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @ChannelName);
         `);
 
       console.log(`Text-only message saved: ${messageId}`);
@@ -138,21 +119,19 @@ export const fetchMedia = async (channelId: string, count: number) => {
     }
 
     if (message.files && message.files.length > 0) {
-      const mediaFiles = message.files.filter(
+      const Comments = message.files.filter(
         (file) =>
           file.mimetype &&
           (file.mimetype.startsWith("image/") ||
             file.mimetype.startsWith("video/"))
       );
 
-      for (const media of mediaFiles) {
-        if (mediaCount >= count) break;
-
+      for (const media of Comments) {
         // Check if media already exists in Azure SQL
         const existing = await pool
           .request()
-          .input("Id", sql.NVarChar, media.id)
-          .query("SELECT * FROM MediaFiles WHERE Id = @Id");
+          .input("CommentId", sql.NVarChar, media.id)
+          .query("SELECT * FROM Comments WHERE CommentId = @CommentId");
 
         // Download media
         const response = await axios.get(media.url_private || "", {
@@ -173,13 +152,13 @@ export const fetchMedia = async (channelId: string, count: number) => {
           };
         });
 
-        // Upload media to Azure Blob
+        // Upload comment to Azure Blob
         const blobName = `${channelName}/${media.id}-${media.name}`;
         const blockBlobClient =
           mediaContainerClient.getBlockBlobClient(blobName);
 
         if (existing.recordset.length > 0) {
-          console.log(`Media already exists: ${media.id}`);
+          console.log(`Comment already exists: ${media.id}`);
 
           // Compares existing data with new data to decide if an update is necessary
           const existingRecord = existing.recordset[0];
@@ -194,39 +173,22 @@ export const fetchMedia = async (channelId: string, count: number) => {
             JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
           const textChanged = existingRecord.Text !== message.text;
 
-          const newComments =
-            message.reply_count !== existingRecord.AmtComments;
-
-          // If changes it updates the record
-          if (reactionsChanged || textChanged || newComments) {
-            console.log(`Updating media record: ${media.id}`);
-
-            if (message.ts && media.id) {
-              try {
-                saveComments({
-                  postId: message.ts,
-                  parentId: media.id,
-                  channelId: channelId,
-                });
-              } catch (error) {
-                console.error("Error fetching comments:", error);
-              }
-            }
+          // If reactions has changed it updates the record
+          if (reactionsChanged || textChanged) {
+            console.log(`Updating comment record: ${media.id}`);
 
             await pool
               .request()
-              .input("Id", sql.NVarChar, media.id)
-              .input("AmtComments", sql.Int, message.reply_count || 0)
+              .input("CommentId", sql.NVarChar, media.id)
               .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
               .input("Text", sql.NVarChar, message.text || "").query(`
-              UPDATE MediaFiles
+              UPDATE Comments
               SET Reactions = @Reactions,
-                  Text = @Text,
-                  AmtComments = @AmtComments
-              WHERE Id = @Id
+                  Text = @Text
+              WHERE CommentId = @CommentId
             `);
 
-            console.log(`Media record updated: ${media.id}`);
+            console.log(`Comment updated: ${media.id}`);
           } else {
             console.log(`No updates required for media: ${media.id}`);
           }
@@ -237,49 +199,46 @@ export const fetchMedia = async (channelId: string, count: number) => {
         // If media does not exist, proceed to upload and insert as new
         await blockBlobClient.upload(response.data, response.data.length);
 
-        try {
-          if (media.mimetype?.startsWith("image/")) {
-            if (media.mimetype === "image/gif") {
-              // **Handle GIFs without compression**
-              await blockBlobClient.upload(response.data, response.data.length);
-            } else {
-              // **Handle other image types with compression**
-              const image = sharp(response.data);
-              const metadata = await image.metadata();
-
-              let compressedImageBuffer;
-
-              // Resize images larger than 1920px
-              if (metadata.width && metadata.width > 1920) {
-                compressedImageBuffer = await image
-                  .resize({ width: Math.min(metadata.width, 1920) })
-                  .jpeg({ quality: 80 })
-                  .toBuffer();
-              } else {
-                compressedImageBuffer = await image.toBuffer();
-              }
-
-              await blockBlobClient.upload(
-                compressedImageBuffer,
-                compressedImageBuffer.length
-              );
-            }
-          } else if (media.mimetype?.startsWith("video/")) {
-            // Uploads videos without compression**
+        if (media.mimetype?.startsWith("image/")) {
+          if (media.mimetype === "image/gif") {
+            // **Handle GIFs without compression**
             await blockBlobClient.upload(response.data, response.data.length);
+          } else {
+            // **Handle other image types with compression**
+            const image = sharp(response.data);
+            const metadata = await image.metadata();
+
+            let compressedImageBuffer;
+
+            // Resize images larger than 1920px
+            if (metadata.width && metadata.width > 1920) {
+              compressedImageBuffer = await image
+                .resize({ width: Math.min(metadata.width, 1920) })
+                .jpeg({ quality: 80 })
+                .toBuffer();
+            } else {
+              compressedImageBuffer = await image.toBuffer();
+            }
+
+            await blockBlobClient.upload(
+              compressedImageBuffer,
+              compressedImageBuffer.length
+            );
           }
-        } catch (error) {
-          console.error("Error uploading media:", error);
-          continue;
+        } else if (media.mimetype?.startsWith("video/")) {
+          // Uploads videos without compression**
+          await blockBlobClient.upload(response.data, response.data.length);
         }
 
         const blobUrl = blockBlobClient.url;
+        console.log(message.text);
 
         // Insert metadata into Azure SQL using an UPSERT (MERGE) statement
         await pool
           .request()
-          .input("Id", sql.NVarChar, media.id)
-          .input("Name", sql.NVarChar, media.name)
+          .input("CommentId", sql.NVarChar, message.ts)
+          .input("PostId", sql.NVarChar, parentId)
+          .input("Name", sql.NVarChar, media.name || null)
           .input("Author", sql.NVarChar, userInfo.user?.real_name || "Unknown")
           .input("Username", sql.NVarChar, userInfo.user?.name || "unknown")
           .input(
@@ -290,67 +249,40 @@ export const fetchMedia = async (channelId: string, count: number) => {
           .input(
             "Date",
             sql.DateTime,
-            new Date(parseInt(message.ts || "0") * 1000)
+            new Date(parseFloat(message.ts || "0") * 1000)
           )
-          .input("Url", sql.NVarChar, blobUrl)
-          .input("Type", sql.NVarChar, getMediaType(media.mimetype))
+          .input("Url", sql.NVarChar, blobUrl || null)
+          .input("Type", sql.NVarChar, getMediaType(media.mimetype) || null)
           .input("Text", sql.NVarChar, message.text || "")
-          .input("AmtComments", sql.Int, message.reply_count || 0)
           .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
-          .input("ChannelName", sql.NVarChar, channelName).query(`
-            MERGE MediaFiles AS target
-            USING (SELECT @Id AS Id) AS source
-            ON target.Id = source.Id
+          .input("ChannelName", sql.NVarChar, channelName)
+          .input("FileUrl", sql.NVarChar, blobUrl || null).query(`
+            MERGE Comments AS target
+            USING (SELECT @CommentId AS CommentId) AS source
+            ON target.CommentId = source.CommentId
             WHEN MATCHED THEN 
               UPDATE SET 
+                PostId = @PostId,
                 Name = @Name,
                 Author = @Author,
                 Username = @Username,
                 AuthorImage = @AuthorImage,
                 Date = @Date,
                 Url = @Url,
-                Text = @Text, -- Add Text to the UPDATE clause
+                Text = @Text,
                 Type = @Type,
-                AmtComments = @AmtComments,
                 Reactions = @Reactions,
-                ChannelName = @ChannelName
+                ChannelName = @ChannelName,
+  
+                UpdatedAt = GETDATE()
             WHEN NOT MATCHED THEN
-              INSERT (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, AmtComments, ChannelName) -- Include Text here
-              VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @AmtComments, @ChannelName);
+              INSERT (CommentId, PostId, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, ChannelName)
+              VALUES (@CommentId, @PostId, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @ChannelName);
           `);
 
-        if (message.ts && media.id) {
-          try {
-            saveComments({
-              postId: message.ts,
-              parentId: media.id,
-              channelId: channelId,
-            });
-          } catch (error) {
-            console.error("Error fetching comments:", error);
-          }
-        }
-        console.log(`Media saved or updated: ${blobUrl}`);
+        console.log(`Comment saved or updated: ${blobUrl}`);
         mediaCount++;
       }
     }
-  }
-};
-
-export const getMediaType = (mimetype: string | undefined): string => {
-  if (!mimetype) return "unknown";
-  // Extract the type before the '/'
-  const type = mimetype.split("/")[0];
-  return type || "unknown";
-};
-
-// Fetch custom emojis for the workspace
-export const fetchCustomEmojis = async () => {
-  try {
-    const emojiList = await web.emoji.list({});
-    return emojiList.emoji;
-  } catch (error) {
-    console.error("Failed to fetch custom emojis:", error);
-    return {};
   }
 };

@@ -1,19 +1,20 @@
-import express from 'express';
-import { Request, Response } from 'express';
-import cors from 'cors';
-import { authenticate } from './src/authentication';
-import { fetchMedia } from './src/media';
-import { fetchTextMessagesFromChannels } from './src/text';
-import { mediaDir, listFiles, manageDirectory, textDir } from './src/directories';
-import { fetchImagesFromDate } from './src/movember';
+import express from "express";
+import { Request, Response } from "express";
+import cors from "cors";
+import { authenticate } from "./src/authentication";
+import sql from "mssql";
+import "./src/cronJob";
+import { query, validationResult } from "express-validator";
+import { poolPromise } from "./src/azureClients";
+import { toCamelCaseKeys } from "./src/utils";
 
-const channels = {
+export const channelsConfig = {
   memes: [
-    "C01DG6JFNSG" // #memeogvinogklinoggrin2
+    "C01DG6JFNSG", // #memeogvinogklinoggrin2
   ],
   blasts: [
     "CGR4J7PLH", // #korktavla
-    "C03S8TX1L" // #online
+    "C03S8TX1L", // #online
   ],
   movember: "C01DL1YV4N6", // #movember
 };
@@ -21,54 +22,134 @@ const channels = {
 const app = express();
 const port = 3000;
 
-app.use('/media', express.static(mediaDir));
-
 app.use(cors());
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-app.get('/latest-memes', authenticate, async (req: Request, res: Response) => {
-  const count = parseInt(req.query.count as string, 10) || 10;
+app.get(
+  "/latest-memes",
+  authenticate,
+  [
+    query("count")
+      .optional()
+      .isInt({ min: 1, max: 10 })
+      .withMessage("Count should be an integer between 1 and 10"),
+  ],
+  async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
-  if (count > 10 || count < 1) return res.status(400).send('Count should be between 1 and 10');
+    const count = parseInt(req.query.count as string, 10) || 10;
 
-  try {
-    await manageDirectory(mediaDir);
-    await fetchMedia(channels.memes[0], count, req);
-    const imageMetadata = await listFiles(mediaDir);
-    res.json(imageMetadata);
-  } catch (error) {
-    console.error('Failed to get memes:', error);
-    res.status(500).send('Failed to get memes :(');
+    try {
+      const poolConnection = await poolPromise;
+      const channel = "memeogvinogklinoggrin2";
+
+      const result = await poolConnection
+        .request()
+        .input("ChannelName", sql.NVarChar, channel)
+        .input("Count", sql.Int, count).query(`
+          SELECT TOP (@Count) Id, Name, Author, Username, AuthorImage, Date, Url, Type, Reactions, ChannelName
+          FROM MediaFiles
+          WHERE ChannelName = @ChannelName
+          ORDER BY Date DESC
+        `);
+
+      const parsedRecords = result.recordset.map((record) =>
+        toCamelCaseKeys(record)
+      );
+
+      res.json(parsedRecords);
+    } catch (error) {
+      console.error("Failed to get memes:", error);
+      res.status(500).send("Failed to get memes :(");
+    }
   }
-});
+);
 
-app.get('/latest-blasts', authenticate, async (req: Request, res: Response) => {
-  const count = parseInt(req.query.count as string, 10) || 5;
+app.get(
+  "/latest-blasts",
+  authenticate,
+  [
+    query("count")
+      .optional()
+      .isInt({ min: 1, max: 10 })
+      .withMessage("Count should be an integer between 1 and 10"),
+  ],
+  async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
-  if (count > 10 || count < 1) return res.status(400).send('Count should be between 1 and 10');
+    const count = parseInt(req.query.count as string, 10) || 5;
 
-  try {
-    await manageDirectory(textDir);
-    await fetchTextMessagesFromChannels(channels.blasts, count, req);
-    const textMetadata = await listFiles(textDir);
-    res.json(textMetadata);
-  } catch (error) {
-    console.error('Failed to get blasts:', error);
-    res.status(500).send('Failed to get blasts :(');
+    try {
+      const poolConnection = await poolPromise;
+
+      const channelNames = ["korktavla", "online"];
+
+      const result = await poolConnection
+        .request()
+        .input("Count", sql.Int, count)
+        .input("Channel1", sql.NVarChar, channelNames[0])
+        .input("Channel2", sql.NVarChar, channelNames[1]).query(`
+          SELECT TOP (@Count) Id, Text, Author, AuthorImage, Date, ChannelName
+          FROM MediaFiles
+          WHERE ChannelName IN (@Channel1, @Channel2)
+          ORDER BY Date DESC
+        `);
+
+      const parsedRecords = result.recordset.map((record) =>
+        toCamelCaseKeys(record)
+      );
+
+      res.json(parsedRecords);
+    } catch (error) {
+      console.error("Failed to get blasts:", error);
+      res.status(500).send("Failed to get blasts :(");
+    }
   }
-});
+);
 
-app.get('/movember', authenticate , async (req: Request, res: Response) => {
-  try {
-    await manageDirectory(mediaDir);
-    await fetchImagesFromDate(channels.movember, '2024-11-29', req);
-    const imageMetadata = await listFiles(mediaDir);
-    res.json(imageMetadata);
-  } catch (error) {
-    console.error('Failed to get memes:', error);
-    res.status(500).send('Failed to get memes :(');
+app.get(
+  "/movember",
+  authenticate,
+  [
+    query("date")
+      .optional()
+      .isISO8601()
+      .withMessage("Date must be in ISO8601 format (YYYY-MM-DD)"),
+  ],
+  async (req: Request, res: Response) => {
+    try {
+      const poolConnection = await poolPromise;
+      const channel = "movember";
+      const cutoffDate = req.query.date;
+
+      const result = await poolConnection
+        .request()
+        .input("ChannelName", sql.NVarChar, channel)
+        .input("CutoffDate", sql.Date, cutoffDate)
+        .input("Count", sql.Int, 50).query(`
+            SELECT TOP (@Count) Id, Name, Author, Username, AuthorImage, Date, Url, Type, Reactions, ChannelName
+            FROM MediaFiles
+            WHERE ChannelName = @ChannelName AND Date >= @CutoffDate
+            ORDER BY Date DESC
+          `);
+
+      const parsedRecords = result.recordset.map((record) =>
+        toCamelCaseKeys(record)
+      );
+
+      res.json(parsedRecords);
+    } catch (error) {
+      console.error("Failed to get Movember images:", error);
+      res.status(500).send("Failed to get Movember images :(");
+    }
   }
-});
+);
