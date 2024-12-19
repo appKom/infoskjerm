@@ -57,9 +57,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
             </div>
           )}
           <img
-            className={`bg-white dark:bg-gray-800 dark:text-white ${
-              isLoading ? "invisible" : "visible"
-            }`}
+            className="bg-white dark:bg-gray-800 dark:text-white"
             src={`${meme.url}?retry=${retryCount}`}
             alt={`Meme ${meme.url}`}
             style={{ width: `${WIDTH}px` }}
