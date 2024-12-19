@@ -24,7 +24,8 @@ export const LatestMemes = () => {
 
   useEffect(() => {
     if (data) {
-      const filteredData = data.filter((item) => item?.type === "image");
+      // filter out memes without url
+      const filteredData = data.filter((item) => item?.url); 
       setFilteredMemes(filteredData);
     }
   }, [data]);
