@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const REFETCH_INTERVAL_MINUTES = 60;
 const MAX_RETRIES = 10;
+const SPEED = 125;
 
 export const MovemberPage = () => {
   const [shuffledData, setShuffledData] = useState<string[]>([]);
@@ -58,7 +59,7 @@ export const MovemberPage = () => {
             }
           </div>
         ) : data?.length > 0 ? (
-          <Marquee speed={125}>
+          <Marquee speed={SPEED}>
             {shuffledData.map((result: any, index) => (
               <MovemberCard result={result} index={index} key={index} />
             ))}
