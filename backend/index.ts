@@ -10,7 +10,19 @@ import { toCamelCaseKeys } from "./src/utils";
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://infoskjerm-online.vercel.app",
+];
+
+const corsOptions = {
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 if (process.env.NODE_ENV === "development") {
   const port = 3000;
