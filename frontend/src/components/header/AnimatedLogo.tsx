@@ -10,11 +10,6 @@ const logos = [
     darkSrc: '/online/online_logo_white.svg',
     alt: 'Online logo',
   },
-  {
-    src: '/bekk/Bekk_navnetrekk_svart.svg',
-    darkSrc: '/bekk/Bekk_navnetrekk_hvit.svg',
-    alt: 'Bekk logo',
-  }
 ]
 
 export const AnimatedLogo = () => {
