@@ -88,7 +88,7 @@ const MovemberCard = ({ result }: { result: any, index: number }) => {
     }
   };
 
-  if (meidaError) {
+  if (mediaError) {
     return (
       <div
         className="flex items-center justify-center py-12 bg-white dark:text-white dark:bg-gray-800 min-w-[350px] h-[650px] mr-12 rounded-lg"
