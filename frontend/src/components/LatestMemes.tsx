@@ -5,7 +5,6 @@ import { MemeCard } from "./cards/MemeCard";
 import { InfiniteAnimate } from "./utils/InfiniteAnimate";
 import { Error } from "./utils/Error";
 import { MemeCardSkeleton } from "./skeletons/MemeCardSkeleton";
-import { useEffect, useState } from "react";
 
 const REFETCH_INTERVAL_MINUTES = 60; // how often to refetch memes from slack
 const AMOUNT_OF_MEMES = 5; // how many memes to fetch
@@ -18,14 +17,6 @@ export const LatestMemes = () => {
     queryFn: () => fetchMemes(AMOUNT_OF_MEMES),
     refetchInterval: 1000 * 60 * REFETCH_INTERVAL_MINUTES,
   });
-
-  const [filteredData, setFilteredData] = useState<MemeType[]>([]);
-
-  useEffect(() => {
-    if (data) {
-      setFilteredData(data.filter((meme: MemeType) => meme.url !== null));
-    }
-  }, [data]);
 
   if (isError) return <Error />;
 
@@ -49,7 +40,7 @@ export const LatestMemes = () => {
 
   return (
     <InfiniteAnimate axis="y" speed={SPEED} trainLength={TRAINLENGTH}>
-      {filteredData.map((meme: MemeType) => (
+      {data.map((meme: MemeType) => (
         <MemeCard key={meme.id} meme={meme} />
       ))}
     </InfiniteAnimate>
