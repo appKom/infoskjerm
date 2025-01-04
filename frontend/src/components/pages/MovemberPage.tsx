@@ -75,7 +75,7 @@ export const MovemberPage = () => {
 }
 
 const MovemberCard = ({ result }: { result: any, index: number }) => {
-  const [meidaError, setMediaError] = useState(false);
+  const [mediaError, setMediaError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
