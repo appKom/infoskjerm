@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const REFETCH_INTERVAL_MINUTES = 60;
 const MAX_RETRIES = 10;
+const SPEED = 125;
 
 export const MovemberPage = () => {
   const [shuffledData, setShuffledData] = useState<string[]>([]);
@@ -58,7 +59,7 @@ export const MovemberPage = () => {
             }
           </div>
         ) : data?.length > 0 ? (
-          <Marquee speed={125}>
+          <Marquee speed={SPEED}>
             {shuffledData.map((result: any, index) => (
               <MovemberCard result={result} index={index} key={index} />
             ))}
@@ -73,30 +74,21 @@ export const MovemberPage = () => {
   )
 }
 
-const MovemberCard = ({ result, index }: { result: any, index: number }) => {
-  const [imageError, setImageError] = useState(false);
+const MovemberCard = ({ result }: { result: any, index: number }) => {
+  const [mediaError, setMediaError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
-  const [imageSrc, setImageSrc] = useState(result.url);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleImageError = () => {
+  const handleMediaError = () => {
     if (retryCount < MAX_RETRIES) {
       setRetryCount(retryCount + 1);
-      setImageError(false);
+      setMediaError(false);
     } else {
-      setImageError(true);
+      setMediaError(true);
     }
   };
 
-  useEffect(() => {
-    const loadTimeout = setTimeout(() => {
-      setImageSrc(result.url);
-      console.log("Loaded image", result.url);
-    }, 500 * index);
-    return () => clearTimeout(loadTimeout);
-  }, []);
-
-
-  if (imageError) {
+  if (mediaError) {
     return (
       <div
         className="flex items-center justify-center py-12 bg-white dark:text-white dark:bg-gray-800 min-w-[350px] h-[650px] mr-12 rounded-lg"
@@ -108,12 +100,38 @@ const MovemberCard = ({ result, index }: { result: any, index: number }) => {
 
   return (
     <BaseCard className="mr-12" key={result.url}>
-      <img
-        src={`${imageSrc}?retry=${retryCount}`}
-        className="max-h-[650px]"
-        onError={handleImageError}
-        loading="lazy"
-      />
+      {
+        result.type === "image" ? (
+          <img
+            src={`${result.url}?retry=${retryCount}`}
+            className="max-h-[650px]"
+            onError={handleMediaError}
+            onLoad={() => setIsLoading(false)}
+            loading="lazy"
+          />
+        ) : result.type === "video" ? (
+          <div>
+            {isLoading ? (
+              <img
+                src="graphics/male-placeholder-image.jpeg"
+                className="min-w-[650px] h-[650px]"
+              />
+            ) : (
+              <video
+                className="bg-white dark:bg-gray-800 dark:text-white max-h-[650px]"
+                src={result.url}
+                autoPlay
+                muted
+                loop
+                onError={handleMediaError}
+                onCanPlay={() => setIsLoading(false)}
+              >
+                Ooops, denne nettleseren støtter ikke video :(
+              </video>
+            )}
+          </div>
+        ) : null
+      }
     </BaseCard>
   )
 }
