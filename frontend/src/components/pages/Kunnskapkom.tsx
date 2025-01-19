@@ -14,11 +14,11 @@ const funFactList = [
   ["Stack overflow: ", "[stæk oʊvɚfloʊ] Eldgammelt forum for programmeringsdiskusjoner. Blir fortsatt besøkt i ny og ne når ChatGPT glemmer forskjellen på Python2 og Python3."],
   ["Programmeringsbrus: ", "[prugrɑmeːriːŋsbrʉs] Syntetisk væske som gir en illusjon av forbedrede programmeringsferdigheter. Selges for 22kr i A4-kiosken."],
   ["Taktisk kont: ", "[tɑkʈɪsk kunt] Et falskt håp om at man kommer til å gjøre det bedre på eksamen etter to måneder på feriemodus."],
-  ["Kok: ", "[kuːk] Tradisjonell taktikk som anvendes for å komme opp til eksamen uten å kunne forskjellen på klasser og objekter."]
+  ["Kok: ", "[kuːk] Tradisjonell teknikk som anvendes for å komme opp til eksamen uten å kunne forskjellen på klasser og objekter."]
 ];
 
 const funFactsPicker = () => {
-  return funFactList[Math.floor(Math.random() * (2 - 0 + 1) - 0)];
+  return funFactList[Math.floor(Math.random() * funFactList.length)];
 }
 
 export const Kunnskapkom = () => {
@@ -40,7 +40,7 @@ export const Kunnskapkom = () => {
         {['top-6 left-6', 'top-6 right-6', 'bottom-6 right-6', 'bottom-6 left-6'].map((pos) => (
           <img 
             key={pos} 
-            src={"/kunnskapkom/kunnskapkom.svg"} 
+            src={"/kunnskapkom/kunnskapkomlogo.svg"} 
             className={clsx("absolute max-h-20", pos)}
           />
         ))}
