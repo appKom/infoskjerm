@@ -60,7 +60,7 @@ export const Header = (props: HeaderProps) => {
   }, []);
 
   return (
-    <div className='relative border-b-[1.5px] min-h-32 h-32 max-h-32 border-light-grey dark:border-gray-700 dark:text-white z-20 bg-white dark:bg-[#111827]'>
+    <div className='relative border-b-[1.5px] min-h-32 h-32 max-h-32 border-light-grey dark:border-gray-700 dark:text-white z-[100] bg-white dark:bg-[#111827]'>
       <div className={`absolute top-0 left-0 flex items-center justify-center w-full h-full text-6xl italic duration-1000 ${showMessage ? 'animate-[slideIn_1s_forwards]' : 'animate-[slideOut_1s_forwards]'}`}>
         {messageContent}
       </div>

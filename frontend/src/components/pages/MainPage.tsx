@@ -4,11 +4,12 @@ import { DarkModeProvider } from '../utils/DarkModeProvider';
 import { OnlineAppBlastPage } from './OnlineAppBlastPage';
 import { ChristmasPage } from './ChristmasPage';
 import { EventsPage } from './EventsPage';
-import { SlackPage } from './SlackPage';
+/* import { SlackPage } from './SlackPage'; */
 import { VideoPage } from './VideoPage';
 import { NapkomPage } from './Napkom';
 import { BratPage } from './BratPage';
 import { PodcastPage } from './PodcastPage';
+import { MovemberPage } from './MovemberPage';
 import { Kunnskapkom } from './Kunnskapkom';
 
 interface PageAbstract {
@@ -41,11 +42,11 @@ export const MainPage = () => {
       duration: 60,
       priority: () => 4,
     },
-    {
+    /* {
       component: <SlackPage />,
       duration: 60,
       priority: () => 3,
-    },
+    }, */
     {
       component: <VideoPage pageDuration={60} />,
       duration: 60,
@@ -91,10 +92,24 @@ export const MainPage = () => {
       priority: () => 1.5,
     },
     {
+      component: <MovemberPage />,
+      duration: 60,
+      priority: () => {
+        const today = new Date();
+        const year = today.getFullYear();
+
+        const seasonStart = new Date(year, 11, 1); // December 1st
+        const seasonEnd = new Date(year, 11, 24); // December 24th
+
+        if (seasonStart <= today && today <= seasonEnd) return 1;
+        else return 0;
+      }
+    },
+    {
       component: <Kunnskapkom />,
       duration: 60,
       priority: () => 0.03,
-    }
+    },
   ];
 
   const pages = preparePageSpecifications(pageSpecifications)
