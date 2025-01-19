@@ -4,7 +4,7 @@ import { DarkModeProvider } from '../utils/DarkModeProvider';
 import { OnlineAppBlastPage } from './OnlineAppBlastPage';
 import { ChristmasPage } from './ChristmasPage';
 import { EventsPage } from './EventsPage';
-import { SlackPage } from './SlackPage';
+/* import { SlackPage } from './SlackPage'; */
 import { VideoPage } from './VideoPage';
 import { NapkomPage } from './Napkom';
 import { BratPage } from './BratPage';
@@ -41,11 +41,11 @@ export const MainPage = () => {
       duration: 60,
       priority: () => 4,
     },
-    {
+    /* {
       component: <SlackPage />,
       duration: 60,
       priority: () => 3,
-    },
+    }, */
     {
       component: <VideoPage pageDuration={60} />,
       duration: 60,
