@@ -10,6 +10,7 @@ import { NapkomPage } from './Napkom';
 import { BratPage } from './BratPage';
 import { PodcastPage } from './PodcastPage';
 import { MovemberPage } from './MovemberPage';
+import { EasterPage } from './EasterPage';
 
 interface PageAbstract {
   component: ReactElement;
@@ -62,6 +63,11 @@ export const MainPage = () => {
         if (seasonStart <= today && today <= seasonEnd) return 1
         else return 0
       },
+    },
+    {
+      component: <EasterPage />,
+      duration: 60,
+      priority: () => 1.5,
     },
     {
       component: <OnlineAppBlastPage />,
