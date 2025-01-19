@@ -10,6 +10,7 @@ import { NapkomPage } from './Napkom';
 import { BratPage } from './BratPage';
 import { PodcastPage } from './PodcastPage';
 import { MovemberPage } from './MovemberPage';
+import { Kunnskapkom } from './Kunnskapkom';
 
 interface PageAbstract {
   component: ReactElement;
@@ -103,8 +104,12 @@ export const MainPage = () => {
         if (seasonStart <= today && today <= seasonEnd) return 1;
         else return 0;
       }
-
-    }
+    },
+    {
+      component: <Kunnskapkom />,
+      duration: 60,
+      priority: () => 0.5,
+    },
   ];
 
   const pages = preparePageSpecifications(pageSpecifications)
