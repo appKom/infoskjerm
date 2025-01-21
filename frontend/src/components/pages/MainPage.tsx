@@ -39,79 +39,79 @@ const preparePageSpecifications = (pages: PageSpecification[]): Page[] => {
 export const MainPage = () => {
   // All pages with their respective priorities and durations in seconds
   const pageSpecifications: PageSpecification[] = [
-    {
-      component: <EventsPage />,
-      duration: 60,
-      priority: () => 4,
-    },
-    {
-      component: <SlackPage />,
-      duration: 60,
-      priority: () => 3,
-    },
-    {
-      component: <VideoPage pageDuration={60} />,
-      duration: 60,
-      priority: () => 0.5,
-    },
-    {
-      component: <ChristmasPage />,
-      duration: 60,
-      priority: () => {
-        const today = new Date();
-        const seasonStart = new Date(today.getFullYear(), 9, 1);
-        const seasonEnd = new Date(today.getFullYear(), 11, 24);
+    // {
+    //   component: <EventsPage />,
+    //   duration: 60,
+    //   priority: () => 4,
+    // },
+    // {
+    //   component: <SlackPage />,
+    //   duration: 60,
+    //   priority: () => 3,
+    // },
+    // {
+    //   component: <VideoPage pageDuration={60} />,
+    //   duration: 60,
+    //   priority: () => 0.5,
+    // },
+    // {
+    //   component: <ChristmasPage />,
+    //   duration: 60,
+    //   priority: () => {
+    //     const today = new Date();
+    //     const seasonStart = new Date(today.getFullYear(), 9, 1);
+    //     const seasonEnd = new Date(today.getFullYear(), 11, 24);
 
-        if (seasonStart <= today && today <= seasonEnd) return 1;
-        else return 0;
-      },
-    },
-    {
-      component: <OnlineAppBlastPage />,
-      duration: 30,
-      priority: () => 1.5,
-    },
-    {
-      component: <BratPage />,
-      duration: 30,
-      priority: () => 0.02,
-    },
+    //     if (seasonStart <= today && today <= seasonEnd) return 1;
+    //     else return 0;
+    //   },
+    // },
+    // {
+    //   component: <OnlineAppBlastPage />,
+    //   duration: 30,
+    //   priority: () => 1.5,
+    // },
+    // {
+    //   component: <BratPage />,
+    //   duration: 30,
+    //   priority: () => 0.02,
+    // },
     {
       component: <TestPage />,
       duration: 30,
       priority: () => 0.02,
     },
-    {
-      component: <NapkomPage />,
-      duration: 60,
-      priority: () => {
-        const weight = 5;
-        const hour = new Date().getHours();
+    // {
+    //   component: <NapkomPage />,
+    //   duration: 60,
+    //   priority: () => {
+    //     const weight = 5;
+    //     const hour = new Date().getHours();
 
-        if (0 <= hour && hour < 6) return weight;
-        else if (hour >= 16) return (hour / 24) * weight;
-        else return 0;
-      },
-    },
-    {
-      component: <PodcastPage />,
-      duration: 30,
-      priority: () => 1.5,
-    },
-    {
-      component: <MovemberPage />,
-      duration: 60,
-      priority: () => {
-        const today = new Date();
-        const year = today.getFullYear();
+    //     if (0 <= hour && hour < 6) return weight;
+    //     else if (hour >= 16) return (hour / 24) * weight;
+    //     else return 0;
+    //   },
+    // },
+    // {
+    //   component: <PodcastPage />,
+    //   duration: 30,
+    //   priority: () => 1.5,
+    // },
+    // {
+    //   component: <MovemberPage />,
+    //   duration: 60,
+    //   priority: () => {
+    //     const today = new Date();
+    //     const year = today.getFullYear();
 
-        const seasonStart = new Date(year, 11, 1); // December 1st
-        const seasonEnd = new Date(year, 11, 24); // December 24th
+    //     const seasonStart = new Date(year, 11, 1); // December 1st
+    //     const seasonEnd = new Date(year, 11, 24); // December 24th
 
-        if (seasonStart <= today && today <= seasonEnd) return 1;
-        else return 0;
-      },
-    },
+    //     if (seasonStart <= today && today <= seasonEnd) return 1;
+    //     else return 0;
+    //   },
+    // },
   ];
 
   const pages = preparePageSpecifications(pageSpecifications);
@@ -150,40 +150,40 @@ export const MainPage = () => {
     }, 500);
   };
 
-  useEffect(() => {
-    const interval = setInterval(nextPage, millisecondsLeft);
+  // useEffect(() => {
+  //   const interval = setInterval(nextPage, millisecondsLeft);
 
-    const countdown = setInterval(() => {
-      setMillisecondsLeft((prevMilliseconds) => {
-        if (prevMilliseconds <= 250) {
-          return pages[selectNextComponent()].duration * 1000; // Reset for the next component
-        } else {
-          return prevMilliseconds - 250;
-        }
-      });
-    }, 250);
+  //   const countdown = setInterval(() => {
+  //     setMillisecondsLeft((prevMilliseconds) => {
+  //       if (prevMilliseconds <= 250) {
+  //         return pages[selectNextComponent()].duration * 1000; // Reset for the next component
+  //       } else {
+  //         return prevMilliseconds - 250;
+  //       }
+  //     });
+  //   }, 250);
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      let newIndex = currentComponentIndex;
+  //   const handleKeyDown = (event: KeyboardEvent) => {
+  //     let newIndex = currentComponentIndex;
 
-      if (event.key === "ArrowLeft") {
-        newIndex = (currentComponentIndex - 1 + pages.length) % pages.length;
-      } else if (event.key === "ArrowRight") {
-        newIndex = (currentComponentIndex + 1) % pages.length;
-      }
+  //     if (event.key === "ArrowLeft") {
+  //       newIndex = (currentComponentIndex - 1 + pages.length) % pages.length;
+  //     } else if (event.key === "ArrowRight") {
+  //       newIndex = (currentComponentIndex + 1) % pages.length;
+  //     }
 
-      setCurrentComponentIndex(newIndex);
-      setMillisecondsLeft(pages[newIndex].duration * 1000);
-    };
+  //     setCurrentComponentIndex(newIndex);
+  //     setMillisecondsLeft(pages[newIndex].duration * 1000);
+  //   };
 
-    window.addEventListener("keydown", handleKeyDown);
+  //   window.addEventListener("keydown", handleKeyDown);
 
-    return () => {
-      clearInterval(interval);
-      clearInterval(countdown);
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [currentComponentIndex, millisecondsLeft]);
+  //   return () => {
+  //     clearInterval(interval);
+  //     clearInterval(countdown);
+  //     window.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, [currentComponentIndex, millisecondsLeft]);
 
   return (
     <DarkModeProvider>
