@@ -5,7 +5,7 @@ import { authenticate } from "./src/authentication";
 import sql from "mssql";
 import "./src/cronJob";
 import { query, validationResult } from "express-validator";
-import { poolPromise } from "./src/azureClients";
+import { poolPromise } from "./src/supabaseClient";
 import { toCamelCaseKeys } from "./src/utils";
 
 const app = express();

@@ -1,7 +1,7 @@
 import { WebClient } from "@slack/web-api";
 import axios from "axios";
 import dotenv from "dotenv";
-import { mediaContainerClient, poolPromise } from "./azureClients";
+import { mediaContainerClient, poolPromise } from "./supabaseClient";
 import sql from "mssql";
 import sharp from "sharp";
 import { fetchCustomEmojis, getMediaType } from "./media";

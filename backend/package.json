@@ -12,8 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@azure/storage-blob": "^12.26.0",
     "@slack/web-api": "^7.0.4",
+    "@supabase/supabase-js": "^2.48.0",
     "axios": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
