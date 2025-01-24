@@ -24,7 +24,7 @@
     "node-cron": "^3.0.3",
     "pg": "^8.13.1",
     "sharp": "^0.33.5",
-    "vercel": "^37.7.1"
+    "vercel": "^39.3.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
