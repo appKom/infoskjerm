@@ -2,7 +2,7 @@ import { Pool } from "pg";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import { authenticate } from "./src/authentication";
-import "./src/cronJob";
+import cronHandler from "./src/cronJob";
 import { query, validationResult } from "express-validator";
 import { toCamelCaseKeys } from "./src/utils";
 
@@ -18,6 +18,8 @@ app.use(express.json());
 if (process.env.NODE_ENV === "development") {
   app.listen(3000, () => console.log("Server running on port 3000"));
 }
+
+app.post("/cron", cronHandler);
 
 app.get(
   "/latest-memes",
