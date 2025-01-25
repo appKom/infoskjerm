@@ -15,8 +15,8 @@
 
   "crons": [
     {
-      "path": "/src/cronJob",
-      "schedule": "0 10 * * *"
+      "path": "/cron",
+      "schedule": "0 7-21 * * *"
     }
   ]
 }

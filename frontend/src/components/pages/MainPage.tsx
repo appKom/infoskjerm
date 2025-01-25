@@ -4,7 +4,6 @@ import { DarkModeProvider } from "../utils/DarkModeProvider";
 import { OnlineAppBlastPage } from "./OnlineAppBlastPage";
 import { ChristmasPage } from "./ChristmasPage";
 import { EventsPage } from "./EventsPage";
-/* import { SlackPage } from './SlackPage'; */
 import { VideoPage } from "./VideoPage";
 import { NapkomPage } from "./Napkom";
 import { BratPage } from "./BratPage";
