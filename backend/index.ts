@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "development") {
   app.listen(3000, () => console.log("Server running on port 3000"));
 }
 
-app.post("/cron", cronHandler);
+app.get("/cron", cronHandler);
 
 app.get(
   "/latest-memes",
