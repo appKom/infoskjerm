@@ -109,8 +109,8 @@ export const MainPage = () => {
     },
     {
       component: <Kunnskapkom />,
-      duration: 60,
-      priority: () => 0.5,
+      duration: 30,
+      priority: () => 0.3,
     },
   ];
 
