@@ -60,10 +60,10 @@ app.get(
       return res.status(400).json({ errors: errors.array() });
     try {
       const count = parseInt(req.query.count as string, 10) || 5;
-      const channelNames = ["korktavla", "online"];
+      const channelNames = ["korktavla", "online", "utveksling", "kontoret"];
 
       const queryText = `
-        SELECT "Id", "Text", "Author", "AuthorImage", "Date", "ChannelName"
+        SELECT DISTINCT ON ("Text") "Id", "Text", "Author", "AuthorImage", "Date", "ChannelName"
         FROM "MediaFiles"
         WHERE "ChannelName" = ANY($1)
         ORDER BY "Date" DESC
