@@ -80,11 +80,11 @@ export const MainPage = () => {
       component: <NapkomPage />,
       duration: 60,
       priority: () => {
-        const weight = 5;
+        const weight = 3;
         const hour = new Date().getHours();
 
         if (0 <= hour && hour < 6) return weight;
-        else if (hour >= 16) return (hour / 24) * weight;
+        else if (hour >= 16) return (hour / 24) ** 2 * weight;
         else return 0;
       },
     },
