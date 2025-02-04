@@ -194,7 +194,7 @@ export const MainPage = () => {
           nextPage={nextPage}
         />
         <div
-          className="h-full"
+          className="h-full cursor-none"
           style={{ transition: "opacity 500ms", opacity }}
         >
           {pages[currentComponentIndex].component}
