@@ -30,6 +30,7 @@ Fill in the environment template and fill in the required variables:
 cp .env.template .env
 ```
 
+- **VITE_NODE_ENV**: The environment you are running the project in. Should be set to "development".
 - **VITE_BACKEND_API_KEY**: The API key which grants you access to the backend REST API. Contact a member of Appkom at [appkom@online.ntnu.no](mailto:appkom@online.ntnu.no) to obtain a key.
 - **VITE_VIDEO_API_KEY**: Key to the YouTube API V3. Retrieve your key here: [Google Cloud Console](https://console.cloud.google.com/apis/library/youtube.googleapis.com).
 - **VITE_BACKEND_URL**: Url to the backend. `https://infoskjerm-backend-appkom.vercel.app` is the running backend in prod.
