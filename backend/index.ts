@@ -66,7 +66,7 @@ app.get(
         SELECT DISTINCT ON ("Text") "Id", "Text", "Author", "AuthorImage", "Date", "ChannelName"
         FROM "MediaFiles"
         WHERE "ChannelName" = ANY($1)
-        ORDER BY "Date" DESC
+        ORDER BY "Text", "Date" DESC
         LIMIT $2
       `;
       const result = await pool.query(queryText, [channelNames, count]);
