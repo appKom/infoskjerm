@@ -63,11 +63,11 @@ app.get(
       const channelNames = ["korktavla", "online", "utveksling", "kontoret"];
 
       const queryText = `
-        SELECT DISTINCT ON ("Text") "Id", "Text", "Author", "AuthorImage", "Date", "ChannelName"
+        SELECT "Id", "Text", "Author", "AuthorImage", "Date", "ChannelName"
         FROM "MediaFiles"
         WHERE "ChannelName" = ANY($1)
-        ORDER BY "Text", "Date" DESC
-        LIMIT $2
+        ORDER BY "Date" DESC
+        LIMIT $2;
       `;
       const result = await pool.query(queryText, [channelNames, count]);
       res.json(result.rows.map(toCamelCaseKeys));
