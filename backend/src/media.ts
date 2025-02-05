@@ -135,7 +135,7 @@ async function handleTextMessage({
 
   // If record exists, check for changes
   if (existingRecord) {
-    console.log(`Text-only message already exists: ${messageId}`);
+    console.log(`No action required for: ${messageId}`);
 
     const existingReactions =
       JSON.parse(existingRecord.Reactions || "[]") || [];
@@ -228,7 +228,7 @@ async function handleMediaMessage({
   const newComments = message.reply_count || 0;
 
   if (existingRecord) {
-    console.log(`Media already exists: ${media.id}`);
+    console.log(`No action required for: ${media.id}`);
 
     const existingReactions =
       JSON.parse(existingRecord.Reactions || "[]") || [];
