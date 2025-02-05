@@ -190,7 +190,7 @@ export const MainPage = () => {
     <DarkModeProvider>
       <div className={clsx(
         "overflow-hidden dark:bg-[#111827] h-screen flex flex-col",
-        import.meta.env.VITE_NODE_ENV !== "development" && "cursor-none" 
+        import.meta.env.VITE_NODE_ENV !== "development" && "cursor-none"
       )}>
         <Header
           displayDuration={pages[currentComponentIndex].duration}
