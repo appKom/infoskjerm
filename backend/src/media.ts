@@ -127,7 +127,7 @@ async function handleTextMessage({
 
   // Check if the message already exists in Supabase
   const existingRecord = dbSlacks.find(
-    (record: any) => record.Id === messageId
+    (record: MediaFile) => record.Id === messageId
   );
 
   const newReactions = reactions;
@@ -207,7 +207,9 @@ async function handleMediaMessage({
   media: any;
 }) {
   // Check if media already exists
-  const existingRecord = dbSlacks.find((record: any) => record.Id === media.id);
+  const existingRecord = dbSlacks.find(
+    (record: MediaFile) => record.Id === media.id
+  );
 
   // Download media from Slack
   let fileBuffer: Buffer;
