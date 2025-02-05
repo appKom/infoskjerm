@@ -66,6 +66,12 @@ app.get(
         SELECT "Id", "Text", "Author", "AuthorImage", "Date", "ChannelName"
         FROM "MediaFiles"
         WHERE "ChannelName" = ANY($1)
+        AND "Text" IN (
+            SELECT DISTINCT ON ("Text") "Text"
+            FROM "MediaFiles"
+            WHERE "ChannelName" = ANY($1)
+            ORDER BY "Text", "Date" DESC
+        )
         ORDER BY "Date" DESC
         LIMIT $2;
       `;
