@@ -11,6 +11,7 @@ import { PodcastPage } from "./PodcastPage";
 import { MovemberPage } from "./MovemberPage";
 import { Kunnskapkom } from "./Kunnskapkom";
 import { SlackPage } from "./SlackPage";
+import clsx from "clsx";
 
 interface PageAbstract {
   component: ReactElement;
@@ -187,14 +188,17 @@ export const MainPage = () => {
 
   return (
     <DarkModeProvider>
-      <div className="overflow-hidden dark:bg-[#111827] h-screen flex flex-col">
+      <div className={clsx(
+        "overflow-hidden dark:bg-[#111827] h-screen flex flex-col",
+        import.meta.env.VITE_NODE_ENV !== "development" && "cursor-none" 
+      )}>
         <Header
           displayDuration={pages[currentComponentIndex].duration}
           timeRemaining={millisecondsLeft / 1000}
           nextPage={nextPage}
         />
         <div
-          className="h-full cursor-none"
+          className="h-full"
           style={{ transition: "opacity 500ms", opacity }}
         >
           {pages[currentComponentIndex].component}
