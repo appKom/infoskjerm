@@ -2,8 +2,8 @@ import { WebClient } from "@slack/web-api";
 import axios from "axios";
 import dotenv from "dotenv";
 import sharp from "sharp";
-import { saveComments } from "./client";
 import { supabase, mediaBucket } from "./supabaseClient";
+import { MediaFile } from "./types";
 
 dotenv.config();
 
@@ -27,6 +27,20 @@ export const fetchMedia = async (channelId: string, count: number) => {
 
   // Get custom emojis for the workspace
   const customEmojis = await fetchCustomEmojis();
+
+  const { data: dbSlacks, error: dbSlacksError } = await supabase
+    .from("MediaFiles")
+    .select("*")
+    .eq("ChannelName", channelName);
+
+  if (dbSlacksError) {
+    console.error("Supabase error:", dbSlacksError);
+    return;
+  }
+  if (!dbSlacks) {
+    console.error("No data returned from Supabase, cannot proceed.");
+    return;
+  }
 
   let mediaCount = 0;
   for (const message of result.messages || []) {
@@ -58,6 +72,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
     if (!message.files || message.files.length === 0) {
       await handleTextMessage({
         message,
+        dbSlacks,
         channelId,
         channelName,
         userInfo,
@@ -80,7 +95,7 @@ export const fetchMedia = async (channelId: string, count: number) => {
 
       await handleMediaMessage({
         message,
-        channelId,
+        dbSlacks,
         channelName,
         userInfo,
         reactions,
@@ -96,12 +111,13 @@ export const fetchMedia = async (channelId: string, count: number) => {
  */
 async function handleTextMessage({
   message,
-  channelId,
+  dbSlacks,
   channelName,
   userInfo,
   reactions,
 }: {
   message: any;
+  dbSlacks: MediaFile[];
   channelId: string;
   channelName: string;
   userInfo: any;
@@ -110,45 +126,24 @@ async function handleTextMessage({
   const messageId = message.ts || "unknown";
 
   // Check if the message already exists in Supabase
-  const { data: existingRecord, error: existingError } = await supabase
-    .from("MediaFiles")
-    .select("*")
-    .eq("Id", messageId)
-    .maybeSingle();
-
-  if (existingError) {
-    console.error("Error checking existing text message:", existingError);
-    return;
-  }
+  const existingRecord = dbSlacks.find(
+    (record: MediaFile) => record.Id === messageId
+  );
 
   const newReactions = reactions;
   const newComments = message.reply_count || 0;
 
   // If record exists, check for changes
   if (existingRecord) {
-    console.log(`Text-only message already exists: ${messageId}`);
+    console.log(`No action required for: ${messageId}`);
 
     const existingReactions =
       JSON.parse(existingRecord.Reactions || "[]") || [];
     const reactionsChanged =
       JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
     const textChanged = existingRecord.Text !== message.text;
-    const commentsChanged = existingRecord.AmtComments !== newComments;
 
-    if (reactionsChanged || textChanged || commentsChanged) {
-      // Save comments if needed
-      if (message.ts && messageId) {
-        try {
-          saveComments({
-            postId: message.ts,
-            parentId: messageId,
-            channelId,
-          });
-        } catch (error) {
-          console.error("Error fetching comments:", error);
-        }
-      }
-
+    if (reactionsChanged || textChanged) {
       // Update record
       const { error: updateError } = await supabase
         .from("MediaFiles")
@@ -189,19 +184,6 @@ async function handleTextMessage({
     } else {
       console.log(`Text-only message saved: ${messageId}`);
     }
-
-    // Optionally fetch comments for new message
-    if (message.ts && messageId) {
-      try {
-        saveComments({
-          postId: message.ts,
-          parentId: messageId,
-          channelId,
-        });
-      } catch (error) {
-        console.error("Error fetching comments:", error);
-      }
-    }
   }
 }
 
@@ -211,30 +193,23 @@ async function handleTextMessage({
  */
 async function handleMediaMessage({
   message,
-  channelId,
+  dbSlacks,
   channelName,
   userInfo,
   reactions,
   media,
 }: {
   message: any;
-  channelId: string;
+  dbSlacks: MediaFile[];
   channelName: string;
   userInfo: any;
   reactions: any[];
   media: any;
 }) {
   // Check if media already exists
-  const { data: existingRecord, error: existingError } = await supabase
-    .from("MediaFiles")
-    .select("*")
-    .eq("Id", media.id)
-    .maybeSingle();
-
-  if (existingError) {
-    console.error("Error checking existing media:", existingError);
-    return;
-  }
+  const existingRecord = dbSlacks.find(
+    (record: MediaFile) => record.Id === media.id
+  );
 
   // Download media from Slack
   let fileBuffer: Buffer;
@@ -253,30 +228,16 @@ async function handleMediaMessage({
   const newComments = message.reply_count || 0;
 
   if (existingRecord) {
-    console.log(`Media already exists: ${media.id}`);
+    console.log(`No action required for: ${media.id}`);
 
     const existingReactions =
       JSON.parse(existingRecord.Reactions || "[]") || [];
     const reactionsChanged =
       JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
     const textChanged = existingRecord.Text !== message.text;
-    const commentsChanged = existingRecord.AmtComments !== newComments;
 
-    if (reactionsChanged || textChanged || commentsChanged) {
+    if (reactionsChanged || textChanged) {
       console.log(`Updating media record: ${media.id}`);
-
-      // Fetch comments if needed
-      if (message.ts && media.id) {
-        try {
-          saveComments({
-            postId: message.ts,
-            parentId: media.id,
-            channelId,
-          });
-        } catch (error) {
-          console.error("Error fetching comments:", error);
-        }
-      }
 
       // Update existing record
       const { error: updateError } = await supabase
@@ -371,19 +332,6 @@ async function handleMediaMessage({
   if (upsertError) {
     console.error("Error upserting media record:", upsertError);
     return;
-  }
-
-  // Fetch comments if needed
-  if (message.ts && media.id) {
-    try {
-      saveComments({
-        postId: message.ts,
-        parentId: media.id,
-        channelId,
-      });
-    } catch (error) {
-      console.error("Error fetching comments:", error);
-    }
   }
 
   console.log(`Media saved or updated: ${publicUrl}`);
