@@ -1,8 +1,8 @@
-# Infoskjerm
+# Ravioli (infoskjerm)
 
-Infoskjerm is a digital information display for [Online](https://online.ntnu.no/). Located on A4, it provides information to students in real-time.
+Ravioli (infoskjerm) is a digital information display for [Online](https://online.ntnu.no/). Located on A4, it provides information to students in real-time.
 
-You can view the live Infoskjerm [here](https://infoskjerm-online.vercel.app/).
+You can view it live [here](https://infoskjerm-online.vercel.app/).
 
 ## Contribution
 
