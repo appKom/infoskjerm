@@ -2,6 +2,9 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}',],
   theme: {
+    fontFamily: {
+      'cardo': ['cardo', 'sans-serif'],
+    },
     extend: {
       colors: {
         'light-grey': '#E5E7EB',
