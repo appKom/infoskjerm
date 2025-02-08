@@ -117,7 +117,7 @@ export const MainPage = () => {
     {
       component: <RavioliPage />,
       duration: 60,
-      priority: () => 0.001,
+      priority: () => 0.01,
     },
   ];
 
