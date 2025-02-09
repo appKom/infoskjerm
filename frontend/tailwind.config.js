@@ -2,6 +2,9 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}',],
   theme: {
+    fontFamily: {
+      'cardo': ['cardo', 'sans-serif'],
+    },
     extend: {
       colors: {
         'light-grey': '#E5E7EB',
@@ -23,6 +26,9 @@ module.exports = {
           '10%': { opacity: '1' },
           '100%': { transform: 'translate(400%, -200%) scale(0.75) rotate(-10deg)', opacity: '0' },
         },
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
     },
   },
