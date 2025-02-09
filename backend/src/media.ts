@@ -1,350 +1,354 @@
 import { WebClient } from "@slack/web-api";
 import axios from "axios";
 import dotenv from "dotenv";
-import { mediaContainerClient, poolPromise } from "./azureClients";
-import sql from "mssql";
 import sharp from "sharp";
-import { saveComments } from "./client";
+import { supabase, mediaBucket } from "./supabaseClient";
+import { MediaFile } from "./types";
 
 dotenv.config();
-const token = process.env.SLACK_TOKEN;
 
+const token = process.env.SLACK_TOKEN;
 const web = new WebClient(token);
 
+/**
+ * The main function to fetch messages (with or without attachments) from Slack,
+ * then store or update them in Supabase.
+ */
 export const fetchMedia = async (channelId: string, count: number) => {
   console.log("Fetching media...");
   console.log("Channel ID:", channelId);
 
-  const pool = await poolPromise;
-
+  // Get channel info
   const channelInfo = await web.conversations.info({ channel: channelId });
   const channelName = channelInfo.channel?.name || "unknown-channel";
 
-  const result = await web.conversations.history({
-    channel: channelId,
-  });
+  // Get channel history
+  const result = await web.conversations.history({ channel: channelId });
 
   // Get custom emojis for the workspace
   const customEmojis = await fetchCustomEmojis();
+
+  const { data: dbSlacks, error: dbSlacksError } = await supabase
+    .from("MediaFiles")
+    .select("*")
+    .eq("ChannelName", channelName);
+
+  if (dbSlacksError) {
+    console.error("Supabase error:", dbSlacksError);
+    return;
+  }
+  if (!dbSlacks) {
+    console.error("No data returned from Supabase, cannot proceed.");
+    return;
+  }
 
   let mediaCount = 0;
   for (const message of result.messages || []) {
     if (mediaCount >= count) break;
 
+    // Skip join/leave system messages
+    if (
+      message.subtype &&
+      (message.subtype === "channel_join" ||
+        message.subtype === "channel_leave")
+    ) {
+      continue;
+    }
+
+    // Reactions
+    const reactions = (message.reactions || []).map((reaction) => {
+      const emojiUrl = customEmojis?.[reaction.name || ""] || null;
+      return {
+        name: reaction.name,
+        count: reaction.count,
+        url: emojiUrl,
+      };
+    });
+
+    // Slack user info
+    const userInfo = await web.users.info({ user: message.user || "" });
+
+    // If no files, treat it as a text-only message
     if (!message.files || message.files.length === 0) {
-      if (
-        message.subtype &&
-        (message.subtype === "channel_join" ||
-          message.subtype === "channel_leave")
-      )
-        continue;
-
-      console.log("Processing message without attachments...");
-
-      // Get user info
-      const userInfo = await web.users.info({ user: message.user || "" });
-
-      // Fetch reactions for the message
-      const reactions = (message.reactions || []).map((reaction) => {
-        const emojiUrl = customEmojis?.[reaction.name || ""] || null;
-        return {
-          name: reaction.name,
-          count: reaction.count,
-          url: emojiUrl, // Include the URL if it's a custom emoji
-        };
+      await handleTextMessage({
+        message,
+        dbSlacks,
+        channelId,
+        channelName,
+        userInfo,
+        reactions,
       });
-
-      // Generate a unique ID for the text-only message
-      const messageId = message.ts || "unknown";
-
-      // Check if the message already exists in the database
-      const existing = await pool
-        .request()
-        .input("Id", sql.NVarChar, messageId)
-        .query("SELECT * FROM MediaFiles WHERE Id = @Id");
-
-      if (existing.recordset.length > 0) {
-        console.log(`Text-only message already exists: ${messageId}`);
-
-        const existingRecord = existing.recordset[0];
-        const existingReactions = JSON.parse(existingRecord.Reactions || "[]");
-        const newReactions = reactions;
-
-        const reactionsChanged =
-          JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
-        const textChanged = existingRecord.Text !== message.text;
-
-        const newComments = message.reply_count !== existingRecord.AmtComments;
-
-        if (reactionsChanged || textChanged || newComments) {
-          if (message.ts && messageId) {
-            try {
-              saveComments({
-                postId: message.ts,
-                parentId: messageId,
-                channelId: channelId,
-              });
-            } catch (error) {
-              console.error("Error fetching comments:", error);
-            }
-          }
-
-          console.log(`Updating text-only message record: ${messageId}`);
-          await pool
-            .request()
-            .input("Id", sql.NVarChar, messageId)
-            .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
-            .input("AmtComments", sql.Int, message.reply_count || 0)
-            .input("Text", sql.NVarChar, message.text || "").query(`
-            UPDATE MediaFiles
-            SET Reactions = @Reactions,
-                AmtComments = @AmtComments,
-                Text = @Text
-            WHERE Id = @Id
-          `);
-        }
-        continue;
-      }
-
-      await pool
-        .request()
-        .input("Id", sql.NVarChar, messageId)
-        .input("Name", sql.NVarChar, `Message-${messageId}`)
-        .input("Author", sql.NVarChar, userInfo.user?.real_name || "Unknown")
-        .input("Username", sql.NVarChar, userInfo.user?.name || "unknown")
-        .input(
-          "AuthorImage",
-          sql.NVarChar,
-          userInfo.user?.profile?.image_72 || ""
-        )
-        .input(
-          "Date",
-          sql.DateTime,
-          new Date(parseInt(message.ts || "0") * 1000)
-        )
-        .input("Url", sql.NVarChar, null)
-        .input("Type", sql.NVarChar, "text")
-        .input("Text", sql.NVarChar, message.text || "")
-        .input("AmtComments", sql.Int, message.reply_count || 0)
-        .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
-        .input("ChannelName", sql.NVarChar, channelName).query(`
-          INSERT INTO MediaFiles (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Text, AmtComments, Reactions, ChannelName)
-          VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @AmtComments, @Reactions, @ChannelName);
-        `);
-
-      console.log(`Text-only message saved: ${messageId}`);
       mediaCount++;
       continue;
     }
 
-    if (message.files && message.files.length > 0) {
-      const mediaFiles = message.files.filter(
-        (file) =>
-          file.mimetype &&
-          (file.mimetype.startsWith("image/") ||
-            file.mimetype.startsWith("video/"))
-      );
+    // If we have files, process only images/videos
+    const mediaFiles = message.files.filter((file) =>
+      file.mimetype
+        ? file.mimetype.startsWith("image/") ||
+          file.mimetype.startsWith("video/")
+        : false
+    );
 
-      for (const media of mediaFiles) {
-        if (mediaCount >= count) break;
+    for (const media of mediaFiles) {
+      if (mediaCount >= count) break;
 
-        // Check if media already exists in Azure SQL
-        const existing = await pool
-          .request()
-          .input("Id", sql.NVarChar, media.id)
-          .query("SELECT * FROM MediaFiles WHERE Id = @Id");
-
-        // Download media
-        const response = await axios.get(media.url_private || "", {
-          headers: { Authorization: `Bearer ${token}` },
-          responseType: "arraybuffer",
-        });
-
-        // Get user info
-        const userInfo = await web.users.info({ user: message.user || "" });
-
-        // Fetch reactions for the message
-        const reactions = (message.reactions || []).map((reaction) => {
-          const emojiUrl = customEmojis?.[reaction.name || ""] || null;
-          return {
-            name: reaction.name,
-            count: reaction.count,
-            url: emojiUrl, // Include the URL if it's a custom emoji
-          };
-        });
-
-        // Upload media to Azure Blob
-        const blobName = `${channelName}/${media.id}-${media.name}`;
-        const blockBlobClient =
-          mediaContainerClient.getBlockBlobClient(blobName);
-
-        if (existing.recordset.length > 0) {
-          console.log(`Media already exists: ${media.id}`);
-
-          // Compares existing data with new data to decide if an update is necessary
-          const existingRecord = existing.recordset[0];
-
-          // Checks if reactions have changed
-          const existingReactions = JSON.parse(
-            existingRecord.Reactions || "[]"
-          );
-          const newReactions = reactions;
-
-          const reactionsChanged =
-            JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
-          const textChanged = existingRecord.Text !== message.text;
-
-          const newComments =
-            message.reply_count !== existingRecord.AmtComments;
-
-          // If changes it updates the record
-          if (reactionsChanged || textChanged || newComments) {
-            console.log(`Updating media record: ${media.id}`);
-
-            if (message.ts && media.id) {
-              try {
-                saveComments({
-                  postId: message.ts,
-                  parentId: media.id,
-                  channelId: channelId,
-                });
-              } catch (error) {
-                console.error("Error fetching comments:", error);
-              }
-            }
-
-            await pool
-              .request()
-              .input("Id", sql.NVarChar, media.id)
-              .input("AmtComments", sql.Int, message.reply_count || 0)
-              .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
-              .input("Text", sql.NVarChar, message.text || "").query(`
-              UPDATE MediaFiles
-              SET Reactions = @Reactions,
-                  Text = @Text,
-                  AmtComments = @AmtComments
-              WHERE Id = @Id
-            `);
-
-            console.log(`Media record updated: ${media.id}`);
-          } else {
-            console.log(`No updates required for media: ${media.id}`);
-          }
-
-          continue; // Skip to the next media file
-        }
-
-        // If media does not exist, proceed to upload and insert as new
-        await blockBlobClient.upload(response.data, response.data.length);
-
-        try {
-          if (media.mimetype?.startsWith("image/")) {
-            if (media.mimetype === "image/gif") {
-              // **Handle GIFs without compression**
-              await blockBlobClient.upload(response.data, response.data.length);
-            } else {
-              // **Handle other image types with compression**
-              const image = sharp(response.data);
-              const metadata = await image.metadata();
-
-              let compressedImageBuffer;
-
-              // Resize images larger than 1920px
-              if (metadata.width && metadata.width > 1920) {
-                compressedImageBuffer = await image
-                  .resize({ width: Math.min(metadata.width, 1920) })
-                  .jpeg({ quality: 80 })
-                  .toBuffer();
-              } else {
-                compressedImageBuffer = await image.toBuffer();
-              }
-
-              await blockBlobClient.upload(
-                compressedImageBuffer,
-                compressedImageBuffer.length
-              );
-            }
-          } else if (media.mimetype?.startsWith("video/")) {
-            // Uploads videos without compression**
-            await blockBlobClient.upload(response.data, response.data.length);
-          }
-        } catch (error) {
-          console.error("Error uploading media:", error);
-          continue;
-        }
-
-        const blobUrl = blockBlobClient.url;
-
-        // Insert metadata into Azure SQL using an UPSERT (MERGE) statement
-        await pool
-          .request()
-          .input("Id", sql.NVarChar, media.id)
-          .input("Name", sql.NVarChar, media.name)
-          .input("Author", sql.NVarChar, userInfo.user?.real_name || "Unknown")
-          .input("Username", sql.NVarChar, userInfo.user?.name || "unknown")
-          .input(
-            "AuthorImage",
-            sql.NVarChar,
-            userInfo.user?.profile?.image_72 || ""
-          )
-          .input(
-            "Date",
-            sql.DateTime,
-            new Date(parseInt(message.ts || "0") * 1000)
-          )
-          .input("Url", sql.NVarChar, blobUrl)
-          .input("Type", sql.NVarChar, getMediaType(media.mimetype))
-          .input("Text", sql.NVarChar, message.text || "")
-          .input("AmtComments", sql.Int, message.reply_count || 0)
-          .input("Reactions", sql.NVarChar, JSON.stringify(reactions))
-          .input("ChannelName", sql.NVarChar, channelName).query(`
-            MERGE MediaFiles AS target
-            USING (SELECT @Id AS Id) AS source
-            ON target.Id = source.Id
-            WHEN MATCHED THEN 
-              UPDATE SET 
-                Name = @Name,
-                Author = @Author,
-                Username = @Username,
-                AuthorImage = @AuthorImage,
-                Date = @Date,
-                Url = @Url,
-                Text = @Text, -- Add Text to the UPDATE clause
-                Type = @Type,
-                AmtComments = @AmtComments,
-                Reactions = @Reactions,
-                ChannelName = @ChannelName
-            WHEN NOT MATCHED THEN
-              INSERT (Id, Name, Author, Username, AuthorImage, Date, Url, Type, Text, Reactions, AmtComments, ChannelName) -- Include Text here
-              VALUES (@Id, @Name, @Author, @Username, @AuthorImage, @Date, @Url, @Type, @Text, @Reactions, @AmtComments, @ChannelName);
-          `);
-
-        if (message.ts && media.id) {
-          try {
-            saveComments({
-              postId: message.ts,
-              parentId: media.id,
-              channelId: channelId,
-            });
-          } catch (error) {
-            console.error("Error fetching comments:", error);
-          }
-        }
-        console.log(`Media saved or updated: ${blobUrl}`);
-        mediaCount++;
-      }
+      await handleMediaMessage({
+        message,
+        dbSlacks,
+        channelName,
+        userInfo,
+        reactions,
+        media,
+      });
+      mediaCount++;
     }
   }
 };
 
+/**
+ * Handles a text-only message by upserting into Supabase.
+ */
+async function handleTextMessage({
+  message,
+  dbSlacks,
+  channelName,
+  userInfo,
+  reactions,
+}: {
+  message: any;
+  dbSlacks: MediaFile[];
+  channelId: string;
+  channelName: string;
+  userInfo: any;
+  reactions: any[];
+}) {
+  const messageId = message.ts || "unknown";
+
+  // Check if the message already exists in Supabase
+  const existingRecord = dbSlacks.find(
+    (record: MediaFile) => record.Id === messageId
+  );
+
+  const newReactions = reactions;
+  const newComments = message.reply_count || 0;
+
+  // If record exists, check for changes
+  if (existingRecord) {
+    console.log(`No action required for: ${messageId}`);
+
+    const existingReactions =
+      JSON.parse(existingRecord.Reactions || "[]") || [];
+    const reactionsChanged =
+      JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
+    const textChanged = existingRecord.Text !== message.text;
+
+    if (reactionsChanged || textChanged) {
+      // Update record
+      const { error: updateError } = await supabase
+        .from("MediaFiles")
+        .update({
+          Text: message.text || "",
+          Reactions: JSON.stringify(newReactions),
+          AmtComments: newComments,
+        })
+        .eq("Id", messageId);
+
+      if (updateError) {
+        console.error("Error updating text-only message:", updateError);
+      } else {
+        console.log(`Updated text-only message record: ${messageId}`);
+      }
+    }
+  } else {
+    // Insert a new record
+    const { error: insertError } = await supabase.from("MediaFiles").insert([
+      {
+        Id: messageId,
+        Name: `Message-${messageId}`,
+        Author: userInfo.user?.real_name || "Unknown",
+        Username: userInfo.user?.name || "unknown",
+        AuthorImage: userInfo.user?.profile?.image_72 || "",
+        Date: new Date(parseInt(message.ts || "0") * 1000),
+        Url: null,
+        Type: "text",
+        Text: message.text || "",
+        AmtComments: newComments,
+        Reactions: JSON.stringify(newReactions),
+        ChannelName: channelName,
+      },
+    ]);
+
+    if (insertError) {
+      console.error("Error inserting text-only message:", insertError);
+    } else {
+      console.log(`Text-only message saved: ${messageId}`);
+    }
+  }
+}
+
+/**
+ * Handles a media message (images or videos) by uploading to Supabase Storage
+ * and upserting into the `MediaFiles` table.
+ */
+async function handleMediaMessage({
+  message,
+  dbSlacks,
+  channelName,
+  userInfo,
+  reactions,
+  media,
+}: {
+  message: any;
+  dbSlacks: MediaFile[];
+  channelName: string;
+  userInfo: any;
+  reactions: any[];
+  media: any;
+}) {
+  // Check if media already exists
+  const existingRecord = dbSlacks.find(
+    (record: MediaFile) => record.Id === media.id
+  );
+
+  // Download media from Slack
+  let fileBuffer: Buffer;
+  try {
+    const response = await axios.get(media.url_private, {
+      headers: { Authorization: `Bearer ${token}` },
+      responseType: "arraybuffer",
+    });
+    fileBuffer = Buffer.from(response.data);
+  } catch (error) {
+    console.error("Error downloading media:", error);
+    return;
+  }
+
+  const newReactions = reactions;
+  const newComments = message.reply_count || 0;
+
+  if (existingRecord) {
+    console.log(`No action required for: ${media.id}`);
+
+    const existingReactions =
+      JSON.parse(existingRecord.Reactions || "[]") || [];
+    const reactionsChanged =
+      JSON.stringify(existingReactions) !== JSON.stringify(newReactions);
+    const textChanged = existingRecord.Text !== message.text;
+
+    if (reactionsChanged || textChanged) {
+      console.log(`Updating media record: ${media.id}`);
+
+      // Update existing record
+      const { error: updateError } = await supabase
+        .from("MediaFiles")
+        .update({
+          Text: message.text || "",
+          Reactions: JSON.stringify(newReactions),
+          AmtComments: newComments,
+        })
+        .eq("Id", media.id);
+
+      if (updateError) {
+        console.error("Error updating media:", updateError);
+      } else {
+        console.log(`Media record updated: ${media.id}`);
+      }
+    } else {
+      console.log(`No updates required for media: ${media.id}`);
+    }
+    return;
+  }
+
+  // Otherwise, it's a new media file. Let's upload it.
+  const filePath = `${channelName}/${media.id}-${media.name}`;
+
+  // Compress images (except GIF) or pass videos directly
+  let uploadData: Buffer = fileBuffer;
+
+  // If image and not GIF, try resizing/compressing
+  if (media.mimetype?.startsWith("image/") && media.mimetype !== "image/gif") {
+    try {
+      const image = sharp(fileBuffer);
+      const metadata = await image.metadata();
+
+      if (metadata.width && metadata.width > 1920) {
+        // Resize if over 1920px wide
+        uploadData = await image
+          .resize({ width: 1920 })
+          .jpeg({ quality: 80 })
+          .toBuffer();
+      } else {
+        // Otherwise just convert to buffer (or compress at your preference)
+        uploadData = await image.toBuffer();
+      }
+    } catch (err) {
+      console.error("Error processing image with sharp:", err);
+      return;
+    }
+  }
+  // If it's a GIF or a video, do nothing special (for now).
+
+  // Upload to Supabase Storage
+  const { data: storageData, error: storageError } = await mediaBucket.upload(
+    filePath,
+    uploadData,
+    { contentType: media.mimetype }
+  );
+
+  if (storageError) {
+    console.error("Error uploading to Supabase Storage:", storageError);
+    return;
+  }
+
+  // Retrieve public URL from Supabase
+  const {
+    data: { publicUrl },
+  } = mediaBucket.getPublicUrl(filePath);
+
+  // Insert (or upsert) into Supabase
+  const { error: upsertError } = await supabase.from("MediaFiles").upsert(
+    [
+      {
+        Id: media.id,
+        Name: media.name,
+        Author: userInfo.user?.real_name || "Unknown",
+        Username: userInfo.user?.name || "unknown",
+        AuthorImage: userInfo.user?.profile?.image_72 || "",
+        Date: new Date(parseInt(message.ts || "0") * 1000),
+        Url: publicUrl,
+        Type: getMediaType(media.mimetype),
+        Text: message.text || "",
+        AmtComments: newComments,
+        Reactions: JSON.stringify(newReactions),
+        ChannelName: channelName,
+      },
+    ],
+    {
+      onConflict: "Id", // Make sure you have a unique constraint on Id
+    }
+  );
+
+  if (upsertError) {
+    console.error("Error upserting media record:", upsertError);
+    return;
+  }
+
+  console.log(`Media saved or updated: ${publicUrl}`);
+}
+
+/**
+ * Determine media type from mimetype.
+ */
 export const getMediaType = (mimetype: string | undefined): string => {
   if (!mimetype) return "unknown";
-  // Extract the type before the '/'
   const type = mimetype.split("/")[0];
   return type || "unknown";
 };
 
-// Fetch custom emojis for the workspace
+/**
+ * Fetch custom emojis for the Slack workspace.
+ */
 export const fetchCustomEmojis = async () => {
   try {
     const emojiList = await web.emoji.list({});
