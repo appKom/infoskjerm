@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import countdownToEaster from '../utils/DaysUntilEaster';
 
 export const EasterPage = () => {
-  //Const for countdown, use usestate to set "today" as the current date
-  // const [countdown, setCountdown] = useState(countdownToEaster());
   console.log(countdownToEaster());
   const [daysUntilEaster, setDaysUntilEaster] = useState(countdownToEaster());
 
