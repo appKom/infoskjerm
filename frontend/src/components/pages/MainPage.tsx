@@ -13,6 +13,7 @@ import { Kunnskapkom } from "./Kunnskapkom";
 import { SlackPage } from "./SlackPage";
 import { EasterPage } from "./EasterPage";
 import clsx from "clsx";
+import { RavioliPage } from "./RavioliPage";
 
 interface PageAbstract {
   component: ReactElement;
@@ -118,6 +119,11 @@ export const MainPage = () => {
       component: <Kunnskapkom />,
       duration: 30,
       priority: () => 0.3,
+    },
+    {
+      component: <RavioliPage />,
+      duration: 60,
+      priority: () => 0.01,
     },
   ];
 
