@@ -11,7 +11,7 @@ import { PodcastPage } from "./PodcastPage";
 import { MovemberPage } from "./MovemberPage";
 import { Kunnskapkom } from "./Kunnskapkom";
 import { SlackPage } from "./SlackPage";
-import { EasterPage } fromt "./EasterPage";
+import { EasterPage } from "./EasterPage";
 import clsx from "clsx";
 
 interface PageAbstract {
