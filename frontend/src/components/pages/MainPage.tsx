@@ -14,6 +14,7 @@ import { SlackPage } from "./SlackPage";
 import { EasterPage } from "./EasterPage";
 import clsx from "clsx";
 import { RavioliPage } from "./RavioliPage";
+import countdownToEaster from "../utils/DaysUntilEaster";
 
 interface PageAbstract {
   component: ReactElement;
@@ -72,7 +73,10 @@ export const MainPage = () => {
     {
       component: <EasterPage />,
       duration: 60,
-      priority: () => 1.5,
+      priority: () => {
+        if (countdownToEaster() <= 70) return 1;
+        else return 0;
+      }
     },
     {
       component: <OnlineAppBlastPage />,
