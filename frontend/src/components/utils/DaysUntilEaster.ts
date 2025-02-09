@@ -13,7 +13,6 @@ const countdownToEaster = () => {
   }
   const easterEve = new Date(goodFridayDate);
   easterEve.setDate(goodFridayDate.getDate() + 1);
-  console.log(easterEve);
 
   const diffTime = Math.abs(easterEve.getTime() - today.getTime());
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
