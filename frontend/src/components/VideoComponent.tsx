@@ -1,5 +1,5 @@
 
-import { CSSProperties, useCallback, useEffect, useRef } from "react";
+import { CSSProperties, useEffect, useRef } from "react";
 import { useIsVisible } from "../lib/useIsVisible";
 
 
@@ -26,29 +26,17 @@ export const VideoComponent = ({
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const startVideoOnMouseMove = useCallback(async () => {
-    try {
-      await videoRef.current?.play();
-    } catch (e) {
-      // do nothing
-    }
-  }, []);
-
-  const stopVideoOnMove = useCallback(() => {
-    try {
-      videoRef.current?.pause();
-    } catch (e) {
-      // do nothing
-    }
-  }, []);
-
   useEffect(() => {
-    if (isVisible) {
-      startVideoOnMouseMove();
-    } else {
-      stopVideoOnMove();
-    }
-  }, [isVisible, startVideoOnMouseMove, stopVideoOnMove]);
+    const handleVideoPlayback = async () => {
+      if (isVisible) {
+        await videoRef.current?.play();
+      } else {
+        videoRef.current?.pause();
+      }
+    };
+  
+    handleVideoPlayback();
+  }, [isVisible]);
 
   return (
     <span
