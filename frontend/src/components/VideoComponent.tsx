@@ -18,7 +18,7 @@ export const VideoComponent = ({
   const { isVisible, targetRef } = useIsVisible(
     {
       root: null,
-      rootMargin: "200px",
+      rootMargin: "500px",
       threshold: 0.1,
     },
     false,
