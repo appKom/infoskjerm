@@ -14,7 +14,7 @@ import { SlackPage } from "./SlackPage";
 import { EasterPage } from "./EasterPage";
 import clsx from "clsx";
 import { RavioliPage } from "./RavioliPage";
-import countdownToEaster from "../utils/DaysUntilEaster";
+import countdownToEaster from "../../lib/daysUntilEaster";
 
 interface PageAbstract {
   component: ReactElement;

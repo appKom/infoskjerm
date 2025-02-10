@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import countdownToEaster from '../utils/DaysUntilEaster';
+import countdownToEaster from '../../lib/daysUntilEaster';
 
 export const EasterPage = () => {
   const [daysUntilEaster, setDaysUntilEaster] = useState(countdownToEaster());
