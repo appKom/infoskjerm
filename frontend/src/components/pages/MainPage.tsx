@@ -11,8 +11,10 @@ import { PodcastPage } from "./PodcastPage";
 import { MovemberPage } from "./MovemberPage";
 import { Kunnskapkom } from "./Kunnskapkom";
 import { SlackPage } from "./SlackPage";
+import { EasterPage } from "./EasterPage";
 import clsx from "clsx";
 import { RavioliPage } from "./RavioliPage";
+import countdownToEaster from "../../lib/daysUntilEaster";
 
 interface PageAbstract {
   component: ReactElement;
@@ -67,6 +69,14 @@ export const MainPage = () => {
         if (seasonStart <= today && today <= seasonEnd) return 1;
         else return 0;
       },
+    },
+    {
+      component: <EasterPage />,
+      duration: 60,
+      priority: () => {
+        if (countdownToEaster() <= 70) return 1;
+        else return 0;
+      }
     },
     {
       component: <OnlineAppBlastPage />,
