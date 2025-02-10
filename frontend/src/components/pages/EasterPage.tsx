@@ -26,7 +26,7 @@ export const EasterPage = () => {
         </div>
       </div>
       {/* Background */}
-      <img className="w-full h-full absolute" src="/easter/tulipfield.jpg" alt="" />
+      <img className="w-full h-full absolute object-cover" src="/easter/tulipfield.jpg" alt="" />
     </div>
   )
 };
