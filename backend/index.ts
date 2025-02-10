@@ -24,24 +24,36 @@ app.get("/cron", cronHandler);
 app.get(
   "/latest-memes",
   authenticate,
-  [query("count").optional().isInt({ min: 1, max: 10 })],
+  [query("count").optional().isInt({ min: 1, max: 10 }), query("type").optional().isString().isIn(["image", "video"])],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
       return res.status(400).json({ errors: errors.array() });
     try {
       const count = parseInt(req.query.count as string, 10) || 10;
+      const type = req.query.type as string | undefined;
       const channel = "memeogvinogklinoggrin2";
 
-      // Use standard Postgres parameter bindings with $1, $2, etc.
-      const queryText = `
+      let queryText = `
         SELECT "Id", "Name", "Author", "Username", "AuthorImage", "Date", "Url", "Type", "Reactions", "ChannelName"
         FROM "MediaFiles"
         WHERE "ChannelName" = $1 AND "Url" IS NOT NULL
-        ORDER BY "Date" DESC
-        LIMIT $2
       `;
-      const result = await pool.query(queryText, [channel, count]);
+
+      const queryParams: any[] = [channel];
+
+      if (type) {
+        queryText += ` AND "Type" = $2`;
+        queryParams.push(type);
+      }
+
+      queryText += `
+        ORDER BY "Date" DESC
+        LIMIT $${queryParams.length + 1}
+      `;
+      queryParams.push(count);
+
+      const result = await pool.query(queryText, queryParams);
       res.json(result.rows.map(toCamelCaseKeys));
     } catch (error) {
       console.error("Failed to get memes:", error);
