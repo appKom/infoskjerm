@@ -4,6 +4,7 @@ import { MemeType } from "../../lib/types";
 import { BaseCard } from "./BaseCard";
 import { SlackReaction } from "../SlackReaction";
 import { Badge } from "../Badge";
+import { VideoComponent } from "../VideoComponent";
 
 const WIDTH = 500;
 const MAX_RETRIES = 10;
@@ -68,23 +69,7 @@ export const MemeCard = ({ meme }: { meme: MemeType }) => {
         </div>
       ) : meme.type === "video" ? (
         <div className="relative">
-          {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center animate-pulse dark:text-white">
-              <span>Gjør deg klar for smuud meme...</span>
-            </div>
-          )}
-          <video
-            className="bg-white dark:bg-gray-800 dark:text-white"
-            src={meme.url}
-            style={{ width: `${WIDTH}px` }}
-            autoPlay
-            muted
-            loop
-            onError={handleMediaError}
-            onCanPlay={() => setIsLoading(false)}
-          >
-            Ooops, denne nettleseren støtter ikke video :(
-          </video>
+          <VideoComponent src={meme.url} style={{ width: `${WIDTH}px` }} />
         </div>
       ) : null}
       {meme.reactions.length > 0 && (
