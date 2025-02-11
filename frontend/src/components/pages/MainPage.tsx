@@ -85,12 +85,12 @@ export const MainPage = () => {
     },
     {
       component: <BratPage />,
-      duration: 30,
+      duration: 20,
       priority: () => 0.02,
     },
     {
       component: <NapkomPage />,
-      duration: 60,
+      duration: 20,
       priority: () => {
         const weight = 3;
         const hour = new Date().getHours();
@@ -107,7 +107,7 @@ export const MainPage = () => {
     },
     {
       component: <MovemberPage />,
-      duration: 60,
+      duration: 20,
       priority: () => {
         const today = new Date();
         const year = today.getFullYear();
@@ -126,7 +126,7 @@ export const MainPage = () => {
     },
     {
       component: <RavioliPage />,
-      duration: 60,
+      duration: 20,
       priority: () => 0.01,
     },
   ];
