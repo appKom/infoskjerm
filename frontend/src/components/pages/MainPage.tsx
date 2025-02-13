@@ -60,7 +60,7 @@ export const MainPage = () => {
     },
     {
       component: <ChristmasPage />,
-      duration: 60,
+      duration: 30,
       priority: () => {
         const today = new Date();
         const seasonStart = new Date(today.getFullYear(), 9, 1);
@@ -72,7 +72,7 @@ export const MainPage = () => {
     },
     {
       component: <EasterPage />,
-      duration: 60,
+      duration: 30,
       priority: () => {
         if (countdownToEaster() <= 70) return 1;
         else return 0;
