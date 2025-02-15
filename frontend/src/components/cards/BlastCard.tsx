@@ -13,7 +13,7 @@ export const BlastCard = ({ blast }: { blast: BlastType }) => {
     <BaseCard width={1000}>
       <div className="flex p-3 gap-4">
         <img
-          className="w-12 h-12 rounded-lg"
+          className="w-12 h-12 rounded-lg object-cover object-top"
           src={blast.authorImage}
           alt={blast.author}
         />
