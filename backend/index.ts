@@ -1,7 +1,6 @@
 import { Pool } from "pg";
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { authenticate } from "./src/authentication";
 import cronHandler from "./src/cronJob";
 import { query, validationResult } from "express-validator";
 import { toCamelCaseKeys } from "./src/utils";
@@ -23,7 +22,6 @@ app.get("/cron", cronHandler);
 
 app.get(
   "/latest-memes",
-  authenticate,
   [query("count").optional().isInt({ min: 1, max: 10 }), query("type").optional().isString().isIn(["image", "video"])],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
@@ -64,7 +62,6 @@ app.get(
 
 app.get(
   "/latest-blasts",
-  authenticate,
   [query("count").optional().isInt({ min: 1, max: 10 })],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
@@ -98,7 +95,6 @@ app.get(
 
 app.get(
   "/movember",
-  authenticate,
   [query("date").optional().isISO8601()],
   async (req: Request, res: Response) => {
     try {
