@@ -14,7 +14,7 @@ const TRAINLENGTH = 3; // how many duplicated meme-lists to show for the infinit
 export const LatestMemes = () => {
   const { isLoading, isError, data } = useQuery({
     queryKey: ["memes"],
-    queryFn: () => fetchMemes(AMOUNT_OF_MEMES),
+    queryFn: () => fetchMemes(AMOUNT_OF_MEMES, "image"),
     refetchInterval: 1000 * 60 * REFETCH_INTERVAL_MINUTES,
   });
 
