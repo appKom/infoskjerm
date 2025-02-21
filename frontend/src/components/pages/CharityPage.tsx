@@ -9,14 +9,17 @@ export const CharityPage = () => {
 
       <div className="max-w-7xl mx-auto">
         {/* Title Section - Overlapping */}
-        <div className="absolute top-0 left-0 translate-x-4 translate-y-14 text-8xl font-bold text-white/5">VELDEDIGHETSFEST</div>
+        <div className="absolute top-0 left-0 translate-x-8 translate-y-16 text-8xl font-bold text-white/10">VELDEDIGHETSFEST</div>
 
         <div className="grid grid-cols-3 gap-8 mt-24">
           {/* QR Section - Spans 2 rows */}
           <div className="row-span-2 col-span-2 relative z-10">
-            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 h-full">
+            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 h-full row-span-2 col-span-2 relative z-10">
               <div className="flex flex-col items-center justify-center h-full space-y-8">
-                <h2 className="text-3xl font-bold">Støtt en god sak!</h2>
+                <p className="text-5xl font-bold tracking-tight">
+                  støtt mental helse
+                  <span className="text-online-yellow">.</span>
+                </p>
                 <div className="bg-white p-6 rounded-2xl rotate-3 transition-transform">
                   <img
                     src="https://dk3wdpvyk5ksy.cloudfront.net/wp-content/uploads/2021/06/14143720/vipps-qr-PCK.png"
@@ -35,7 +38,7 @@ export const CharityPage = () => {
             <div className="bg-online-blue p-8 rounded-3xl">
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">Opptjent så langt</h2>
-                <div className="text-5xl font-bold">kr 15,000</div>
+                <div className="text-5xl font-bold text-online-yellow">kr 15,000</div>
                 <div className="space-y-2">
                   {/* Custom Progress Bar */}
                   <div className="w-full h-2 bg-black/20 rounded-full overflow-hidden">
@@ -53,14 +56,14 @@ export const CharityPage = () => {
           {/* Event Details - Offset from grid */}
           <div className="-ml-24 -mb-64 relative z-10">
             <div className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10">
-              <h2 className="text-4xl font-bold mb-8">Når?</h2>
+              <h2 className="text-4xl font-bold mb-8">Når og hvor?</h2>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <Clock className="w-6 h-6 text-online-yellow mt-1" />
                   <div>
-                    <p className="text-lg">Saturday, March 29th 2024</p>
-                    <p className="text-online-yellow">18:00 - 23:00</p>
+                    <p className="text-lg">Lørdag, 29. mars</p>
+                    <p className="text-zinc-400">18:00 - 23:00</p>
                   </div>
                 </div>
 
