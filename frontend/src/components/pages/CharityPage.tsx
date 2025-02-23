@@ -32,7 +32,7 @@ export const CharityPage = () => {
         </div>
 
         {/* Progress Section - Overlapping previous section */}
-        <div className="-ml-[220px] mt-[100px] w-[500px] h-max relative z-20 bg-online-blue/50 backdrop-blur-sm p-8 rounded-3xl border border-white/10">
+        <div className="-ml-[210px] mt-[200px] w-[500px] h-max relative z-20 bg-online-blue/50 backdrop-blur-sm p-8 rounded-3xl border border-white/10">
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Opptjent så langt</h2>
               <div className="text-5xl font-bold text-online-yellow">kr 15,000</div>
@@ -53,7 +53,7 @@ export const CharityPage = () => {
         </div>
 
         {/* Event Details - Offset from grid */}
-        <div className="-ml-[240px] -mb-[200px] relative z-10">
+        <div className="-ml-[240px] -mb-[100px] relative z-10">
           <div className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 w-96">
             <h2 className="text-4xl font-bold mb-8">Når og hvor?</h2>
 
