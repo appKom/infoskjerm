@@ -7,11 +7,7 @@ export const fetchMemes = async (amount: number, type?: 'image' | 'video'): Prom
     apiUrl += `&type=${type}`;
   }
 
-  const response = await fetch(apiUrl, {
-    headers: {
-      'x-api-key': import.meta.env.VITE_BACKEND_API_KEY
-    }
-  });
+  const response = await fetch(apiUrl);
 
   if (response.ok) {
     return await response.json();
