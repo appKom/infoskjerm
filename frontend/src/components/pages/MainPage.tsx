@@ -15,6 +15,7 @@ import { EasterPage } from "./EasterPage";
 import clsx from "clsx";
 import { RavioliPage } from "./RavioliPage";
 import countdownToEaster from "../../lib/daysUntilEaster";
+import { CharityPage } from "./CharityPage";
 
 interface PageAbstract {
   component: ReactElement;
@@ -127,6 +128,11 @@ export const MainPage = () => {
     {
       component: <RavioliPage />,
       duration: 20,
+      priority: () => 0.01,
+    },
+    {
+      component: <CharityPage />,
+      duration: 2000,
       priority: () => 0.01,
     },
   ];
