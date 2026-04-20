@@ -1,4 +1,4 @@
-import { DebugLogo } from "../Logo/DebugLogo";
+import { DebugLogo } from "../logo/DebugLogo";
 
 
 export const DebugQR = () => (

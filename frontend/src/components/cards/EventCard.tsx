@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import OnlineLogo from '../Logo/OnlineLogo';
+import OnlineLogo from '../logo/OnlineLogo';
 import { Badge } from '../Badge';
 import { formatWeekday, formatClock, formatDateName, isLongEvent, sameMonth } from '../../lib/date';
 import { EVENT_TYPES, IEventAttendanceDetails, INewEvent } from '../../lib/types';
