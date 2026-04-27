@@ -183,3 +183,49 @@ When the cron job runs, the backend:
 3. Compresses images with Sharp (resizes to max 1920px wide, 80% JPEG quality)
 4. Uploads processed files to Supabase Storage under `media/{channelName}/{fileId}-{fileName}`
 5. Upserts metadata (author, reactions, timestamp, public URL) into the `MediaFiles` table
+
+---
+
+## Slack bot
+
+The backend fetches data from the Slack API using a Slack bot. This bot has been added to the relevant channels in the Online Slack workspace (e.g. `#memeogvinogklinoggrin2`, `#korktavla`, etc.), which gives it read access to those channels.
+
+For details on setting up a Slack bot and scopes, refer to the [Slack API documentation](https://api.slack.com/).
+
+The bot's OAuth token (`SLACK_TOKEN`) can be retrieved from the Notion-page.
+
+---
+
+## YouTube API key
+
+`VITE_VIDEO_API_KEY` is a Google Cloud API key with access to the **YouTube Data API v3**.
+
+To get one:
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/apis/library/youtube.googleapis.com).
+2. Enable the **YouTube Data API v3** for your project.
+3. Create an API key under **Credentials**.
+
+---
+
+## Creating QR codes
+
+Many QR code generators do not encode the destination URL directly into the QR code. Instead they redirect through their own service, which often imposes a time limit or paywall before the code stops working.
+
+Use [qrcode-monkey.com](https://www.qrcode-monkey.com/) to generate QR codes that link directly to the target URL with no intermediary — and with good visual customization options.
+
+**Tip:** QR codes with shorter content (shorter URLs) produce fewer dots, which makes them look cleaner and more visually pleasing on screen. Prefer short URLs where possible.
+
+---
+
+## Daily page refresh
+
+The app automatically reloads itself once per day at `03:00` to pick up any newly deployed code. This is controlled by the `REFRESH_TIME` constant in [frontend/src/components/header/Header.tsx](frontend/src/components/header/Header.tsx).
+
+---
+
+## Hardware setup
+
+The infoskjerm runs on a **Windows laptop** connected to the TV via an HDMI cable.
+
+**TV:** Philips 50'' LED Ambilight TV
