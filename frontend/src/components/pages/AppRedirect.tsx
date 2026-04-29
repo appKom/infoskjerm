@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Loader2 } from 'lucide-react'
 
 const androidAppLink = "https://play.google.com/store/apps/details?id=ntnu.online.app"
 const iosAppLink = "https://apple.co/3YnrSTh"
@@ -9,7 +10,6 @@ export const AppRedirect = () => {
   useEffect(() => {
     const userAgent = navigator.userAgent || (window as any).opera
 
-    // Check if the user is on Android or iOS
     if (/android/i.test(userAgent)) {
       setPlatform('android')
       window.location.href = androidAppLink
@@ -21,31 +21,29 @@ export const AppRedirect = () => {
     }
   }, [])
 
-  if (!platform) {
-    return null
-  }
-
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#0D5474] text-white p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Viderekobler...</h1>
-      <p className="text-xl mb-8 text-center">
-        {platform === 'other'
-          ? "Det ser ut som at du bruker en mobil. Du kan fortsatt laste ned appen på mobilen din:"
-          : "Hvis du ikke blir viderekoblet automatisk, velg plattform manuelt:"}
-      </p>
-      <div className="space-y-4 w-full max-w-md">
-        <a 
-          className="w-full bg-[#F9B759] hover:bg-[#f0a93d] text-[#0D5474] font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center"
-          href={androidAppLink}
-        >
-          Last ned for Android
-        </a>
-        <a 
-          className="w-full bg-white hover:bg-gray-100 text-[#0D5474] font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center"
-          href={iosAppLink}
-        >
-          Last ned for iOS
-        </a>
+    <div className="min-h-screen bg-[#07324a] flex flex-col items-center justify-center gap-8 px-8">
+      <img src="/online/online_icon_white.svg" alt="Online" className="w-16 h-16" />
+
+      {(!platform || platform === 'android' || platform === 'ios') && (
+        <div className="flex flex-col items-center gap-3 text-center">
+          <Loader2 className="w-6 h-6 text-white/40 animate-spin" />
+          <p className="text-white/50 text-base">Viderekobler…</p>
+        </div>
+      )}
+
+      {/* Fallback / manual links */}
+      <div className="flex flex-col items-center gap-3">
+        {(platform === 'ios' || platform === 'other') && (
+          <a href={iosAppLink} className="active:opacity-70 transition-opacity">
+            <img src="online-app/download-app-store.svg" alt="Last ned på App Store" className="h-12" />
+          </a>
+        )}
+        {(platform === 'android' || platform === 'other') && (
+          <a href={androidAppLink} className="active:opacity-70 transition-opacity">
+            <img src="online-app/download-google-play.svg" alt="Last ned på Google Play" className="h-12" />
+          </a>
+        )}
       </div>
     </div>
   )
