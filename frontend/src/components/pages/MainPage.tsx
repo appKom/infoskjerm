@@ -1,24 +1,17 @@
 import { useState, useEffect, ReactElement } from "react";
 import { Header } from "../header/Header";
 import { DarkModeProvider } from "../utils/DarkModeProvider";
-// import { OnlineAppBlastPage } from "./OnlineAppBlastPage";
+import { OnlineAppBlastPage } from "./OnlineAppBlastPage";
 import { ChristmasPage } from "./ChristmasPage";
 import { EventsPage } from "./EventsPage";
 import { NapkomPage } from "./Napkom";
-// import { BratPage } from "./BratPage";
-// import { PodcastPage } from "./PodcastPage";
 import { MovemberPage } from "./MovemberPage";
 import { Kunnskapkom } from "./Kunnskapkom";
 import { SlackPage } from "./SlackPage";
-/* import { EasterPage } from "./EasterPage"; */
 import clsx from "clsx";
 import { RavioliPage } from "./RavioliPage";
-/* import countdownToEaster from "../../lib/daysUntilEaster"; */
-import { JubkomPage } from "./JubkomPage";
-/* import { CharityPage } from "./CharityPage"; */
 import AprilFoolsFont from "../utils/AprilFoolsFont";
-// import { VideoPage } from "./VideoPage";
-// import { OpptakPage } from "./OpptakPage";
+import { VideoPage } from "./VideoPage";
 
 interface PageAbstract {
   component: ReactElement;
@@ -53,27 +46,28 @@ export const MainPage = () => {
       duration: 60,
       priority: () => 4,
     },
-    // {
-    //   component: <OpptakPage />,
-    //   duration: 40,
-    //   priority: () => {
-    //     const today = new Date();
-    //     const lastDay = new Date(today.getFullYear(), 7, 24);
+    /* {
+      component: <OpptakPage />,
+      duration: 40,
+      priority: () => {
+        const today = new Date();
+        const lastDay = new Date(today.getFullYear(), 7, 24);
+        const firstDay = new Date(today.getFullYear(), 7, 1);
 
-    //     if(today <= lastDay) return 3; 
-    //     else return 0;
-    //   },
-    // },
+        if(today <= lastDay && today >= firstDay) return 3;
+        else return 0;
+      },
+    }, */
     { 
       component: <SlackPage />,
       duration: 60,
       priority: () => 2.5,
     },
-    /* {
+    {
       component: <VideoPage pageDuration={60} />,
       duration: 60,
       priority: () => 0.5,
-    }, */
+    },
     {
       component: <ChristmasPage />,
       duration: 20,
@@ -87,17 +81,18 @@ export const MainPage = () => {
       },
       fullScreen: true,
     },
-    // {
-    //   component: <OnlineAppBlastPage />,
-    //   duration: 30,
-    //   priority: () => 1.2,
-    // },
-    // {
-    //   component: <BratPage />,
-    //   duration: 20,
-    //   priority: () => 0.02,
-    //   fullScreen: true,
-    // },
+    {
+      component: <OnlineAppBlastPage />,
+      duration: 30,
+      priority: () => 1.2,
+      fullScreen: true,
+    },
+    /* {
+      component: <BratPage />,
+      duration: 20,
+      priority: () => 0.01,
+      fullScreen: true,
+    }, */
     {
       component: <NapkomPage />,
       duration: 20,
@@ -111,12 +106,12 @@ export const MainPage = () => {
       },
       fullScreen: true,
     },
-    // {
-    //   component: <PodcastPage />,
-    //   duration: 30,
-    //   priority: () => 1.2,
-    // },
     /* {
+      component: <PodcastPage />,
+      duration: 30,
+      priority: () => 1.2,
+    }, */
+    {
       component: <MovemberPage />,
       duration: 20,
       priority: () => {
@@ -129,7 +124,7 @@ export const MainPage = () => {
         if (seasonStart <= today && today <= seasonEnd) return 1;
         else return 0;
       },
-    }, */
+    },
     {
       component: <Kunnskapkom />,
       duration: 30,
