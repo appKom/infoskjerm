@@ -74,7 +74,7 @@ export const OnlineAppBlastPage = () => (
         </div>
         <div className="flex flex-col gap-1">
           <span className="text-online-yellow text-xs font-bold uppercase tracking-widest leading-none">NYHET</span>
-          <span className="text-white font-semibold text-2xl leading-tight">Støtter på påmelding til arrangementer</span>
+          <span className="text-white font-semibold text-2xl leading-tight">Støtter påmelding til arrangementer</span>
         </div>
       </motion.div>
 
