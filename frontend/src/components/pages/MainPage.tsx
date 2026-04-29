@@ -5,21 +5,13 @@ import { OnlineAppBlastPage } from "./OnlineAppBlastPage";
 import { ChristmasPage } from "./ChristmasPage";
 import { EventsPage } from "./EventsPage";
 import { NapkomPage } from "./Napkom";
-import { BratPage } from "./BratPage";
-//import { PodcastPage } from "./PodcastPage";
 import { MovemberPage } from "./MovemberPage";
 import { Kunnskapkom } from "./Kunnskapkom";
 import { SlackPage } from "./SlackPage";
-/* import { EasterPage } from "./EasterPage"; */
 import clsx from "clsx";
 import { RavioliPage } from "./RavioliPage";
-/* import countdownToEaster from "../../lib/daysUntilEaster"; */
-//import { JubkomPage } from "./JubkomPage";
-/* import { CharityPage } from "./CharityPage"; */
 import AprilFoolsFont from "../utils/AprilFoolsFont";
 import { VideoPage } from "./VideoPage";
-//import { OpptakPage } from "./OpptakPage";
-// import { VideoPage } from "./VideoPage";
 
 interface PageAbstract {
   component: ReactElement;
@@ -95,12 +87,12 @@ export const MainPage = () => {
       priority: () => 1.2,
       fullScreen: true,
     },
-    {
+    /* {
       component: <BratPage />,
       duration: 20,
       priority: () => 0.01,
       fullScreen: true,
-    },
+    }, */
     {
       component: <NapkomPage />,
       duration: 20,
