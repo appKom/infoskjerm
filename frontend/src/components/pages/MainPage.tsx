@@ -67,6 +67,7 @@ export const MainPage = () => {
       component: <VideoPage pageDuration={60} />,
       duration: 60,
       priority: () => 0.5,
+      fullScreen: true,
     },
     {
       component: <ChristmasPage />,
